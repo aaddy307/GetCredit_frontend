@@ -1,0 +1,113 @@
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { Eye, EyeOff, LogIn } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
+import GlassCard from "@/components/ui/GlassCard";
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+
+export default function AdminLoginPage() {
+  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const { register, handleSubmit, formState: { isSubmitting } } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch(`${API_URL}/admin/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast.success("Welcome back!", { id: 'admin-login-success', duration: 5000 });
+        setTimeout(() => {
+          router.push("/admin/dashboard");
+        }, 100);
+      } else {
+        toast.error(result.message || "Invalid credentials", { id: 'admin-login-error' });
+      }
+    } catch (error) {
+      console.error('Admin login error:', error);
+      toast.error("Something went wrong. Please try again.", { id: 'admin-login-error' });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white to-[#F5F3EE] flex items-center justify-center p-4">
+      <Toaster position="top-right" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,149,42,0.08)_0%,_transparent_50%)]" />
+      
+      <div className="relative z-10 w-full max-w-md">
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 bg-[#C9A84C] rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <span className="text-white font-bold text-2xl">G</span>
+          </div>
+          <h1 className="text-3xl font-bold text-gray-800">Admin Login</h1>
+          <p className="text-gray-500 mt-2">Access your dashboard</p>
+        </div>
+
+        <GlassCard className="p-8">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              label="Email"
+              name="email"
+              type="email"
+              register={register}
+              placeholder="Enter admin email"
+              required
+            />
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Password <span className="text-[#C9A84C]">*</span>
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  {...register("password", { required: true })}
+                  placeholder="Enter password"
+                  className="w-full px-4 py-3 pr-12 bg-white border border-[#C9A84C]/20 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#C9A84C] transition-colors"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#C9A84C]"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+            </div>
+            <Button
+              type="submit"
+              variant="primary"
+              className="w-full flex items-center justify-center gap-2"
+              disabled={isSubmitting}
+            >
+              <LogIn className="w-4 h-4" />
+              {isSubmitting ? "Logging in..." : "Login"}
+            </Button>
+          </form>
+
+          <div className="mt-6 pt-6 border-t border-[rgba(201,149,42,0.1)] text-center">
+            <p className="text-gray-500 text-sm">
+              Enter your admin credentials
+            </p>
+          </div>
+        </GlassCard>
+
+        <div className="mt-6 text-center">
+          <a href="/" className="text-[#C9A84C] hover:underline text-sm">
+            ← Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,91 @@
+"use client";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+
+export default function PrivacyPolicy() {
+  return (
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
+        <div className="max-w-4xl mx-auto px-4 py-16">
+          <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Privacy Policy</h1>
+          
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#C9A84C]/20 space-y-8">
+            <section>
+              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">1. What Data We Collect</h2>
+              <p className="text-gray-600 mb-4">We collect the following personal information when you submit an enquiry on our website:</p>
+              <ul className="list-disc list-inside text-gray-600 space-y-2">
+                <li>Full Name</li>
+                <li>Phone Number</li>
+                <li>Email Address</li>
+                <li>City</li>
+                <li>Loan Type (Home Loan, Education Loan, Loan Against Property)</li>
+                <li>Loan Amount</li>
+                <li>Additional Message</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">2. How We Use Your Data</h2>
+              <p className="text-gray-600 mb-4">Your information is used for the following purposes:</p>
+              <ul className="list-disc list-inside text-gray-600 space-y-2">
+                <li>To process your loan enquiry and connect you with appropriate lenders</li>
+                <li>To provide you with loan eligibility information and EMI calculations</li>
+                <li>To contact you regarding your enquiry within 24-48 hours</li>
+                <li>To send you relevant loan offers and promotional materials</li>
+                <li>For internal admin review and customer service purposes</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">3. Data Storage & Security</h2>
+              <p className="text-gray-600">
+                Your personal data is stored securely on our servers with industry-standard encryption. 
+                We implement appropriate technical and organizational measures to protect your data 
+                against unauthorized access, alteration, disclosure, or destruction.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">4. Third Party Sharing</h2>
+              <p className="text-gray-600 mb-4">We may share your information with:</p>
+              <ul className="list-disc list-inside text-gray-600 space-y-2">
+                <li>Partner banks and financial institutions to process your loan application</li>
+                <li>Our authorized service providers who assist in operating our website</li>
+                <li>Legal authorities when required by law or to protect our rights</li>
+              </ul>
+              <p className="text-gray-600 mt-4">We <strong>do not sell</strong> your personal information to third parties.</p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">5. Your Rights</h2>
+              <p className="text-gray-600 mb-4">You have the right to:</p>
+              <ul className="list-disc list-inside text-gray-600 space-y-2">
+                <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
+                <li><strong>Correct:</strong> Request correction of any inaccurate data</li>
+                <li><strong>Delete:</strong> Request deletion of your personal data</li>
+                <li><strong>Opt-out:</strong> Unsubscribe from promotional communications at any time</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">6. Contact Us</h2>
+              <p className="text-gray-600">
+                For any privacy concerns or data requests, please contact us at:<br />
+                <strong>Email:</strong> privacy@getcredit.com<br />
+                <strong>Phone:</strong> +91 98765 43210
+              </p>
+            </section>
+
+            <section>
+              <p className="text-gray-500 text-sm border-t border-gray-200 pt-4">
+                <strong>Last Updated:</strong> May 18, 2026
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+}

@@ -1,0 +1,90 @@
+"use client";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Calculator, Phone } from "lucide-react";
+import Button from "../ui/Button";
+
+export default function HeroSection() {
+  return (
+    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16 px-4 bg-gradient-to-b from-white to-[#F5F3EE]">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,149,42,0.08)_0%,_transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(201,149,42,0.05)_0%,_transparent_50%)]" />
+      
+      <div className="relative z-10 max-w-7xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="inline-block px-4 py-2 bg-[#C9A84C]/10 border border-[#C9A84C]/20 rounded-full text-[#C9A84C] text-sm font-medium mb-4 md:mb-6">
+            Trusted by 10,000+ Happy Customers
+          </span>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 mb-4 md:mb-6 leading-tight"
+        >
+          Fast & Easy <span className="text-[#C9A84C]">Loan Solutions</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-base md:text-lg lg:text-xl text-gray-500 mb-8 md:mb-10 max-w-lg md:max-w-2xl mx-auto leading-relaxed"
+        >
+          Get instant approvals on home loans, education loans, and loans against property.
+          Calculate your EMI and apply online in minutes.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center"
+        >
+          <Link href="/emi-calculator">
+            <Button variant="primary" className="flex items-center gap-2 text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+              <Calculator className="w-5 h-5" />
+              Calculate EMI
+            </Button>
+          </Link>
+          <Link href="/contact">
+            <Button variant="secondary" className="flex items-center gap-2 text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+              <Phone className="w-5 h-5" />
+              Contact Us
+            </Button>
+          </Link>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+          className="mt-12 md:mt-16 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12 text-center px-4"
+        >
+          {[
+            { value: "10K+", label: "Happy Customers" },
+            { value: "500Cr+", label: "Loans Disbursed" },
+            { value: "50+", label: "Banking Partners" },
+            { value: "24/7", label: "Support" },
+          ].map((stat, index) => (
+            <div key={index} className="flex flex-col items-center min-w-[70px]">
+              <div className="text-2xl md:text-3xl lg:text-3xl font-bold text-[#C9A84C]">{stat.value}</div>
+              <div className="text-gray-400 text-sm">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2">
+        <div className="w-5 h-8 md:w-6 md:h-10 border-2 border-[#C9A84C]/30 rounded-full flex justify-center">
+          <div className="w-1 h-2 md:h-3 bg-[#C9A84C] rounded-full mt-1 md:mt-2" />
+        </div>
+      </div>
+    </section>
+  );
+}
