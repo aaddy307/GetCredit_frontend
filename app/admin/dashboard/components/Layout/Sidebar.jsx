@@ -5,6 +5,7 @@ import {
   Phone, 
   FileText, 
   BarChart3, 
+  Mail,
   LogOut,
   X,
 } from "lucide-react";
@@ -17,6 +18,7 @@ const iconMap = {
   Phone,
   FileText,
   BarChart3,
+  Mail,
 };
 
 export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
@@ -29,6 +31,7 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
     { id: "callbacks", label: "Callbacks", icon: "Phone", resource: "callbacks" },
     { id: "blog", label: "Blog", icon: "FileText", resource: "blog" },
     { id: "analytics", label: "Analytics", icon: "BarChart3", resource: "analytics" },
+    { id: "email", label: "Email", icon: "Mail", resource: "email" },
   ].filter(item => canAccess(role, item.resource));
 
   return (

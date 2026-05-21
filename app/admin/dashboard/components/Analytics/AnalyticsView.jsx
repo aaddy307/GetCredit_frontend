@@ -169,19 +169,19 @@ export default function AnalyticsView() {
             const count = stats?.[item.key] || 0;
             const total = stats?.totalLeads || 1;
             const percentage = item.key === 'totalLeads' ? 100 : Math.round((count / total) * 100);
-            const barColors = {
-              'pending': 'bg-yellow-500',
-              'running': 'bg-blue-500',
-              'completed': 'bg-green-500',
-              'rejected': 'bg-red-500',
-              'totalLeads': 'bg-[#C9A84C]'
+            const hexColors = {
+              'pending': '#eab308',
+              'running': '#3b82f6',
+              'completed': '#22c55e',
+              'rejected': '#ef4444',
+              'totalLeads': '#C9A84C'
             };
             return (
               <div key={item.key} className="text-center">
                 <div className="relative w-16 h-16 mx-auto mb-2">
                   <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
                     <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" strokeWidth="3" />
-                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={barColors[item.key]?.replace('bg-', '').replace('yellow', '#eab308').replace('blue', '#3b82f6').replace('green', '#22c55e').replace('red', '#ef4444').replace('[#C9A84C]', '#C9A84C')} strokeWidth="3" strokeDasharray={`${percentage}, 100`} />
+                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={hexColors[item.key] || '#6b7280'} strokeWidth="3" strokeDasharray={`${percentage}, 100`} />
                   </svg>
                   <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-gray-900">{count}</span>
                 </div>

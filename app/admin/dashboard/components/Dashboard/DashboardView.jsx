@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { TrendingUp, Clock, CheckCircle, XCircle } from "lucide-react";
+
 import StatsWidget from "./StatsWidget";
 import QuickActions from "./QuickActions";
 import { useNotifications } from "../../context/NotificationContext";
@@ -8,7 +8,7 @@ import { useNotifications } from "../../context/NotificationContext";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 export default function DashboardView({ onAction }) {
-  const { addNotification } = useNotifications();
+  useNotifications();
   const [recentLeads, setRecentLeads] = useState([]);
   const [recentCallbacks, setRecentCallbacks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -59,8 +59,8 @@ export default function DashboardView({ onAction }) {
             {loading ? (
               <div className="p-8 text-center"><div className="animate-spin w-6 h-6 border-2 border-[#C9A84C] border-t-transparent rounded-full mx-auto"></div></div>
             ) : recentLeads.length > 0 ? (
-              recentLeads.map((lead, index) => (
-                <div key={index} className="px-5 py-3 hover:bg-gray-50 flex items-center justify-between">
+              recentLeads.map((lead) => (
+                <div key={lead._id} className="px-5 py-3 hover:bg-gray-50 flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-900">{lead.fullName}</p>
                     <p className="text-xs text-gray-500">{lead.phone} • {lead.city}</p>
@@ -83,8 +83,8 @@ export default function DashboardView({ onAction }) {
             {loading ? (
               <div className="p-8 text-center"><div className="animate-spin w-6 h-6 border-2 border-[#C9A84C] border-t-transparent rounded-full mx-auto"></div></div>
             ) : recentCallbacks.length > 0 ? (
-              recentCallbacks.map((callback, index) => (
-                <div key={index} className="px-5 py-3 hover:bg-gray-50 flex items-center justify-between">
+              recentCallbacks.map((callback) => (
+                <div key={callback._id} className="px-5 py-3 hover:bg-gray-50 flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-900">{callback.fullName}</p>
                     <p className="text-xs text-gray-500">{callback.phone} • {callback.email}</p>

@@ -40,7 +40,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/blogs`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/blogs`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -189,7 +189,7 @@ export default function HomePage() {
                         <span className="text-gray-400 text-sm">{new Date(blog.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                       </div>
                       <h3 className="text-lg font-semibold text-gray-800 mb-4 group-hover:text-[#C9A84C] transition-colors">{blog.title}</h3>
-                      <Link href="/blog" className="text-[#C9A84C] hover:underline">Read More →</Link>
+                      <Link href={`/blog/${blog.slug || blog._id}`} className="text-[#C9A84C] hover:underline">Read More →</Link>
                     </div>
                   </GlassCard>
                 ))

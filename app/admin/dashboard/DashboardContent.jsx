@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import toast from "react-hot-toast";
 
 import { useAuth } from "./context/AuthContext";
 import Sidebar from "./components/Layout/Sidebar";
@@ -11,6 +10,7 @@ import CallbacksView from "./components/Callbacks/CallbacksView";
 import LeadsView from "./components/Leads/LeadsView";
 import BlogView from "./components/Blog/BlogView";
 import AnalyticsView from "./components/Analytics/AnalyticsView";
+import EmailView from "./components/Email/EmailView";
 
 export default function DashboardContent() {
   const { user, logout } = useAuth();
@@ -28,7 +28,7 @@ export default function DashboardContent() {
         setActiveTab('callbacks');
         break;
       case 'email':
-        toast.success("Email feature coming soon");
+        setActiveTab('email');
         break;
       default:
         break;
@@ -47,6 +47,8 @@ export default function DashboardContent() {
         return <BlogView />;
       case "analytics":
         return <AnalyticsView />;
+      case "email":
+        return <EmailView />;
       default:
         return <DashboardView onAction={handleAction} />;
     }

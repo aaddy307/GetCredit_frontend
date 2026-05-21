@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { PERMISSIONS } from "../utils/roles";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
 
@@ -62,14 +63,10 @@ export function AuthProvider({ children }) {
 
   const hasPermission = (resource, action) => {
     if (!user) return false;
-    const perms = {
-      leads: ["read", "create", "update", "delete", "export", "import"],
-      callbacks: ["read", "create", "update", "delete"],
-      blog: ["read", "create", "update", "delete"],
-      analytics: ["read"],
-      users: ["read", "create", "update", "delete"]
-    };
-    return perms[resource]?.includes(action) || false;
+    const role = user.role || 'admin';
+    const permissions = PERMISSIONS[role];
+    if (!permissions) return false;
+    return permissions[resource]?.includes(action) || false;
   };
 
   return (

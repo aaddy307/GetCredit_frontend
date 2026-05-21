@@ -63,13 +63,20 @@ export default function ContactPage() {
                 <div className="mt-8 pt-8 border-t border-[#C9A84C]/10">
                   <h3 className="text-gray-800 font-medium mb-4">Follow Us</h3>
                   <div className="flex flex-wrap gap-2 md:gap-4">
-                    {["Facebook", "Twitter", "Instagram", "LinkedIn"].map((social) => (
+                    {[
+                      { name: "Facebook", href: "https://facebook.com/getcredit" },
+                      { name: "Twitter", href: "https://x.com/getcredit" },
+                      { name: "Instagram", href: "https://instagram.com/getcredit" },
+                      { name: "LinkedIn", href: "https://linkedin.com/company/getcredit" },
+                    ].map((social) => (
                       <a
-                        key={social}
-                        href="#"
+                        key={social.name}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="px-3 md:px-4 py-2 bg-[#F5F3EE] border border-[#C9A84C]/10 rounded-lg text-gray-500 hover:text-[#C9A84C] hover:border-[#C9A84C]/30 transition-colors text-xs md:text-sm whitespace-nowrap"
                       >
-                        {social}
+                        {social.name}
                       </a>
                     ))}
                   </div>

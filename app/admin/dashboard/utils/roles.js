@@ -2,13 +2,14 @@ export const ROLE_LABELS = {
   admin: 'Admin'
 };
 
-const PERMISSIONS = {
+export const PERMISSIONS = {
   admin: {
     leads: ['read', 'create', 'update', 'delete', 'export', 'import'],
     callbacks: ['read', 'create', 'update', 'delete'],
     blog: ['read', 'create', 'update', 'delete'],
     analytics: ['read'],
-    users: ['read', 'create', 'update', 'delete']
+    users: ['read', 'create', 'update', 'delete'],
+    email: ['send']
   }
 };
 
