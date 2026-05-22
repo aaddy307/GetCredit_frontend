@@ -52,7 +52,7 @@ const services = [
       "Overdraft facility available",
     ],
     eligibility: [
-      "Age: 25-65 years",
+      "Age: 21-25 years",
       "Business vintage: 3+ years",
       "Minimum turnover: ₹5 lakhs/year",
       "CIBIL score: 680+",
