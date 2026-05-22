@@ -11,11 +11,12 @@ import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 
 const loanCategories = [
-  { icon: User, title: "Personal Loan", description: "Quick funds for your personal needs with minimal documentation.", href: "/services#personal-loan", best: true },
+  { icon: User, title: "Personal Loan", description: "Quick funds with same-day disbursement and rates starting from 9.99%.", href: "/services#personal-loan", best: true },
   { icon: Briefcase, title: "Business Loan", description: "Fuel your business growth with flexible funding solutions and competitive rates.", href: "/services#business-loan", best: true },
-  { icon: Home, title: "Home Loan", description: "Buy your dream home with competitive rates and easy EMIs.", href: "/services#home-loan" },
-  { icon: Building2, title: "Loan Against Property", description: "Leverage your property value to get funds for business or personal needs.", href: "/services#loan-against-property" },
-  { icon: GraduationCap, title: "Education Loan", description: "Finance your higher education with low interest rates and flexible terms.", href: "/services#education-loan" },
+  { icon: Home, title: "Home Loan", description: "Buy your dream home with financing up to ₹15 Crore and easy EMIs.", href: "/services#home-loan" },
+  { icon: Building2, title: "Loan Against Property", description: "Funding up to ₹30 Crore for Residential, Commercial & Plot.", href: "/services#loan-against-property" },
+  { icon: GraduationCap, title: "Education Loan", description: "Fund your studies in India (up to ₹50L) or abroad (up to ₹1.5Cr, no collateral).", href: "/services#education-loan" },
+  { icon: Users, title: "Non-Salaried Loan", description: "Loans for self-employed & business owners based on bank transactions.", href: "/services#non-salaried-loan" },
   { icon: Car, title: "Vehicle Loan", description: "Drive your dream car with affordable EMIs and quick loan processing.", href: "/services#vehicle-loan" },
 ];
 

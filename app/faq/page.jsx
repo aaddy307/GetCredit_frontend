@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     question: "What is the maximum loan amount I can get?",
-    answer: "The maximum loan amount depends on several factors including your income, credit score, the type of loan, and the property value. For home loans, you can get up to ₹5 Crore, while education loans can go up to ₹1 Crore for studies abroad.",
+    answer: "The maximum loan amount depends on several factors including your income, credit score, the type of loan, and the property value. For home loans, you can get up to ₹15 Crore, while education loans can go up to ₹1.5 Crore for studies abroad (without collateral).",
   },
   {
     question: "How is EMI calculated?",

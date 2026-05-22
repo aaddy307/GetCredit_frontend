@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Home, Building2, GraduationCap, User, Briefcase, Car, Award } from "lucide-react";
+import { Home, Building2, GraduationCap, User, Briefcase, Car, Award, Users } from "lucide-react";
 import GlassCard from "./GlassCard";
 import Button from "./Button";
 
@@ -16,6 +16,8 @@ export default function LoanCard({ icon: Icon, title, description, href, delay =
         return "Explore Education Loan";
       case "Personal Loan":
         return "Explore Personal Loan";
+      case "Non-Salaried Loan":
+        return "Explore Non-Salaried Loan";
       case "Business Loan":
         return "Explore Business Loan";
       case "Car Loan":
@@ -35,6 +37,8 @@ export default function LoanCard({ icon: Icon, title, description, href, delay =
         return GraduationCap;
       case "Personal Loan":
         return User;
+      case "Non-Salaried Loan":
+        return Users;
       case "Business Loan":
         return Briefcase;
       case "Car Loan":

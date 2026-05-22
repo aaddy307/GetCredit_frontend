@@ -75,6 +75,7 @@ export default function Footer() {
                 { name: "Education Loan", href: "/services" },
                 { name: "Business Loan", href: "/services" },
                 { name: "Personal Loan", href: "/services" },
+                { name: "Non-Salaried Loan", href: "/services" },
               ].map((link) => (
                 <li key={link.name}>
                   <Link

@@ -45,6 +45,7 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
         'Loan Against Property': 'lap',
         'Education Loan': 'education-loan',
         'Personal Loan': 'personal-loan',
+        'Non-Salaried Loan': 'personal-loan',
         'Business Loan': 'business-loan',
         'Vehicle Loan': 'vehicle-loan'
       };

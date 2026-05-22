@@ -249,10 +249,10 @@ export default function EMICalculatorPage() {
   };
 
   const loanInfoCards = [
-    { title: "Home Loan", rate: "6.50%", tenure: "30 Years", max: "₹5 Crore" },
-    { title: "Loan Against Property", rate: "7.50%", tenure: "15 Years", max: "₹10 Crore" },
-    { title: "Education Loan", rate: "7.50%", tenure: "15 Years", max: "₹1 Crore" },
-    { title: "Personal Loan", rate: "10.50%", tenure: "5 Years", max: "₹25 Lakh" },
+    { title: "Home Loan", rate: "6.50%", tenure: "30 Years", max: "₹15 Crore" },
+    { title: "Loan Against Property", rate: "7.50%", tenure: "15 Years", max: "₹30 Crore" },
+    { title: "Education Loan", rate: "7.50%", tenure: "15 Years", max: "₹1.5 Crore" },
+    { title: "Personal Loan", rate: "9.99%", tenure: "5 Years", max: "₹1 Crore" },
     { title: "Business Loan", rate: "12.00%", tenure: "7 Years", max: "₹5 Crore" },
     { title: "Vehicle Loan", rate: "8.50%", tenure: "7 Years", max: "₹1 Crore" },
   ];
