@@ -205,44 +205,25 @@ export default function EMICalculatorPage() {
         const ltvPercent = selectedProp?.ltv || 80;
         const propertyVal = parseFloat(formValues.propertyValue) || 0;
         const maxLoanAmt = Math.round(propertyVal * ltvPercent / 100);
-        const lapField = (label, name, opts = {}) => {
-          const { type = "text", placeholder = "", required = false, step, options } = opts;
-          const cls = "w-full px-3 py-3 bg-[#fffdf0] border border-[#ddc84a]/40 rounded-lg text-[#7a5c00] placeholder-[#b3a066]/60 text-sm focus:outline-none focus:border-[#c9920a] focus:ring-2 focus:ring-[#c9920a]/20 transition-all";
-          return (
-            <div className="space-y-1.5">
-              <label className="block text-xs font-medium text-gray-500">
-                {label}{required && <span className="text-red-500 ml-0.5">*</span>}
-              </label>
-              {type === "select" ? (
-                <select {...register(name, { required: required && `${label} is required` })} className={cls}>
-                  <option value="">{placeholder || `Select ${label}`}</option>
-                  {options?.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-                </select>
-              ) : (
-                <input {...register(name, { required: required && `${label} is required` })} type={type} step={step} placeholder={placeholder} className={cls} />
-              )}
-            </div>
-          );
-        };
         return (
-          <div className="space-y-4">
-            {lapField("Property Value", "propertyValue", { type: "number", placeholder: "Enter property value", required: true })}
-            {lapField("Property Type", "propertyType", { type: "select", placeholder: "Select Property Type", options: propertyTypesLAP, required: true })}
+          <>
+            <Input label="Property Value" name="propertyValue" type="number" register={register} placeholder="Enter property value (e.g., 10000000)" required />
+            <Input label="Property Type" name="propertyType" type="select" register={register} options={propertyTypesLAP} />
             {formValues.propertyType && (
-              <div className="p-3 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg text-center">
+              <div className="col-span-2 md:col-span-1 p-3 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg">
                 <p className="text-sm text-gray-600">
                   <span className="font-semibold text-[#C9A84C]">{ltvPercent}% LTV</span> — Max Fundable: <span className="font-semibold">₹{maxLoanAmt.toLocaleString()}</span>
                 </p>
               </div>
             )}
-            {lapField("Loan Amount", "loanAmount", { type: "number", placeholder: "Enter loan amount", required: true })}
-            {lapField("Employment Type", "employmentType", { type: "select", placeholder: "Select Employment Type", options: employmentTypes, required: true })}
-            {lapField("Interest Rate (% p.a.)", "interestRate", { type: "number", step: "0.1", placeholder: "Enter interest rate", required: true })}
-            {lapField("Tenure (Years)", "tenure", { type: "number", placeholder: "Enter tenure in years", required: true })}
-            <p className="text-xs text-gray-400 italic leading-relaxed">
+            <Input label="Loan Amount" name="loanAmount" type="number" register={register} placeholder="Enter loan amount (max based on LTV)" required />
+            <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
+            <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate" required />
+            <Input label="Tenure (Years)" name="tenure" type="number" register={register} placeholder="Enter tenure in years" required />
+            <div className="col-span-2 text-xs text-gray-400 italic">
               * LTV can change based on property location, bank policies, and your CIBIL score. We cannot commit to exact LTV before seeing property details.
-            </p>
-          </div>
+            </div>
+          </>
         );
       }
       case "education":
@@ -307,22 +288,53 @@ export default function EMICalculatorPage() {
     <>
       <Navbar />
       <main className="pt-20 min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
-        <section className="py-10 sm:py-16">
+        <style>{`
+          @media (max-width: 767px) {
+            .loan-type-grid {
+              display: grid !important;
+              grid-template-columns: 1fr 1fr !important;
+              gap: 8px !important;
+            }
+            .loan-type-grid > button {
+              width: 100% !important;
+            }
+            form > .grid:first-child {
+              grid-template-columns: 1fr !important;
+              gap: 16px !important;
+            }
+            form > .grid:first-child > [class*="col-span-2"] {
+              grid-column: span 1 !important;
+            }
+            form input,
+            form select {
+              width: 100% !important;
+              max-width: 100% !important;
+              box-sizing: border-box !important;
+            }
+            form label {
+              font-size: 13px !important;
+            }
+            .flex.gap-4.mt-8 {
+              gap: 12px !important;
+            }
+          }
+        `}</style>
+        <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8 sm:mb-12">
-              <span className="text-[#C9A84C] text-xs sm:text-sm font-medium tracking-wider uppercase">EMI Calculator</span>
-              <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-800 mt-1 sm:mt-2 mb-2 sm:mb-4">
+            <div className="text-center mb-12">
+              <span className="text-[#C9A84C] font-medium">EMI Calculator</span>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-4">
                 Calculate Your <span className="text-[#C9A84C]">EMI</span>
               </h1>
-              <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto">
+              <p className="text-gray-500 max-w-2xl mx-auto">
                 Use our easy-to-use EMI calculator to plan your loan repayment.
                 Select your loan type and enter the details to get instant results.
               </p>
             </div>
 
             <div className="max-w-4xl mx-auto">
-              <GlassCard className="p-4 sm:p-8">
-                <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3 mb-8">
+              <GlassCard className="p-8">
+                <div className="loan-type-grid flex flex-wrap gap-3 mb-8 justify-center">
                   {loanTypes.map((type) => (
                     <button
                       key={type.id}
@@ -331,24 +343,24 @@ export default function EMICalculatorPage() {
                         setEmiResult(null);
                         reset();
                       }}
-                      className={`flex items-center justify-center gap-1.5 px-3 py-2.5 sm:px-5 sm:py-2.5 rounded-lg transition-all text-xs sm:text-sm font-medium ${
+                      className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all text-sm font-medium ${
                         activeTab === type.id
                           ? "bg-[#C9A84C] text-white"
                           : "bg-[#F5F3EE] text-gray-700 border border-[#C9A84C]/20 hover:border-[#C9A84C]"
                       }`}
                     >
-                      <type.icon className="w-4 h-4 sm:w-4 sm:h-4" />
+                      <type.icon className="w-4 h-4" />
                       {type.label}
                     </button>
                   ))}
                 </div>
 
                 <form onSubmit={handleSubmit(calculateEMI)}>
-                  <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {renderForm()}
                   </div>
 
-                  <div className="flex gap-4 mt-6">
+                  <div className="flex gap-4 mt-8">
                     <Button type="submit" variant="primary" className="flex-1 flex items-center justify-center gap-2">
                       <Calculator className="w-5 h-5" />
                       Calculate EMI
