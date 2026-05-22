@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Calculator, Phone } from "lucide-react";
+import { Calculator, Phone, Award } from "lucide-react";
 import Button from "../ui/Button";
 
 export default function HeroSection() {
@@ -11,16 +11,6 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(201,149,42,0.05)_0%,_transparent_50%)]" />
       
       <div className="relative z-10 max-w-7xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="inline-block px-4 py-2 bg-[#C9A84C]/10 border border-[#C9A84C]/20 rounded-full text-[#C9A84C] text-sm font-medium mb-4 md:mb-6">
-            Trusted by 10,000+ Happy Customers
-          </span>
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -34,11 +24,27 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-base md:text-lg lg:text-xl text-gray-500 mb-8 md:mb-10 max-w-lg md:max-w-2xl mx-auto leading-relaxed"
+          className="text-base md:text-lg lg:text-xl text-gray-500 mb-6 max-w-lg md:max-w-2xl mx-auto leading-relaxed"
         >
           Get instant approvals on home loans, education loans, and loans against property.
           Calculate your EMI and apply online in minutes.
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="flex flex-wrap justify-center gap-3 mb-8"
+        >
+          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-[#C9A84C]/10 border border-[#C9A84C]/20 rounded-full text-[#C9A84C] text-sm font-medium">
+            <Award className="w-4 h-4" />
+            Best in Personal Loan
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-[#C9A84C]/10 border border-[#C9A84C]/20 rounded-full text-[#C9A84C] text-sm font-medium">
+            <Award className="w-4 h-4" />
+            Best in Business Loan
+          </span>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -67,10 +73,8 @@ export default function HeroSection() {
           className="mt-12 md:mt-16 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12 text-center px-4"
         >
           {[
-            { value: "10K+", label: "Happy Customers" },
-            { value: "500Cr+", label: "Loans Disbursed" },
             { value: "50+", label: "Banking Partners" },
-            { value: "24/7", label: "Support" },
+            { value: "24/7", label: "Customer Support" },
           ].map((stat, index) => (
             <div key={index} className="flex flex-col items-center min-w-[70px]">
               <div className="text-2xl md:text-3xl lg:text-3xl font-bold text-[#C9A84C]">{stat.value}</div>
