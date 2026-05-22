@@ -30,7 +30,7 @@ export default function AboutPage() {
                   financial institutions, we provide personalized loan solutions tailored
                   to your unique needs and financial situation.
                 </p>
-                <Link href="/contact">
+                <Link href="/services">
                   <Button variant="primary">Get Started</Button>
                 </Link>
               </div>
