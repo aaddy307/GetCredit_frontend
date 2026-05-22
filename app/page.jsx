@@ -120,7 +120,7 @@ export default function HomePage() {
               {processSteps.map((process, index) => (
                 <div key={index} className="relative">
                   <GlassCard delay={index * 0.1} className="h-full">
-                    <div className="text-6xl font-bold text-[#C9A84C]/20 mb-4">{process.step}</div>
+                    <div className="text-4xl sm:text-6xl font-bold text-[#C9A84C]/20 mb-4">{process.step}</div>
                     <h3 className="text-xl font-semibold text-gray-800 mb-2">{process.title}</h3>
                     <p className="text-gray-500">{process.description}</p>
                   </GlassCard>
@@ -219,7 +219,7 @@ export default function HomePage() {
               Calculate your EMI today and take the first step towards your new home.
             </p>
             <Link href="/emi-calculator">
-              <Button variant="secondary" className="bg-white px-8 py-4 text-lg font-semibold">
+              <Button variant="secondary" className="bg-white px-6 sm:px-8 py-4 text-base sm:text-lg font-semibold">
                 Calculate EMI Now
               </Button>
             </Link>

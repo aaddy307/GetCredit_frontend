@@ -383,7 +383,7 @@ export default function EMICalculatorPage() {
                         ₹{emiResult.emi.toLocaleString()}
                       </p>
                     </div>
-                    <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#C9A84C]/20">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#C9A84C]/20">
                       <div className="text-center">
                         <p className="text-gray-500 text-xs mb-1">Principal</p>
                         <p className="text-gray-800 font-semibold">₹{emiResult.principal.toLocaleString()}</p>

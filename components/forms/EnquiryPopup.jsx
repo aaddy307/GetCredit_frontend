@@ -334,7 +334,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                 <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
                   Select Loan Type <span className="text-[#c9920a]">*</span>
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {loanTypes.map((loan) => (
                     <button
                       key={loan.id}

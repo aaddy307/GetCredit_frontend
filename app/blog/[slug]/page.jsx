@@ -227,7 +227,7 @@ export default function BlogDetailPage() {
 
             {/* Main Content */}
             <article ref={contentRef} className="flex-1 min-w-0 max-w-3xl">
-              <div className="prose prose-lg max-w-none prose-headings:scroll-mt-28 prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-[#C9A84C] prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-normal prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-img:rounded-2xl prose-img:shadow-lg prose-blockquote:border-[#C9A84C] prose-blockquote:text-gray-600 prose-blockquote:bg-[#C9A84C]/5 prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-li:text-gray-600 prose-hr:border-gray-200" data-color-mode="light">
+              <div className="prose prose-lg max-w-none overflow-x-auto break-words prose-headings:scroll-mt-28 prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-[#C9A84C] prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-normal prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-img:rounded-2xl prose-img:shadow-lg prose-blockquote:border-[#C9A84C] prose-blockquote:text-gray-600 prose-blockquote:bg-[#C9A84C]/5 prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-li:text-gray-600 prose-hr:border-gray-200" data-color-mode="light">
                 {contentWithIds ? (
                   <MarkdownRenderer source={contentWithIds} />
                 ) : (

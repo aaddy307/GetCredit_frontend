@@ -86,19 +86,19 @@ export default function AboutPage() {
                 Our <span className="text-[#C9A84C]">Achievements</span>
               </h2>
             </motion.div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { icon: Users, value: "10,000+", label: "Happy Customers" },
-                { icon: Award, value: "500Cr+", label: "Loans Disbursed" },
-                { icon: Target, value: "50+", label: "Banking Partners" },
-                { icon: Eye, value: "98%", label: "Approval Rate" },
-              ].map((stat, index) => (
-                <GlassCard key={index} delay={index * 0.1} className="text-center">
-                  <stat.icon className="w-10 h-10 text-[#C9A84C] mx-auto mb-4" />
-                  <div className="text-4xl font-bold text-[#C9A84C] mb-2">{stat.value}</div>
-                  <div className="text-gray-500">{stat.label}</div>
-                </GlassCard>
-              ))}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                {[
+                  { icon: Users, value: "10,000+", label: "Happy Customers" },
+                  { icon: Award, value: "500Cr+", label: "Loans Disbursed" },
+                  { icon: Target, value: "50+", label: "Banking Partners" },
+                  { icon: Eye, value: "98%", label: "Approval Rate" },
+                ].map((stat, index) => (
+                  <GlassCard key={index} delay={index * 0.1} className="text-center">
+                    <stat.icon className="w-8 sm:w-10 h-8 sm:h-10 text-[#C9A84C] mx-auto mb-3 sm:mb-4" />
+                    <div className="text-2xl sm:text-4xl font-bold text-[#C9A84C] mb-1 sm:mb-2">{stat.value}</div>
+                    <div className="text-xs sm:text-base text-gray-500">{stat.label}</div>
+                  </GlassCard>
+                ))}
             </div>
           </div>
         </section>
