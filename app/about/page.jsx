@@ -38,7 +38,7 @@ export default function AboutPage() {
                 <div className="aspect-square bg-gradient-to-br from-[#C9A84C]/10 to-[#F5F3EE] rounded-3xl flex items-center justify-center border border-[#C9A84C]/10">
                   <div className="text-center">
                     <span className="text-8xl">🏦</span>
-                    <p className="text-[#C9A84C] mt-4 font-semibold">Since 2015</p>
+                    <p className="text-[#C9A84C] mt-4 font-semibold">Since 2026</p>
                   </div>
                 </div>
               </div>
