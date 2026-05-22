@@ -162,7 +162,7 @@ export default function Navbar() {
                   </button>
                   <button
                     onClick={() => { setEnquiryOpen(true); setIsOpen(false); }}
-                    className="flex items-center justify-center gap-2 px-4 py-3 bg-[#C9A84C] rounded-lg text-white font-semibold"
+                    className="mobile-apply-btn flex items-center justify-center gap-2 px-4 py-3 bg-[#C9A84C] rounded-lg text-white font-semibold"
                   >
                     <span>Apply Now</span>
                     <ArrowRight className="w-4 h-4" />

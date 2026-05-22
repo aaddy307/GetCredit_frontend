@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff, LogIn } from "lucide-react";
@@ -45,7 +46,7 @@ export default function AdminLoginPage() {
       <Toaster position="top-right" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,149,42,0.08)_0%,_transparent_50%)]" />
       
-      <div className="relative z-10 w-full max-w-md">
+      <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="relative z-10 w-full max-w-md">
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-[#C9A84C] rounded-2xl flex items-center justify-center mx-auto mb-4">
             <span className="text-white font-bold text-2xl">G</span>
@@ -107,7 +108,7 @@ export default function AdminLoginPage() {
             ← Back to Home
           </a>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

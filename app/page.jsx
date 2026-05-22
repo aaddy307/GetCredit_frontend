@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Home, Building2, GraduationCap, Award, Clock, Users, ShieldCheck, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Home, Building2, GraduationCap, User, Briefcase, Car, Award, Clock, Users, ShieldCheck, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -10,9 +11,12 @@ import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 
 const loanCategories = [
-  { icon: Home, title: "Home Loan", description: "Buy your dream home with competitive rates and easy EMIs.", href: "/services" },
-  { icon: Building2, title: "Loan Against Property", description: "Leverage your property value to get funds for business or personal needs.", href: "/services" },
-  { icon: GraduationCap, title: "Education Loan", description: "Finance your higher education with low interest rates and flexible terms.", href: "/services" },
+  { icon: User, title: "Personal Loan", description: "Quick funds for your personal needs with minimal documentation.", href: "/services#personal-loan", best: true },
+  { icon: Briefcase, title: "Business Loan", description: "Fuel your business growth with flexible funding solutions and competitive rates.", href: "/services#business-loan", best: true },
+  { icon: Home, title: "Home Loan", description: "Buy your dream home with competitive rates and easy EMIs.", href: "/services#home-loan" },
+  { icon: Building2, title: "Loan Against Property", description: "Leverage your property value to get funds for business or personal needs.", href: "/services#loan-against-property" },
+  { icon: GraduationCap, title: "Education Loan", description: "Finance your higher education with low interest rates and flexible terms.", href: "/services#education-loan" },
+  { icon: Car, title: "Vehicle Loan", description: "Drive your dream car with affordable EMIs and quick loan processing.", href: "/services#vehicle-loan" },
 ];
 
 const whyChooseUs = [
@@ -61,14 +65,14 @@ export default function HomePage() {
 
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
                 Loan <span className="text-[#C9A84C]">Categories</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Choose from our wide range of loan products designed to meet your specific needs
               </p>
-            </div>
+            </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {loanCategories.map((loan, index) => (
                 <LoanCard key={index} {...loan} delay={index * 0.1} />
@@ -79,14 +83,14 @@ export default function HomePage() {
 
         <section className="py-20 bg-[#F5F3EE]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
                 Why <span className="text-[#C9A84C]">Choose Us</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 We are committed to providing you with the best loan solutions
               </p>
-            </div>
+            </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {whyChooseUs.map((item, index) => (
                 <GlassCard key={index} delay={index * 0.1} hover className="text-center">
@@ -103,14 +107,14 @@ export default function HomePage() {
 
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
                 How It <span className="text-[#C9A84C]">Works</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Get your loan in four simple steps
               </p>
-            </div>
+            </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {processSteps.map((process, index) => (
                 <div key={index} className="relative">
@@ -132,14 +136,14 @@ export default function HomePage() {
 
         <section className="py-20 bg-[#F5F3EE]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
                 What Our <span className="text-[#C9A84C]">Clients Say</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Trusted by thousands of happy customers
               </p>
-            </div>
+            </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
                 <GlassCard key={index} delay={index * 0.1} hover>
@@ -166,14 +170,14 @@ export default function HomePage() {
 
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
                 Latest <span className="text-[#C9A84C]">Blogs</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Stay updated with the latest financial news and tips
               </p>
-            </div>
+            </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {loading ? (
                 <div className="col-span-3 text-center py-8 text-gray-500">Loading blogs...</div>
@@ -205,7 +209,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="py-20 bg-gradient-to-r from-[#C9A84C] to-[#E5C76B]">
+        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-gradient-to-r from-[#C9A84C] to-[#E5C76B]">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
               Ready to Get Your Dream Home?
@@ -219,7 +223,7 @@ export default function HomePage() {
               </Button>
             </Link>
           </div>
-        </section>
+        </motion.section>
       </main>
       <Footer />
     </>

@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -6,7 +7,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Privacy Policy</h1>
           
@@ -72,8 +73,8 @@ export default function PrivacyPolicy() {
               <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">6. Contact Us</h2>
               <p className="text-gray-600">
                 For any privacy concerns or data requests, please contact us at:<br />
-                <strong>Email:</strong> privacy@getcredit.com<br />
-                <strong>Phone:</strong> +91 98765 43210
+                <strong>Email:</strong> support@get-credit.in<br />
+                <strong>Phone:</strong> +91 7738205198, +91 8408926551, +91 8793604734
               </p>
             </section>
 
@@ -84,7 +85,7 @@ export default function PrivacyPolicy() {
             </section>
           </div>
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </>
   );

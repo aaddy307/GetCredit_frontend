@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { Target, Eye, Award, Users } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -13,7 +14,7 @@ export default function AboutPage() {
       <main className="pt-20">
         <section className="py-20 bg-gradient-to-b from-white to-[#F5F3EE]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <span className="text-[#C9A84C] font-medium">About Get Credit</span>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-6">
@@ -41,7 +42,7 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -80,11 +81,11 @@ export default function AboutPage() {
 
         <section className="py-20 bg-[#F5F3EE]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
                 Our <span className="text-[#C9A84C]">Achievements</span>
               </h2>
-            </div>
+            </motion.div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
                 { icon: Users, value: "10,000+", label: "Happy Customers" },
@@ -102,7 +103,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-gradient-to-r from-[#C9A84C] to-[#E5C76B]">
+        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-gradient-to-r from-[#C9A84C] to-[#E5C76B]">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
               Ready to Get Started?
@@ -123,7 +124,7 @@ export default function AboutPage() {
               </Link>
             </div>
           </div>
-        </section>
+        </motion.section>
       </main>
       <Footer />
     </>

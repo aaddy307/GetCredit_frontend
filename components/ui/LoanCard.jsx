@@ -1,11 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Home, Building2, GraduationCap, User, Briefcase, Car } from "lucide-react";
+import { Home, Building2, GraduationCap, User, Briefcase, Car, Award } from "lucide-react";
 import GlassCard from "./GlassCard";
 import Button from "./Button";
-
-import { Award } from "lucide-react";
 
 export default function LoanCard({ icon: Icon, title, description, href, delay = 0, best = false }) {
   const getButtonText = () => {

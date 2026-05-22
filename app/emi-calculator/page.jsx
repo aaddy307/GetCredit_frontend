@@ -276,7 +276,7 @@ export default function EMICalculatorPage() {
 
             <div className="max-w-4xl mx-auto">
               <GlassCard className="p-8">
-                <div className="flex flex-wrap gap-3 mb-8 justify-center">
+                <div className="loan-type-grid flex flex-wrap gap-3 mb-8 justify-center">
                   {loanTypes.map((type) => (
                     <button
                       key={type.id}

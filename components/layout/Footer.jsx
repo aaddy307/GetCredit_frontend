@@ -93,15 +93,23 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-white/80">
                 <Phone className="w-5 h-5 text-white" />
-                <span>+91 98765 43210</span>
+                <span>+91 7738205198</span>
+              </li>
+              <li className="flex items-center gap-3 text-white/80">
+                <Phone className="w-5 h-5 text-white" />
+                <span>+91 8408926551</span>
+              </li>
+              <li className="flex items-center gap-3 text-white/80">
+                <Phone className="w-5 h-5 text-white" />
+                <span>+91 8793604734</span>
               </li>
               <li className="flex items-center gap-3 text-white/80">
                 <Mail className="w-5 h-5 text-white" />
-                <span>info@getcredit.com</span>
+                <span>support@get-credit.in</span>
               </li>
               <li className="flex items-start gap-3 text-white/80">
                 <MapPin className="w-5 h-5 text-white mt-1" />
-                <span>123 Business Park, Mumbai, Maharashtra 400001</span>
+                <span>Shivling Nagar, Near Shivling Recendency, Ambernath West</span>
               </li>
             </ul>
           </div>

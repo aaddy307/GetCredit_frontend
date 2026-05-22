@@ -75,6 +75,7 @@ const initialFormValues = {
   qualification: "",
   degree: "",
   institutionName: "",
+  websiteUrl: "",
 };
 
 export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - Apply Now" }) {
@@ -171,7 +172,8 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
             businessVintage: data.businessVintage ? parseInt(data.businessVintage) : undefined,
             vehicleType: data.vehicleType,
             downPayment: data.downPayment ? parseInt(data.downPayment) : 0,
-            leadSource: leadSource
+            leadSource: leadSource,
+            websiteUrl: data.websiteUrl
           }),
       });
 
@@ -253,6 +255,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <input type="text" {...register("websiteUrl")} className="hidden" tabIndex={-1} autoComplete="off" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">

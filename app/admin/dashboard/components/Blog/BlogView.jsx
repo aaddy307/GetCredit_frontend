@@ -245,7 +245,11 @@ export default function BlogView() {
           <p className="text-sm text-gray-500">Showing <span className="font-medium">{startItem}</span> to <span className="font-medium">{endItem}</span> of <span className="font-medium">{totalCount}</span> results</p>
           <div className="flex items-center gap-1">
             <button onClick={() => setPage(page - 1)} disabled={page <= 1} className="p-2 rounded hover:bg-gray-100 disabled:opacity-50"><ChevronLeft className="w-4 h-4" /></button>
-            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => (<button key={i} onClick={() => setPage(i + 1)} className={`w-8 h-8 rounded text-sm ${page === i + 1 ? 'bg-[#C9A84C] text-white' : 'hover:bg-gray-100'}`}>{i + 1}</button>))}
+            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+              const pageNum = page <= 3 ? i + 1 : page - 2 + i;
+              if (pageNum < 1 || pageNum > totalPages) return null;
+              return (<button key={pageNum} onClick={() => setPage(pageNum)} className={`w-8 h-8 rounded text-sm ${page === pageNum ? 'bg-[#C9A84C] text-white' : 'hover:bg-gray-100'}`}>{pageNum}</button>);
+            })}
             <button onClick={() => setPage(page + 1)} disabled={page >= totalPages} className="p-2 rounded hover:bg-gray-100 disabled:opacity-50"><ChevronRight className="w-4 h-4" /></button>
           </div>
         </div>

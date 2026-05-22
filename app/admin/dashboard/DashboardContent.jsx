@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Toaster } from "react-hot-toast";
 
 import { useAuth } from "./context/AuthContext";
@@ -78,9 +79,9 @@ export default function DashboardContent() {
           onTabChange={setActiveTab}
         />
 
-        <div className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-6">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-6">
           {renderContent()}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

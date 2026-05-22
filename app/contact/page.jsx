@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -12,7 +13,7 @@ export default function ContactPage() {
       <main className="pt-20 min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
               <span className="text-[#C9A84C] font-medium">Contact Us</span>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-4">
                 Get In <span className="text-[#C9A84C]">Touch</span>
@@ -20,9 +21,9 @@ export default function ContactPage() {
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="max-w-3xl mx-auto">
+            <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} className="max-w-3xl mx-auto">
               <GlassCard className="p-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-8">Contact Information</h2>
                 <div className="space-y-6">
@@ -32,8 +33,9 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-gray-800 font-medium mb-1">Phone</h3>
-                      <p className="text-gray-500">+91 98765 43210</p>
-                      <p className="text-gray-500">+91 98765 43211</p>
+                      <p className="text-gray-500">+91 7738205198</p>
+                      <p className="text-gray-500">+91 8408926551</p>
+                      <p className="text-gray-500">+91 8793604734</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -42,8 +44,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-gray-800 font-medium mb-1">Email</h3>
-                      <p className="text-gray-500">info@getcredit.com</p>
-                      <p className="text-gray-500">support@getcredit.com</p>
+                      <p className="text-gray-500">support@get-credit.in</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -53,8 +54,8 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-gray-800 font-medium mb-1">Address</h3>
                       <p className="text-gray-500">
-                        123 Business Park, Sector 15<br />
-                        Mumbai, Maharashtra 400001
+                        Shivling Nagar, Near Shivling Recendency<br />
+                        Ambernath West
                       </p>
                     </div>
                   </div>
@@ -82,27 +83,15 @@ export default function ContactPage() {
                   </div>
                 </div>
               </GlassCard>
-            </div>
+            </motion.div>
 
-            <div className="mt-12">
-              <GlassCard className="p-8">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Find Us on Map</h2>
-                <div className="h-80 bg-[#F5F3EE] rounded-xl flex items-center justify-center border border-[#C9A84C]/10">
-                  <div className="text-center">
-                    <MapPin className="w-12 h-12 text-[#C9A84C] mx-auto mb-4" />
-                    <p className="text-gray-500">Map placeholder</p>
-                    <p className="text-gray-400 text-sm">123 Business Park, Mumbai</p>
-                  </div>
-                </div>
-              </GlassCard>
-            </div>
           </div>
         </section>
 
         <section className="py-8 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/917738205198"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-[#25D366] text-white rounded-full hover:bg-[#20BD5A] transition-colors"
