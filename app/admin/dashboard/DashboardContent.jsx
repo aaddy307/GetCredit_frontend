@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Toaster } from "react-hot-toast";
-
 import { useAuth } from "./context/AuthContext";
 import Sidebar from "./components/Layout/Sidebar";
 import Header from "./components/Layout/Header";
@@ -57,7 +55,6 @@ export default function DashboardContent() {
 
   return (
     <div className="h-screen overflow-hidden bg-[#F5F3EE] lg:grid lg:grid-cols-[auto_1fr]">
-      <Toaster position="top-right" />
 
       {sidebarOpen && (
         <div

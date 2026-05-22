@@ -1,6 +1,6 @@
 import "./globals.css";
-import { Toaster } from "react-hot-toast";
 import CookieConsent from "@/components/ui/CookieConsent";
+import ToasterProvider from "@/components/ui/ToasterProvider";
 
 export const metadata = {
   title: "Get Credit - Fast & Easy Loan Solutions",
@@ -14,22 +14,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         {children}
         <CookieConsent />
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            style: {
-              background: '#1A1A1A',
-              color: '#fff',
-              border: '1px solid #C9A84C',
-            },
-            success: {
-              iconTheme: {
-                primary: '#C9A84C',
-                secondary: '#fff',
-              },
-            },
-          }}
-        />
+        <ToasterProvider />
       </body>
     </html>
   );

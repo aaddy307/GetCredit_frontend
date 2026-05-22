@@ -44,10 +44,8 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
     `}>
       <div className="flex items-center justify-between h-14 px-3 sm:px-4 border-b border-gray-100 flex-shrink-0">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-[#C9A84C] to-[#A8892A] rounded-lg flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-bold text-sm">GC</span>
-          </div>
-          <span className="text-lg font-bold text-gray-900">GetCredit</span>
+          <img src="/Logo.jpeg" alt="Get Credit" className="w-7 h-7 rounded-lg object-contain flex-shrink-0" />
+          <span className="text-lg font-bold text-gray-900 leading-none">GetCredit</span>
         </div>
         <button
           onClick={onClose}

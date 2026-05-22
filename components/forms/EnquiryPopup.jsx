@@ -12,7 +12,6 @@ const loanTypes = [
   { id: "education", label: "Education Loan", icon: GraduationCap },
   { id: "lap", label: "Loan Against Property", icon: Building2 },
   { id: "personal", label: "Personal Loan", icon: Wallet },
-  { id: "non-salaried", label: "Non-Salaried Loan", icon: User },
   { id: "business", label: "Business Loan", icon: Briefcase },
   { id: "vehicle", label: "Vehicle Loan", icon: Car },
 ];
@@ -109,7 +108,6 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
       case "education": return "Education Loan";
       case "lap": return "Loan Against Property";
       case "personal": return "Personal Loan";
-      case "non-salaried": return "Non-Salaried Loan";
       case "business": return "Business Loan";
       case "vehicle": return "Vehicle Loan";
       default: return "";
@@ -543,24 +541,6 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                             {employmentTypes.map(opt => (
                               <option key={opt.value} value={opt.value}>{opt.label}</option>
                             ))}
-                          </select>
-                        </div>
-                      </div>
-                    )}
-
-                    {selectedLoanType === "non-salaried" && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                            Employment Type
-                          </label>
-                          <select
-                            {...register("employmentType")}
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
-                          >
-                            <option value="">Select</option>
-                            <option value="Self-Employed">Self-Employed</option>
-                            <option value="Business Owner">Business Owner</option>
                           </select>
                         </div>
                       </div>

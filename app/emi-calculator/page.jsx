@@ -33,10 +33,10 @@ const propertyTypesHome = [
 ];
 
 const propertyTypesLAP = [
-  { value: "Residential", label: "Residential" },
-  { value: "Commercial", label: "Commercial" },
-  { value: "Industrial", label: "Industrial" },
-  { value: "Plot", label: "Plot" },
+  { value: "Residential", label: "Residential", ltv: 80 },
+  { value: "Commercial", label: "Commercial", ltv: 75 },
+  { value: "Industrial", label: "Industrial", ltv: 75 },
+  { value: "Plot", label: "Plot", ltv: 50 },
 ];
 
 const employmentTypes = [
@@ -118,6 +118,17 @@ export default function EMICalculatorPage() {
       return;
     }
 
+    if (activeTab === "lap") {
+      const selectedProp = propertyTypesLAP.find(p => p.value === data.propertyType);
+      const ltvPercent = selectedProp?.ltv || 80;
+      const propertyVal = parseFloat(data.propertyValue) || 0;
+      const maxLoan = Math.round(propertyVal * ltvPercent / 100);
+      if (loanAmount > maxLoan) {
+        toast.error(`Max loan amount at ${ltvPercent}% LTV is ₹${maxLoan.toLocaleString()}`);
+        return;
+      }
+    }
+
     const principal = loanAmount - downPayment;
     if (principal <= 0) {
       toast.error("Loan amount must be greater than down payment");
@@ -190,13 +201,28 @@ export default function EMICalculatorPage() {
           </>
         );
       case "lap":
+        const selectedProp = propertyTypesLAP.find(p => p.value === formValues.propertyType);
+        const ltvPercent = selectedProp?.ltv || 80;
+        const propertyVal = parseFloat(formValues.propertyValue) || 0;
+        const maxLoanAmt = Math.round(propertyVal * ltvPercent / 100);
         return (
           <>
-            <Input label="Loan Amount" name="loanAmount" type="number" register={register} placeholder="Enter loan amount" required />
+            <Input label="Property Value" name="propertyValue" type="number" register={register} placeholder="Enter property value (e.g., 10000000)" required />
             <Input label="Property Type" name="propertyType" type="select" register={register} options={propertyTypesLAP} />
+            {formValues.propertyType && (
+              <div className="col-span-2 md:col-span-1 p-3 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg">
+                <p className="text-sm text-gray-600">
+                  <span className="font-semibold text-[#C9A84C]">{ltvPercent}% LTV</span> — Max Fundable: <span className="font-semibold">₹{maxLoanAmt.toLocaleString()}</span>
+                </p>
+              </div>
+            )}
+            <Input label="Loan Amount" name="loanAmount" type="number" register={register} placeholder="Enter loan amount (max based on LTV)" required />
             <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
             <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate" required />
             <Input label="Tenure (Years)" name="tenure" type="number" register={register} placeholder="Enter tenure in years" required />
+            <div className="col-span-2 text-xs text-gray-400 italic">
+              * LTV can change based on property location, bank policies, and your CIBIL score. We cannot commit to exact LTV before seeing property details.
+            </div>
           </>
         );
       case "education":
@@ -410,6 +436,7 @@ export default function EMICalculatorPage() {
           totalAmount: emiResult?.totalAmount || 0,
           downPayment: formValues?.downPayment || 0,
           propertyType: formValues?.propertyType || '',
+          propertyValue: formValues?.propertyValue || 0,
           propertyLocation: formValues?.propertyLocation || '',
           employmentType: formValues?.employmentType || '',
           qualification: formValues?.qualification || '',

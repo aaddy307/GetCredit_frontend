@@ -65,6 +65,7 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
         totalPayable: parseInt(loanData.totalAmount) || 0,
         downPayment: parseInt(loanData.downPayment) || 0,
         propertyType: loanData.propertyType || '',
+        propertyValue: parseInt(loanData.propertyValue) || 0,
         propertyLocation: loanData.propertyLocation || '',
         employmentType: loanData.employmentType || '',
         qualification: loanData.qualification || '',

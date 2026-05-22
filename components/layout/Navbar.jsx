@@ -50,11 +50,9 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-full">
           <div className="flex items-center justify-between h-full">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 bg-[#C9A84C] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">G</span>
-              </div>
-              <span className="text-2xl font-bold text-[#1A1A1A]">
+            <Link href="/" className="flex items-center gap-2.5">
+              <img src="/Logo.jpeg" alt="Get Credit" className="h-8 w-8 rounded-lg object-contain flex-shrink-0" />
+              <span className="text-2xl font-bold text-[#1A1A1A] leading-none">
                 Get <span className="text-[#C9A84C]">Credit</span>
               </span>
             </Link>
