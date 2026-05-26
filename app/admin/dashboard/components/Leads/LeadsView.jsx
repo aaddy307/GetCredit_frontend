@@ -72,19 +72,6 @@ function normalizeLeads(raw) {
   return raw.filter(Boolean);
 }
 
-function matchesDateFilter(dateStr, from, to) {
-  if (!dateStr) return false;
-  const d = new Date(dateStr);
-  if (isNaN(d.getTime())) return true;
-  if (from && !isNaN(new Date(from).getTime()) && d < new Date(from)) return false;
-  if (to) {
-    const toEnd = new Date(to);
-    toEnd.setHours(23, 59, 59, 999);
-    if (!isNaN(toEnd.getTime()) && d > toEnd) return false;
-  }
-  return true;
-}
-
 function Pagination({ page, totalPages, onPageChange }) {
   const items = useMemo(() => {
     if (totalPages <= 1) return [];
@@ -176,6 +163,8 @@ export default function LeadsView() {
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalLeads, setTotalLeads] = useState(0);
   const [showFilters, setShowFilters] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [editingLead, setEditingLead] = useState(null);
@@ -199,68 +188,32 @@ export default function LeadsView() {
   const fetchLeads = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await api.get('/admin/all-leads');
-      setLeads(normalizeLeads(response.data?.leads));
+      const params = new URLSearchParams({
+        page: currentPage,
+        limit: ITEMS_PER_PAGE,
+      });
+      if (filters.search) params.append('search', filters.search);
+      if (filters.status) params.append('status', filters.status);
+      if (filters.loanType) params.append('loanType', filters.loanType);
+      if (filters.source) params.append('source', filters.source);
+      if (filters.fromDate) params.append('startDate', filters.fromDate);
+      if (filters.toDate) params.append('endDate', filters.toDate);
+
+      const response = await api.get(`/admin/all-leads?${params}`);
+      const data = response.data;
+      setLeads(normalizeLeads(data?.leads));
+      setTotalPages(data?.pages || 1);
+      setTotalLeads(data?.total || 0);
     } catch (err) {
       toast.error("Failed to fetch leads");
       setLeads([]);
     }
     setLoading(false);
-  }, []);
+  }, [currentPage, filters]);
 
   useEffect(() => { fetchLeads(); }, [fetchLeads]);
 
   const hasActiveFilters = filters.search || filters.status || filters.loanType || filters.source || filters.fromDate || filters.toDate;
-
-  const filteredLeads = useMemo(() => {
-    let result = leads;
-
-    if (filters.search) {
-      const q = filters.search.toLowerCase().trim();
-      if (q) {
-        result = result.filter(l =>
-          (l.fullName || '').toLowerCase().includes(q) ||
-          (l.phone || '').includes(q) ||
-          (l.email || '').toLowerCase().includes(q)
-        );
-      }
-    }
-
-    if (filters.status) {
-      result = result.filter(l => l.status === filters.status);
-    }
-
-    if (filters.loanType) {
-      result = result.filter(l => l.loanType === filters.loanType);
-    }
-
-    if (filters.source) {
-      const src = filters.source.toLowerCase();
-      result = result.filter(l => {
-        const source = (l._isEMI ? 'EMI Calculator' : (l.leadSource || 'Website')).toLowerCase();
-        return source === src;
-      });
-    }
-
-    if (filters.fromDate || filters.toDate) {
-      result = result.filter(l => matchesDateFilter(l.createdAt, filters.fromDate, filters.toDate));
-    }
-
-    return result;
-  }, [leads, filters]);
-
-  const totalPages = useMemo(() => Math.ceil(filteredLeads.length / ITEMS_PER_PAGE) || 1, [filteredLeads.length]);
-
-  const paginatedLeads = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredLeads.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredLeads, currentPage]);
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages);
-    }
-  }, [currentPage, totalPages]);
 
   const updateFilter = useCallback((key, value) => {
     setFilters(prev => ({ ...prev, [key]: value }));
@@ -521,10 +474,10 @@ export default function LeadsView() {
             <tbody className="divide-y divide-gray-100">
               {loading ? (
                 <tr><td colSpan={11}><LoadingSpinner /></td></tr>
-              ) : filteredLeads.length === 0 ? (
+              ) : leads.length === 0 ? (
                 <tr><td colSpan={11}><EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} /></td></tr>
               ) : (
-                paginatedLeads.map((lead, index) => (
+                leads.map((lead, index) => (
                   <tr key={lead._id} className={`hover:bg-gray-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
                     <td className="px-4 py-3 text-sm font-medium text-gray-900">{lead.fullName}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">{lead.phone}</td>
@@ -588,10 +541,10 @@ export default function LeadsView() {
         <div className="md:hidden divide-y divide-gray-100">
           {loading ? (
             <LoadingSpinner />
-          ) : filteredLeads.length === 0 ? (
+          ) : leads.length === 0 ? (
             <EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} />
           ) : (
-            paginatedLeads.map(lead => (
+            leads.map(lead => (
               <div key={lead._id} className="p-4 space-y-2">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0 flex-1">
@@ -626,10 +579,10 @@ export default function LeadsView() {
           )}
         </div>
 
-        {!loading && filteredLeads.length > 0 && totalPages > 1 && (
+        {!loading && leads.length > 0 && totalPages > 1 && (
           <div className="px-4 py-3 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <p className="text-xs sm:text-sm text-gray-500">
-              Page {currentPage} of {totalPages}
+              Showing {leads.length} of {totalLeads} leads
             </p>
             <Pagination page={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
           </div>

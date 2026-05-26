@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff, LogIn } from "lucide-react";
@@ -8,24 +8,24 @@ import toast from "react-hot-toast";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { api, setToken } from "@/lib/api";
+import { AuthProvider, useAuth } from "../dashboard/context/AuthContext";
 
-export default function AdminLoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const { login } = useAuth();
+  const prefersReducedMotion = useReducedMotion();
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, formState: { isSubmitting } } = useForm();
 
   const onSubmit = async (data) => {
-    try {
-      const response = await api.post('/admin/login', data);
-      setToken(response.data.token);
+    const result = await login(data.email, data.password);
+    if (result.success) {
       toast.success("Welcome back!", { id: 'admin-login-success', duration: 5000 });
       setTimeout(() => {
         router.push("/admin/dashboard");
       }, 100);
-    } catch (error) {
-      const msg = error.response?.data?.message || "Invalid credentials";
-      toast.error(msg, { id: 'admin-login-error' });
+    } else {
+      toast.error(result.message || "Invalid credentials", { id: 'admin-login-error' });
     }
   };
 
@@ -33,7 +33,12 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-gradient-to-b from-white to-[#F5F3EE] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,149,42,0.08)_0%,_transparent_50%)]" />
       
-      <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="relative z-10 w-full max-w-md">
+      <motion.div
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 w-full max-w-md"
+      >
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-[#C9A84C] rounded-2xl flex items-center justify-center mx-auto mb-4">
             <span className="text-white font-bold text-2xl">G</span>
@@ -97,5 +102,13 @@ export default function AdminLoginPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
+    <AuthProvider>
+      <LoginForm />
+    </AuthProvider>
   );
 }

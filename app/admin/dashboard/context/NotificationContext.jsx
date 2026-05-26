@@ -42,8 +42,8 @@ export function NotificationProvider({ children }) {
             data: data.payload
           });
         }
-      } catch (e) {
-        console.error("SSE parse error:", e);
+      } catch {
+        // SSE parse error — ignore malformed events
       }
     };
 

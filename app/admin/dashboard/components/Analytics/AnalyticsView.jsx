@@ -31,8 +31,8 @@ export default function AnalyticsView() {
       if (summary.success) setStats(summary.data);
       if (monthly.success) setMonthlyData(monthly.data || []);
       if (distribution.success) setLoanDistribution(distribution.data || []);
-    } catch (error) {
-      console.error('Error fetching analytics:', error);
+    } catch {
+      setLoading(false);
     }
     setLoading(false);
   };

@@ -54,8 +54,7 @@ export default function HomePage() {
         }
         setLoading(false);
       })
-      .catch(err => {
-        console.error('Failed to fetch blogs:', err);
+      .catch(() => {
         setLoading(false);
       });
   }, []);

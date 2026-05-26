@@ -28,8 +28,8 @@ export default function DashboardView({ onAction }) {
 
       if (leadsData.success) setRecentLeads(leadsData.enquiries || []);
       if (callbacksData.success) setRecentCallbacks(callbacksData.data || []);
-    } catch (error) {
-      console.error('Error fetching data:', error);
+    } catch {
+      // Error fetching data
     }
     setLoading(false);
   };

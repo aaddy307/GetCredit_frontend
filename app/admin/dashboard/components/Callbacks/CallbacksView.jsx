@@ -1,12 +1,53 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
-import { Plus } from "lucide-react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { Plus, ChevronLeft, ChevronRight } from "lucide-react";
 import toast from "react-hot-toast";
 import callbackApi from "./utils/api";
 import CallbackStats from "./CallbackStats";
 import CallbackFilterBar from "./CallbackFilterBar";
 import CallbackTable from "./CallbackTable";
 import CallbackModal from "./CallbackModal";
+
+function Pagination({ page, totalPages, onPageChange }) {
+  const items = useMemo(() => {
+    if (totalPages <= 1) return [];
+    const pages = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+      if (page > 3) pages.push('...');
+      const start = Math.max(2, page - 1);
+      const end = Math.min(totalPages - 1, page + 1);
+      for (let i = start; i <= end; i++) pages.push(i);
+      if (page < totalPages - 2) pages.push('...');
+      pages.push(totalPages);
+    }
+    return pages;
+  }, [page, totalPages]);
+
+  if (totalPages <= 1) return null;
+
+  return (
+    <nav className="flex items-center gap-1" aria-label="Pagination">
+      <button onClick={() => onPageChange(page - 1)} disabled={page <= 1} className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors" aria-label="Previous page">
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+      {items.map((item, i) =>
+        item === '...' ? (
+          <span key={`e${i}`} className="w-8 h-8 flex items-center justify-center text-sm text-gray-400 select-none">&hellip;</span>
+        ) : (
+          <button key={item} onClick={() => onPageChange(item)} className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${page === item ? 'bg-[#C9A84C] text-white shadow-sm' : 'text-gray-600 hover:bg-gray-100'}`} aria-current={page === item ? 'page' : undefined}>
+            {item}
+          </button>
+        )
+      )}
+      <button onClick={() => onPageChange(page + 1)} disabled={page >= totalPages} className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors" aria-label="Next page">
+        <ChevronRight className="w-4 h-4" />
+      </button>
+    </nav>
+  );
+}
 
 export default function CallbacksView() {
   const [callbacks, setCallbacks] = useState([]);
@@ -146,12 +187,19 @@ export default function CallbacksView() {
       <CallbackTable
         callbacks={callbacks}
         loading={loading}
-        pagination={pagination}
-        onPageChange={setPage}
         onStatusChange={handleStatusChange}
         onEdit={openEditModal}
         onDelete={handleDelete}
       />
+
+      {!loading && callbacks.length > 0 && pagination.totalPages > 1 && (
+        <div className="bg-white rounded-xl border border-[#C9A84C]/10 shadow-sm">
+          <div className="flex items-center justify-between px-4 py-3">
+            <p className="text-xs sm:text-sm text-gray-500">Showing {callbacks.length} of {pagination.total} callbacks</p>
+            <Pagination page={pagination.page} totalPages={pagination.totalPages} onPageChange={setPage} />
+          </div>
+        </div>
+      )}
 
       <CallbackModal
         isOpen={showModal}

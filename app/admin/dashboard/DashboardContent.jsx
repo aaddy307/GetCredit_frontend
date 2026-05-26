@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useAuth } from "./context/AuthContext";
 import Sidebar from "./components/Layout/Sidebar";
 import Header from "./components/Layout/Header";
@@ -13,6 +13,7 @@ import EmailView from "./components/Email/EmailView";
 
 export default function DashboardContent() {
   const { user, logout } = useAuth();
+  const prefersReducedMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -76,9 +77,24 @@ export default function DashboardContent() {
           onTabChange={setActiveTab}
         />
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-6">
-          {renderContent()}
-        </motion.div>
+        {prefersReducedMotion ? (
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-6">
+            {renderContent()}
+          </div>
+        ) : (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-6"
+            >
+              {renderContent()}
+            </motion.div>
+          </AnimatePresence>
+        )}
       </div>
     </div>
   );

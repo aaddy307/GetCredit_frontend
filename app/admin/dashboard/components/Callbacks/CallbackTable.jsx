@@ -7,7 +7,7 @@ const statusColors = {
   Closed: "bg-gray-100 text-gray-700",
 };
 
-export default function CallbackTable({ callbacks, loading, pagination, onPageChange, onStatusChange, onEdit, onDelete }) {
+export default function CallbackTable({ callbacks, loading, onStatusChange, onEdit, onDelete }) {
   if (loading) {
     return (
       <div className="bg-white rounded-xl border border-[#C9A84C]/10 shadow-sm p-8">
@@ -103,30 +103,6 @@ export default function CallbackTable({ callbacks, loading, pagination, onPageCh
           </div>
         ))}
       </div>
-
-      {pagination.totalPages > 1 && (
-        <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100">
-          <p className="text-xs sm:text-sm text-gray-500">
-            Showing {((pagination.page - 1) * pagination.limit) + 1} to {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total}
-          </p>
-          <div className="flex gap-2">
-            <button
-              onClick={() => onPageChange(pagination.page - 1)}
-              disabled={pagination.page === 1}
-              className="px-3 py-1 border border-gray-200 rounded text-sm disabled:opacity-50"
-            >
-              Previous
-            </button>
-            <button
-              onClick={() => onPageChange(pagination.page + 1)}
-              disabled={pagination.page === pagination.totalPages}
-              className="px-3 py-1 border border-gray-200 rounded text-sm disabled:opacity-50"
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

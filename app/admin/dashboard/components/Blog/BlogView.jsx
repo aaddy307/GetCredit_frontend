@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Plus, Search, X, Edit2, Trash2, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -22,6 +22,47 @@ const statusOptions = [
   { value: "Draft", label: "Draft" },
   { value: "Published", label: "Published" }
 ];
+
+function Pagination({ page, totalPages, onPageChange }) {
+  const items = useMemo(() => {
+    if (totalPages <= 1) return [];
+    const pages = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+      if (page > 3) pages.push('...');
+      const start = Math.max(2, page - 1);
+      const end = Math.min(totalPages - 1, page + 1);
+      for (let i = start; i <= end; i++) pages.push(i);
+      if (page < totalPages - 2) pages.push('...');
+      pages.push(totalPages);
+    }
+    return pages;
+  }, [page, totalPages]);
+
+  if (totalPages <= 1) return null;
+
+  return (
+    <nav className="flex items-center gap-1" aria-label="Pagination">
+      <button onClick={() => onPageChange(page - 1)} disabled={page <= 1} className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors" aria-label="Previous page">
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+      {items.map((item, i) =>
+        item === '...' ? (
+          <span key={`e${i}`} className="w-8 h-8 flex items-center justify-center text-sm text-gray-400 select-none">&hellip;</span>
+        ) : (
+          <button key={item} onClick={() => onPageChange(item)} className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${page === item ? 'bg-[#C9A84C] text-white shadow-sm' : 'text-gray-600 hover:bg-gray-100'}`} aria-current={page === item ? 'page' : undefined}>
+            {item}
+          </button>
+        )
+      )}
+      <button onClick={() => onPageChange(page + 1)} disabled={page >= totalPages} className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors" aria-label="Next page">
+        <ChevronRight className="w-4 h-4" />
+      </button>
+    </nav>
+  );
+}
 
 export default function BlogView() {
   const { hasPermission } = useAuth();
@@ -123,8 +164,6 @@ export default function BlogView() {
   const statusColors = { 'Draft': 'bg-gray-100 text-gray-700', 'Published': 'bg-green-100 text-green-700' };
 
   const totalPages = Math.ceil(totalCount / limit);
-  const startItem = (page - 1) * limit + 1;
-  const endItem = Math.min(page * limit, totalCount);
 
   return (
     <div className="space-y-6">
@@ -232,18 +271,12 @@ export default function BlogView() {
           )}
         </div>
 
-        <div className="px-4 py-3 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p className="text-sm text-gray-500">Showing <span className="font-medium">{startItem}</span> to <span className="font-medium">{endItem}</span> of <span className="font-medium">{totalCount}</span> results</p>
-          <div className="flex items-center gap-1">
-            <button onClick={() => setPage(page - 1)} disabled={page <= 1} className="p-2 rounded hover:bg-gray-100 disabled:opacity-50"><ChevronLeft className="w-4 h-4" /></button>
-            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-              const pageNum = page <= 3 ? i + 1 : page - 2 + i;
-              if (pageNum < 1 || pageNum > totalPages) return null;
-              return (<button key={pageNum} onClick={() => setPage(pageNum)} className={`w-8 h-8 rounded text-sm ${page === pageNum ? 'bg-[#C9A84C] text-white' : 'hover:bg-gray-100'}`}>{pageNum}</button>);
-            })}
-            <button onClick={() => setPage(page + 1)} disabled={page >= totalPages} className="p-2 rounded hover:bg-gray-100 disabled:opacity-50"><ChevronRight className="w-4 h-4" /></button>
+        {!loading && blogs.length > 0 && totalPages > 1 && (
+          <div className="px-4 py-3 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p className="text-sm text-gray-500">Showing {blogs.length} of {totalCount} blogs</p>
+            <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
           </div>
-        </div>
+        )}
       </div>
 
       {showModal && (
