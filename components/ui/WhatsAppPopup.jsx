@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MessageCircle, ChevronDown } from "lucide-react";
 
-const WHATSAPP_NUMBER = "917738205198";
+const WHATSAPP_NUMBER = "919637221405"; // Replace with your WhatsApp number in international format (without +)
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 export default function WhatsAppPopup() {

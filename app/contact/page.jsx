@@ -91,7 +91,7 @@ export default function ContactPage() {
         <section className="py-8 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <a
-              href="https://wa.me/917738205198"
+              href="https://wa.me/9637221405"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-[#25D366] text-white rounded-full hover:bg-[#20BD5A] transition-colors"
