@@ -1,28 +1,18 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 const loadModule = () => import("@uiw/react-md-editor");
 const MDEditor = dynamic(loadModule, { ssr: false });
 
 export function MDPreview({ value }) {
-  const [hasError, setHasError] = useState(false);
-
-  if (hasError) {
-    return <div className="p-4 text-gray-500 text-sm">Preview unavailable</div>;
-  }
-
-  try {
-    const MD = MDEditor;
-    return (
-      <div className="border border-gray-200 rounded-lg p-4 min-h-[200px] prose prose-sm max-w-none" data-color-mode="light">
-        <MD.Markdown source={value || "*No content*"} />
-      </div>
-    );
-  } catch {
-    setHasError(true);
-    return null;
-  }
+  return (
+    <div className="border border-gray-200 rounded-lg p-4 min-h-[200px] bg-gray-50">
+      <pre className="text-sm text-gray-700 whitespace-pre-wrap font-sans leading-relaxed">
+        {value || "*No content*"}
+      </pre>
+    </div>
+  );
 }
 
 export default function MDEditorWrapper({ value, onChange, height }) {
