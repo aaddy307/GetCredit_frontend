@@ -4,7 +4,7 @@ import { Send, Mail, Users, FileText, LayoutTemplate, ChevronDown } from "lucide
 import toast from "react-hot-toast";
 import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
+const API_URL = "/api";
 
 const MONTH_TENURE_LOANS = ['Personal Loan', 'Non-Salaried Loan', 'Business Loan'];
 

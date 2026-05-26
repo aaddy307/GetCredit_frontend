@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect, useRef, useCallback } f
 import { useAuth } from "./AuthContext";
 import { getToken } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
+const API_URL = "/api";
 
 const NotificationContext = createContext(null);
 

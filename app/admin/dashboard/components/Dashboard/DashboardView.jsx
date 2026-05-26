@@ -6,7 +6,7 @@ import QuickActions from "./QuickActions";
 import { useNotifications } from "../../context/NotificationContext";
 import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
+const API_URL = "/api";
 
 export default function DashboardView({ onAction }) {
   useNotifications();

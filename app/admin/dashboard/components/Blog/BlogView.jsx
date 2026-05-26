@@ -9,7 +9,7 @@ import { authHeaders } from "@/lib/api";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
+const API_URL = "/api";
 
 const categoryOptions = [
   { value: "Home Loan", label: "Home Loan" },

@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 import GlassCard from "@/components/ui/GlassCard";
 import { Loader2 } from "lucide-react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = '/api';
 const categories = ["All", "Home Loan", "Education", "LAP", "Personal Loan", "Business Loan", "Vehicle Loan", "Tips", "Finance"];
 
 export default function BlogPage() {

@@ -4,7 +4,7 @@ import { Plus, Download, Mail, Phone } from "lucide-react";
 import toast from "react-hot-toast";
 import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
+const API_URL = "/api";
 
 export default function QuickActions({ onAction }) {
   const [loading, setLoading] = useState(null);

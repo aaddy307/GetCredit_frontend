@@ -4,7 +4,7 @@ import { BarChart3, TrendingUp, Users, FileText } from "lucide-react";
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from "recharts";
 import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
+const API_URL = "/api";
 
 const COLORS = ['#C9A84C', '#A8892A', '#8B7355', '#D4B86A', '#E8CC8C', '#6B8E7B', '#7BA391'];
 

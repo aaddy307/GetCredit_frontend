@@ -4,7 +4,7 @@ import { Search, Menu, User } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
+const API_URL = "/api";
 
 export default function Header({ onMenuClick, onTabChange }) {
   const { user } = useAuth();

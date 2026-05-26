@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Users, Phone, TrendingUp, CheckCircle } from "lucide-react";
 import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
+const API_URL = "/api";
 
 export default function StatsWidget() {
   const [stats, setStats] = useState({

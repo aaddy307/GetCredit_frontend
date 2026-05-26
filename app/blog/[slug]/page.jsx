@@ -9,7 +9,7 @@ import { Loader2, ArrowLeft, Calendar, Clock, ChevronLeft, ChevronRight, Copy, C
 import MDE from "@uiw/react-md-editor";
 const MarkdownRenderer = MDE.Markdown;
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = '/api';
 
 function estimateReadTime(content) {
   if (!content) return 1;

@@ -46,7 +46,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/blogs`)
+    fetch(`/api/blogs`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
