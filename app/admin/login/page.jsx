@@ -8,9 +8,7 @@ import toast from "react-hot-toast";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { setToken } from "@/lib/api";
-
-const API_URL = "/api";
+import { api, setToken } from "@/lib/api";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -19,26 +17,15 @@ export default function AdminLoginPage() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch(`${API_URL}/admin/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setToken(result.token);
-        toast.success("Welcome back!", { id: 'admin-login-success', duration: 5000 });
-        setTimeout(() => {
-          router.push("/admin/dashboard");
-        }, 100);
-      } else {
-        toast.error(result.message || "Invalid credentials", { id: 'admin-login-error' });
-      }
+      const response = await api.post('/admin/login', data);
+      setToken(response.data.token);
+      toast.success("Welcome back!", { id: 'admin-login-success', duration: 5000 });
+      setTimeout(() => {
+        router.push("/admin/dashboard");
+      }, 100);
     } catch (error) {
-      console.error('Admin login error:', error);
-      toast.error("Something went wrong. Please try again.", { id: 'admin-login-error' });
+      const msg = error.response?.data?.message || "Invalid credentials";
+      toast.error(msg, { id: 'admin-login-error' });
     }
   };
 

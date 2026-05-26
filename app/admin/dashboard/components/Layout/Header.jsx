@@ -2,9 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Search, Menu, User } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
-import { authHeaders } from "@/lib/api";
-
-const API_URL = "/api";
+import { api } from "@/lib/api";
 
 export default function Header({ onMenuClick, onTabChange }) {
   const { user } = useAuth();
@@ -33,16 +31,10 @@ export default function Header({ onMenuClick, onTabChange }) {
 
       setLoading(true);
       try {
-        const response = await fetch(`${API_URL}/admin/search?q=${encodeURIComponent(searchQuery)}`, {
-          headers: authHeaders()
-        });
+        const response = await api.get(`/admin/search?q=${encodeURIComponent(searchQuery)}`);
         
-        if (!response.ok) return;
-        
-        const data = await response.json();
-        
-        if (data.success) {
-          setSearchResults(data.results || []);
+        if (response.data.success) {
+          setSearchResults(response.data.results || []);
           setShowResults(true);
         }
       } catch (error) {

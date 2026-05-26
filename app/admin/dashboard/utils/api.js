@@ -1,32 +1,17 @@
-import { authHeaders } from "@/lib/api";
-
-const API_URL = "/api";
+import { api as axiosApi } from "@/lib/api";
 
 export const api = {
   getUsers: () =>
-    fetch(`${API_URL}/admin/users`, { headers: authHeaders() }).then((r) =>
-      r.json()
-    ),
+    axiosApi.get('/admin/users').then((r) => r.data),
 
   createUser: (data) =>
-    fetch(`${API_URL}/admin/users`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", ...authHeaders() },
-      body: JSON.stringify(data),
-    }).then((r) => r.json()),
+    axiosApi.post('/admin/users', data).then((r) => r.data),
 
   updateUser: (id, data) =>
-    fetch(`${API_URL}/admin/users/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json", ...authHeaders() },
-      body: JSON.stringify(data),
-    }).then((r) => r.json()),
+    axiosApi.put(`/admin/users/${id}`, data).then((r) => r.data),
 
   deleteUser: (id) =>
-    fetch(`${API_URL}/admin/users/${id}`, {
-      method: "DELETE",
-      headers: authHeaders(),
-    }).then((r) => r.json()),
+    axiosApi.delete(`/admin/users/${id}`).then((r) => r.data),
 };
 
 export default api;

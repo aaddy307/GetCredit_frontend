@@ -2,9 +2,7 @@
 import { useState } from "react";
 import { Plus, Download, Mail, Phone } from "lucide-react";
 import toast from "react-hot-toast";
-import { authHeaders } from "@/lib/api";
-
-const API_URL = "/api";
+import { api } from "@/lib/api";
 
 export default function QuickActions({ onAction }) {
   const [loading, setLoading] = useState(null);
@@ -12,13 +10,9 @@ export default function QuickActions({ onAction }) {
   const handleExportLeads = async () => {
     setLoading('export');
     try {
-      const response = await fetch(`${API_URL}/admin/all-leads/export?format=xlsx`, {
-        headers: authHeaders()
-      });
+      const response = await api.get('/admin/all-leads/export?format=xlsx', { responseType: 'blob' });
       
-      if (!response.ok) throw new Error('Export failed');
-      
-      const blob = await response.blob();
+      const blob = new Blob([response.data]);
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

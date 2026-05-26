@@ -2,9 +2,7 @@
 import { useState } from "react";
 import { Send, Mail, Users, FileText, LayoutTemplate, ChevronDown } from "lucide-react";
 import toast from "react-hot-toast";
-import { authHeaders } from "@/lib/api";
-
-const API_URL = "/api";
+import { api } from "@/lib/api";
 
 const MONTH_TENURE_LOANS = ['Personal Loan', 'Non-Salaried Loan', 'Business Loan'];
 
@@ -138,16 +136,12 @@ export default function EmailView() {
 
     setSending(true);
     try {
-      const res = await fetch(`${API_URL}/admin/email/send`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", ...authHeaders() },
-        body: JSON.stringify({
-          to: to.split(',').map(e => e.trim()).filter(Boolean),
-          subject,
-          body: body.replace(/\n/g, '<br>'),
-        }),
+      const res = await api.post('/admin/email/send', {
+        to: to.split(',').map(e => e.trim()).filter(Boolean),
+        subject,
+        body: body.replace(/\n/g, '<br>'),
       });
-      const data = await res.json();
+      const data = res.data;
       if (data.success) {
         toast.success(data.message);
         setTo("");

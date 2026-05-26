@@ -2,9 +2,7 @@
 import { useState, useEffect } from "react";
 import { BarChart3, TrendingUp, Users, FileText } from "lucide-react";
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from "recharts";
-import { authHeaders } from "@/lib/api";
-
-const API_URL = "/api";
+import { api } from "@/lib/api";
 
 const COLORS = ['#C9A84C', '#A8892A', '#8B7355', '#D4B86A', '#E8CC8C', '#6B8E7B', '#7BA391'];
 
@@ -21,14 +19,14 @@ export default function AnalyticsView() {
   const fetchAnalytics = async () => {
     try {
       const [summaryRes, monthlyRes, distributionRes] = await Promise.all([
-        fetch(`${API_URL}/admin/analytics/summary`, { headers: authHeaders() }),
-        fetch(`${API_URL}/admin/analytics/monthly-leads`, { headers: authHeaders() }),
-        fetch(`${API_URL}/admin/analytics/loan-distribution`, { headers: authHeaders() })
+        api.get('/admin/analytics/summary'),
+        api.get('/admin/analytics/monthly-leads'),
+        api.get('/admin/analytics/loan-distribution')
       ]);
 
-      const summary = await summaryRes.json();
-      const monthly = await monthlyRes.json();
-      const distribution = await distributionRes.json();
+      const summary = summaryRes.data;
+      const monthly = monthlyRes.data;
+      const distribution = distributionRes.data;
 
       if (summary.success) setStats(summary.data);
       if (monthly.success) setMonthlyData(monthly.data || []);

@@ -2,9 +2,7 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { PERMISSIONS } from "../utils/roles";
-import { getToken, setToken, clearToken, authHeaders } from "@/lib/api";
-
-const API_URL = "/api";
+import { api, getToken, setToken, clearToken } from "@/lib/api";
 
 const AuthContext = createContext(null);
 
@@ -17,11 +15,9 @@ export function AuthProvider({ children }) {
     try {
       const token = getToken();
       if (!token) return false;
-      const res = await fetch(`${API_URL}/admin/profile`, { headers: authHeaders() });
-      if (!res.ok) throw new Error("Not authenticated");
-      const data = await res.json();
-      if (data.success) {
-        setUser(data.admin);
+      const res = await api.get('/admin/profile');
+      if (res.data.success) {
+        setUser(res.data.admin);
         return true;
       }
     } catch {
@@ -42,23 +38,22 @@ export function AuthProvider({ children }) {
   }, [fetchProfile]);
 
   const login = async (email, password) => {
-    const res = await fetch(`${API_URL}/admin/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
-    });
-    const data = await res.json();
-    if (data.success) {
-      setToken(data.token);
-      setUser(data.admin);
-      return { success: true };
+    try {
+      const res = await api.post('/admin/login', { email, password });
+      if (res.data.success) {
+        setToken(res.data.token);
+        setUser(res.data.admin);
+        return { success: true };
+      }
+      return { success: false, message: res.data.message };
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || 'Login failed. Please try again.' };
     }
-    return { success: false, message: data.message };
   };
 
   const logout = async () => {
     try {
-      await fetch(`${API_URL}/admin/logout`, { headers: authHeaders() });
+      await api.post('/admin/logout');
     } catch {}
     clearToken();
     setUser(null);

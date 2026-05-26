@@ -1,9 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Users, Phone, TrendingUp, CheckCircle } from "lucide-react";
-import { authHeaders } from "@/lib/api";
-
-const API_URL = "/api";
+import { api } from "@/lib/api";
 
 export default function StatsWidget() {
   const [stats, setStats] = useState({
@@ -21,20 +19,10 @@ export default function StatsWidget() {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch(`${API_URL}/admin/stats/today`, {
-        headers: authHeaders()
-      });
+      const response = await api.get('/admin/stats/today');
       
-      // Check if response is OK before parsing JSON
-      if (!response.ok) {
-        console.error('Stats fetch failed:', response.status, response.statusText);
-        return;
-      }
-      
-      const data = await response.json();
-      
-      if (data.success) {
-        setStats(data.stats);
+      if (response.data.success) {
+        setStats(response.data.stats);
       }
     } catch (error) {
       console.error('Error fetching stats:', error);

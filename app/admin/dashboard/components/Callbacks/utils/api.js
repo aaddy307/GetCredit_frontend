@@ -1,49 +1,30 @@
-import { authHeaders } from "@/lib/api";
-
-const API_URL = "/api";
+import { api } from "@/lib/api";
 
 export const callbackApi = {
   getCallbacks: async (params = {}) => {
     const query = new URLSearchParams(params).toString();
-    const response = await fetch(`${API_URL}/callback${query ? `?${query}` : ''}`, {
-      headers: authHeaders()
-    });
-    return response.json();
+    const response = await api.get(`/callback${query ? `?${query}` : ''}`);
+    return response.data;
   },
 
   createCallback: async (data) => {
-    const response = await fetch(`${API_URL}/callback`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', ...authHeaders() },
-      body: JSON.stringify(data)
-    });
-    return response.json();
+    const response = await api.post('/callback', data);
+    return response.data;
   },
 
   updateCallback: async (id, data) => {
-    const response = await fetch(`${API_URL}/callback/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', ...authHeaders() },
-      body: JSON.stringify(data)
-    });
-    return response.json();
+    const response = await api.put(`/callback/${id}`, data);
+    return response.data;
   },
 
   updateStatus: async (id, status) => {
-    const response = await fetch(`${API_URL}/callback/${id}/status`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json', ...authHeaders() },
-      body: JSON.stringify({ status })
-    });
-    return response.json();
+    const response = await api.patch(`/callback/${id}/status`, { status });
+    return response.data;
   },
 
   deleteCallback: async (id) => {
-    const response = await fetch(`${API_URL}/callback/${id}`, {
-      method: 'DELETE',
-      headers: authHeaders()
-    });
-    return response.json();
+    const response = await api.delete(`/callback/${id}`);
+    return response.data;
   }
 };
 
