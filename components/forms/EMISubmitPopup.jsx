@@ -60,6 +60,7 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
         loanAmount: parseInt(loanData.loanAmount) || 0,
         interestRate: parseFloat(loanData.interestRate) || 8.5,
         tenureYears: parseInt(loanData.tenure) || 0,
+        tenureUnit: loanData.tenureUnit || 'Years',
         calculatedEMI: parseInt(loanData.emi) || 0,
         totalInterest: parseInt(loanData.totalInterest) || 0,
         totalPayable: parseInt(loanData.totalAmount) || 0,
@@ -167,7 +168,7 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
                       ₹{parseInt(loanData.loanAmount || 0).toLocaleString()}
                     </p>
                     <p className="text-gray-600 text-sm">
-                      {loanData.loanType} • {loanData.tenure} Years • ₹{parseInt(loanData.emi || 0).toLocaleString()}/month
+                      {loanData.loanType} • {loanData.tenure} {loanData.tenureUnit || 'Years'} • ₹{parseInt(loanData.emi || 0).toLocaleString()}/month
                     </p>
                   </div>
                 </div>

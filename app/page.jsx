@@ -9,6 +9,7 @@ import HeroSection from "@/components/ui/HeroSection";
 import LoanCard from "@/components/ui/LoanCard";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
+import WhatsAppPopup from "@/components/ui/WhatsAppPopup";
 
 const loanCategories = [
   { icon: User, title: "Personal Loan", description: "Quick funds with same-day disbursement and rates starting from 9.99%.", href: "/services#personal-loan", best: true },
@@ -226,6 +227,7 @@ export default function HomePage() {
           </div>
         </motion.section>
       </main>
+      <WhatsAppPopup />
       <Footer />
     </>
   );

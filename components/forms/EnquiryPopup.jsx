@@ -61,6 +61,16 @@ const degrees = [
   { value: "Others", label: "Others" },
 ];
 
+const MONTH_TENURE_LOANS = ["personal", "business"];
+
+function isMonthTenure(loanId) {
+  return MONTH_TENURE_LOANS.includes(loanId);
+}
+
+function getTenureUnit(loanId) {
+  return isMonthTenure(loanId) ? "Months" : "Years";
+}
+
 const initialFormValues = {
   fullName: "",
   phone: "",
@@ -78,7 +88,7 @@ const initialFormValues = {
   websiteUrl: "",
 };
 
-export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - Apply Now" }) {
+export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - Apply Now", defaultLoanType = "" }) {
   const [selectedLoanType, setSelectedLoanType] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -92,7 +102,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      setSelectedLoanType("");
+      setSelectedLoanType(defaultLoanType || "");
       reset(initialFormValues);
     } else {
       document.body.style.overflow = 'unset';
@@ -100,7 +110,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen, reset]);
+  }, [isOpen, reset, defaultLoanType]);
 
   const getLoanTypeLabel = (type) => {
     switch (type) {
@@ -114,10 +124,13 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
     }
   };
 
-  const calculateEMI = (principal, rate, years) => {
-    if (!principal || !rate || !years || years < 1 || years > 30) return 0;
+  const calculateEMI = (principal, rate, tenureValue, unit) => {
+    const isMonth = unit === 'Months';
+    const minTenure = 1;
+    const maxTenure = isMonth ? 84 : 30;
+    if (!principal || !rate || !tenureValue || tenureValue < minTenure || tenureValue > maxTenure) return 0;
     const monthlyRate = rate / 12 / 100;
-    const months = years * 12;
+    const months = isMonth ? Math.round(tenureValue) : Math.round(tenureValue * 12);
     if (months <= 0 || !isFinite(months)) return 0;
     const emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
     if (isNaN(emi) || !isFinite(emi)) return 0;
@@ -130,9 +143,12 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
       return;
     }
 
+    const unit = getTenureUnit(selectedLoanType);
+    const isMonth = unit === 'Months';
+    const maxTenure = isMonth ? 84 : 30;
     const tenureNum = parseInt(data.tenure) || 0;
-    if (tenureNum < 1 || tenureNum > 30) {
-      toast.error("Tenure must be between 1 and 30 years", { id: 'enquiry-tenure-error' });
+    if (tenureNum < 1 || tenureNum > maxTenure) {
+      toast.error(`Tenure must be between 1 and ${maxTenure} ${unit.toLowerCase()}`, { id: 'enquiry-tenure-error' });
       return;
     }
 
@@ -145,8 +161,16 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
     const emi = calculateEMI(
       loanAmountNum,
       8.5,
-      tenureNum
+      tenureNum,
+      unit
     );
+
+    // Honeypot check — silently reject bots client-side
+    if (data.websiteUrl) {
+      setSubmitted(true);
+      toast.success("Thank you! Your enquiry has been submitted. Our executive will contact you within 24 hours.", { id: 'enquiry-success' });
+      return;
+    }
 
     try {
       setIsSubmitting(true);
@@ -162,6 +186,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
             loanAmount: parseInt(data.loanAmount) || 0,
             interestRate: 8.5,
             tenure: parseInt(data.tenure) || 0,
+            tenureUnit: unit,
             emi: emi,
             propertyType: data.propertyType,
             propertyLocation: data.propertyLocation,
@@ -387,19 +412,19 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                       
                       <div>
                         <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                          Tenure (Years) <span className="text-[#c9920a]">*</span>
+                          Tenure ({getTenureUnit(selectedLoanType)}) <span className="text-[#c9920a]">*</span>
                         </label>
                         <input
                           {...register("tenure", { 
                             required: "Tenure is required",
-                            min: { value: 1, message: "Minimum 1 year" },
-                            max: { value: 30, message: "Maximum 30 years" },
+                            min: { value: 1, message: "Minimum 1" + (isMonthTenure(selectedLoanType) ? " month" : " year") },
+                            max: { value: isMonthTenure(selectedLoanType) ? 84 : 30, message: "Maximum " + (isMonthTenure(selectedLoanType) ? "84 months" : "30 years") },
                             valueAsNumber: true
                           })}
                           type="number"
                           min="1"
-                          max="30"
-                          placeholder="Enter tenure (1-30 years)"
+                          max={isMonthTenure(selectedLoanType) ? 84 : 30}
+                          placeholder={isMonthTenure(selectedLoanType) ? "Enter tenure (1-84 months)" : "Enter tenure (1-30 years)"}
                           className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
                         />
                         {errors.tenure && <p className="text-red-500 text-xs mt-1">{errors.tenure.message}</p>}

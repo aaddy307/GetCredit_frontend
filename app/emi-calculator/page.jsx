@@ -10,20 +10,12 @@ import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import EMISubmitPopup from "@/components/forms/EMISubmitPopup";
+import { EMI_LOAN_TYPES } from "@/lib/constants";
 
 const STORAGE_KEYS = {
   POPUP_CLOSED_AT: 'emi_popup_closed_at',
   LEAD_SUBMITTED: 'emi_lead_submitted'
 };
-
-const loanTypes = [
-  { id: "home", label: "Home Loan", icon: Home },
-  { id: "lap", label: "Loan Against Property", icon: Building2 },
-  { id: "education", label: "Education Loan", icon: GraduationCap },
-  { id: "personal", label: "Personal Loan", icon: User },
-  { id: "business", label: "Business Loan", icon: Briefcase },
-  { id: "vehicle", label: "Vehicle Loan", icon: Car },
-];
 
 const propertyTypesHome = [
   { value: "Ready to Move", label: "Ready to Move" },
@@ -70,6 +62,20 @@ const vehicleTypes = [
   { value: "Commercial Vehicle", label: "Commercial Vehicle" },
 ];
 
+const MONTH_TENURE_LOANS = ["personal", "business"];
+
+function isMonthTenure(type) {
+  return MONTH_TENURE_LOANS.includes(type);
+}
+
+function getTenureLabel(activeTab) {
+  return isMonthTenure(activeTab) ? "Tenure (Months)" : "Tenure (Years)";
+}
+
+function getTenurePlaceholder(activeTab) {
+  return isMonthTenure(activeTab) ? "Enter tenure in months (e.g., 60)" : "Enter tenure in years (e.g., 20)";
+}
+
 const isLeadSubmitted = () => typeof window !== 'undefined' && localStorage.getItem(STORAGE_KEYS.LEAD_SUBMITTED) === 'true';
 
 const shouldShowPopup = () => {
@@ -106,9 +112,9 @@ export default function EMICalculatorPage() {
     const loanAmount = parseFloat(data.loanAmount) || 0;
     const downPayment = parseFloat(data.downPayment) || 0;
     const interestRate = parseFloat(data.interestRate) || 0;
-    const tenureYears = parseFloat(data.tenure) || 0;
+    const tenureInput = parseFloat(data.tenure) || 0;
 
-    if (loanAmount <= 0 || tenureYears <= 0) {
+    if (loanAmount <= 0 || tenureInput <= 0) {
       toast.error("Please enter valid loan amount and tenure");
       return;
     }
@@ -136,7 +142,12 @@ export default function EMICalculatorPage() {
     }
 
     const monthlyRate = interestRate / 12 / 100;
-    const tenureMonths = tenureYears * 12;
+    const tenureMonths = isMonthTenure(activeTab) ? Math.round(tenureInput) : Math.round(tenureInput * 12);
+
+    if (tenureMonths <= 0) {
+      toast.error("Please enter a valid tenure");
+      return;
+    }
 
     let emi;
     if (monthlyRate === 0) {
@@ -158,7 +169,8 @@ export default function EMICalculatorPage() {
       emi: Math.round(emi),
       totalAmount: totalAmount,
       totalInterest: totalInterest,
-      tenure: tenureYears,
+      tenure: isMonthTenure(activeTab) ? tenureMonths : tenureInput,
+      tenureUnit: isMonthTenure(activeTab) ? "Months" : "Years",
       principal,
     });
 
@@ -188,6 +200,9 @@ export default function EMICalculatorPage() {
   };
 
   const renderForm = () => {
+    const tenureLabel = getTenureLabel(activeTab);
+    const tenurePlaceholder = getTenurePlaceholder(activeTab);
+
     switch (activeTab) {
       case "home":
         return (
@@ -197,7 +212,7 @@ export default function EMICalculatorPage() {
             <Input label="Property Location" name="propertyLocation" type="text" register={register} placeholder="Enter property location" />
             <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
             <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate (e.g., 7.5)" required />
-            <Input label="Tenure (Years)" name="tenure" type="number" register={register} placeholder="Enter tenure in years (e.g., 20)" required />
+            <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
           </>
         );
       case "lap": {
@@ -212,14 +227,14 @@ export default function EMICalculatorPage() {
             {formValues.propertyType && (
               <div className="col-span-2 md:col-span-1 p-3 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg">
                 <p className="text-sm text-gray-600">
-                  <span className="font-semibold text-[#C9A84C]">{ltvPercent}% LTV</span> — Max Fundable: <span className="font-semibold">₹{maxLoanAmt.toLocaleString()}</span>
+                  <span className="font-semibold text-[#C9A84C]">{ltvPercent}% LTV</span> &mdash; Max Fundable: <span className="font-semibold">&#x20B9;{maxLoanAmt.toLocaleString()}</span>
                 </p>
               </div>
             )}
             <Input label="Loan Amount" name="loanAmount" type="number" register={register} placeholder="Enter loan amount (max based on LTV)" required />
             <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
             <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate" required />
-            <Input label="Tenure (Years)" name="tenure" type="number" register={register} placeholder="Enter tenure in years" required />
+            <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
             <div className="col-span-2 text-xs text-gray-400 italic">
               * LTV can change based on property location, bank policies, and your CIBIL score. We cannot commit to exact LTV before seeing property details.
             </div>
@@ -234,7 +249,7 @@ export default function EMICalculatorPage() {
             <Input label="Degree to Pursue" name="degree" type="select" register={register} options={degrees} />
             <Input label="University Name" name="institutionName" type="text" register={register} placeholder="Enter university name" />
             <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate" required />
-            <Input label="Tenure (Years)" name="tenure" type="number" register={register} placeholder="Enter tenure in years" required />
+            <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
           </>
         );
       case "personal":
@@ -243,7 +258,7 @@ export default function EMICalculatorPage() {
             <Input label="Loan Amount" name="loanAmount" type="number" register={register} placeholder="Enter loan amount (e.g., 500000)" required />
             <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
             <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate (e.g., 10.5)" required />
-            <Input label="Tenure (Years)" name="tenure" type="number" register={register} placeholder="Enter tenure in years (e.g., 5)" required />
+            <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
           </>
         );
       case "business":
@@ -253,7 +268,7 @@ export default function EMICalculatorPage() {
             <Input label="Business Vintage (Years)" name="businessVintage" type="number" register={register} placeholder="Business vintage in years" />
             <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
             <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate (e.g., 12.0)" required />
-            <Input label="Tenure (Years)" name="tenure" type="number" register={register} placeholder="Enter tenure in years (e.g., 5)" required />
+            <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
           </>
         );
       case "vehicle":
@@ -263,7 +278,7 @@ export default function EMICalculatorPage() {
             <Input label="Vehicle Type" name="vehicleType" type="select" register={register} options={vehicleTypes} />
             <Input label="Down Payment" name="downPayment" type="number" register={register} placeholder="Enter down payment amount" />
             <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate (e.g., 8.5)" required />
-            <Input label="Tenure (Years)" name="tenure" type="number" register={register} placeholder="Enter tenure in years (e.g., 7)" required />
+            <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
           </>
         );
       default:
@@ -272,7 +287,7 @@ export default function EMICalculatorPage() {
   };
 
   const getLoanTypeLabel = () => {
-    return loanTypes.find((t) => t.id === activeTab)?.label || "Loan";
+    return EMI_LOAN_TYPES.find((t) => t.id === activeTab)?.label || "Loan";
   };
 
   const loanInfoCards = [
@@ -335,24 +350,28 @@ export default function EMICalculatorPage() {
             <div className="max-w-4xl mx-auto">
               <GlassCard className="p-8">
                 <div className="loan-type-grid flex flex-wrap gap-3 mb-8 justify-center">
-                  {loanTypes.map((type) => (
-                    <button
-                      key={type.id}
-                      onClick={() => {
-                        setActiveTab(type.id);
-                        setEmiResult(null);
-                        reset();
-                      }}
-                      className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all text-sm font-medium ${
-                        activeTab === type.id
-                          ? "bg-[#C9A84C] text-white"
-                          : "bg-[#F5F3EE] text-gray-700 border border-[#C9A84C]/20 hover:border-[#C9A84C]"
-                      }`}
-                    >
-                      <type.icon className="w-4 h-4" />
-                      {type.label}
-                    </button>
-                  ))}
+                  {EMI_LOAN_TYPES.map((type) => {
+                    const iconMap = { home: Home, lap: Building2, education: GraduationCap, personal: User, business: Briefcase, vehicle: Car };
+                    const Icon = iconMap[type.id] || Calculator;
+                    return (
+                      <button
+                        key={type.id}
+                        onClick={() => {
+                          setActiveTab(type.id);
+                          setEmiResult(null);
+                          reset();
+                        }}
+                        className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all text-sm font-medium ${
+                          activeTab === type.id
+                            ? "bg-[#C9A84C] text-white"
+                            : "bg-[#F5F3EE] text-gray-700 border border-[#C9A84C]/20 hover:border-[#C9A84C]"
+                        }`}
+                      >
+                        <Icon className="w-4 h-4" />
+                        {type.label}
+                      </button>
+                    );
+                  })}
                 </div>
 
                 <form onSubmit={handleSubmit(calculateEMI)}>
@@ -380,19 +399,19 @@ export default function EMICalculatorPage() {
                     <div className="text-center mb-6">
                       <p className="text-gray-500 mb-2">Your Monthly EMI</p>
                       <p className="text-5xl font-bold text-[#C9A84C]">
-                        ₹{emiResult.emi.toLocaleString()}
+                        &#x20B9;{emiResult.emi.toLocaleString()}
                       </p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#C9A84C]/20">
                       <div className="text-center">
                         <p className="text-gray-500 text-xs mb-1">Principal</p>
-                        <p className="text-gray-800 font-semibold">₹{emiResult.principal.toLocaleString()}</p>
+                        <p className="text-gray-800 font-semibold">&#x20B9;{emiResult.principal.toLocaleString()}</p>
                       </div>
                       <div className="text-center">
                         <p className="text-gray-500 text-xs mb-1">Total Interest</p>
                         <div className="flex items-center justify-center gap-1">
                           <span className="text-[#c9920a] font-semibold filter blur-[6px] select-none">
-                            ₹{emiResult.totalInterest.toLocaleString()}
+                            &#x20B9;{emiResult.totalInterest.toLocaleString()}
                           </span>
                           <svg className="w-3 h-3 text-[#c9920a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -406,7 +425,7 @@ export default function EMICalculatorPage() {
                         <p className="text-gray-500 text-xs mb-1">Total Payable</p>
                         <div className="flex items-center justify-center gap-1">
                           <span className="text-gray-800 font-semibold filter blur-[6px] select-none">
-                            ₹{emiResult.totalAmount.toLocaleString()}
+                            &#x20B9;{emiResult.totalAmount.toLocaleString()}
                           </span>
                           <svg className="w-3 h-3 text-[#c9920a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -418,7 +437,7 @@ export default function EMICalculatorPage() {
                       </div>
                     </div>
                     <p className="text-gray-600 text-center mt-4 text-sm">
-                      Tenure: <span className="text-[#C9A84C] font-semibold">{emiResult.tenure} Years</span>
+                      Tenure: <span className="text-[#C9A84C] font-semibold">{emiResult.tenure} {emiResult.tenureUnit}</span>
                     </p>
                   </motion.div>
                 )}
@@ -463,6 +482,7 @@ export default function EMICalculatorPage() {
           loanAmount: emiResult?.principal || 0,
           emi: emiResult?.emi || 0,
           tenure: emiResult?.tenure || 0,
+          tenureUnit: emiResult?.tenureUnit || 'Years',
           interestRate: formValues?.interestRate || 8.5,
           totalInterest: emiResult?.totalInterest || 0,
           totalAmount: emiResult?.totalAmount || 0,

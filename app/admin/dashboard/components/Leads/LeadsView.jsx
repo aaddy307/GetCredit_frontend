@@ -1,18 +1,19 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
-import { Plus, Search, X, Edit2, Trash2, ChevronLeft, ChevronRight, Download, Filter, Calendar, ChevronDown } from "lucide-react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { Plus, Search, X, Edit2, Trash2, ChevronLeft, ChevronRight, Download, Filter, Calendar, ChevronDown, Inbox } from "lucide-react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const ITEMS_PER_PAGE = 10;
 
 const statusOptions = [
   { value: 'Pending', label: 'Pending' },
   { value: 'In Review', label: 'In Review' },
   { value: 'Approved', label: 'Approved' },
   { value: 'Rejected', label: 'Rejected' },
-  { value: 'Closed', label: 'Closed' }
+  { value: 'Closed', label: 'Closed' },
 ];
 
 const loanTypeOptions = [
@@ -21,7 +22,7 @@ const loanTypeOptions = [
   { value: 'Education Loan', label: 'Education Loan' },
   { value: 'Personal Loan', label: 'Personal Loan' },
   { value: 'Business Loan', label: 'Business Loan' },
-  { value: 'Vehicle Loan', label: 'Vehicle Loan' }
+  { value: 'Vehicle Loan', label: 'Vehicle Loan' },
 ];
 
 const sourceOptions = [
@@ -32,22 +33,149 @@ const sourceOptions = [
   { value: 'Import', label: 'Import' },
   { value: 'Referral', label: 'Referral' },
   { value: 'Advertisement', label: 'Advertisement' },
-  { value: 'Other', label: 'Other' }
+  { value: 'Other', label: 'Other' },
 ];
+
+const statusColors = {
+  'Pending': 'bg-yellow-100 text-yellow-700',
+  'In Review': 'bg-blue-100 text-blue-700',
+  'Approved': 'bg-green-100 text-green-700',
+  'Rejected': 'bg-red-100 text-red-700',
+  'Closed': 'bg-gray-100 text-gray-700',
+};
+
+function formatDate(date) {
+  if (!date) return '-';
+  return new Date(date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+const MONTH_TENURE_LOANS = ['Personal Loan', 'Non-Salaried Loan', 'Business Loan'];
+
+function getTenureUnit(loanType, lead) {
+  if (lead?.tenureUnit) return lead.tenureUnit;
+  return MONTH_TENURE_LOANS.includes(loanType) ? 'Months' : 'Years';
+}
+
+function formatTenure(lead) {
+  if (!lead?.tenure) return '-';
+  return `${lead.tenure} ${getTenureUnit(lead.loanType, lead)}`;
+}
+
+function formatCurrency(value) {
+  if (!value) return '-';
+  return `\u20B9${parseInt(value).toLocaleString()}`;
+}
+
+function normalizeLeads(raw) {
+  if (!Array.isArray(raw)) return [];
+  return raw.filter(Boolean);
+}
+
+function matchesDateFilter(dateStr, from, to) {
+  if (!dateStr) return false;
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return true;
+  if (from && !isNaN(new Date(from).getTime()) && d < new Date(from)) return false;
+  if (to) {
+    const toEnd = new Date(to);
+    toEnd.setHours(23, 59, 59, 999);
+    if (!isNaN(toEnd.getTime()) && d > toEnd) return false;
+  }
+  return true;
+}
+
+function Pagination({ page, totalPages, onPageChange }) {
+  const items = useMemo(() => {
+    if (totalPages <= 1) return [];
+    const pages = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+      if (page > 3) pages.push('...');
+      const start = Math.max(2, page - 1);
+      const end = Math.min(totalPages - 1, page + 1);
+      for (let i = start; i <= end; i++) pages.push(i);
+      if (page < totalPages - 2) pages.push('...');
+      pages.push(totalPages);
+    }
+    return pages;
+  }, [page, totalPages]);
+
+  if (totalPages <= 1) return null;
+
+  return (
+    <nav className="flex items-center gap-1" aria-label="Pagination">
+      <button
+        onClick={() => onPageChange(page - 1)}
+        disabled={page <= 1}
+        className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        aria-label="Previous page"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+      {items.map((item, i) =>
+        item === '...' ? (
+          <span key={`e${i}`} className="w-8 h-8 flex items-center justify-center text-sm text-gray-400 select-none">
+            &hellip;
+          </span>
+        ) : (
+          <button
+            key={item}
+            onClick={() => onPageChange(item)}
+            className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
+              page === item
+                ? 'bg-[#C9A84C] text-white shadow-sm'
+                : 'text-gray-600 hover:bg-gray-100'
+            }`}
+            aria-current={page === item ? 'page' : undefined}
+          >
+            {item}
+          </button>
+        )
+      )}
+      <button
+        onClick={() => onPageChange(page + 1)}
+        disabled={page >= totalPages}
+        className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        aria-label="Next page"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+    </nav>
+  );
+}
+
+function EmptyState({ hasActiveFilters, onClearFilters }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-16 text-center">
+      <div className="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+        <Inbox className="w-7 h-7 text-gray-400" />
+      </div>
+      <p className="text-gray-500 font-medium">No leads found</p>
+      {hasActiveFilters && (
+        <button onClick={onClearFilters} className="mt-2 text-sm text-[#C9A84C] hover:underline">
+          Clear all filters to see all leads
+        </button>
+      )}
+    </div>
+  );
+}
+
+function LoadingSpinner() {
+  return (
+    <div className="flex items-center justify-center py-16">
+      <div className="animate-spin w-7 h-7 border-2 border-[#C9A84C] border-t-transparent rounded-full" />
+    </div>
+  );
+}
 
 export default function LeadsView() {
   const { hasPermission } = useAuth();
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
-  const [loanTypeFilter, setLoanTypeFilter] = useState("");
-  const [sourceFilter, setSourceFilter] = useState("");
-  const [dateFrom, setDateFrom] = useState("");
-  const [dateTo, setDateTo] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
-  const [page, setPage] = useState(1);
-  const [totalCount, setTotalCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [editingLead, setEditingLead] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -56,38 +184,95 @@ export default function LeadsView() {
   const [exporting, setExporting] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm();
-  const limit = 20;
+  const [filters, setFilters] = useState({
+    search: '',
+    status: '',
+    loanType: '',
+    source: '',
+    fromDate: '',
+    toDate: '',
+  });
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
     try {
-      const params = new URLSearchParams();
-      if (search) params.append("search", search);
-      if (statusFilter) params.append("status", statusFilter);
-      if (loanTypeFilter) params.append("loanType", loanTypeFilter);
-      if (sourceFilter) params.append("source", sourceFilter);
-      if (dateFrom) params.append("startDate", dateFrom);
-      if (dateTo) params.append("endDate", dateTo);
-      params.append("page", page);
-      params.append("limit", limit);
-
-      const response = await fetch(`${API_URL}/admin/all-leads?${params}`, { credentials: 'include' });
+      const response = await fetch(`${API_URL}/admin/all-leads`, { credentials: 'include' });
       const data = await response.json();
-
-      if (data.success) {
-        setLeads(data.leads || []);
-        setTotalCount(data.total || 0);
-      }
+      setLeads(normalizeLeads(data?.leads));
     } catch (err) {
       toast.error("Failed to fetch leads");
+      setLeads([]);
     }
     setLoading(false);
-  }, [search, statusFilter, loanTypeFilter, sourceFilter, dateFrom, dateTo, page]);
+  }, []);
 
   useEffect(() => { fetchLeads(); }, [fetchLeads]);
 
-  const handleStatusChange = async (leadId, newStatus) => {
+  const hasActiveFilters = filters.search || filters.status || filters.loanType || filters.source || filters.fromDate || filters.toDate;
+
+  const filteredLeads = useMemo(() => {
+    let result = leads;
+
+    if (filters.search) {
+      const q = filters.search.toLowerCase().trim();
+      if (q) {
+        result = result.filter(l =>
+          (l.fullName || '').toLowerCase().includes(q) ||
+          (l.phone || '').includes(q) ||
+          (l.email || '').toLowerCase().includes(q)
+        );
+      }
+    }
+
+    if (filters.status) {
+      result = result.filter(l => l.status === filters.status);
+    }
+
+    if (filters.loanType) {
+      result = result.filter(l => l.loanType === filters.loanType);
+    }
+
+    if (filters.source) {
+      const src = filters.source.toLowerCase();
+      result = result.filter(l => {
+        const source = (l._isEMI ? 'EMI Calculator' : (l.leadSource || 'Website')).toLowerCase();
+        return source === src;
+      });
+    }
+
+    if (filters.fromDate || filters.toDate) {
+      result = result.filter(l => matchesDateFilter(l.createdAt, filters.fromDate, filters.toDate));
+    }
+
+    return result;
+  }, [leads, filters]);
+
+  const totalPages = useMemo(() => Math.ceil(filteredLeads.length / ITEMS_PER_PAGE) || 1, [filteredLeads.length]);
+
+  const paginatedLeads = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredLeads.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredLeads, currentPage]);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
+  const updateFilter = useCallback((key, value) => {
+    setFilters(prev => ({ ...prev, [key]: value }));
+    setCurrentPage(1);
+  }, []);
+
+  const clearFilters = useCallback(() => {
+    setFilters({ search: '', status: '', loanType: '', source: '', fromDate: '', toDate: '' });
+    setCurrentPage(1);
+  }, []);
+
+  const handleStatusChange = useCallback(async (leadId, newStatus) => {
     try {
       const lead = leads.find(l => l._id === leadId);
       const collection = lead?._collection || 'enquiries';
@@ -95,89 +280,105 @@ export default function LeadsView() {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ status: newStatus, _collection: collection })
+        body: JSON.stringify({ status: newStatus, _collection: collection }),
       });
       if (response.ok) {
-        setLeads(leads.map(l => l._id === leadId ? { ...l, status: newStatus } : l));
+        setLeads(prev => prev.map(l => (l._id === leadId ? { ...l, status: newStatus } : l)));
         toast.success("Status updated");
       } else {
         const result = await response.json();
         toast.error(result.message || "Failed to update status");
       }
-    } catch (err) {
+    } catch {
       toast.error("Failed to update status");
     }
     setStatusDropdown(null);
-  };
+  }, [leads]);
 
-  const openAddModal = () => {
+  const openAddModal = useCallback(() => {
     setEditingLead(null);
-    reset({ fullName: "", phone: "", email: "", city: "", loanType: "Home Loan", loanAmount: "", status: "Pending", leadSource: "Admin - Manual Entry" });
+    reset({ fullName: '', phone: '', email: '', city: '', loanType: 'Home Loan', loanAmount: '', tenure: '', tenureUnit: 'Years', status: 'Pending', leadSource: 'Admin - Manual Entry' });
     setShowModal(true);
-  };
+  }, [reset]);
 
-  const openEditModal = (lead) => {
+  const openEditModal = useCallback((lead) => {
     setEditingLead(lead);
-    reset({ fullName: lead.fullName, phone: lead.phone, email: lead.email, city: lead.city || "", loanType: lead.loanType, loanAmount: lead.loanAmount, status: lead.status, leadSource: lead.leadSource || "Admin - Manual Entry" });
+    reset({
+      fullName: lead.fullName, phone: lead.phone, email: lead.email, city: lead.city || '',
+      loanType: lead.loanType, loanAmount: lead.loanAmount, status: lead.status,
+      tenure: lead.tenure || '', tenureUnit: lead.tenureUnit || 'Years',
+      leadSource: lead.leadSource || 'Admin - Manual Entry',
+    });
     setShowModal(true);
-  };
+  }, [reset]);
 
-  const onSubmit = async (data) => {
+  const onSubmit = useCallback(async (data) => {
     if (submitting) return;
     setSubmitting(true);
     try {
-      const payload = { ...data, loanAmount: parseInt(data.loanAmount) || 0 };
+      const payload = {
+        ...data,
+        loanAmount: parseInt(data.loanAmount) || 0,
+        tenure: data.tenure ? parseInt(data.tenure) : undefined,
+        tenureUnit: data.tenureUnit || undefined,
+      };
       let response;
       if (editingLead) {
         const collection = editingLead._collection || 'enquiries';
         response = await fetch(`${API_URL}/admin/lead/${editingLead._id}`, {
           method: 'PUT', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
-          body: JSON.stringify({ ...payload, _collection: collection })
+          body: JSON.stringify({ ...payload, _collection: collection }),
         });
       } else {
         response = await fetch(`${API_URL}/enquiry`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify(payload)
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
+          body: JSON.stringify(payload),
         });
       }
       if (response.ok) {
         toast.success(editingLead ? "Lead updated" : "Lead added");
         setShowModal(false);
-        setSubmitting(false);
         fetchLeads();
       } else {
         const result = await response.json();
         toast.error(result.message || (editingLead ? "Failed to update" : "Failed to add"));
-        setSubmitting(false);
       }
-    } catch (err) {
+    } catch {
       toast.error(editingLead ? "Failed to update" : "Failed to add");
-      setSubmitting(false);
     }
-  };
+    setSubmitting(false);
+  }, [submitting, editingLead, fetchLeads]);
 
-  const handleDelete = async () => {
+  const handleDelete = useCallback(async () => {
     try {
       const lead = leads.find(l => l._id === deleteId);
       const collection = lead?._collection || 'enquiries';
       const response = await fetch(`${API_URL}/admin/lead/${deleteId}?collection=${collection}`, { method: 'DELETE', credentials: 'include' });
-      if (response.ok) { toast.success("Lead deleted"); fetchLeads(); }
-      else {
+      if (response.ok) {
+        toast.success("Lead deleted");
+        setLeads(prev => {
+          const next = prev.filter(l => l._id !== deleteId);
+          const maxPage = Math.ceil(next.length / ITEMS_PER_PAGE) || 1;
+          if (currentPage > maxPage) setCurrentPage(maxPage);
+          return next;
+        });
+      } else {
         const result = await response.json();
         toast.error(result.message || "Failed to delete");
       }
-    } catch (err) { toast.error("Failed to delete"); }
+    } catch { toast.error("Failed to delete"); }
     setShowDeleteConfirm(false);
     setDeleteId(null);
-  };
+  }, [deleteId, leads, currentPage]);
 
-  const handleExport = async (format = 'xlsx') => {
+  const handleExport = useCallback(async (format = 'xlsx') => {
     setExporting(true);
     try {
       const params = new URLSearchParams({ format });
-      if (statusFilter) params.append("status", statusFilter);
-      if (loanTypeFilter) params.append("loanType", loanTypeFilter);
-      if (dateFrom) params.append("startDate", dateFrom);
-      if (dateTo) params.append("endDate", dateTo);
+      if (filters.status) params.append("status", filters.status);
+      if (filters.loanType) params.append("loanType", filters.loanType);
+      if (filters.fromDate) params.append("startDate", filters.fromDate);
+      if (filters.toDate) params.append("endDate", filters.toDate);
       const response = await fetch(`${API_URL}/admin/all-leads/export?${params}`, { credentials: 'include' });
       if (!response.ok) throw new Error('Export failed');
       const blob = await response.blob();
@@ -188,62 +389,35 @@ export default function LeadsView() {
       a.click();
       window.URL.revokeObjectURL(url);
       toast.success(`Exported as ${format.toUpperCase()}`);
-    } catch (err) {
+    } catch {
       toast.error("Export failed");
     }
     setExporting(false);
-  };
-
-  const clearFilters = () => {
-    setSearch(''); setStatusFilter(''); setLoanTypeFilter(''); setSourceFilter(''); setDateFrom(''); setDateTo(''); setPage(1);
-  };
-
-  const hasActiveFilters = search || statusFilter || loanTypeFilter || sourceFilter || dateFrom || dateTo;
-
-  const totalPages = Math.ceil(totalCount / limit);
-  const startItem = (page - 1) * limit + 1;
-  const endItem = Math.min(page * limit, totalCount);
-
-  const statusColors = {
-    'Pending': 'bg-yellow-100 text-yellow-700',
-    'In Review': 'bg-blue-100 text-blue-700',
-    'Approved': 'bg-green-100 text-green-700',
-    'Rejected': 'bg-red-100 text-red-700',
-    'Closed': 'bg-gray-100 text-gray-700'
-  };
-
-  const formatDate = (date) => {
-    if (!date) return '-';
-    return new Date(date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-  };
-
-  const formatCurrency = (value) => {
-    if (!value) return '-';
-    return `₹${parseInt(value).toLocaleString()}`;
-  };
+  }, [filters]);
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Leads</h2>
-          <p className="text-sm text-gray-500">All enquiries across Home, Education, LAP, Personal, Business & Vehicle loans</p>
+          <p className="text-sm text-gray-500">All enquiries across Home, Education, LAP, Personal, Business &amp; Vehicle loans</p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
           {hasPermission('leads', 'export') && (
-            <div className="relative">
-              <button
-                onClick={() => handleExport('xlsx')}
-                disabled={exporting}
-                className="flex items-center gap-2 px-3 py-2.5 border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:bg-gray-50 transition-colors disabled:opacity-50"
-              >
-                <Download className="w-4 h-4" />
-                Export
-              </button>
-            </div>
+            <button
+              onClick={() => handleExport('xlsx')}
+              disabled={exporting}
+              className="flex items-center gap-2 px-3 py-2.5 border border-gray-200 text-gray-700 rounded-xl text-sm font-medium hover:bg-gray-50 transition-colors disabled:opacity-50"
+            >
+              <Download className="w-4 h-4" />
+              Export
+            </button>
           )}
           {hasPermission('leads', 'create') && (
-            <button onClick={openAddModal} className="flex items-center gap-2 px-4 py-2.5 bg-[#C9A84C] text-white rounded-xl font-medium hover:bg-[#A8892A] transition-colors">
+            <button
+              onClick={openAddModal}
+              className="flex items-center gap-2 px-4 py-2.5 bg-[#C9A84C] text-white rounded-xl font-medium hover:bg-[#A8892A] transition-colors"
+            >
               <Plus className="w-4 h-4" />
               Add Lead
             </button>
@@ -252,32 +426,45 @@ export default function LeadsView() {
       </div>
 
       <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
-        <div className="flex flex-wrap gap-3 items-center">
+        <div className="leads-filter-wrapper flex flex-wrap gap-3 items-center">
           <div className="relative flex-1 min-w-0 max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
-              type="text" value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+              type="text"
+              value={filters.search}
+              onChange={(e) => updateFilter('search', e.target.value)}
               placeholder="Search name, phone, email..."
               className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
             />
-            {search && (
-              <button onClick={() => { setSearch(''); setPage(1); }} className="absolute right-3 top-1/2 -translate-y-1/2">
+            {filters.search && (
+              <button onClick={() => updateFilter('search', '')} className="absolute right-3 top-1/2 -translate-y-1/2">
                 <X className="w-4 h-4 text-gray-400" />
               </button>
             )}
           </div>
 
-          <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }} className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]">
+          <select
+            value={filters.status}
+            onChange={(e) => updateFilter('status', e.target.value)}
+            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+          >
             <option value="">All Status</option>
             {statusOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
           </select>
 
-          <select value={loanTypeFilter} onChange={(e) => { setLoanTypeFilter(e.target.value); setPage(1); }} className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]">
+          <select
+            value={filters.loanType}
+            onChange={(e) => updateFilter('loanType', e.target.value)}
+            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+          >
             <option value="">All Loan Types</option>
             {loanTypeOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
           </select>
 
-          <button onClick={() => setShowFilters(!showFilters)} className="flex items-center gap-1 px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
+          <button
+            onClick={() => setShowFilters(prev => !prev)}
+            className="flex items-center gap-1 px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50"
+          >
             <Filter className="w-4 h-4" />
             Advanced
             <ChevronDown className={`w-3 h-3 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
@@ -292,7 +479,11 @@ export default function LeadsView() {
           <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div>
               <label className="block text-xs text-gray-500 mb-1">Source</label>
-              <select value={sourceFilter} onChange={(e) => { setSourceFilter(e.target.value); setPage(1); }} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]">
+              <select
+                value={filters.source}
+                onChange={(e) => updateFilter('source', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+              >
                 {sourceOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
               </select>
             </div>
@@ -300,14 +491,24 @@ export default function LeadsView() {
               <label className="block text-xs text-gray-500 mb-1">From Date</label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input type="date" value={dateFrom} onChange={(e) => { setDateFrom(e.target.value); setPage(1); }} className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]" />
+                <input
+                  type="date"
+                  value={filters.fromDate}
+                  onChange={(e) => updateFilter('fromDate', e.target.value)}
+                  className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+                />
               </div>
             </div>
             <div>
               <label className="block text-xs text-gray-500 mb-1">To Date</label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input type="date" value={dateTo} onChange={(e) => { setDateTo(e.target.value); setPage(1); }} className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]" />
+                <input
+                  type="date"
+                  value={filters.toDate}
+                  onChange={(e) => updateFilter('toDate', e.target.value)}
+                  className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+                />
               </div>
             </div>
           </div>
@@ -326,6 +527,7 @@ export default function LeadsView() {
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Loan Type</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Source</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Amount</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Tenure</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Status</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Date</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Actions</th>
@@ -333,12 +535,12 @@ export default function LeadsView() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {loading ? (
-                <tr><td colSpan={10} className="px-4 py-12 text-center"><div className="animate-spin w-6 h-6 border-2 border-[#C9A84C] border-t-transparent rounded-full mx-auto"></div></td></tr>
-              ) : leads.length === 0 ? (
-                <tr><td colSpan={10} className="px-4 py-12 text-center text-gray-500">No leads found</td></tr>
+                <tr><td colSpan={11}><LoadingSpinner /></td></tr>
+              ) : filteredLeads.length === 0 ? (
+                <tr><td colSpan={11}><EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} /></td></tr>
               ) : (
-                leads.map((lead, index) => (
-                  <tr key={lead._id} className={`hover:bg-gray-50 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
+                paginatedLeads.map((lead, index) => (
+                  <tr key={lead._id} className={`hover:bg-gray-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
                     <td className="px-4 py-3 text-sm font-medium text-gray-900">{lead.fullName}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">{lead.phone}</td>
                     <td className="px-4 py-3 text-sm text-gray-600 break-all max-w-[200px]">{lead.email}</td>
@@ -352,21 +554,25 @@ export default function LeadsView() {
                       </span>
                     </td>
                     <td className="px-4 py-3 text-sm font-medium text-gray-900">{formatCurrency(lead.loanAmount)}</td>
+                    <td className="px-4 py-3 text-sm text-gray-600 whitespace-nowrap">{formatTenure(lead)}</td>
                     <td className="px-4 py-3">
                       <div className="relative">
                         <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setStatusDropdown(statusDropdown === lead._id ? null : lead._id);
-                          }}
+                          onClick={(e) => { e.stopPropagation(); setStatusDropdown(prev => prev === lead._id ? null : lead._id); }}
                           className={`px-2.5 py-1 rounded-full text-xs font-medium ${statusColors[lead.status] || 'bg-gray-100 text-gray-600'}`}
                         >
                           {lead.status || 'Pending'}
                         </button>
                         {statusDropdown === lead._id && (
                           <div className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[120px]">
-                            {statusOptions.map((opt) => (
-                              <button key={opt.value} onClick={(e) => { e.stopPropagation(); handleStatusChange(lead._id, opt.value); }} className="block w-full text-left px-3 py-1.5 text-sm hover:bg-gray-50">{opt.label}</button>
+                            {statusOptions.map(opt => (
+                              <button
+                                key={opt.value}
+                                onClick={(e) => { e.stopPropagation(); handleStatusChange(lead._id, opt.value); }}
+                                className="block w-full text-left px-3 py-1.5 text-sm hover:bg-gray-50"
+                              >
+                                {opt.label}
+                              </button>
                             ))}
                           </div>
                         )}
@@ -376,10 +582,14 @@ export default function LeadsView() {
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-1">
                         {hasPermission('leads', 'update') && (
-                          <button onClick={() => openEditModal(lead)} className="p-1.5 text-blue-500 hover:bg-blue-50 rounded"><Edit2 className="w-4 h-4" /></button>
+                          <button onClick={() => openEditModal(lead)} className="p-1.5 text-blue-500 hover:bg-blue-50 rounded transition-colors">
+                            <Edit2 className="w-4 h-4" />
+                          </button>
                         )}
                         {hasPermission('leads', 'delete') && (
-                          <button onClick={() => { setDeleteId(lead._id); setShowDeleteConfirm(true); }} className="p-1.5 text-red-500 hover:bg-red-50 rounded"><Trash2 className="w-4 h-4" /></button>
+                          <button onClick={() => { setDeleteId(lead._id); setShowDeleteConfirm(true); }} className="p-1.5 text-red-500 hover:bg-red-50 rounded transition-colors">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
                         )}
                       </div>
                     </td>
@@ -392,11 +602,11 @@ export default function LeadsView() {
 
         <div className="md:hidden divide-y divide-gray-100">
           {loading ? (
-            <div className="px-4 py-12 text-center"><div className="animate-spin w-6 h-6 border-2 border-[#C9A84C] border-t-transparent rounded-full mx-auto"></div></div>
-          ) : leads.length === 0 ? (
-            <div className="px-4 py-12 text-center text-gray-500">No leads found</div>
+            <LoadingSpinner />
+          ) : filteredLeads.length === 0 ? (
+            <EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} />
           ) : (
-            leads.map((lead) => (
+            paginatedLeads.map(lead => (
               <div key={lead._id} className="p-4 space-y-2">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0 flex-1">
@@ -410,7 +620,10 @@ export default function LeadsView() {
                 <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-600">
                   <span>{lead.loanType}</span>
                   <span>{formatCurrency(lead.loanAmount)}</span>
-                  <span className={`${lead._isEMI ? 'text-purple-600' : 'text-blue-600'}`}>{lead._isEMI ? 'EMI Calculator' : lead.leadSource || 'Website'}</span>
+                  <span className="text-[#8B7A2E]">{formatTenure(lead)}</span>
+                  <span className={`${lead._isEMI ? 'text-purple-600' : 'text-blue-600'}`}>
+                    {lead._isEMI ? 'EMI Calculator' : lead.leadSource || 'Website'}
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="text-xs text-gray-400">{formatDate(lead.createdAt)}</p>
@@ -428,20 +641,14 @@ export default function LeadsView() {
           )}
         </div>
 
-        <div className="px-4 py-3 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p className="text-xs sm:text-sm text-gray-500">Showing <span className="font-medium">{startItem}</span> to <span className="font-medium">{endItem}</span> of <span className="font-medium">{totalCount}</span> results</p>
-          <div className="flex items-center gap-1">
-            <button onClick={() => setPage(page - 1)} disabled={page <= 1} className="p-2 rounded hover:bg-gray-100 disabled:opacity-50"><ChevronLeft className="w-4 h-4" /></button>
-            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-              const pageNum = page <= 3 ? i + 1 : page - 2 + i;
-              if (pageNum < 1 || pageNum > totalPages) return null;
-              return (
-                <button key={pageNum} onClick={() => setPage(pageNum)} className={`w-8 h-8 rounded text-sm ${page === pageNum ? 'bg-[#C9A84C] text-white' : 'hover:bg-gray-100'}`}>{pageNum}</button>
-              );
-            })}
-            <button onClick={() => setPage(page + 1)} disabled={page >= totalPages} className="p-2 rounded hover:bg-gray-100 disabled:opacity-50"><ChevronRight className="w-4 h-4" /></button>
+        {!loading && filteredLeads.length > 0 && totalPages > 1 && (
+          <div className="px-4 py-3 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p className="text-xs sm:text-sm text-gray-500">
+              Page {currentPage} of {totalPages}
+            </p>
+            <Pagination page={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
           </div>
-        </div>
+        )}
       </div>
 
       {showModal && (
@@ -484,6 +691,16 @@ export default function LeadsView() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Loan Amount</label>
                   <input type="number" {...register("loanAmount")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
                 </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Tenure</label>
+                  <div className="flex gap-2">
+                    <input type="number" {...register("tenure")} min="1" max="84" placeholder="Value" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
+                    <select {...register("tenureUnit")} className="w-28 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C] text-sm">
+                      <option value="Years">Years</option>
+                      <option value="Months">Months</option>
+                    </select>
+                  </div>
+                </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
@@ -494,7 +711,9 @@ export default function LeadsView() {
               <input type="hidden" {...register("leadSource")} />
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-2.5 border border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button type="submit" disabled={submitting} className="flex-1 py-2.5 bg-[#C9A84C] text-white rounded-xl hover:bg-[#A8892A] disabled:opacity-50">{submitting ? 'Saving...' : editingLead ? 'Update' : 'Add'} Lead</button>
+                <button type="submit" disabled={submitting} className="flex-1 py-2.5 bg-[#C9A84C] text-white rounded-xl hover:bg-[#A8892A] disabled:opacity-50">
+                  {submitting ? 'Saving...' : editingLead ? 'Update' : 'Add'} Lead
+                </button>
               </div>
             </form>
           </div>
@@ -513,7 +732,6 @@ export default function LeadsView() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

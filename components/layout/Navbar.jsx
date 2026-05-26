@@ -4,8 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ArrowRight } from "lucide-react";
-import EnquiryPopup from "../forms/EnquiryPopup";
-import CallbackRequestPopup from "../forms/CallbackRequestPopup";
+import { useModal } from "@/context/ModalContext";
 
 const navLinksGroup1 = [
   { name: "Home", href: "/" },
@@ -22,8 +21,7 @@ const navLinksGroup2 = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [enquiryOpen, setEnquiryOpen] = useState(false);
-  const [callbackOpen, setCallbackOpen] = useState(false);
+  const { openEnquiry, openCallback } = useModal();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -95,7 +93,7 @@ export default function Navbar() {
 
             <div className="hidden lg:flex items-center gap-5">
               <button
-                onClick={() => setCallbackOpen(true)}
+                onClick={() => openCallback()}
                 className="group flex items-center gap-2 px-4 py-2 border border-[#C9A84C] rounded-lg text-[#C9A84C] hover:bg-[#C9A84C] hover:text-white transition-all duration-200 text-sm font-medium"
               >
                 <div className="relative">
@@ -105,7 +103,7 @@ export default function Navbar() {
               </button>
 
               <button
-                onClick={() => setEnquiryOpen(true)}
+                onClick={() => openEnquiry()}
                 className="group flex items-center gap-2 px-5 py-2.5 bg-[#C9A84C] rounded-lg text-white font-semibold hover:bg-[#A8892A] hover:shadow-lg hover:shadow-[#C9A84C]/30 transition-all duration-200"
               >
                 <span className="text-sm">Apply Now</span>
@@ -152,14 +150,14 @@ export default function Navbar() {
                 ))}
                 <div className="pt-4 border-t border-gray-100 space-y-3">
                   <button
-                    onClick={() => { setCallbackOpen(true); setIsOpen(false); }}
+                    onClick={() => { openCallback(); setIsOpen(false); }}
                     className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[#C9A84C] rounded-lg text-[#C9A84C]"
                   >
                     <Phone className="w-4 h-4" />
                     Request Callback
                   </button>
                   <button
-                    onClick={() => { setEnquiryOpen(true); setIsOpen(false); }}
+                    onClick={() => { openEnquiry(); setIsOpen(false); }}
                     className="mobile-apply-btn flex items-center justify-center gap-2 px-4 py-3 bg-[#C9A84C] rounded-lg text-white font-semibold"
                   >
                     <span>Apply Now</span>
@@ -178,9 +176,6 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </nav>
-
-      <EnquiryPopup isOpen={enquiryOpen} onClose={() => setEnquiryOpen(false)} />
-      <CallbackRequestPopup isOpen={callbackOpen} onClose={() => setCallbackOpen(false)} />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import "./globals.css";
 import CookieConsent from "@/components/ui/CookieConsent";
 import ToasterProvider from "@/components/ui/ToasterProvider";
+import { ModalProvider } from "@/context/ModalContext";
 
 export const metadata = {
   title: "Get Credit - Fast & Easy Loan Solutions",
@@ -12,9 +13,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full" data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col">
-        {children}
-        <CookieConsent />
-        <ToasterProvider />
+        <ModalProvider>
+          {children}
+          <CookieConsent />
+          <ToasterProvider />
+        </ModalProvider>
       </body>
     </html>
   );
