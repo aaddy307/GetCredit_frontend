@@ -4,8 +4,8 @@ import SummaryCard from '../components/SummaryCard';
 
 export default function CallbackAdminEmail({ name, phone, email, city, loanType, source, createdAt }) {
   const dateStr = createdAt
-    ? new Date(createdAt).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-    : new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    ? new Date(createdAt).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' })
+    : new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' });
 
   return (
     <EmailLayout previewText="New Callback Request — Get Credit Admin">

@@ -12,8 +12,8 @@ function getTenureUnit(loanType, tenureUnit) {
 export default function EnquiryClientEmail({ name, loanType, loanAmount, emi, tenure, tenureUnit, city, createdAt }) {
   const unit = getTenureUnit(loanType, tenureUnit);
   const dateStr = createdAt
-    ? new Date(createdAt).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
-    : new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+    ? new Date(createdAt).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' })
+    : new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' });
 
   return (
     <EmailLayout previewText="Your loan enquiry has been submitted — Get Credit">

@@ -12,8 +12,8 @@ function getTenureUnit(loanType, tenureUnit) {
 export default function EnquiryAdminEmail({ name, phone, email, city, loanType, loanAmount, emi, tenure, tenureUnit, interestRate, source, createdAt }) {
   const unit = getTenureUnit(loanType, tenureUnit);
   const dateStr = createdAt
-    ? new Date(createdAt).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-    : new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    ? new Date(createdAt).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' })
+    : new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' });
 
   const loanAmountFormatted = loanAmount ? `\u20B9${Number(loanAmount).toLocaleString('en-IN')}` : '\u2014';
 
