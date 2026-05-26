@@ -15,8 +15,6 @@ export default function EnquiryAdminEmail({ name, phone, email, city, loanType, 
     ? new Date(createdAt).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' })
     : new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' });
 
-  const loanAmountFormatted = loanAmount ? `\u20B9${Number(loanAmount).toLocaleString('en-IN')}` : '\u2014';
-
   return (
     <EmailLayout previewText="New Loan Enquiry — Get Credit Admin">
       <Section style={{ textAlign: 'center', marginBottom: '20px' }}>
@@ -57,7 +55,7 @@ export default function EnquiryAdminEmail({ name, phone, email, city, loanType, 
         title="Loan Details"
         rows={[
           { label: 'Loan Type', value: loanType || '\u2014' },
-          { label: 'Loan Amount', value: loanAmountFormatted, emi: true },
+          { label: 'Loan Amount', value: loanAmount, emi: true },
           ...(emi ? [{ label: 'Monthly EMI', value: emi, emi: true }] : []),
           { label: 'Tenure', value: tenure ? `${tenure} ${unit}` : '\u2014' },
           ...(interestRate ? [{ label: 'Interest Rate', value: `${interestRate}%` }] : []),
