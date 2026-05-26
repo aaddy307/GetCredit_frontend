@@ -34,20 +34,6 @@
   --color-border-gold: var(--border-gold);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -63,51 +49,4 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #b0b0b0;
-}
-
-/* Global fix for all outline/secondary buttons in gold sections */
-button[class*="secondary"],
-button[class*="outline"],
-a[class*="secondary"],
-a[class*="outline"] {
-  transition: all 0.3s ease;
-}
-
-button[class*="secondary"]:hover,
-button[class*="outline"]:hover,
-a[class*="secondary"]:hover,
-a[class*="outline"]:hover {
-  color: #C9A84C !important;
-}
-
-/* Fade in animation for dynamic fields */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.contents {
-  animation: fadeIn 0.3s ease-out;
-}
-
-@media (max-width: 768px) {
-  .loan-type-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .mobile-apply-btn {
-    width: 100%;
-  }
-  .leads-filter-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    width: 100%;
-  }
-  .leads-filter-wrapper > * {
-    width: 100% !important;
-    min-width: unset !important;
-    max-width: 100% !important;
-  }
 }

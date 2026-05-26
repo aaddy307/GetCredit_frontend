@@ -229,33 +229,41 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
     onClose();
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div 
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        overflowY: 'auto',
-        zIndex: 1000,
-        background: 'rgba(0, 0, 0, 0.5)',
-      }}
-      className="flex items-center justify-center p-4"
-    >
-      <div 
-        style={{ position: 'absolute', inset: 0 }}
-        onClick={handleClose}
-      />
-      
-      <div style={{ position: 'relative' }} className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl my-8">
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            overflowY: 'auto',
+            zIndex: 1000,
+            background: 'rgba(0, 0, 0, 0.5)',
+          }}
+          className="flex items-center justify-center p-4"
+          onClick={handleClose}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()}
+            style={{ position: 'relative' }}
+            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl my-8"
+          >
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-[#fffdf0] hover:bg-[#ddc84a] flex items-center justify-center transition-colors"
+          className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-[#fffdf0] hover:bg-[#ddc84a] flex items-center justify-center transition-colors"
         >
-          <X className="w-4 h-4 text-[#7a5c00]" />
+          <X className="w-5 h-5 text-[#7a5c00]" />
         </button>
 
         <div className="p-6 md:p-8">
@@ -403,6 +411,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                             valueAsNumber: true
                           })}
                           type="number"
+                          inputMode="numeric"
                           min="10000"
                           placeholder="Enter loan amount (min ₹10,000)"
                           className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
@@ -422,6 +431,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                             valueAsNumber: true
                           })}
                           type="number"
+                          inputMode="numeric"
                           min="1"
                           max={isMonthTenure(selectedLoanType) ? 84 : 30}
                           placeholder={isMonthTenure(selectedLoanType) ? "Enter tenure (1-84 months)" : "Enter tenure (1-30 years)"}
@@ -553,7 +563,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     )}
 
                     {selectedLoanType === "personal" && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-4">
                         <div>
                           <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
                             Employment Type
@@ -580,6 +590,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                           <input
                             {...register("businessVintage")}
                             type="number"
+                            inputMode="numeric"
                             min="0"
                             max="50"
                             placeholder="Enter business vintage"
@@ -626,6 +637,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                           <input
                             {...register("downPayment")}
                             type="number"
+                            inputMode="numeric"
                             min="0"
                             placeholder="Enter down payment amount"
                             className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
@@ -661,8 +673,10 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
               </button>
             </form>
           )}
-        </div>
-      </div>
-    </div>
+          </div>
+        </motion.div>
+      </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

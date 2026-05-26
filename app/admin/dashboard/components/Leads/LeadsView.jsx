@@ -426,7 +426,7 @@ export default function LeadsView() {
       </div>
 
       <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
-        <div className="leads-filter-wrapper flex flex-wrap gap-3 items-center">
+        <div className="flex flex-col md:flex-row flex-wrap gap-3 items-center">
           <div className="relative flex-1 min-w-0 max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
