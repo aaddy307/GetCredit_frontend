@@ -64,6 +64,11 @@ export default function CallbacksView() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
+  useEffect(() => {
+    document.body.style.overflow = showDeleteConfirm ? 'hidden' : 'unset';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [showDeleteConfirm]);
+
   const fetchCallbacks = useCallback(async () => {
     setLoading(true);
     try {
@@ -210,8 +215,8 @@ export default function CallbacksView() {
       />
 
       {showDeleteConfirm && (
-        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/40">
-          <div className="bg-white rounded-t-2xl md:rounded-xl shadow-xl p-6 w-full md:max-w-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
+          <div className="bg-white rounded-xl shadow-xl p-6 w-full md:max-w-sm">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Delete Callback Request</h3>
             <p className="text-gray-500 mb-4 text-sm">Are you sure you want to delete this callback request? This action cannot be undone.</p>
             <div className="flex gap-3">

@@ -79,6 +79,11 @@ export default function BlogView() {
   const [statusDropdown, setStatusDropdown] = useState(null);
   const [previewMode, setPreviewMode] = useState(false);
 
+  useEffect(() => {
+    document.body.style.overflow = showModal || showDeleteConfirm ? 'hidden' : 'unset';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [showModal, showDeleteConfirm]);
+
   const { register, handleSubmit, reset, formState: { errors }, setValue, watch } = useForm();
   const contentValue = watch("content");
   const limit = 20;
@@ -280,8 +285,8 @@ export default function BlogView() {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/40">
-          <div className="bg-white rounded-t-2xl md:rounded-2xl shadow-xl w-full md:max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
+          <div className="bg-white rounded-2xl shadow-xl w-full md:max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
             <div className="flex items-center justify-between p-4 border-b flex-shrink-0">
               <h2 className="text-lg font-semibold text-gray-900">{editingBlog ? 'Edit Blog' : 'Add New Blog'}</h2>
               <div className="flex items-center gap-2">
@@ -345,8 +350,8 @@ export default function BlogView() {
       )}
 
       {showDeleteConfirm && (
-        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/40">
-          <div className="bg-white rounded-t-2xl md:rounded-xl shadow-xl p-6 w-full md:max-w-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
+          <div className="bg-white rounded-xl shadow-xl p-6 w-full md:max-w-sm">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Delete Blog</h3>
             <p className="text-gray-500 mb-4">Are you sure? This action cannot be undone.</p>
             <div className="flex gap-3">

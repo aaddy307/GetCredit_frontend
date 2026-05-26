@@ -39,11 +39,16 @@ export default function CallbackModal({ isOpen, onClose, callback, onSubmit, isS
     onSubmit(formData);
   };
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/40">
-      <div className="bg-white rounded-t-2xl md:rounded-xl shadow-xl w-full md:max-w-lg max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
+      <div className="bg-white rounded-xl shadow-xl w-full md:max-w-lg max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-4 border-b border-gray-100 sticky top-0 bg-white z-10">
           <h3 className="text-lg font-semibold text-gray-900">
             {callback ? "Edit Callback Request" : "Add Callback Request"}

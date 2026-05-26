@@ -147,7 +147,7 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
               <X className="w-4 h-4 text-[#7a5c00]" />
             </button>
 
-            <div className="p-6 md:p-8">
+            <div className="p-4 md:p-8">
               <div className="text-center mb-6">
                 <div className="w-14 h-14 bg-[#C9A84C]/20 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Calculator className="w-7 h-7 text-[#C9A84C]" />

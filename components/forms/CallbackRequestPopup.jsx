@@ -112,7 +112,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
               <X className="w-4 h-4 text-gray-500 hover:text-[#C9A84C]" />
             </button>
 
-            <div className="p-6 md:p-8">
+            <div className="p-4 md:p-8">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div

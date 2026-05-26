@@ -266,7 +266,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
           <X className="w-5 h-5 text-[#7a5c00]" />
         </button>
 
-        <div className="p-6 md:p-8">
+        <div className="p-4 md:p-8">
           <div className="text-center mb-8">
             <h1 className="text-2xl md:text-3xl font-bold text-[#7a5c00]">
               Apply for Loan

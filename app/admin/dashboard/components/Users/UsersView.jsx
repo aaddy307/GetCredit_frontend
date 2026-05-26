@@ -16,6 +16,11 @@ export default function UsersView() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
+  useEffect(() => {
+    document.body.style.overflow = showModal || showDeleteConfirm ? 'hidden' : 'unset';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [showModal, showDeleteConfirm]);
+
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const fetchUsers = useCallback(async () => {
