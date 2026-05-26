@@ -2,8 +2,9 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { PERMISSIONS } from "../utils/roles";
+import { getToken, setToken, clearToken, authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 const AuthContext = createContext(null);
 
@@ -14,7 +15,9 @@ export function AuthProvider({ children }) {
 
   const fetchProfile = useCallback(async () => {
     try {
-      const res = await fetch(`${API_URL}/admin/profile`, { credentials: "include" });
+      const token = getToken();
+      if (!token) return false;
+      const res = await fetch(`${API_URL}/admin/profile`, { headers: authHeaders() });
       if (!res.ok) throw new Error("Not authenticated");
       const data = await res.json();
       if (data.success) {
@@ -42,11 +45,11 @@ export function AuthProvider({ children }) {
     const res = await fetch(`${API_URL}/admin/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      credentials: "include",
       body: JSON.stringify({ email, password })
     });
     const data = await res.json();
     if (data.success) {
+      setToken(data.token);
       setUser(data.admin);
       return { success: true };
     }
@@ -55,8 +58,9 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     try {
-      await fetch(`${API_URL}/admin/logout`, { credentials: "include" });
+      await fetch(`${API_URL}/admin/logout`, { headers: authHeaders() });
     } catch {}
+    clearToken();
     setUser(null);
     router.push("/admin/login");
   };

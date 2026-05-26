@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Users, Phone, TrendingUp, CheckCircle } from "lucide-react";
+import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export default function StatsWidget() {
   const [stats, setStats] = useState({
@@ -21,7 +22,7 @@ export default function StatsWidget() {
   const fetchStats = async () => {
     try {
       const response = await fetch(`${API_URL}/admin/stats/today`, {
-        credentials: 'include'
+        headers: authHeaders()
       });
       
       // Check if response is OK before parsing JSON

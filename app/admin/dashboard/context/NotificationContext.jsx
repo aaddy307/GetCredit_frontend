@@ -1,8 +1,9 @@
 "use client";
 import { createContext, useContext, useState, useEffect, useRef, useCallback } from "react";
 import { useAuth } from "./AuthContext";
+import { getToken } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 const NotificationContext = createContext(null);
 
@@ -26,7 +27,8 @@ export function NotificationProvider({ children }) {
   useEffect(() => {
     if (!user) return;
 
-    const eventSource = new EventSource(`${API_URL}/admin/notifications/stream`, { withCredentials: true });
+    const token = getToken();
+    const eventSource = new EventSource(`${API_URL}/admin/notifications/stream?token=${token}`);
     eventSourceRef.current = eventSource;
 
     eventSource.onmessage = (event) => {
@@ -49,7 +51,8 @@ export function NotificationProvider({ children }) {
       eventSource.close();
       setTimeout(() => {
         if (user) {
-          const newES = new EventSource(`${API_URL}/admin/notifications/stream`, { withCredentials: true });
+          const token = getToken();
+          const newES = new EventSource(`${API_URL}/admin/notifications/stream?token=${token}`);
           eventSourceRef.current = newES;
         }
       }, 5000);

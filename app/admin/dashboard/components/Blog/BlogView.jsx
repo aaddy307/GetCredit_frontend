@@ -5,10 +5,11 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
 import { useAuth } from "../../context/AuthContext";
+import { authHeaders } from "@/lib/api";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 const categoryOptions = [
   { value: "Home Loan", label: "Home Loan" },
@@ -53,7 +54,7 @@ export default function BlogView() {
       if (categoryFilter) params.append("category", categoryFilter);
       params.append("page", page);
 
-      const response = await fetch(`${API_URL}/blogs?${params}`, { credentials: 'include' });
+      const response = await fetch(`${API_URL}/blogs?${params}`, { headers: authHeaders() });
       const data = await response.json();
 
       if (data.blogs) {
@@ -71,7 +72,7 @@ export default function BlogView() {
   const handleStatusChange = async (blogId, newStatus) => {
     try {
       const response = await fetch(`${API_URL}/blogs/${blogId}`, {
-        method: 'PUT', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify({ status: newStatus })
+        method: 'PUT', headers: { 'Content-Type': 'application/json', ...authHeaders() }, body: JSON.stringify({ status: newStatus })
       });
       if (response.ok) {
         setBlogs(blogs.map(b => b._id === blogId ? { ...b, status: newStatus } : b));
@@ -100,11 +101,11 @@ export default function BlogView() {
       let response;
       if (editingBlog) {
         response = await fetch(`${API_URL}/blogs/${editingBlog._id}`, {
-          method: 'PUT', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify(data)
+          method: 'PUT', headers: { 'Content-Type': 'application/json', ...authHeaders() }, body: JSON.stringify(data)
         });
       } else {
         response = await fetch(`${API_URL}/blogs`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify(data)
+          method: 'POST', headers: { 'Content-Type': 'application/json', ...authHeaders() }, body: JSON.stringify(data)
         });
       }
       if (response.ok) {
@@ -117,7 +118,7 @@ export default function BlogView() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${API_URL}/blogs/${deleteId}`, { method: 'DELETE', credentials: 'include' });
+      const response = await fetch(`${API_URL}/blogs/${deleteId}`, { method: 'DELETE', headers: authHeaders() });
       if (response.ok) { toast.success("Blog deleted"); fetchBlogs(); }
     } catch (err) { toast.error("Failed to delete"); }
     setShowDeleteConfirm(false);

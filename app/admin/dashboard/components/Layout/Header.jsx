@@ -2,8 +2,9 @@
 import { useState, useEffect, useRef } from "react";
 import { Search, Menu, User } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
+import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export default function Header({ onMenuClick, onTabChange }) {
   const { user } = useAuth();
@@ -33,7 +34,7 @@ export default function Header({ onMenuClick, onTabChange }) {
       setLoading(true);
       try {
         const response = await fetch(`${API_URL}/admin/search?q=${encodeURIComponent(searchQuery)}`, {
-          credentials: 'include'
+          headers: authHeaders()
         });
         
         if (!response.ok) return;

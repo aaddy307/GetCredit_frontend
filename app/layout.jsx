@@ -1,5 +1,4 @@
 import "./globals.css";
-import CookieConsent from "@/components/ui/CookieConsent";
 import ToasterProvider from "@/components/ui/ToasterProvider";
 import { ModalProvider } from "@/context/ModalContext";
 
@@ -15,7 +14,6 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col bg-bg-primary text-text-primary font-sans">
         <ModalProvider>
           {children}
-          <CookieConsent />
           <ToasterProvider />
         </ModalProvider>
       </body>

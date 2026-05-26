@@ -8,8 +8,9 @@ import toast from "react-hot-toast";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { setToken } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -21,13 +22,13 @@ export default function AdminLoginPage() {
       const response = await fetch(`${API_URL}/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: 'include',
         body: JSON.stringify(data),
       });
 
       const result = await response.json();
 
       if (response.ok) {
+        setToken(result.token);
         toast.success("Welcome back!", { id: 'admin-login-success', duration: 5000 });
         setTimeout(() => {
           router.push("/admin/dashboard");

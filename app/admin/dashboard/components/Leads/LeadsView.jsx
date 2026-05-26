@@ -4,8 +4,9 @@ import { Plus, Search, X, Edit2, Trash2, ChevronLeft, ChevronRight, Download, Fi
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
+import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 const ITEMS_PER_PAGE = 10;
 
 const statusOptions = [
@@ -198,7 +199,7 @@ export default function LeadsView() {
   const fetchLeads = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_URL}/admin/all-leads`, { credentials: 'include' });
+      const response = await fetch(`${API_URL}/admin/all-leads`, { headers: authHeaders() });
       const data = await response.json();
       setLeads(normalizeLeads(data?.leads));
     } catch (err) {
@@ -278,8 +279,7 @@ export default function LeadsView() {
       const collection = lead?._collection || 'enquiries';
       const response = await fetch(`${API_URL}/admin/lead/${leadId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
+        headers: { 'Content-Type': 'application/json', ...authHeaders() },
         body: JSON.stringify({ status: newStatus, _collection: collection }),
       });
       if (response.ok) {
@@ -326,12 +326,12 @@ export default function LeadsView() {
       if (editingLead) {
         const collection = editingLead._collection || 'enquiries';
         response = await fetch(`${API_URL}/admin/lead/${editingLead._id}`, {
-          method: 'PUT', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
+          method: 'PUT', headers: { 'Content-Type': 'application/json', ...authHeaders() },
           body: JSON.stringify({ ...payload, _collection: collection }),
         });
       } else {
         response = await fetch(`${API_URL}/enquiry`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
+          method: 'POST', headers: { 'Content-Type': 'application/json', ...authHeaders() },
           body: JSON.stringify(payload),
         });
       }
@@ -353,7 +353,7 @@ export default function LeadsView() {
     try {
       const lead = leads.find(l => l._id === deleteId);
       const collection = lead?._collection || 'enquiries';
-      const response = await fetch(`${API_URL}/admin/lead/${deleteId}?collection=${collection}`, { method: 'DELETE', credentials: 'include' });
+      const response = await fetch(`${API_URL}/admin/lead/${deleteId}?collection=${collection}`, { method: 'DELETE', headers: authHeaders() });
       if (response.ok) {
         toast.success("Lead deleted");
         setLeads(prev => {
@@ -379,7 +379,7 @@ export default function LeadsView() {
       if (filters.loanType) params.append("loanType", filters.loanType);
       if (filters.fromDate) params.append("startDate", filters.fromDate);
       if (filters.toDate) params.append("endDate", filters.toDate);
-      const response = await fetch(`${API_URL}/admin/all-leads/export?${params}`, { credentials: 'include' });
+      const response = await fetch(`${API_URL}/admin/all-leads/export?${params}`, { headers: authHeaders() });
       if (!response.ok) throw new Error('Export failed');
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);

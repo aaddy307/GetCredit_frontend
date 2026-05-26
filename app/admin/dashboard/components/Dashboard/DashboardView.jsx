@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import StatsWidget from "./StatsWidget";
 import QuickActions from "./QuickActions";
 import { useNotifications } from "../../context/NotificationContext";
+import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export default function DashboardView({ onAction }) {
   useNotifications();
@@ -20,8 +21,8 @@ export default function DashboardView({ onAction }) {
   const fetchRecentData = async () => {
     try {
       const [leadsRes, callbacksRes] = await Promise.all([
-        fetch(`${API_URL}/enquiry?page=1&limit=5`, { credentials: 'include' }),
-        fetch(`${API_URL}/callback?page=1&limit=5`, { credentials: 'include' })
+        fetch(`${API_URL}/enquiry?page=1&limit=5`, { headers: authHeaders() }),
+        fetch(`${API_URL}/callback?page=1&limit=5`, { headers: authHeaders() })
       ]);
 
       const leadsData = await leadsRes.json();

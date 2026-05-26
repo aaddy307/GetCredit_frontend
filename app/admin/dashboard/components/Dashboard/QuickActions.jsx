@@ -2,8 +2,9 @@
 import { useState } from "react";
 import { Plus, Download, Mail, Phone } from "lucide-react";
 import toast from "react-hot-toast";
+import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export default function QuickActions({ onAction }) {
   const [loading, setLoading] = useState(null);
@@ -12,7 +13,7 @@ export default function QuickActions({ onAction }) {
     setLoading('export');
     try {
       const response = await fetch(`${API_URL}/admin/all-leads/export?format=xlsx`, {
-        credentials: 'include'
+        headers: authHeaders()
       });
       
       if (!response.ok) throw new Error('Export failed');

@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react";
 import { BarChart3, TrendingUp, Users, FileText } from "lucide-react";
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from "recharts";
+import { authHeaders } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 const COLORS = ['#C9A84C', '#A8892A', '#8B7355', '#D4B86A', '#E8CC8C', '#6B8E7B', '#7BA391'];
 
@@ -20,9 +21,9 @@ export default function AnalyticsView() {
   const fetchAnalytics = async () => {
     try {
       const [summaryRes, monthlyRes, distributionRes] = await Promise.all([
-        fetch(`${API_URL}/admin/analytics/summary`, { credentials: 'include' }),
-        fetch(`${API_URL}/admin/analytics/monthly-leads`, { credentials: 'include' }),
-        fetch(`${API_URL}/admin/analytics/loan-distribution`, { credentials: 'include' })
+        fetch(`${API_URL}/admin/analytics/summary`, { headers: authHeaders() }),
+        fetch(`${API_URL}/admin/analytics/monthly-leads`, { headers: authHeaders() }),
+        fetch(`${API_URL}/admin/analytics/loan-distribution`, { headers: authHeaders() })
       ]);
 
       const summary = await summaryRes.json();
