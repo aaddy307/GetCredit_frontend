@@ -1,30 +1,34 @@
 import { api } from "@/lib/api";
 
+async function handleResponse(promise) {
+  try {
+    const response = await promise;
+    return response.data;
+  } catch (error) {
+    return error.response?.data || { success: false, message: 'Something went wrong' };
+  }
+}
+
 export const callbackApi = {
   getCallbacks: async (params = {}) => {
     const query = new URLSearchParams(params).toString();
-    const response = await api.get(`/callback${query ? `?${query}` : ''}`);
-    return response.data;
+    return handleResponse(api.get(`/callback${query ? `?${query}` : ''}`));
   },
 
   createCallback: async (data) => {
-    const response = await api.post('/callback', data);
-    return response.data;
+    return handleResponse(api.post('/callback', data));
   },
 
   updateCallback: async (id, data) => {
-    const response = await api.put(`/callback/${id}`, data);
-    return response.data;
+    return handleResponse(api.put(`/callback/${id}`, data));
   },
 
   updateStatus: async (id, status) => {
-    const response = await api.patch(`/callback/${id}/status`, { status });
-    return response.data;
+    return handleResponse(api.patch(`/callback/${id}/status`, { status }));
   },
 
   deleteCallback: async (id) => {
-    const response = await api.delete(`/callback/${id}`);
-    return response.data;
+    return handleResponse(api.delete(`/callback/${id}`));
   }
 };
 

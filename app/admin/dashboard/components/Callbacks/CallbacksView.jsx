@@ -78,7 +78,8 @@ export default function CallbacksView() {
           setShowModal(false);
           fetchCallbacks();
         } else {
-          toast.error(result.message || "Failed to update");
+          const msg = Array.isArray(result.errors) ? result.errors.join('. ') : result.message;
+          toast.error(msg || "Failed to update");
         }
       } else {
         const result = await callbackApi.createCallback(data);
@@ -87,7 +88,8 @@ export default function CallbacksView() {
           setShowModal(false);
           fetchCallbacks();
         } else {
-          toast.error(result.message || "Failed to add");
+          const msg = Array.isArray(result.errors) ? result.errors.join('. ') : result.message;
+          toast.error(msg || "Failed to add");
         }
       }
     } catch (error) {

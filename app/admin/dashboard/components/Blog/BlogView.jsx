@@ -3,9 +3,9 @@ import { useState, useEffect, useCallback } from "react";
 import { Plus, Search, X, Edit2, Trash2, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import dynamic from "next/dynamic";
 import { useAuth } from "../../context/AuthContext";
 import { api } from "@/lib/api";
+import MDEditorWrapper, { MDPreview } from "./MDEditorWrapper";
 
 const categoryOptions = [
   { value: "Home Loan", label: "Home Loan" },
@@ -294,13 +294,9 @@ export default function BlogView() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Content *</label>
                 {previewMode ? (
-                  <div className="border border-gray-200 rounded-lg p-4 min-h-[200px] prose prose-sm max-w-none" data-color-mode="light">
-                    <MDEditor.Markdown source={contentValue || "*No content*"} />
-                  </div>
+                  <MDPreview value={contentValue} />
                 ) : (
-                  <div data-color-mode="light">
-                    <MDEditor value={contentValue} onChange={(val) => setValue("content", val)} height={300} preview="edit" />
-                  </div>
+                  <MDEditorWrapper value={contentValue} onChange={(val) => setValue("content", val)} height={300} />
                 )}
                 {errors.content && <p className="text-red-500 text-xs mt-1">{errors.content.message}</p>}
                 <p className="text-xs text-gray-400 mt-1">Supports Markdown formatting</p>
