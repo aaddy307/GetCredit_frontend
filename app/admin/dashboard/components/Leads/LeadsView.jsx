@@ -283,8 +283,8 @@ export default function LeadsView() {
       } else {
         toast.error(response.data?.message || (editingLead ? "Failed to update" : "Failed to add"));
       }
-    } catch {
-      toast.error(editingLead ? "Failed to update" : "Failed to add");
+    } catch (err) {
+      toast.error(err.response?.data?.message || (editingLead ? "Failed to update" : "Failed to add"));
     }
     setSubmitting(false);
   }, [submitting, editingLead, fetchLeads]);
@@ -365,7 +365,7 @@ export default function LeadsView() {
 
       <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
         <div className="flex flex-col md:flex-row flex-wrap gap-3 items-center">
-          <div className="relative flex-1 min-w-0 max-w-sm">
+          <div className="relative flex-1 min-w-0 w-full md:max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
               type="text"
@@ -384,7 +384,7 @@ export default function LeadsView() {
           <select
             value={filters.status}
             onChange={(e) => updateFilter('status', e.target.value)}
-            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+            className="w-full md:w-auto px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
           >
             <option value="">All Status</option>
             {statusOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
@@ -393,7 +393,7 @@ export default function LeadsView() {
           <select
             value={filters.loanType}
             onChange={(e) => updateFilter('loanType', e.target.value)}
-            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+            className="w-full md:w-auto px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
           >
             <option value="">All Loan Types</option>
             {loanTypeOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
@@ -401,7 +401,7 @@ export default function LeadsView() {
 
           <button
             onClick={() => setShowFilters(prev => !prev)}
-            className="flex items-center gap-1 px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50"
+            className="w-full md:w-auto flex items-center gap-1 px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50"
           >
             <Filter className="w-4 h-4" />
             Advanced
