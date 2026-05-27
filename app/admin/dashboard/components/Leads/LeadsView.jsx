@@ -188,7 +188,7 @@ export default function LeadsView() {
     toDate: '',
   });
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
@@ -249,7 +249,7 @@ export default function LeadsView() {
 
   const openAddModal = useCallback(() => {
     setEditingLead(null);
-    reset({ fullName: '', phone: '', email: '', city: '', loanType: 'Home Loan', loanAmount: '', tenure: '', tenureUnit: 'Years', status: 'Pending', leadSource: 'Admin - Manual Entry' });
+    reset({ fullName: '', phone: '', email: '', city: '', loanType: 'Home Loan', loanAmount: '', tenure: '', tenureUnit: 'Years', status: 'Pending', leadSource: 'Admin - Manual Entry', propertyValue: '', propertyType: '' });
     setShowModal(true);
   }, [reset]);
 
@@ -260,6 +260,8 @@ export default function LeadsView() {
       loanType: lead.loanType, loanAmount: lead.loanAmount, status: lead.status,
       tenure: lead.tenure || '', tenureUnit: lead.tenureUnit || 'Years',
       leadSource: lead.leadSource || 'Admin - Manual Entry',
+      propertyValue: lead.propertyValue || '',
+      propertyType: lead.propertyType || '',
     });
     setShowModal(true);
   }, [reset]);
@@ -273,6 +275,8 @@ export default function LeadsView() {
         loanAmount: parseInt(data.loanAmount) || 0,
         tenure: data.tenure ? parseInt(data.tenure) : undefined,
         tenureUnit: data.tenureUnit || undefined,
+        propertyValue: parseInt(data.propertyValue) || 0,
+        propertyType: data.propertyType || '',
       };
       let response;
       if (editingLead) {
@@ -468,7 +472,6 @@ export default function LeadsView() {
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Email</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">City</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Loan Type</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Source</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Amount</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Tenure</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Prop Value</th>
@@ -480,24 +483,17 @@ export default function LeadsView() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {loading ? (
-                <tr><td colSpan={13}><LoadingSpinner /></td></tr>
+                <tr><td colSpan={12}><LoadingSpinner /></td></tr>
               ) : leads.length === 0 ? (
-                <tr><td colSpan={13}><EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} /></td></tr>
+                <tr><td colSpan={12}><EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} /></td></tr>
               ) : (
                 leads.map((lead, index) => (
                   <tr key={lead._id} className={`hover:bg-gray-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
                     <td className="px-4 py-3 text-sm font-medium text-gray-900">{lead.fullName}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">{lead.phone}</td>
-                    <td className="px-4 py-3 text-sm text-gray-600 break-all max-w-[200px]">{lead.email}</td>
+                    <td className="px-4 py-3 text-sm text-gray-600 break-all max-w-[350px]">{lead.email}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">{lead.city || '-'}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">{lead.loanType}</td>
-                    <td className="px-4 py-3">
-                      <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                        lead._isEMI ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'
-                      }`}>
-                        {lead._isEMI ? 'EMI Calculator' : lead.leadSource || 'Website'}
-                      </span>
-                    </td>
                     <td className="px-4 py-3 text-sm font-medium text-gray-900">{formatCurrency(lead.loanAmount)}</td>
                     <td className="px-4 py-3 text-sm text-gray-600 whitespace-nowrap">{formatTenure(lead)}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">{lead.propertyValue ? `₹${Number(lead.propertyValue).toLocaleString()}` : '-'}</td>
@@ -570,9 +566,6 @@ export default function LeadsView() {
                   <span className="text-[#8B7A2E]">{formatTenure(lead)}</span>
                   {lead.propertyValue && <span>Prop Value: ₹{Number(lead.propertyValue).toLocaleString()}</span>}
                   {lead.propertyType && <span>Prop Type: {lead.propertyType}</span>}
-                  <span className={`${lead._isEMI ? 'text-purple-600' : 'text-blue-600'}`}>
-                    {lead._isEMI ? 'EMI Calculator' : lead.leadSource || 'Website'}
-                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="text-xs text-gray-400">{formatDate(lead.createdAt)}</p>
@@ -657,6 +650,24 @@ export default function LeadsView() {
                   {statusOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
                 </select>
               </div>
+              {watch("loanType") === 'Loan Against Property' && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Property Value (&#x20B9;)</label>
+                    <input type="number" {...register("propertyValue")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
+                    <select {...register("propertyType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]">
+                      <option value="">Select</option>
+                      <option value="Residential">Residential</option>
+                      <option value="Commercial">Commercial</option>
+                      <option value="Industrial">Industrial</option>
+                      <option value="Plot">Plot</option>
+                    </select>
+                  </div>
+                </div>
+              )}
               <input type="hidden" {...register("leadSource")} />
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-2.5 border border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50">Cancel</button>
