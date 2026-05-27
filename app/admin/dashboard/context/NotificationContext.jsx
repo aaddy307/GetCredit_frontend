@@ -13,6 +13,15 @@ export function NotificationProvider({ children }) {
   const [unreadCount, setUnreadCount] = useState(0);
   const eventSourceRef = useRef(null);
 
+  const getNotificationTitle = (type) => {
+    switch (type) {
+      case "new_lead": return "New Lead";
+      case "new_callback": return "New Callback Request";
+      case "status_change": return "Status Updated";
+      default: return "Notification";
+    }
+  };
+
   const addNotification = useCallback((notification) => {
     const newNotif = {
       id: Date.now() + Math.random(),
@@ -62,15 +71,6 @@ export function NotificationProvider({ children }) {
       eventSource.close();
     };
   }, [user, addNotification]);
-
-  const getNotificationTitle = (type) => {
-    switch (type) {
-      case "new_lead": return "New Lead";
-      case "new_callback": return "New Callback Request";
-      case "status_change": return "Status Updated";
-      default: return "Notification";
-    }
-  };
 
   const markAsRead = (id) => {
     setNotifications(prev =>

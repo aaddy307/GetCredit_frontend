@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -40,9 +41,12 @@ function LoginForm() {
         className="relative z-10 w-full max-w-md"
       >
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-[#C9A84C] rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <span className="text-white font-bold text-2xl">G</span>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/Logo.jpeg"
+            alt="GetCredit logo"
+            className="w-16 h-16 rounded-2xl mx-auto mb-4 object-cover"
+          />
           <h1 className="text-3xl font-bold text-gray-800">Admin Login</h1>
           <p className="text-gray-500 mt-2">Access your dashboard</p>
         </div>
@@ -96,9 +100,9 @@ function LoginForm() {
         </GlassCard>
 
         <div className="mt-6 text-center">
-          <a href="/" className="text-[#C9A84C] hover:underline text-sm">
+          <Link href="/" className="text-[#C9A84C] hover:underline text-sm">
             ← Back to Home
-          </a>
+          </Link>
         </div>
       </motion.div>
     </div>

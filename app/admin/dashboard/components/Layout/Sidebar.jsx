@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { 
   LayoutDashboard, 
   Users, 
@@ -35,7 +36,7 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
   ].filter(item => canAccess(role, item.resource));
 
   return (
-    <aside className={`
+      <aside role="navigation" aria-label="Admin sidebar" className={`
       fixed inset-y-0 left-0 z-50 w-64 h-full bg-white border-r border-gray-200
       flex flex-col overflow-hidden
       transform transition-transform duration-300 ease-in-out
@@ -44,7 +45,7 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
     `}>
       <div className="flex items-center justify-between h-14 px-3 sm:px-4 border-b border-gray-100 flex-shrink-0">
         <div className="flex items-center gap-2">
-          <img src="/Logo.jpeg" alt="Get Credit" className="w-7 h-7 rounded-lg object-contain flex-shrink-0" />
+          <Image src="/Logo.jpeg" alt="GetCredit logo" width={28} height={28} className="rounded-lg object-contain flex-shrink-0" />
           <span className="text-lg font-bold text-gray-900 leading-none">GetCredit</span>
         </div>
         <button

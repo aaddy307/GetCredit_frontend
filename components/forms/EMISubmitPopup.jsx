@@ -134,6 +134,9 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
           className="flex items-center justify-center p-4"
         >
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Submit EMI enquiry"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -184,7 +187,7 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
                     <span className="text-3xl text-[#C9A84C]">✓</span>
                   </div>
                   <h3 className="text-lg font-semibold text-[#7a5c00] mb-2">Thank You!</h3>
-                  <p className="text-[#b3a066] text-sm">We'll contact you within 24 hours</p>
+                  <p className="text-[#b3a066] text-sm">We&apos;ll contact you within 24 hours</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

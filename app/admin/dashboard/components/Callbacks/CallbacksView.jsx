@@ -89,6 +89,7 @@ export default function CallbacksView() {
   }, [statusFilter, search, page]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchCallbacks();
   }, [fetchCallbacks]);
 

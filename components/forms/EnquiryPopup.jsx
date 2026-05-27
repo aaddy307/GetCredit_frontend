@@ -267,6 +267,9 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
           onClick={handleClose}
         >
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Loan enquiry form"
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
@@ -287,7 +290,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
             <h1 className="text-2xl md:text-3xl font-bold text-[#7a5c00]">
               Apply for Loan
             </h1>
-            <p className="text-[#b3a066] mt-2 text-sm">Fill in your details and we'll get back to you</p>
+            <p className="text-[#b3a066] mt-2 text-sm">Fill in your details and we&apos;ll get back to you</p>
           </div>
 
           {submitted ? (

@@ -1,10 +1,13 @@
 "use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { SERVICES, QUICK_LINKS, SOCIAL_LINKS, CONTACT_INFO } from "@/lib/constants";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState(2026);
+  useEffect(() => { setCurrentYear(new Date().getFullYear()); }, []);
 
   return (
     <footer className="bg-gradient-to-r from-[#C9A84C] to-[#E5C76B] mt-16">
@@ -12,9 +15,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-[#C9A84C] font-bold text-xl">G</span>
-              </div>
+              <Image
+                src="/Logo.jpeg"
+                alt="GetCredit logo"
+                width={40}
+                height={40}
+                className="rounded-lg object-cover"
+              />
               <span className="text-2xl font-bold text-white">
                 Get <span className="text-white">Credit</span>
               </span>
@@ -41,6 +48,7 @@ export default function Footer() {
 
           <div>
             <h4 className="text-lg font-semibold text-white mb-6">Quick Links</h4>
+            <nav aria-label="Quick links">
             <ul className="space-y-3">
               {QUICK_LINKS.map((link) => (
                 <li key={link.name}>
@@ -53,10 +61,12 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            </nav>
           </div>
 
           <div>
             <h4 className="text-lg font-semibold text-white mb-6">Services</h4>
+            <nav aria-label="Services">
             <ul className="space-y-3">
               {SERVICES.map((link) => (
                 <li key={link.id}>
@@ -69,6 +79,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            </nav>
           </div>
 
           <div>

@@ -5,50 +5,29 @@ import { Home, Building2, GraduationCap, User, Briefcase, Car, Award, Users } fr
 import GlassCard from "./GlassCard";
 import Button from "./Button";
 
+const BUTTON_ICONS = {
+  "Home Loan": Home,
+  "Loan Against Property": Building2,
+  "Education Loan": GraduationCap,
+  "Personal Loan": User,
+  "Non-Salaried Loan": Users,
+  "Business Loan": Briefcase,
+  "Car Loan": Car,
+};
+
+const BUTTON_TEXTS = {
+  "Home Loan": "Explore Home Loan",
+  "Loan Against Property": "Explore Property Loan",
+  "Education Loan": "Explore Education Loan",
+  "Personal Loan": "Explore Personal Loan",
+  "Non-Salaried Loan": "Explore Non-Salaried Loan",
+  "Business Loan": "Explore Business Loan",
+  "Car Loan": "Explore Car Loan",
+};
+
 export default function LoanCard({ icon: Icon, title, description, href, delay = 0, best = false }) {
-  const getButtonText = () => {
-    switch (title) {
-      case "Home Loan":
-        return "Explore Home Loan";
-      case "Loan Against Property":
-        return "Explore Property Loan";
-      case "Education Loan":
-        return "Explore Education Loan";
-      case "Personal Loan":
-        return "Explore Personal Loan";
-      case "Non-Salaried Loan":
-        return "Explore Non-Salaried Loan";
-      case "Business Loan":
-        return "Explore Business Loan";
-      case "Car Loan":
-        return "Explore Car Loan";
-      default:
-        return "Calculate EMI";
-    }
-  };
-
-  const getButtonIcon = () => {
-    switch (title) {
-      case "Home Loan":
-        return Home;
-      case "Loan Against Property":
-        return Building2;
-      case "Education Loan":
-        return GraduationCap;
-      case "Personal Loan":
-        return User;
-      case "Non-Salaried Loan":
-        return Users;
-      case "Business Loan":
-        return Briefcase;
-      case "Car Loan":
-        return Car;
-      default:
-        return Home;
-    }
-  };
-
-  const ButtonIcon = getButtonIcon();
+  const ButtonIcon = BUTTON_ICONS[title] || Home;
+  const buttonText = BUTTON_TEXTS[title] || "Calculate EMI";
 
   return (
     <GlassCard hover delay={delay} className={`text-center relative transition-all duration-300 ${best ? 'ring-2 ring-[#C9A84C]/40 shadow-lg shadow-[#C9A84C]/10 scale-[1.02]' : ''}`}>
@@ -66,7 +45,7 @@ export default function LoanCard({ icon: Icon, title, description, href, delay =
       <Link href={href || "/emi-calculator"}>
         <Button variant={best ? "primary" : "secondary"} className="w-full flex items-center justify-center gap-2">
           <ButtonIcon className="w-4 h-4" />
-          {getButtonText()}
+          {buttonText}
         </Button>
       </Link>
     </GlassCard>

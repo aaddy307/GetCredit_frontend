@@ -19,7 +19,7 @@ export default function ContactPage() {
                 Get In <span className="text-[#C9A84C]">Touch</span>
               </h1>
               <p className="text-gray-500 max-w-2xl mx-auto">
-                Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
               </p>
             </motion.div>
 

@@ -1,6 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const loadModule = () => import("@uiw/react-md-editor");
 const MDEditor = dynamic(loadModule, { ssr: false });
@@ -17,8 +17,14 @@ export function MDPreview({ value }) {
 
 export default function MDEditorWrapper({ value, onChange, height }) {
   const [hasError, setHasError] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  if (hasError) {
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  if (hasError || !mounted) {
     return (
       <textarea
         value={value || ""}
@@ -30,14 +36,9 @@ export default function MDEditorWrapper({ value, onChange, height }) {
     );
   }
 
-  try {
-    return (
-      <div data-color-mode="light">
-        <MDEditor value={value} onChange={onChange} height={height || 300} preview="edit" />
-      </div>
-    );
-  } catch {
-    setHasError(true);
-    return null;
-  }
+  return (
+    <div data-color-mode="light">
+      <MDEditor value={value} onChange={onChange} height={height || 300} preview="edit" />
+    </div>
+  );
 }

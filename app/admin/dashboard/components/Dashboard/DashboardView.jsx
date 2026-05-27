@@ -12,10 +12,6 @@ export default function DashboardView({ onAction }) {
   const [recentCallbacks, setRecentCallbacks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchRecentData();
-  }, []);
-
   const fetchRecentData = async () => {
     try {
       const [leadsRes, callbacksRes] = await Promise.all([
@@ -33,6 +29,11 @@ export default function DashboardView({ onAction }) {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchRecentData();
+  }, []);
 
   const statusColors = {
     'Pending': 'bg-yellow-100 text-yellow-700',

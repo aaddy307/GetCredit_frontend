@@ -1,5 +1,3 @@
-"use client";
-import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -7,10 +5,10 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Navbar />
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
+      <div className="animate-fade-in min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Privacy Policy</h1>
-          
+
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#C9A84C]/20 space-y-8">
             <section>
               <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">1. What Data We Collect</h2>
@@ -41,8 +39,8 @@ export default function PrivacyPolicy() {
             <section>
               <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">3. Data Storage & Security</h2>
               <p className="text-gray-600">
-                Your personal data is stored securely on our servers with industry-standard encryption. 
-                We implement appropriate technical and organizational measures to protect your data 
+                Your personal data is stored securely on our servers with industry-standard encryption.
+                We implement appropriate technical and organizational measures to protect your data
                 against unauthorized access, alteration, disclosure, or destruction.
               </p>
             </section>
@@ -85,7 +83,7 @@ export default function PrivacyPolicy() {
             </section>
           </div>
         </div>
-      </motion.div>
+      </div>
       <Footer />
     </>
   );

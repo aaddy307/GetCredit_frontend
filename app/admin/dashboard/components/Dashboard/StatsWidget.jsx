@@ -13,10 +13,6 @@ export default function StatsWidget() {
   });
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
   const fetchStats = async () => {
     try {
       const response = await api.get('/admin/stats/today');
@@ -29,6 +25,11 @@ export default function StatsWidget() {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchStats();
+  }, []);
 
   const statCards = [
     {

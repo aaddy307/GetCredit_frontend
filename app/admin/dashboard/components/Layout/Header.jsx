@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { Search, Menu, User } from "lucide-react";
+import { Search, Menu } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { api } from "@/lib/api";
 
@@ -78,7 +78,7 @@ export default function Header({ onMenuClick, onTabChange }) {
           <Menu className="w-5 h-5" />
         </button>
 
-        <div className="flex-1 max-w-xs sm:max-w-md md:max-w-xl relative" ref={searchRef}>
+        <div role="search" aria-label="Search leads, callbacks, and blogs" className="flex-1 max-w-xs sm:max-w-md md:max-w-xl relative" ref={searchRef}>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -117,7 +117,7 @@ export default function Header({ onMenuClick, onTabChange }) {
                   ))}
                 </div>
               ) : searchQuery.length >= 2 ? (
-                <div className="p-4 text-center text-gray-500 text-sm">No results found for "{searchQuery}"</div>
+                <div className="p-4 text-center text-gray-500 text-sm">No results found for &quot;{searchQuery}&quot;</div>
               ) : null}
             </div>
           )}

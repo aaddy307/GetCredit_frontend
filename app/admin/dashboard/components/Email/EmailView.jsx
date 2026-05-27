@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Send, Mail, Users, FileText, LayoutTemplate, ChevronDown } from "lucide-react";
+import { Send, Mail, Users, FileText, LayoutTemplate } from "lucide-react";
 import toast from "react-hot-toast";
 import { api } from "@/lib/api";
 
@@ -162,6 +162,7 @@ export default function EmailView() {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="flex items-center gap-4 mb-8">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/Logo.jpeg"
           alt="Get Credit"
@@ -306,6 +307,7 @@ export default function EmailView() {
 
             <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-2 text-xs text-gray-400">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/Logo.jpeg" alt="" className="w-5 h-5 rounded object-cover" />
                 <span>Sent from <strong className="text-gray-600">support@get-credit.in</strong></span>
               </div>

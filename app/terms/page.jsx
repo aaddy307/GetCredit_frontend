@@ -1,5 +1,3 @@
-"use client";
-import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -7,16 +5,16 @@ export default function Terms() {
   return (
     <>
       <Navbar />
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
+      <div className="animate-fade-in min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Terms & Conditions</h1>
-          
+
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#C9A84C]/20 space-y-8">
             <section>
               <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">1. Service Description</h2>
               <p className="text-gray-600">
-                Get Credit is a loan consultancy platform that connects users with banks and financial 
-                institutions. We are <strong>not a lender</strong> ourselves. Our service is to help you 
+                Get Credit is a loan consultancy platform that connects users with banks and financial
+                institutions. We are <strong>not a lender</strong> ourselves. Our service is to help you
                 find and apply for suitable loan products from our partner institutions.
               </p>
             </section>
@@ -36,9 +34,9 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">3. Disclaimer — Not Financial Advice</h2>
               <p className="text-gray-600">
-                The information provided on this website is for general informational purposes only. 
-                We do not provide financial, legal, or tax advice. The final decision on loan approval, 
-                interest rates, and terms depends entirely on the lending institution. Please consult with 
+                The information provided on this website is for general informational purposes only.
+                We do not provide financial, legal, or tax advice. The final decision on loan approval,
+                interest rates, and terms depends entirely on the lending institution. Please consult with
                 a qualified financial advisor before making any financial decisions.
               </p>
             </section>
@@ -57,8 +55,8 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">5. User Content</h2>
               <p className="text-gray-600">
-                You are responsible for any information you submit through our website. You represent 
-                and warrant that all information provided is accurate, current, and complete, and that 
+                You are responsible for any information you submit through our website. You represent
+                and warrant that all information provided is accurate, current, and complete, and that
                 you have the right to share such information with us.
               </p>
             </section>
@@ -66,8 +64,8 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">6. Governing Law</h2>
               <p className="text-gray-600">
-                These Terms & Conditions are governed by the laws of <strong>India</strong>. Any disputes 
-                arising out of or related to these terms shall be subject to the exclusive jurisdiction 
+                These Terms & Conditions are governed by the laws of <strong>India</strong>. Any disputes
+                arising out of or related to these terms shall be subject to the exclusive jurisdiction
                 of the courts in Mumbai, Maharashtra.
               </p>
             </section>
@@ -75,8 +73,8 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">7. Changes to Terms</h2>
               <p className="text-gray-600">
-                We reserve the right to modify these Terms & Conditions at any time. Any changes will 
-                be posted on this page with an updated "Last Modified" date. Your continued use of the 
+                We reserve the right to modify these Terms & Conditions at any time. Any changes will
+                be posted on this page with an updated &quot;Last Modified&quot; date. Your continued use of the
                 website after such changes constitutes your acceptance of the new terms.
               </p>
             </section>
@@ -97,7 +95,7 @@ export default function Terms() {
             </section>
           </div>
         </div>
-      </motion.div>
+      </div>
       <Footer />
     </>
   );

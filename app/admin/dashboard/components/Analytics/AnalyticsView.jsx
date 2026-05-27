@@ -12,10 +12,6 @@ export default function AnalyticsView() {
   const [loanDistribution, setLoanDistribution] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchAnalytics();
-  }, []);
-
   const fetchAnalytics = async () => {
     try {
       const [summaryRes, monthlyRes, distributionRes] = await Promise.all([
@@ -36,6 +32,11 @@ export default function AnalyticsView() {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchAnalytics();
+  }, []);
 
   const statCards = [
     { label: 'Total Leads', value: stats?.totalLeads || 0, icon: Users, color: 'text-amber-600', bg: 'bg-amber-50' },

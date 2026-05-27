@@ -303,37 +303,6 @@ export default function EMICalculatorPage() {
     <>
       <Navbar />
       <main className="pt-20 min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
-        <style>{`
-          @media (max-width: 767px) {
-            .loan-type-grid {
-              display: grid !important;
-              grid-template-columns: 1fr 1fr !important;
-              gap: 8px !important;
-            }
-            .loan-type-grid > button {
-              width: 100% !important;
-            }
-            form > .grid:first-child {
-              grid-template-columns: 1fr !important;
-              gap: 16px !important;
-            }
-            form > .grid:first-child > [class*="col-span-2"] {
-              grid-column: span 1 !important;
-            }
-            form input,
-            form select {
-              width: 100% !important;
-              max-width: 100% !important;
-              box-sizing: border-box !important;
-            }
-            form label {
-              font-size: 13px !important;
-            }
-            .flex.gap-4.mt-8 {
-              gap: 12px !important;
-            }
-          }
-        `}</style>
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -346,10 +315,9 @@ export default function EMICalculatorPage() {
                 Select your loan type and enter the details to get instant results.
               </p>
             </div>
-
             <div className="max-w-4xl mx-auto">
               <GlassCard className="p-8">
-                <div className="loan-type-grid flex flex-wrap gap-3 mb-8 justify-center">
+                <div className="grid grid-cols-2 md:flex md:flex-wrap gap-2 md:gap-3 mb-8 justify-center">
                   {EMI_LOAN_TYPES.map((type) => {
                     const iconMap = { home: Home, lap: Building2, education: GraduationCap, personal: User, business: Briefcase, vehicle: Car };
                     const Icon = iconMap[type.id] || Calculator;

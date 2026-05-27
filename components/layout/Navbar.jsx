@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ArrowRight } from "lucide-react";
@@ -35,6 +36,8 @@ export default function Navbar() {
   return (
     <>
       <nav
+        role="navigation"
+        aria-label="Main navigation"
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{ 
           height: "68px",
@@ -49,7 +52,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-full">
           <div className="flex items-center justify-between h-full">
             <Link href="/" className="flex items-center gap-2.5">
-              <img src="/Logo.jpeg" alt="Get Credit" className="h-8 w-8 rounded-lg object-contain flex-shrink-0" />
+              <Image src="/Logo.jpeg" alt="GetCredit logo" width={32} height={32} className="rounded-lg object-contain flex-shrink-0" priority />
               <span className="text-2xl font-bold text-[#1A1A1A] leading-none">
                 Get <span className="text-[#C9A84C]">Credit</span>
               </span>
@@ -115,6 +118,9 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden p-2 text-gray-600"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -129,7 +135,7 @@ export default function Navbar() {
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-[#C9A84C]/10"
             >
-              <div className="px-6 py-6 space-y-4 bg-white">
+              <div id="mobile-menu" className="px-6 py-6 space-y-4 bg-white">
                 {[...navLinksGroup1, ...navLinksGroup2].map((link) => (
                   <Link
                     key={link.name}

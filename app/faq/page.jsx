@@ -117,7 +117,7 @@ export default function FAQPage() {
               Still have questions?
             </h2>
             <p className="text-gray-500 mb-6">
-              Can't find the answer you're looking for? Please contact our support team.
+              Can&apos;t find the answer you&apos;re looking for? Please contact our support team.
             </p>
             <Link href="/contact">
               <Button variant="primary">Contact Us</Button>

@@ -153,7 +153,7 @@ export default function HomePage() {
                       <span key={i} className="text-[#C9A84C]">★</span>
                     ))}
                   </div>
-                  <p className="text-gray-600 mb-6">"{testimonial.message}"</p>
+                  <p className="text-gray-600 mb-6">&quot;{testimonial.message}&quot;</p>
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-[#C9A84C]/20 rounded-full flex items-center justify-center">
                       <span className="text-[#C9A84C] font-semibold">{testimonial.name.charAt(0)}</span>
