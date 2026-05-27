@@ -95,7 +95,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-white/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/70 text-sm">
-              Made by Ahmed Khan. All rights reserved.
+              Made by <a href="https://ahmed.nexcoreinstitute.org/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Ahmed Khan</a>. All rights reserved.
             </p>
             <div className="flex gap-6">
               <Link href="/faq" className="text-white/70 text-sm hover:text-white">
