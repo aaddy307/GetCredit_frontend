@@ -110,12 +110,6 @@ export default function Navbar() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
 
-              <Link
-                href="/admin/login"
-                className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:text-[#C9A84C] hover:border-[#C9A84C] text-sm transition-colors"
-              >
-                Admin
-              </Link>
             </div>
 
             <button
@@ -163,13 +157,6 @@ export default function Navbar() {
                     <span>Apply Now</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
-                  <Link
-                    href="/admin/login"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-600"
-                  >
-                    Admin Login
-                  </Link>
                 </div>
               </div>
             </motion.div>
