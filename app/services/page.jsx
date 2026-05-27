@@ -51,6 +51,7 @@ export default function ServicesPage() {
             {SERVICES.map((service, index) => {
               const Icon = serviceIcons[service.title] || User;
               const isPersonal = service.id === "personal-loan";
+              const isLAP = service.id === "loan-against-property";
               return (
                 <section key={service.id} id={service.id} className="py-16">
                   <GlassCard className={`p-8 md:p-12 relative ${service.priority ? 'ring-2 ring-[#C9A84C]/40 shadow-lg shadow-[#C9A84C]/10' : ''}`}>
@@ -121,6 +122,17 @@ export default function ServicesPage() {
                             <p className="text-sm text-gray-700">
                               <span className="font-semibold text-[#C9A84C]">Maximum Personal Loan for Non-Salaried applicants: ₹10 Lakhs</span>
                             </p>
+                          </div>
+                        )}
+                        {isLAP && (
+                          <div className="mt-4 p-4 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg">
+                            <p className="text-sm font-semibold text-[#C9A84C] mb-2">Loan-to-Value (LTV) Ratio</p>
+                            <ul className="space-y-1 text-sm text-gray-600">
+                              <li>&bull; Residential: <span className="font-semibold text-gray-800">80% LTV</span></li>
+                              <li>&bull; Commercial &amp; Industrial: <span className="font-semibold text-gray-800">75% LTV</span></li>
+                              <li>&bull; Plot: <span className="font-semibold text-gray-800">50% LTV</span></li>
+                            </ul>
+                            <p className="text-xs text-gray-400 mt-2 italic">LTV varies based on property location, bank policies &amp; CIBIL score.</p>
                           </div>
                         )}
                       </div>

@@ -24,10 +24,10 @@ const propertyTypesHome = [
 ];
 
 const propertyTypesLAP = [
-  { value: "Residential", label: "Residential" },
-  { value: "Commercial", label: "Commercial" },
-  { value: "Industrial", label: "Industrial" },
-  { value: "Plot", label: "Plot" },
+  { value: "Residential", label: "Residential", ltv: 80 },
+  { value: "Commercial", label: "Commercial", ltv: 75 },
+  { value: "Industrial", label: "Industrial", ltv: 75 },
+  { value: "Plot", label: "Plot", ltv: 50 },
 ];
 
 const employmentTypes = [
@@ -80,7 +80,9 @@ const initialFormValues = {
   loanAmount: "",
   propertyType: "",
   propertyLocation: "",
+  propertyValue: "",
   tenure: "",
+  interestRate: "",
   employmentType: "",
   qualification: "",
   degree: "",
@@ -158,9 +160,22 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
       return;
     }
 
+    if (selectedLoanType === "lap") {
+      const selectedProp = propertyTypesLAP.find(p => p.value === data.propertyType);
+      const ltvPercent = selectedProp?.ltv || 80;
+      const propertyVal = parseFloat(data.propertyValue) || 0;
+      const maxLoan = Math.round(propertyVal * ltvPercent / 100);
+      if (loanAmountNum > maxLoan) {
+        toast.error(`Max loan at ${ltvPercent}% LTV is ₹${maxLoan.toLocaleString()}`, { id: 'enquiry-ltv-error' });
+        return;
+      }
+    }
+
+    const interestRate = parseFloat(data.interestRate) || 8.5;
+
     const emi = calculateEMI(
       loanAmountNum,
-      8.5,
+      interestRate,
       tenureNum,
       unit
     );
@@ -184,12 +199,13 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
             city: data.city,
             loanType: getLoanTypeLabel(selectedLoanType),
             loanAmount: parseInt(data.loanAmount) || 0,
-            interestRate: 8.5,
+            interestRate: interestRate,
             tenure: parseInt(data.tenure) || 0,
             tenureUnit: unit,
             emi: emi,
             propertyType: data.propertyType,
             propertyLocation: data.propertyLocation,
+            propertyValue: parseInt(data.propertyValue) || 0,
             employmentType: data.employmentType,
             qualification: data.qualification,
             degree: data.degree,
@@ -399,47 +415,49 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                       {loanTypes.find(l => l.id === selectedLoanType)?.label} Details
                     </h3>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                          Loan Amount (₹) <span className="text-[#c9920a]">*</span>
-                        </label>
-                        <input
-                          {...register("loanAmount", { 
-                            required: "Loan amount is required",
-                            min: { value: 10000, message: "Minimum ₹10,000" },
-                            valueAsNumber: true
-                          })}
-                          type="number"
-                          inputMode="numeric"
-                          min="10000"
-                          placeholder="Enter loan amount (min ₹10,000)"
-                          className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
-                        />
-                        {errors.loanAmount && <p className="text-red-500 text-xs mt-1">{errors.loanAmount.message}</p>}
+                    {selectedLoanType !== "lap" && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                            Loan Amount (₹) <span className="text-[#c9920a]">*</span>
+                          </label>
+                          <input
+                            {...register("loanAmount", { 
+                              required: "Loan amount is required",
+                              min: { value: 10000, message: "Minimum ₹10,000" },
+                              valueAsNumber: true
+                            })}
+                            type="number"
+                            inputMode="numeric"
+                            min="10000"
+                            placeholder="Enter loan amount (min ₹10,000)"
+                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                          />
+                          {errors.loanAmount && <p className="text-red-500 text-xs mt-1">{errors.loanAmount.message}</p>}
+                        </div>
+                        
+                        <div>
+                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                            Tenure ({getTenureUnit(selectedLoanType)}) <span className="text-[#c9920a]">*</span>
+                          </label>
+                          <input
+                            {...register("tenure", { 
+                              required: "Tenure is required",
+                              min: { value: 1, message: "Minimum 1" + (isMonthTenure(selectedLoanType) ? " month" : " year") },
+                              max: { value: isMonthTenure(selectedLoanType) ? 84 : 30, message: "Maximum " + (isMonthTenure(selectedLoanType) ? "84 months" : "30 years") },
+                              valueAsNumber: true
+                            })}
+                            type="number"
+                            inputMode="numeric"
+                            min="1"
+                            max={isMonthTenure(selectedLoanType) ? 84 : 30}
+                            placeholder={isMonthTenure(selectedLoanType) ? "Enter tenure (1-84 months)" : "Enter tenure (1-30 years)"}
+                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                          />
+                          {errors.tenure && <p className="text-red-500 text-xs mt-1">{errors.tenure.message}</p>}
+                        </div>
                       </div>
-                      
-                      <div>
-                        <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                          Tenure ({getTenureUnit(selectedLoanType)}) <span className="text-[#c9920a]">*</span>
-                        </label>
-                        <input
-                          {...register("tenure", { 
-                            required: "Tenure is required",
-                            min: { value: 1, message: "Minimum 1" + (isMonthTenure(selectedLoanType) ? " month" : " year") },
-                            max: { value: isMonthTenure(selectedLoanType) ? 84 : 30, message: "Maximum " + (isMonthTenure(selectedLoanType) ? "84 months" : "30 years") },
-                            valueAsNumber: true
-                          })}
-                          type="number"
-                          inputMode="numeric"
-                          min="1"
-                          max={isMonthTenure(selectedLoanType) ? 84 : 30}
-                          placeholder={isMonthTenure(selectedLoanType) ? "Enter tenure (1-84 months)" : "Enter tenure (1-30 years)"}
-                          className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
-                        />
-                        {errors.tenure && <p className="text-red-500 text-xs mt-1">{errors.tenure.message}</p>}
-                      </div>
-                    </div>
+                    )}
 
                     {selectedLoanType === "home" && (
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -530,36 +548,119 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     )}
 
                     {selectedLoanType === "lap" && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                            Property Type
-                          </label>
-                          <select
-                            {...register("propertyType")}
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
-                          >
-                            <option value="">Select</option>
-                            {propertyTypesLAP.map(opt => (
-                              <option key={opt.value} value={opt.value}>{opt.label}</option>
-                            ))}
-                          </select>
+                      <>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                              Property Value (&#x20B9;)
+                            </label>
+                            <input
+                              {...register("propertyValue")}
+                              type="number"
+                              placeholder="Enter property value (e.g., 10000000)"
+                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                              Property Type
+                            </label>
+                            <select
+                              {...register("propertyType")}
+                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
+                            >
+                              <option value="">Select</option>
+                              {propertyTypesLAP.map(opt => (
+                                <option key={opt.value} value={opt.value}>{opt.label} ({opt.ltv}% LTV)</option>
+                              ))}
+                            </select>
+                          </div>
                         </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                            Employment Type
-                          </label>
-                          <select
-                            {...register("employmentType")}
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
-                          >
-                            <option value="">Select</option>
-                            {employmentTypes.map(opt => (
-                              <option key={opt.value} value={opt.value}>{opt.label}</option>
-                            ))}
-                          </select>
+                        {(() => {
+                          const selProp = propertyTypesLAP.find(p => p.value === watch("propertyType"));
+                          const ltvPct = selProp?.ltv || 0;
+                          const pVal = parseFloat(watch("propertyValue")) || 0;
+                          const maxAmt = Math.round(pVal * ltvPct / 100);
+                          return watch("propertyType") && pVal > 0 ? (
+                            <div className="p-3 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg">
+                              <p className="text-sm text-gray-600">
+                                <span className="font-semibold text-[#C9A84C]">{ltvPct}% LTV</span> &mdash; Max Fundable: <span className="font-semibold">&#x20B9;{maxAmt.toLocaleString()}</span>
+                              </p>
+                            </div>
+                          ) : null;
+                        })()}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                              Loan Amount (&#x20B9;) <span className="text-[#c9920a]">*</span>
+                            </label>
+                            <input
+                              {...register("loanAmount", {
+                                required: "Loan amount is required",
+                                min: { value: 10000, message: "Minimum &#x20B9;10,000" },
+                                valueAsNumber: true
+                              })}
+                              type="number"
+                              inputMode="numeric"
+                              min="10000"
+                              placeholder="Enter loan amount (max based on LTV)"
+                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                            />
+                            {errors.loanAmount && <p className="text-red-500 text-xs mt-1">{errors.loanAmount.message}</p>}
+                          </div>
+                          <div>
+                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                              Employment Type
+                            </label>
+                            <select
+                              {...register("employmentType")}
+                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
+                            >
+                              <option value="">Select</option>
+                              {employmentTypes.map(opt => (
+                                <option key={opt.value} value={opt.value}>{opt.label}</option>
+                              ))}
+                            </select>
+                          </div>
                         </div>
-                      </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                              Interest Rate (% p.a.)
+                            </label>
+                            <input
+                              {...register("interestRate")}
+                              type="number"
+                              step="0.1"
+                              placeholder="Enter interest rate (e.g., 8.5)"
+                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                              Tenure (Years) <span className="text-[#c9920a]">*</span>
+                            </label>
+                            <input
+                              {...register("tenure", {
+                                required: "Tenure is required",
+                                min: { value: 1, message: "Minimum 1 year" },
+                                max: { value: 30, message: "Maximum 30 years" },
+                                valueAsNumber: true
+                              })}
+                              type="number"
+                              inputMode="numeric"
+                              min="1"
+                              max="30"
+                              placeholder="Enter tenure (1-30 years)"
+                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                            />
+                            {errors.tenure && <p className="text-red-500 text-xs mt-1">{errors.tenure.message}</p>}
+                          </div>
+                        </div>
+                        <div className="text-xs text-gray-400 italic">
+                          * LTV can change based on property location, bank policies, and your CIBIL score.
+                        </div>
+                      </>
                     )}
 
                     {selectedLoanType === "personal" && (

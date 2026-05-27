@@ -471,6 +471,8 @@ export default function LeadsView() {
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Source</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Amount</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Tenure</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Prop Value</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Prop Type</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Status</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Date</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Actions</th>
@@ -478,9 +480,9 @@ export default function LeadsView() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {loading ? (
-                <tr><td colSpan={11}><LoadingSpinner /></td></tr>
+                <tr><td colSpan={13}><LoadingSpinner /></td></tr>
               ) : leads.length === 0 ? (
-                <tr><td colSpan={11}><EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} /></td></tr>
+                <tr><td colSpan={13}><EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} /></td></tr>
               ) : (
                 leads.map((lead, index) => (
                   <tr key={lead._id} className={`hover:bg-gray-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
@@ -498,6 +500,8 @@ export default function LeadsView() {
                     </td>
                     <td className="px-4 py-3 text-sm font-medium text-gray-900">{formatCurrency(lead.loanAmount)}</td>
                     <td className="px-4 py-3 text-sm text-gray-600 whitespace-nowrap">{formatTenure(lead)}</td>
+                    <td className="px-4 py-3 text-sm text-gray-600">{lead.propertyValue ? `₹${Number(lead.propertyValue).toLocaleString()}` : '-'}</td>
+                    <td className="px-4 py-3 text-sm text-gray-600">{lead.propertyType || '-'}</td>
                     <td className="px-4 py-3">
                       <div className="relative">
                         <button
@@ -564,6 +568,8 @@ export default function LeadsView() {
                   <span>{lead.loanType}</span>
                   <span>{formatCurrency(lead.loanAmount)}</span>
                   <span className="text-[#8B7A2E]">{formatTenure(lead)}</span>
+                  {lead.propertyValue && <span>Prop Value: ₹{Number(lead.propertyValue).toLocaleString()}</span>}
+                  {lead.propertyType && <span>Prop Type: {lead.propertyType}</span>}
                   <span className={`${lead._isEMI ? 'text-purple-600' : 'text-blue-600'}`}>
                     {lead._isEMI ? 'EMI Calculator' : lead.leadSource || 'Website'}
                   </span>
