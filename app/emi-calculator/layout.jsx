@@ -1,14 +1,14 @@
 export const metadata = {
-  title: "EMI Calculator",
-  description: "Calculate your monthly EMI for Home Loan, Personal Loan, Business Loan, Education Loan, Loan Against Property, and Vehicle Loan. Use Get Credit's free EMI calculator with instant results.",
-  openGraph: {
-    title: "EMI Calculator | Get Credit",
-    description: "Calculate your monthly EMI for Home Loan, Personal Loan, Business Loan, Education Loan, Loan Against Property, and Vehicle Loan with Get Credit's free EMI calculator.",
-    url: "https://get-credit.in/emi-calculator",
+  title: "EMI Calculator for Home & Personal Loans | Get Credit",
+  description: "Calculate your monthly EMI instantly with Get Credit's free loan EMI calculator. Plan repayments for home loans, personal loans, business loans, and more.",
+  alternates: {
+    canonical: "https://get-credit.in/emi-calculator",
   },
-  twitter: {
-    title: "EMI Calculator | Get Credit",
-    description: "Free EMI calculator for all loan types. Get instant monthly payment estimates.",
+  openGraph: {
+    url: "https://get-credit.in/emi-calculator",
+    title: "EMI Calculator for Home & Personal Loans | Get Credit",
+    description: "Calculate your monthly EMI instantly with Get Credit's free loan EMI calculator. Plan repayments for home loans, personal loans, business loans, and more.",
+    siteName: "GETCREDIT",
   },
 };
 

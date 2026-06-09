@@ -44,16 +44,16 @@ const faqs = [
 ];
 
 export const metadata = {
-  title: "Frequently Asked Questions",
-  description: "Find answers to commonly asked questions about loan services, CIBIL score requirements, EMI calculation, interest rates, document requirements, and loan approval process at Get Credit.",
-  openGraph: {
-    title: "Frequently Asked Questions | Get Credit",
-    description: "Find answers to commonly asked questions about loans, CIBIL scores, EMI calculation, and more at Get Credit.",
-    url: "https://get-credit.in/faq",
+  title: "Frequently Asked Questions | Get Credit",
+  description: "Find answers to commonly asked questions about loans, CIBIL scores, EMI calculation, and loan documentation at Get Credit.",
+  alternates: {
+    canonical: "https://get-credit.in/faq",
   },
-  twitter: {
+  openGraph: {
+    url: "https://get-credit.in/faq",
     title: "Frequently Asked Questions | Get Credit",
-    description: "Find answers to commonly asked loan questions at Get Credit.",
+    description: "Find answers to commonly asked questions about loans, CIBIL scores, EMI calculation, and loan documentation at Get Credit.",
+    siteName: "GETCREDIT",
   },
 };
 

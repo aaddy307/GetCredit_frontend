@@ -165,7 +165,7 @@ export default function EmailView() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/Logo.jpeg"
-          alt="Get Credit"
+          alt="Get Credit – Loan Consultancy Logo"
           className="w-12 h-12 rounded-xl object-cover shadow-sm ring-2 ring-[#C9A84C]/20"
         />
         <div>
@@ -308,7 +308,7 @@ export default function EmailView() {
             <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-2 text-xs text-gray-400">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/Logo.jpeg" alt="" className="w-5 h-5 rounded object-cover" />
+                <img src="/Logo.jpeg" alt="Get Credit – Loan Consultancy Logo" className="w-5 h-5 rounded object-cover" />
                 <span>Sent from <strong className="text-gray-600">support@get-credit.in</strong></span>
               </div>
               <button

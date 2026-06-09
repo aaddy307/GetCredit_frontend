@@ -17,7 +17,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-6">
               <Image
                 src="/Logo.jpeg"
-                alt="GetCredit logo"
+                alt="Get Credit – Loan Consultancy Logo"
                 width={40}
                 height={40}
                 className="rounded-lg object-cover"

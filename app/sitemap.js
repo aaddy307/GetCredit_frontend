@@ -1,5 +1,7 @@
 const BASE_URL = 'https://get-credit.in';
 
+const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
 export default async function sitemap() {
   const routes = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: 'monthly', priority: 1.0 },
@@ -14,7 +16,7 @@ export default async function sitemap() {
   ];
 
   try {
-    const res = await fetch(`${BASE_URL}/api/blogs`);
+    const res = await fetch(`${API_URL}/api/blogs`);
     const data = await res.json();
     const blogEntries = (data.blogs || []).map((blog) => ({
       url: `${BASE_URL}/blog/${blog.slug}`,

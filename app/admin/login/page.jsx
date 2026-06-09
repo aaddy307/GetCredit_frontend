@@ -44,7 +44,7 @@ function LoginForm() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/Logo.jpeg"
-            alt="GetCredit logo"
+            alt="Get Credit – Loan Consultancy Logo"
             className="w-16 h-16 rounded-2xl mx-auto mb-4 object-cover"
           />
           <h1 className="text-3xl font-bold text-gray-800">Admin Login</h1>

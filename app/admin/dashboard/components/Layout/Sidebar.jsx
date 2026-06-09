@@ -45,7 +45,7 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
     `}>
       <div className="flex items-center justify-between h-14 px-3 sm:px-4 border-b border-gray-100 flex-shrink-0">
         <div className="flex items-center gap-2">
-          <Image src="/Logo.jpeg" alt="GetCredit logo" width={28} height={28} className="rounded-lg object-contain flex-shrink-0" />
+          <Image src="/Logo.jpeg" alt="Get Credit – Loan Consultancy Logo" width={28} height={28} className="rounded-lg object-contain flex-shrink-0" />
           <span className="text-lg font-bold text-gray-900 leading-none">GetCredit</span>
         </div>
         <button

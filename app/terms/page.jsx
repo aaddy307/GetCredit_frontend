@@ -1,6 +1,20 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
+export const metadata = {
+  title: "Terms & Conditions | Get Credit",
+  description: "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
+  alternates: {
+    canonical: "https://get-credit.in/terms",
+  },
+  openGraph: {
+    url: "https://get-credit.in/terms",
+    title: "Terms & Conditions | Get Credit",
+    description: "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
+    siteName: "GETCREDIT",
+  },
+};
+
 export default function Terms() {
   return (
     <>

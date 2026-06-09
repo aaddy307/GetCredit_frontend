@@ -11,14 +11,15 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(201,149,42,0.05)_0%,_transparent_50%)]" />
       
       <div className="relative z-10 max-w-7xl mx-auto text-center">
-        <motion.h1
+        <h1 className="sr-only">Home Loan & Personal Loan Consultant in Ambernath, Thane | Get Credit</h1>
+        <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 mb-4 md:mb-6 leading-tight"
         >
           Fast & Easy <span className="text-[#C9A84C]">Loan Solutions</span>
-        </motion.h1>
+        </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -26,7 +27,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-base md:text-lg lg:text-xl text-gray-500 mb-6 max-w-lg md:max-w-2xl mx-auto leading-relaxed"
         >
-          Get instant approvals on home loans, education loans, and loans against property.
+          Get instant approvals on home loans, education loans, and loans against property in Ambernath, Ulhasnagar, Kalyan, Thane, and across Maharashtra.
           Calculate your EMI and apply online in minutes.
         </motion.p>
 

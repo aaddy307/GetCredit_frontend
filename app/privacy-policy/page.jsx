@@ -1,6 +1,20 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
+export const metadata = {
+  title: "Privacy Policy | Get Credit",
+  description: "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
+  alternates: {
+    canonical: "https://get-credit.in/privacy-policy",
+  },
+  openGraph: {
+    url: "https://get-credit.in/privacy-policy",
+    title: "Privacy Policy | Get Credit",
+    description: "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
+    siteName: "GETCREDIT",
+  },
+};
+
 export default function PrivacyPolicy() {
   return (
     <>
