@@ -10,6 +10,10 @@ export const metadata = {
     description: "Read the latest financial news, expert loan guides, and EMI tips from Get Credit, your trusted loan consultant in Ambernath, Thane.",
     siteName: "GETCREDIT",
   },
+  twitter: {
+    title: "Financial Tips & Loan Advice Blog | Get Credit",
+    description: "Read the latest financial news, expert loan guides, and EMI tips from Get Credit, your trusted loan consultant in Ambernath, Thane.",
+  },
 };
 
 export default function BlogLayout({ children }) {

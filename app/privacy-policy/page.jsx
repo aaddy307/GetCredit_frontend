@@ -13,6 +13,10 @@ export const metadata = {
     description: "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
     siteName: "GETCREDIT",
   },
+  twitter: {
+    title: "Privacy Policy | Get Credit",
+    description: "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
+  },
 };
 
 export default function PrivacyPolicy() {

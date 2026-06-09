@@ -25,8 +25,6 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "GETCREDIT - Fast & Easy Loan Solutions",
-    description: "GETCREDIT provides trusted loan assistance and financial solutions.",
     images: ["/Logo.jpeg"],
   },
   robots: {

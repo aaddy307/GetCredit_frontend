@@ -10,6 +10,10 @@ export const metadata = {
     description: "Explore Get Credit's comprehensive loan options in Ambernath. We offer personal loans, business loans, home loans, education loans, and loans against property.",
     siteName: "GETCREDIT",
   },
+  twitter: {
+    title: "Loan Services – Personal, Home, Business Loans | Get Credit Ambernath",
+    description: "Explore Get Credit's comprehensive loan options in Ambernath. We offer personal loans, business loans, home loans, education loans, and loans against property.",
+  },
 };
 
 export default function ServicesLayout({ children }) {

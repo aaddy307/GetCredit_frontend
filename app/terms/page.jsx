@@ -13,6 +13,10 @@ export const metadata = {
     description: "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
     siteName: "GETCREDIT",
   },
+  twitter: {
+    title: "Terms & Conditions | Get Credit",
+    description: "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
+  },
 };
 
 export default function Terms() {

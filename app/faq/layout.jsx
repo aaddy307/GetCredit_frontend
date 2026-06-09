@@ -55,6 +55,10 @@ export const metadata = {
     description: "Find answers to commonly asked questions about loans, CIBIL scores, EMI calculation, and loan documentation at Get Credit.",
     siteName: "GETCREDIT",
   },
+  twitter: {
+    title: "Frequently Asked Questions | Get Credit",
+    description: "Find answers to commonly asked questions about loans, CIBIL scores, EMI calculation, and loan documentation at Get Credit.",
+  },
 };
 
 export default function FAQLayout({ children }) {

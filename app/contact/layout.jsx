@@ -10,6 +10,10 @@ export const metadata = {
     description: "Get in touch with Get Credit in Ambernath West, Thane. Contact us for home loans, personal loans, business loans, and loan enquiries.",
     siteName: "GETCREDIT",
   },
+  twitter: {
+    title: "Contact Get Credit | Loan Consultancy in Ambernath West, Thane",
+    description: "Get in touch with Get Credit in Ambernath West, Thane. Contact us for home loans, personal loans, business loans, and loan enquiries.",
+  },
 };
 
 export default function ContactLayout({ children }) {
