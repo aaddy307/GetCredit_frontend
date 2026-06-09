@@ -1,5 +1,4 @@
 import HomeClient from "./HomeClient";
-import { localBusinessSchema, homepageFaqSchema, loanProductsSchema } from "@/lib/seo";
 
 const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -34,21 +33,39 @@ export const metadata = {
   }
 };
 
+const homepageSchema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "FinancialService"],
+  "name": "Get Credit",
+  "url": "https://get-credit.in",
+  "logo": "https://get-credit.in/Logo.jpeg",
+  "telephone": ["+917738205198", "+918408926551", "+918793604734"],
+  "email": "support@get-credit.in",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Shivling Nagar, Near Shivling Residency",
+    "addressLocality": "Ambernath West",
+    "addressRegion": "Maharashtra",
+    "postalCode": "421501",
+    "addressCountry": "IN"
+  },
+  "areaServed": ["Ambernath", "Ulhasnagar", "Kalyan", "Thane", "Maharashtra"],
+  "sameAs": [
+    "https://facebook.com/getcredit",
+    "https://instagram.com/getcredit",
+    "https://linkedin.com/company/getcredit"
+  ]
+};
+
 export default async function HomePage() {
   const blogs = await getBlogs();
-
-  const jsonLd = [
-    localBusinessSchema(),
-    homepageFaqSchema(),
-    ...loanProductsSchema()
-  ];
 
   return (
     <>
       <script
         id="home-jsonld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageSchema) }}
       />
       <HomeClient initialBlogs={blogs} />
     </>

@@ -4,15 +4,15 @@ const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http:
 
 export default async function sitemap() {
   const routes = [
-    { url: BASE_URL, lastModified: new Date(), changeFrequency: 'monthly', priority: 1.0 },
-    { url: `${BASE_URL}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${BASE_URL}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE_URL}/emi-calculator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${BASE_URL}/privacy-policy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${BASE_URL}/terms`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    { url: BASE_URL, lastModified: new Date(), priority: 1.0 },
+    { url: `${BASE_URL}/services`, lastModified: new Date(), priority: 0.9 },
+    { url: `${BASE_URL}/blog`, lastModified: new Date(), priority: 0.8 },
+    { url: `${BASE_URL}/about`, lastModified: new Date(), priority: 0.6 },
+    { url: `${BASE_URL}/emi-calculator`, lastModified: new Date(), priority: 0.6 },
+    { url: `${BASE_URL}/contact`, lastModified: new Date(), priority: 0.5 },
+    { url: `${BASE_URL}/faq`, lastModified: new Date(), priority: 0.5 },
+    { url: `${BASE_URL}/privacy-policy`, lastModified: new Date(), priority: 0.3 },
+    { url: `${BASE_URL}/terms`, lastModified: new Date(), priority: 0.3 },
   ];
 
   try {
