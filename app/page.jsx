@@ -28,8 +28,10 @@ export const metadata = {
     url: "https://get-credit.in",
   },
   twitter: {
-    title: "Home Loan & Personal Loan Consultant in Ambernath, Thane | Get Credit",
-    description: "Get Credit is a premier loan consultancy and DSA in Ambernath, Thane, offering home, personal, business, and education loans with 50+ banking partners.",
+    card: 'summary_large_image',
+    title: 'Home Loan & Personal Loan Consultant in Ambernath, Thane | Get Credit',
+    description: 'Get Credit is a premier loan consultancy and DSA in Ambernath, Thane, offering home, personal, business, and education loans with 50+ banking partners.',
+    images: ['https://get-credit.in/Logo.jpeg'],
   }
 };
 
