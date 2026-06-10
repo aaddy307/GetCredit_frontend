@@ -1,6 +1,10 @@
-export default function robots() {
-  return {
-    rules: [{ userAgent: '*', allow: '/', disallow: '/admin/' }],
-    sitemap: 'https://get-credit.in/sitemap.xml',
-  }
-}
+User-agent: *
+Allow: /
+
+# Important pages
+Sitemap: https://get-credit.in/sitemap.xml
+
+# Optional: Block internal/admin routes if they exist
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
