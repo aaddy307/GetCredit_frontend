@@ -287,7 +287,7 @@ export default function BlogView() {
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
           <div className="bg-white rounded-2xl shadow-xl w-full md:max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-            <div className="flex items-center justify-between p-4 border-b flex-shrink-0">
+            <div className="flex items-center justify-between p-4 border-b shrink-0">
               <h2 className="text-lg font-semibold text-gray-900">{editingBlog ? 'Edit Blog' : 'Add New Blog'}</h2>
               <div className="flex items-center gap-2">
                 <button onClick={() => setPreviewMode(!previewMode)} className="p-2 hover:bg-gray-100 rounded-lg" title={previewMode ? "Edit" : "Preview"}>
@@ -340,7 +340,7 @@ export default function BlogView() {
                 <p className="text-xs text-gray-400 mt-1">Supports Markdown formatting</p>
               </div>
 
-              <div className="flex gap-3 pt-2 flex-shrink-0">
+              <div className="flex gap-3 pt-2 shrink-0">
                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-2.5 border border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50">Cancel</button>
                 <button type="submit" className="flex-1 py-2.5 bg-[#C9A84C] text-white rounded-xl hover:bg-[#A8892A]">{editingBlog ? 'Update' : 'Add'} Blog</button>
               </div>

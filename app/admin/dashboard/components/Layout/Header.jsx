@@ -69,7 +69,7 @@ export default function Header({ onMenuClick, onTabChange }) {
   };
 
   return (
-    <header className="h-16 bg-white border-b border-gray-200 px-2 sm:px-4 flex items-center flex-shrink-0">
+    <header className="h-16 bg-white border-b border-gray-200 px-2 sm:px-4 flex items-center shrink-0">
       <div className="flex items-center justify-between gap-4 w-full">
         <button
           onClick={onMenuClick}
@@ -124,7 +124,7 @@ export default function Header({ onMenuClick, onTabChange }) {
         </div>
 
         <div className="flex items-center gap-2 pl-2 border-l border-gray-200">
-          <div className="w-9 h-9 bg-gradient-to-br from-[#C9A84C] to-[#A8892A] rounded-full flex items-center justify-center">
+          <div className="w-9 h-9 bg-linear-to-br from-[#C9A84C] to-[#A8892A] rounded-full flex items-center justify-center">
             <span className="text-white text-sm font-medium">{user?.name?.charAt(0)?.toUpperCase() || 'A'}</span>
           </div>
           <div className="hidden sm:block">

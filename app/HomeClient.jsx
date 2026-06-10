@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Home, Building2, GraduationCap, User, Briefcase, Car, Award, Clock, Users, ShieldCheck, ArrowRight } from "lucide-react";
+import { Home, Building2, GraduationCap, User, Briefcase, Car, Award, Clock, Users, ShieldCheck, ArrowRight, ChevronDown, Banknote, TrendingUp, FileCheck } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -10,6 +10,53 @@ import LoanCard from "@/components/ui/LoanCard";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import WhatsAppPopup from "@/components/ui/WhatsAppPopup";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is the minimum CIBIL score required for a home loan?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Most banks require a minimum CIBIL score of 650-700 for home loans. However, with Get Credit's tie-ups with 50+ banking partners, we can help you find suitable options even with lower scores."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "How much loan can I get for a home loan consultant in India?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Home loans in India can go up to ₹15 Crore depending on your income, property value, and credit profile. As a trusted home loan consultant, Get Credit helps you secure the maximum loan amount at competitive interest rates."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "What documents are required for personal loan DSA application?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Basic documents include identity proof (Aadhaar/PAN), address proof, income documents (salary slips or ITR for 2 years), bank statements (6 months), and property documents for home loans or LAP."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Can I get an education loan for abroad studies without collateral?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, education loans for abroad studies up to ₹1.5 Crore are available without collateral through Get Credit's partner banks. We specialize in instant personal loan and education loan processing for students."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "What is loan against property and how does it work?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Loan against property (LAP) is a secured loan where you pledge your residential, commercial property, or plot as collateral. You can get funding up to ₹30 Crore at lower interest rates compared to unsecured loans."
+      }
+    }
+  ]
+};
 
 const loanCategories = [
   { icon: User, title: "Personal Loan", description: "Quick funds with same-day disbursement and rates starting from 9.99%.", href: "/services#personal-loan", best: true },
@@ -63,6 +110,11 @@ export default function HomeClient({ initialBlogs }) {
 
   return (
     <>
+      <script
+        id="faq-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Navbar />
       <main>
         <HeroSection />
@@ -188,7 +240,7 @@ export default function HomeClient({ initialBlogs }) {
               ) : blogs.length > 0 ? (
                 blogs.map((blog, index) => (
                   <GlassCard key={blog._id || index} delay={index * 0.1} hover className="overflow-hidden p-0 group">
-                    <div className="h-48 bg-gradient-to-br from-[#C9A84C]/10 to-[#F5F3EE] flex items-center justify-center">
+                    <div className="h-48 bg-linear-to-br from-[#C9A84C]/10 to-[#F5F3EE] flex items-center justify-center">
                       <span className="text-6xl text-[#C9A84C]/30">📰</span>
                     </div>
                     <div className="p-6">
@@ -213,7 +265,7 @@ export default function HomeClient({ initialBlogs }) {
           </div>
         </section>
 
-        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-gradient-to-r from-[#C9A84C] to-[#E5C76B]">
+        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-linear-to-r from-[#C9A84C] to-[#E5C76B]">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
               Ready to Get Your Dream Home?
@@ -228,6 +280,72 @@ export default function HomeClient({ initialBlogs }) {
             </Link>
           </div>
         </motion.section>
+
+        <section className="py-20 bg-[#F5F3EE]">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">
+                Frequently Asked <span className="text-[#C9A84C]">Questions</span>
+              </h2>
+              <p className="text-gray-500 max-w-2xl mx-auto">
+                Find answers to common questions about our loan services
+              </p>
+            </motion.div>
+            <div className="space-y-4">
+              {[
+                { q: "What is the minimum CIBIL score required for a home loan?", a: "Most banks require a minimum CIBIL score of 650-700 for home loans. However, with Get Credit's tie-ups with 50+ banking partners, we can help you find suitable options even with lower scores." },
+                { q: "How much loan can I get as a home loan consultant in India?", a: "Home loans in India can go up to ₹15 Crore depending on your income, property value, and credit profile. As a trusted home loan consultant, Get Credit helps you secure the maximum loan amount at competitive interest rates." },
+                { q: "What documents are required for personal loan DSA application?", a: "Basic documents include identity proof (Aadhaar/PAN), address proof, income documents (salary slips or ITR for 2 years), bank statements (6 months), and property documents for home loans or LAP." },
+                { q: "Can I get an education loan for abroad studies without collateral?", a: "Yes, education loans for abroad studies up to ₹1.5 Crore are available without collateral through Get Credit's partner banks. We specialize in instant personal loan and education loan processing for students." },
+                { q: "What is loan against property and how does it work?", a: "Loan against property (LAP) is a secured loan where you pledge your residential, commercial property, or plot as collateral. You can get funding up to ₹30 Crore at lower interest rates compared to unsecured loans." },
+              ].map((faq, index) => (
+                <details key={index} className="group bg-white rounded-xl shadow-sm border border-gray-100">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+                    <span className="text-lg font-semibold text-gray-800">{faq.q}</span>
+                    <ChevronDown className="w-5 h-5 text-[#C9A84C] group-open:rotate-180 transition-transform" />
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-500 leading-relaxed">
+                    {faq.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Link href="/faq" className="text-[#C9A84C] hover:underline font-medium">
+                View All FAQs →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">
+                Our <span className="text-[#C9A84C]">Process</span>
+              </h2>
+              <p className="text-gray-500 max-w-2xl mx-auto">
+                Simple four-step process to get your loan approved
+              </p>
+            </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                { icon: FileCheck, title: "Apply", description: "Fill out our simple online form with your loan requirements and basic details." },
+                { icon: Banknote, title: "Documents", description: "Submit required documents digitally - ID proof, income proof, and property details." },
+                { icon: TrendingUp, title: "Bank Match", description: "Our algorithm matches you with the best-suited banks and loan products from our 50+ partners." },
+                { icon: Award, title: "Disbursal", description: "Get your loan amount disbursed directly to your account within 24-48 hours of approval." },
+              ].map((step, index) => (
+                <GlassCard key={index} delay={index * 0.1} className="text-center">
+                  <div className="w-14 h-14 bg-[#C9A84C]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <step.icon className="w-7 h-7 text-[#C9A84C]" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{step.title}</h3>
+                  <p className="text-gray-500 text-sm">{step.description}</p>
+                </GlassCard>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
       <WhatsAppPopup />
       <Footer />

@@ -182,7 +182,7 @@ export default function EmailView() {
                 onClick={() => { setActiveTab('compose'); setShowTemplates(false); }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   activeTab === 'compose'
-                    ? 'bg-gradient-to-r from-[#C9A84C]/10 to-[#E5C76B]/10 text-[#8B7A2E] border border-[#C9A84C]/30'
+                    ? 'bg-linear-to-r from-[#C9A84C]/10 to-[#E5C76B]/10 text-[#8B7A2E] border border-[#C9A84C]/30'
                     : 'text-gray-600 hover:bg-gray-50 border border-transparent'
                 }`}
               >
@@ -223,7 +223,7 @@ export default function EmailView() {
         <div className="flex-1 min-w-0">
           <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
             {selectedTemplate !== 'blank' && (
-              <div className="px-6 pt-5 pb-3 bg-gradient-to-r from-[#C9A84C]/5 to-[#E5C76B]/5 border-b border-[#C9A84C]/10">
+              <div className="px-6 pt-5 pb-3 bg-linear-to-r from-[#C9A84C]/5 to-[#E5C76B]/5 border-b border-[#C9A84C]/10">
                 <div className="flex items-center gap-2 text-sm text-[#8B7A2E] font-medium">
                   <FileText className="w-4 h-4" />
                   <span>Template: {templates.find(t => t.id === selectedTemplate)?.label}</span>
@@ -314,7 +314,7 @@ export default function EmailView() {
               <button
                 type="submit"
                 disabled={sending}
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#C9A84C] to-[#B8943D] text-white rounded-xl font-medium text-sm hover:from-[#B8943D] hover:to-[#A8892A] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-linear-to-r from-[#C9A84C] to-[#B8943D] text-white rounded-xl font-medium text-sm hover:from-[#B8943D] hover:to-[#A8892A] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
               >
                 {sending ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

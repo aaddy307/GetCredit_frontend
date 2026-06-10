@@ -2,6 +2,8 @@ const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http:
 
 const nextConfig = {
   output: 'standalone',
+  poweredByHeader: false,
+  compress: true,
   async rewrites() {
     return [
       {
@@ -36,6 +38,9 @@ const nextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'get-credit.in' },
+    ],
   },
 };
 

@@ -12,7 +12,7 @@ export default function AboutPage() {
     <>
       <Navbar />
       <main className="pt-20">
-        <section className="py-20 bg-gradient-to-b from-white to-[#F5F3EE]">
+        <section className="py-20 bg-linear-to-b from-white to-[#F5F3EE]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -35,7 +35,7 @@ export default function AboutPage() {
                 </Link>
               </div>
               <div className="relative">
-                <div className="aspect-square bg-gradient-to-br from-[#C9A84C]/10 to-[#F5F3EE] rounded-3xl flex items-center justify-center border border-[#C9A84C]/10">
+                <div className="aspect-square bg-linear-to-br from-[#C9A84C]/10 to-[#F5F3EE] rounded-3xl flex items-center justify-center border border-[#C9A84C]/10">
                   <div className="text-center">
                     <span className="text-8xl">&#x1F3E6;</span>
                     <p className="text-[#C9A84C] mt-4 font-semibold">Since 2026</p>
@@ -50,7 +50,7 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <GlassCard hover className="flex gap-6">
-                <div className="w-16 h-16 bg-[#C9A84C]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="w-16 h-16 bg-[#C9A84C]/10 rounded-full flex items-center justify-center shrink-0">
                   <Target className="w-8 h-8 text-[#C9A84C]" />
                 </div>
                 <div>
@@ -63,7 +63,7 @@ export default function AboutPage() {
                 </div>
               </GlassCard>
               <GlassCard hover className="flex gap-6">
-                <div className="w-16 h-16 bg-[#C9A84C]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="w-16 h-16 bg-[#C9A84C]/10 rounded-full flex items-center justify-center shrink-0">
                   <Eye className="w-8 h-8 text-[#C9A84C]" />
                 </div>
                 <div>
@@ -79,7 +79,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-gradient-to-r from-[#C9A84C] to-[#E5C76B]">
+        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-linear-to-r from-[#C9A84C] to-[#E5C76B]">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
               Ready to Get Started?

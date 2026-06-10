@@ -6,7 +6,7 @@ export default function Error({ error, reset }) {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen flex items-center justify-center pt-20 bg-gradient-to-b from-white to-[#F5F3EE]">
+      <div className="min-h-screen flex items-center justify-center pt-20 bg-linear-to-b from-white to-[#F5F3EE]">
         <div className="text-center px-4">
           <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
             <span className="text-4xl">⚠️</span>

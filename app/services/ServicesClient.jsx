@@ -36,7 +36,7 @@ export default function ServicesPage() {
     <>
       <Navbar />
       <main className="pt-20">
-        <section className="py-20 bg-gradient-to-b from-white to-[#F5F3EE]">
+        <section className="py-20 bg-linear-to-b from-white to-[#F5F3EE]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <span className="text-[#C9A84C] font-medium">Our Services</span>
@@ -56,7 +56,7 @@ export default function ServicesPage() {
                 <section key={service.id} id={service.id} className="py-16">
                   <GlassCard className={`p-8 md:p-12 relative ${service.priority ? 'ring-2 ring-[#C9A84C]/40 shadow-lg shadow-[#C9A84C]/10' : ''}`}>
                     {service.priority && (
-                      <div className="absolute -top-3 right-6 bg-gradient-to-r from-[#C9A84C] to-[#E5C76B] text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg z-10">
+                      <div className="absolute -top-3 right-6 bg-linear-to-r from-[#C9A84C] to-[#E5C76B] text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg z-10">
                         <Award className="w-3 h-3" />
                         Best in Class
                       </div>
@@ -64,7 +64,7 @@ export default function ServicesPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                       <div>
                         <div className="flex items-center gap-4 mb-6">
-                          <div className={`w-16 h-16 rounded-full flex items-center justify-center ${service.priority ? 'bg-gradient-to-br from-[#C9A84C] to-[#E5C76B]' : 'bg-[#C9A84C]/10'}`}>
+                          <div className={`w-16 h-16 rounded-full flex items-center justify-center ${service.priority ? 'bg-linear-to-br from-[#C9A84C] to-[#E5C76B]' : 'bg-[#C9A84C]/10'}`}>
                             <Icon className={`w-8 h-8 ${service.priority ? 'text-white' : 'text-[#C9A84C]'}`} />
                           </div>
                           <h2 className={`text-3xl font-bold ${service.priority ? 'text-gray-900' : 'text-gray-800'}`}>{service.title}</h2>
@@ -151,7 +151,7 @@ export default function ServicesPage() {
                         </ul>
                         {isPersonal && (
                           <div className="mt-6 p-4 bg-blue-50/80 border border-blue-200/60 rounded-xl flex items-start gap-3">
-                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                               <Info className="w-4 h-4 text-blue-600" />
                             </div>
                             <div>
@@ -170,7 +170,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-gradient-to-r from-[#C9A84C] to-[#E5C76B]">
+        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-linear-to-r from-[#C9A84C] to-[#E5C76B]">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
               Need Help Choosing the Right Loan?

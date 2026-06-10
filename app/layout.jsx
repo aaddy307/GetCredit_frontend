@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 import ToasterProvider from "@/components/ui/ToasterProvider";
 import { ModalProvider } from "@/context/ModalContext";
 import { organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/seo";
@@ -6,32 +7,39 @@ import { organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/se
 export const metadata = {
   metadataBase: new URL("https://get-credit.in"),
   title: {
-    default: "GETCREDIT",
-    template: "%s | GETCREDIT",
+    default: "Home & Personal Loan Consultant India | Get Credit",
+    template: "%s | Get Credit",
   },
-  description: "GETCREDIT provides trusted loan assistance and financial solutions.",
+  description: "Get Credit is a trusted loan DSA in India offering home loans, personal loans, business loans, education loans and loan against property with 50+ banking partners.",
   alternates: {
     canonical: "https://get-credit.in",
   },
-  keywords: "loan, EMI calculator, home loan, education loan, loan against property, financial consultancy, personal loan, business loan, vehicle loan",
+  keywords: "home loan consultant, personal loan DSA, business loan India, education loan, loan against property, instant personal loan, MSME business loan, home loan India, best home loan",
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "GETCREDIT",
-    title: "Home Loan & Personal Loan Consultant in Ambernath, Thane | Get Credit",
-    description: "Get Credit is a premier loan consultancy and DSA in Ambernath, Thane, offering home, personal, business, and education loans with 50+ banking partners.",
+    siteName: "Get Credit",
+    title: "Home & Personal Loan Consultant India | Get Credit",
+    description: "Trusted loan DSA offering home, personal, business & education loans with 50+ banking partners across India.",
     url: "https://get-credit.in",
-    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "GETCREDIT logo" }],
+    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit logo" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Home Loan & Personal Loan Consultant in Ambernath, Thane | Get Credit",
-    description: "Get Credit is a premier loan consultancy and DSA in Ambernath, Thane, offering home, personal, business, and education loans with 50+ banking partners.",
+    title: "Home & Personal Loan Consultant India | Get Credit",
+    description: "Trusted loan DSA offering home, personal, business & education loans with 50+ banking partners across India.",
     images: ["https://get-credit.in/Logo.jpeg"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: {
     icon: "/favicon.ico",
@@ -47,6 +55,21 @@ export default function RootLayout({ children }) {
     organizationSchema(),
     websiteSchema(),
     localBusinessSchema(),
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Get Credit",
+      "url": "https://get-credit.in",
+      "description": "Trusted loan consultancy and DSA offering home loans, personal loans, business loans, education loans and loan against property across India.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ambernath",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      },
+      "areaServed": "IN",
+      "serviceType": ["Home Loan", "Personal Loan", "Business Loan", "Education Loan", "Loan Against Property"]
+    },
   ];
 
   return (
@@ -73,6 +96,18 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-config" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+          `}
+        </Script>
       </body>
     </html>
   );

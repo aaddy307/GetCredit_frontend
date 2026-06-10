@@ -756,7 +756,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
               <button
                 type="submit"
                 disabled={isSubmitting || !selectedLoanType}
-                className="w-full py-4 px-6 bg-gradient-to-r from-[#ddb000] to-[#c98800] text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-all"
+                className="w-full py-4 px-6 bg-linear-to-r from-[#ddb000] to-[#c98800] text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-all"
               >
                 {isSubmitting ? (
                   <>

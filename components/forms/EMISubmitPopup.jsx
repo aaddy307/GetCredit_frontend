@@ -265,7 +265,7 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 px-6 bg-gradient-to-r from-[#ddb000] to-[#c98800] text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-all"
+                    className="w-full py-3 px-6 bg-linear-to-r from-[#ddb000] to-[#c98800] text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-all"
                   >
                     {isSubmitting ? (
                       <>

@@ -302,7 +302,7 @@ export default function EMICalculatorPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-20 min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
+      <main className="pt-20 min-h-screen bg-linear-to-b from-white to-[#F5F3EE]">
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -362,7 +362,7 @@ export default function EMICalculatorPage() {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-8 p-6 bg-gradient-to-r from-[#C9A84C]/10 to-[#F5F3EE] rounded-xl border border-[#C9A84C]/20"
+                    className="mt-8 p-6 bg-linear-to-r from-[#C9A84C]/10 to-[#F5F3EE] rounded-xl border border-[#C9A84C]/20"
                   >
                     <div className="text-center mb-6">
                       <p className="text-gray-500 mb-2">Your Monthly EMI</p>

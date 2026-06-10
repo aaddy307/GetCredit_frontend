@@ -10,7 +10,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-20 min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
+      <main className="pt-20 min-h-screen bg-linear-to-b from-white to-[#F5F3EE]">
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
@@ -28,7 +28,7 @@ export default function ContactPage() {
                 <h2 className="text-2xl font-bold text-gray-800 mb-8">Contact Information</h2>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[#C9A84C]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-[#C9A84C]/10 rounded-full flex items-center justify-center shrink-0">
                       <Phone className="w-5 h-5 text-[#C9A84C]" />
                     </div>
                     <div>
@@ -39,7 +39,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[#C9A84C]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-[#C9A84C]/10 rounded-full flex items-center justify-center shrink-0">
                       <Mail className="w-5 h-5 text-[#C9A84C]" />
                     </div>
                     <div>
@@ -48,7 +48,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-[#C9A84C]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-[#C9A84C]/10 rounded-full flex items-center justify-center shrink-0">
                       <MapPin className="w-5 h-5 text-[#C9A84C]" />
                     </div>
                     <div>

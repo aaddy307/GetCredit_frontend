@@ -133,7 +133,7 @@ export default function BlogDetailClient({ initialData }) {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen flex items-center justify-center pt-20 bg-gradient-to-b from-white to-[#F5F3EE]">
+        <div className="min-h-screen flex items-center justify-center pt-20 bg-linear-to-b from-white to-[#F5F3EE]">
           <div className="text-center px-4">
             <div className="w-20 h-20 bg-[#C9A84C]/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="text-4xl">📄</span>
@@ -157,9 +157,9 @@ export default function BlogDetailClient({ initialData }) {
       <Navbar />
       <main className="pt-20 min-h-screen bg-white">
         {/* Hero Section */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-20 md:py-28 overflow-hidden">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="relative bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 py-20 md:py-28 overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-gray-900/80 via-transparent to-transparent" />
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <Link href="/blog" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 transition-colors text-sm">
               <ArrowLeft className="w-4 h-4" />
@@ -187,7 +187,7 @@ export default function BlogDetailClient({ initialData }) {
               </p>
             )}
             <div className="flex items-center gap-4 mt-8 pt-6 border-t border-white/10">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#C9A84C] to-[#A8892A] rounded-full flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 bg-linear-to-br from-[#C9A84C] to-[#A8892A] rounded-full flex items-center justify-center shrink-0">
                 <span className="text-white text-sm font-bold">{blog.author?.charAt(0) || 'G'}</span>
               </div>
               <div>
@@ -203,7 +203,7 @@ export default function BlogDetailClient({ initialData }) {
           <div className="flex gap-12">
             {/* Table of Contents - Desktop */}
             {headings.length > 0 && (
-              <aside className="hidden xl:block w-64 flex-shrink-0">
+              <aside className="hidden xl:block w-64 shrink-0">
                 <div className="sticky top-28">
                   <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">On this page</h4>
                   <nav className="space-y-1">
@@ -299,7 +299,7 @@ export default function BlogDetailClient({ initialData }) {
 
         {/* Related Posts */}
         {related.length > 0 && (
-          <motion.section initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="bg-gradient-to-b from-white to-[#F5F3EE] py-16">
+          <motion.section initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="bg-linear-to-b from-white to-[#F5F3EE] py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-10">
                 <span className="text-[#C9A84C] text-sm font-medium">More Articles</span>
@@ -308,7 +308,7 @@ export default function BlogDetailClient({ initialData }) {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {related.map((post) => (
                   <Link key={post._id} href={`/blog/${post.slug}`} className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:border-[#C9A84C]/20 transition-all duration-300">
-                    <div className="h-40 bg-gradient-to-br from-[#C9A84C]/5 to-gray-100 flex items-center justify-center">
+                    <div className="h-40 bg-linear-to-br from-[#C9A84C]/5 to-gray-100 flex items-center justify-center">
                       <span className="text-5xl text-[#C9A84C]/20 group-hover:scale-110 transition-transform duration-300">📰</span>
                     </div>
                     <div className="p-5">

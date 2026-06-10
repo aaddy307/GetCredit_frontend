@@ -31,7 +31,7 @@ function LoginFormContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-[#F5F3EE] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-b from-white to-[#F5F3EE] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,149,42,0.08)_0%,_transparent_50%)]" />
       
       <motion.div

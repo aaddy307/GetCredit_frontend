@@ -6,7 +6,7 @@ import Button from "../ui/Button";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16 px-4 bg-gradient-to-b from-white to-[#F5F3EE]">
+    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16 px-4 bg-linear-to-b from-white to-[#F5F3EE]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,149,42,0.08)_0%,_transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(201,149,42,0.05)_0%,_transparent_50%)]" />
       

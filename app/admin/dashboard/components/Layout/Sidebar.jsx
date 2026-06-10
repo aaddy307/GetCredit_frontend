@@ -43,9 +43,9 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
       ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       lg:translate-x-0 lg:relative lg:inset-auto lg:z-auto
     `}>
-      <div className="flex items-center justify-between h-14 px-3 sm:px-4 border-b border-gray-100 flex-shrink-0">
+      <div className="flex items-center justify-between h-14 px-3 sm:px-4 border-b border-gray-100 shrink-0">
         <div className="flex items-center gap-2">
-          <Image src="/Logo.jpeg" alt="Get Credit – Loan Consultancy Logo" width={28} height={28} className="rounded-lg object-contain flex-shrink-0" />
+          <Image src="/Logo.jpeg" alt="Get Credit – Loan Consultancy Logo" width={28} height={28} className="rounded-lg object-contain shrink-0" />
           <span className="text-lg font-bold text-gray-900 leading-none">GetCredit</span>
         </div>
         <button
@@ -67,19 +67,19 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
                 w-full flex items-center gap-3 px-2 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm font-medium
                 transition-all duration-200
                 ${activeTab === item.id
-                  ? 'bg-gradient-to-r from-[#C9A84C] to-[#B8943D] text-white shadow-lg shadow-[#C9A84C]/25'
+                  ? 'bg-linear-to-r from-[#C9A84C] to-[#B8943D] text-white shadow-lg shadow-[#C9A84C]/25'
                   : 'text-gray-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C]'
                 }
               `}
             >
-              <Icon className="w-5 h-5 flex-shrink-0" />
+              <Icon className="w-5 h-5 shrink-0" />
               <span>{item.label}</span>
             </button>
           );
         })}
       </nav>
 
-      <div className="p-2 sm:p-3 border-t border-gray-100 flex-shrink-0">
+      <div className="p-2 sm:p-3 border-t border-gray-100 shrink-0">
         <div className="px-2 mb-2">
           <p className="text-xs text-gray-400 uppercase tracking-wide">Role</p>
           <p className="text-sm font-medium text-[#C9A84C]">{ROLE_LABELS[role]}</p>
@@ -88,7 +88,7 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
           onClick={logout}
           className="w-full flex items-center gap-3 px-2 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
         >
-          <LogOut className="w-5 h-5 flex-shrink-0" />
+          <LogOut className="w-5 h-5 shrink-0" />
           <span>Logout</span>
         </button>
       </div>

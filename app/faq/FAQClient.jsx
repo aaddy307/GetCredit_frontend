@@ -61,7 +61,7 @@ export default function FAQPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-20 min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
+      <main className="pt-20 min-h-screen bg-linear-to-b from-white to-[#F5F3EE]">
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -85,7 +85,7 @@ export default function FAQPage() {
                       {faq.question}
                     </span>
                     <ChevronDown
-                      className={`w-5 h-5 text-[#C9A84C] flex-shrink-0 transition-transform ${
+                      className={`w-5 h-5 text-[#C9A84C] shrink-0 transition-transform ${
                         openIndex === index ? "rotate-180" : ""
                       }`}
                     />

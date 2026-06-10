@@ -56,7 +56,7 @@ export default function BlogClient({ initialBlogs }) {
   return (
     <>
       <Navbar />
-      <main className="pt-20 min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
+      <main className="pt-20 min-h-screen bg-linear-to-b from-white to-[#F5F3EE]">
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
@@ -97,7 +97,7 @@ export default function BlogClient({ initialBlogs }) {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredBlogs.map((blog, index) => (
                   <GlassCard key={blog._id} delay={index * 0.1} hover className="overflow-hidden p-0 group">
-                    <div className="h-48 bg-gradient-to-br from-[#C9A84C]/10 to-[#F5F3EE] flex items-center justify-center relative">
+                    <div className="h-48 bg-linear-to-br from-[#C9A84C]/10 to-[#F5F3EE] flex items-center justify-center relative">
                       <span className="text-6xl text-[#C9A84C]/30">📰</span>
                       <span className="absolute top-4 left-4 px-3 py-1 bg-[#C9A84C]/10 text-[#C9A84C] text-sm rounded-full">
                         {blog.category}

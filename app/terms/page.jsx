@@ -23,7 +23,7 @@ export default function Terms() {
   return (
     <>
       <Navbar />
-      <div className="animate-fade-in min-h-screen bg-gradient-to-b from-white to-[#F5F3EE]">
+      <div className="animate-fade-in min-h-screen bg-linear-to-b from-white to-[#F5F3EE]">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Terms & Conditions</h1>
 
