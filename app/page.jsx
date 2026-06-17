@@ -45,10 +45,10 @@ const homepageSchema = {
   "email": "support@get-credit.in",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Shivling Nagar, Near Shivling Residency",
+    "streetAddress": "Near Chinchpada Opp. New Fire Brigade",
     "addressLocality": "Ambernath West",
     "addressRegion": "Maharashtra",
-    "postalCode": "421501",
+    "postalCode": "421505",
     "addressCountry": "IN"
   },
   "areaServed": ["Ambernath", "Ulhasnagar", "Kalyan", "Thane", "Maharashtra"],

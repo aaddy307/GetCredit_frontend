@@ -63,8 +63,10 @@ export default function RootLayout({ children }) {
       "description": "Trusted loan consultancy and DSA offering home loans, personal loans, business loans, education loans and loan against property across India.",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Ambernath",
+        "streetAddress": "Near Chinchpada Opp. New Fire Brigade",
+        "addressLocality": "Ambernath West",
         "addressRegion": "Maharashtra",
+        "postalCode": "421505",
         "addressCountry": "IN"
       },
       "areaServed": "IN",
