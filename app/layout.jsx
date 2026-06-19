@@ -2,7 +2,7 @@ import "./globals.css";
 import Script from "next/script";
 import ToasterProvider from "@/components/ui/ToasterProvider";
 import { ModalProvider } from "@/context/ModalContext";
-import { organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/seo";
+import { organizationSchema, websiteSchema } from "@/lib/seo";
 
 export const metadata = {
   metadataBase: new URL("https://get-credit.in"),
