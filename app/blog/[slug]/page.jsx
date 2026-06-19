@@ -1,7 +1,7 @@
 import BlogDetailClient from "./BlogDetailClient";
 import { blogPostingSchema, breadcrumbSchema } from "@/lib/seo";
 
-const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_URL = process.env.API_URL || 'http://localhost:5000';
 
 async function getBlogData(slug) {
   try {
