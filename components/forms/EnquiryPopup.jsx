@@ -411,7 +411,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     className="space-y-4 border-t border-gold-bright/30 pt-4"
                   >
                     <h3 className="text-lg font-semibold text-gold-dark flex items-center gap-2">
-                      <Calculator className="w-5 h-5" />
+                      <Calculator className="w-5 h-5 shrink-0" />
                       {loanTypes.find(l => l.id === selectedLoanType)?.label} Details
                     </h3>
 

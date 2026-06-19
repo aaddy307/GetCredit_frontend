@@ -32,11 +32,11 @@ export default function HeroSection() {
           className="flex flex-wrap justify-center gap-3 mb-8"
         >
           <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-[gold-primary]/10 border border-[gold-primary]/20 rounded-full text-[gold-primary] text-sm font-medium">
-            <Award className="w-4 h-4" />
+            <Award className="w-4 h-4 shrink-0" />
             Best in Personal Loan
           </span>
           <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-[gold-primary]/10 border border-[gold-primary]/20 rounded-full text-[gold-primary] text-sm font-medium">
-            <Award className="w-4 h-4" />
+            <Award className="w-4 h-4 shrink-0" />
             Best in Business Loan
           </span>
         </motion.div>
@@ -49,13 +49,13 @@ export default function HeroSection() {
         >
           <Link href="/emi-calculator">
             <Button variant="primary" className="flex items-center gap-2 text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
-              <Calculator className="w-5 h-5" />
+              <Calculator className="w-5 h-5 shrink-0" />
               Calculate EMI
             </Button>
           </Link>
           <Link href="/contact">
             <Button variant="secondary" className="flex items-center gap-2 text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
-              <Phone className="w-5 h-5" />
+              <Phone className="w-5 h-5 shrink-0" />
               Contact Us
             </Button>
           </Link>

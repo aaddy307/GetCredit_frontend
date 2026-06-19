@@ -37,7 +37,7 @@ export default function LoanProductPage({ service, loanTypeMapKey }) {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div>
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-full flex items-center justify-center bg-gold-primary">
+                    <div className="w-16 h-16 rounded-full flex items-center justify-center bg-gold-primary shrink-0">
                       <Award className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -62,7 +62,7 @@ export default function LoanProductPage({ service, loanTypeMapKey }) {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <CheckCircle className="w-5 h-5 text-[gold-primary]" />
+                    <CheckCircle className="w-5 h-5 text-[gold-primary] shrink-0" />
                     <h3 className="text-lg font-semibold text-gray-800">Key Benefits</h3>
                   </div>
                   <ul className="space-y-2">
@@ -79,7 +79,7 @@ export default function LoanProductPage({ service, loanTypeMapKey }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-8 border-t border-[gold-primary]/10">
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <Clock className="w-5 h-5 text-[gold-primary]" />
+                    <Clock className="w-5 h-5 text-[gold-primary] shrink-0" />
                     <h3 className="text-lg font-semibold text-gray-800">Eligibility Criteria</h3>
                   </div>
                   <ul className="space-y-2">
@@ -93,7 +93,7 @@ export default function LoanProductPage({ service, loanTypeMapKey }) {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <FileText className="w-5 h-5 text-[gold-primary]" />
+                    <FileText className="w-5 h-5 text-[gold-primary] shrink-0" />
                     <h3 className="text-lg font-semibold text-gray-800">Required Documents</h3>
                   </div>
                   <ul className="space-y-2">

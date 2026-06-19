@@ -33,7 +33,7 @@ export default function LoanCard({ icon: Icon, title, description, href, delay =
     <GlassCard hover delay={delay} className={`text-center relative transition-all duration-300 ${best ? 'ring-2 ring-gold-primary/40 shadow-lg shadow-gold-primary/10 scale-[1.02]' : ''}`}>
       {best && (
         <div className="absolute -top-3 right-4 bg-gold-primary text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg z-10">
-          <Award className="w-3 h-3" />
+          <Award className="w-3 h-3 shrink-0" />
           Best in Class
         </div>
       )}
@@ -44,7 +44,7 @@ export default function LoanCard({ icon: Icon, title, description, href, delay =
       <p className="text-gray-500 mb-6">{description}</p>
       <Link href={href || "/emi-calculator"}>
         <Button variant={best ? "primary" : "secondary"} className="w-full flex items-center justify-center gap-2">
-          <ButtonIcon className="w-4 h-4" />
+          <ButtonIcon className="w-4 h-4 shrink-0" />
           {buttonText}
         </Button>
       </Link>

@@ -74,7 +74,7 @@ export default function ServicesPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                       <div>
                         <div className="flex items-center gap-4 mb-6">
-                          <div className={`w-16 h-16 rounded-full flex items-center justify-center ${service.priority ? 'bg-gold-primary' : 'bg-gold-primary/10'}`}>
+                          <div className={`w-16 h-16 rounded-full flex items-center justify-center shrink-0 ${service.priority ? 'bg-gold-primary' : 'bg-gold-primary/10'}`}>
                             <Icon className={`w-8 h-8 ${service.priority ? 'text-white' : 'text-gold-primary'}`} />
                           </div>
                           <h2 className={`text-3xl font-bold ${service.priority ? 'text-gray-900' : 'text-gray-800'}`}>{service.title}</h2>
@@ -103,7 +103,7 @@ export default function ServicesPage() {
                       <div className="grid gap-6">
                         <div>
                           <div className="flex items-center gap-2 mb-4">
-                            <CheckCircle className="w-5 h-5 text-[gold-primary]" />
+                            <CheckCircle className="w-5 h-5 text-[gold-primary] shrink-0" />
                             <h3 className="text-lg font-semibold text-gray-800">Benefits</h3>
                           </div>
                           <ul className="space-y-2">
@@ -121,7 +121,7 @@ export default function ServicesPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-8 border-t border-[gold-primary]/10">
                       <div>
                         <div className="flex items-center gap-2 mb-4">
-                          <Clock className="w-5 h-5 text-[gold-primary]" />
+                          <Clock className="w-5 h-5 text-[gold-primary] shrink-0" />
                           <h3 className="text-lg font-semibold text-gray-800">Eligibility Criteria</h3>
                         </div>
                         <ul className="space-y-2">
@@ -147,7 +147,7 @@ export default function ServicesPage() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-4">
-                          <FileText className="w-5 h-5 text-[gold-primary]" />
+                          <FileText className="w-5 h-5 text-[gold-primary] shrink-0" />
                           <h3 className="text-lg font-semibold text-gray-800">Required Documents</h3>
                         </div>
                         <ul className="space-y-2">

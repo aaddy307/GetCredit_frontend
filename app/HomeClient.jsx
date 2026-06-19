@@ -164,7 +164,7 @@ export default function HomeClient({ initialBlogs }) {
                   </div>
                   <p className="text-gray-600 mb-6">&quot;{testimonial.message}&quot;</p>
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gold-primary/20 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gold-primary/20 rounded-full flex items-center justify-center shrink-0">
                       <span className="text-gold-primary font-semibold">{testimonial.name.charAt(0)}</span>
                     </div>
                     <div>

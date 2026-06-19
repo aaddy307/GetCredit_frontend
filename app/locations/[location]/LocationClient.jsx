@@ -44,7 +44,7 @@ export default function LocationClient({ location }) {
                 </Link>
                 <a href="tel:+917738205198">
                   <Button variant="secondary" className="flex items-center gap-2">
-                    <Phone className="w-4 h-4" />
+                    <Phone className="w-4 h-4 shrink-0" />
                     Call Now
                   </Button>
                 </a>
@@ -72,7 +72,7 @@ export default function LocationClient({ location }) {
                   <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">{loan.title}</h3>
                   <p className="text-gray-500 text-sm text-center mb-4">{loan.description}</p>
                   <Link href={loan.href} className="flex items-center justify-center gap-2 text-gold-primary hover:underline text-sm font-medium">
-                    Learn More <ArrowRight className="w-4 h-4" />
+                    Learn More <ArrowRight className="w-4 h-4 shrink-0" />
                   </Link>
                 </GlassCard>
               ))}

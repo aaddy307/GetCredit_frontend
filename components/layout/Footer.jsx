@@ -85,16 +85,16 @@ export default function Footer() {
             <ul className="space-y-4">
               {CONTACT_INFO.phones.map((phone, i) => (
                 <li key={i} className="flex items-center gap-3 text-white/80">
-                  <Phone className="w-5 h-5 text-white" />
+                  <Phone className="w-5 h-5 text-white shrink-0" />
                   <span>{phone}</span>
                 </li>
               ))}
               <li className="flex items-center gap-3 text-white/80">
-                <Mail className="w-5 h-5 text-white" />
+                <Mail className="w-5 h-5 text-white shrink-0" />
                 <span>{CONTACT_INFO.email}</span>
               </li>
               <li className="flex items-start gap-3 text-white/80">
-                <MapPin className="w-5 h-5 text-white mt-1" />
+                <MapPin className="w-5 h-5 text-white mt-1 shrink-0" />
                 <span>{CONTACT_INFO.address}</span>
               </li>
             </ul>
