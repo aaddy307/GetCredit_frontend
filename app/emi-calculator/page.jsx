@@ -1,4 +1,30 @@
 import EmiCalculatorClient from "./EmiCalculatorClient";
+import { breadcrumbSchema } from "@/lib/seo";
+
+const breadcrumbJsonLd = breadcrumbSchema([
+  { name: 'Home', path: '/' },
+  { name: 'EMI Calculator', path: '/emi-calculator' },
+]);
+
+const webApplicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "EMI Calculator | Get Credit",
+  "description": "Free EMI calculator to calculate monthly loan repayments for home loans, personal loans, business loans, education loans, and vehicle loans.",
+  "url": "https://get-credit.in/emi-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  },
+  "browserRequirements": "Requires JavaScript",
+  "softwareHelp": {
+    "@type": "CreativeWork",
+    "url": "https://get-credit.in/emi-calculator"
+  }
+};
 
 export const metadata = {
   title: "EMI Calculator for Home, Personal & Business Loans | Get Credit",
@@ -78,9 +104,19 @@ export default function EMICalculatorPage() {
   return (
     <>
       <script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
         id="howto-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      <script
+        id="webapplication-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
       />
       <EmiCalculatorClient />
     </>

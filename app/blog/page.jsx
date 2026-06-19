@@ -44,6 +44,20 @@ const breadcrumbJsonLd = breadcrumbSchema([
   { name: 'Blog', path: '/blog' },
 ]);
 
+const collectionPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Loan Tips & Financial Guides | Get Credit Blog",
+  "description": "Read expert articles on home loans, personal loans, EMI calculation, and financial planning from Get Credit — Ambernath's trusted loan consultancy.",
+  "url": "https://get-credit.in/blog",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Get Credit",
+    "url": "https://get-credit.in",
+    "logo": "https://get-credit.in/Logo.jpeg"
+  }
+};
+
 export default async function BlogPage() {
   const blogs = await getBlogs();
 
@@ -53,6 +67,11 @@ export default async function BlogPage() {
         id="breadcrumb-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        id="collection-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }}
       />
       <BlogClient initialBlogs={blogs} />
     </>

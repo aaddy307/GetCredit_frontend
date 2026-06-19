@@ -10,53 +10,7 @@ import LoanCard from "@/components/ui/LoanCard";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import WhatsAppPopup from "@/components/ui/WhatsAppPopup";
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What is the minimum CIBIL score required for a home loan?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Most banks require a minimum CIBIL score of 650-700 for home loans. However, with Get Credit's tie-ups with 50+ banking partners, we can help you find suitable options even with lower scores."
-      }
-    },
-    {
-      "@type": "Question",
-      name: "How much loan can I get for a home loan consultant in India?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Home loans in India can go up to ₹15 Crore depending on your income, property value, and credit profile. As a trusted home loan consultant, Get Credit helps you secure the maximum loan amount at competitive interest rates."
-      }
-    },
-    {
-      "@type": "Question",
-      name: "What documents are required for personal loan DSA application?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Basic documents include identity proof (Aadhaar/PAN), address proof, income documents (salary slips or ITR for 2 years), bank statements (6 months), and property documents for home loans or LAP."
-      }
-    },
-    {
-      "@type": "Question",
-      name: "Can I get an education loan for abroad studies without collateral?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, education loans for abroad studies up to ₹1.5 Crore are available without collateral through Get Credit's partner banks. We specialize in instant personal loan and education loan processing for students."
-      }
-    },
-    {
-      "@type": "Question",
-      name: "What is loan against property and how does it work?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Loan against property (LAP) is a secured loan where you pledge your residential, commercial property, or plot as collateral. You can get funding up to ₹30 Crore at lower interest rates compared to unsecured loans."
-      }
-    }
-  ]
-};
+import { homepageFaqSchema } from "@/lib/seo";
 
 const loanCategories = [
   { icon: User, title: "Personal Loan", description: "Quick funds with same-day disbursement and rates starting from 9.99%.", href: "/services#personal-loan", best: true },
@@ -113,7 +67,7 @@ export default function HomeClient({ initialBlogs }) {
       <script
         id="faq-jsonld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageFaqSchema()) }}
       />
       <Navbar />
       <main>
