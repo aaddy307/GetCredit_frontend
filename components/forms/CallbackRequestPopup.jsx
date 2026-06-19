@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, User, Phone, Mail, MapPin, PhoneCall } from "lucide-react";
+import { api } from "@/lib/api";
 
 const API_URL = '/api';
 
@@ -35,20 +36,14 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
   const onSubmit = async (data) => {
     try {
       setIsSubmitting(true);
-      const response = await fetch(`${API_URL}/callback`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: data.fullName,
-          phone: data.phone,
-          email: data.email,
-          city: data.city || ""
-        }),
+      const result = await api.post('/callback', {
+        fullName: data.fullName,
+        phone: data.phone,
+        email: data.email,
+        city: data.city || ""
       });
 
-      const result = await response.json();
-
-      if (response.ok && result.success) {
+      if (result.data.success) {
         setSubmitted(true);
         toast.success("We'll call you soon!", { id: 'callback-success' });
         setTimeout(() => {
@@ -56,10 +51,10 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
           reset();
           onClose();
         }, 2500);
-      } else if (result.errors) {
-        toast.error(result.errors.join(', '), { id: 'callback-error' });
+      } else if (result.data.errors) {
+        toast.error(result.data.errors.join(', '), { id: 'callback-error' });
       } else {
-        toast.error(result.message || "Something went wrong.", { id: 'callback-error' });
+        toast.error(result.data.message || "Something went wrong.", { id: 'callback-error' });
       }
     } catch (error) {
       console.error('Callback error:', error);

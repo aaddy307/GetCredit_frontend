@@ -1,13 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { SERVICES, QUICK_LINKS, SOCIAL_LINKS, CONTACT_INFO } from "@/lib/constants";
 
 export default function Footer() {
-  const [currentYear, setCurrentYear] = useState(2026);
-  useEffect(() => { setCurrentYear(new Date().getFullYear()); }, []);
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-linear-to-r from-[#C9A84C] to-[#E5C76B] mt-16">

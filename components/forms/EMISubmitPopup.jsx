@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, User, Phone, Mail, Calculator } from "lucide-react";
+import { api } from "@/lib/api";
 
 const API_URL = '/api';
 
@@ -76,15 +77,9 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
         vehicleType: loanData.vehicleType || 'New Car'
       };
 
-      const response = await fetch(`${API_URL}/emi/${endpoint}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const result = await api.post(`/emi/${endpoint}`, payload);
 
-      const result = await response.json();
-
-      if (response.ok && result.success) {
+      if (result.data.success) {
         setSubmitted(true);
         if (onLeadSubmitted) onLeadSubmitted();
         toast.success("Thank you! Your enquiry has been submitted. Our executive will contact you within 24 hours.", { id: 'emi-success' });
@@ -93,11 +88,11 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
           reset();
           onClose();
         }, 2000);
-      } else if (result.errors) {
-        const errorMsg = result.errors.join(', ');
+      } else if (result.data.errors) {
+        const errorMsg = result.data.errors.join(', ');
         toast.error(errorMsg, { id: 'emi-error' });
       } else {
-        toast.error(result.message || "Something went wrong. Please try again.", { id: 'emi-error' });
+        toast.error(result.data.message || "Something went wrong. Please try again.", { id: 'emi-error' });
       }
     } catch (error) {
       console.error('EMI enquiry error:', error);

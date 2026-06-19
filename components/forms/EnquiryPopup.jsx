@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Home, GraduationCap, Building2, User, Phone, Mail, MapPin, Calculator, Briefcase, Car, Wallet } from "lucide-react";
-
-const API_URL = '/api';
+import { api } from "@/lib/api";
 
 const loanTypes = [
   { id: "home", label: "Home Loan", icon: Home },
@@ -189,38 +188,34 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
 
     try {
       setIsSubmitting(true);
-      const response = await fetch(`${API_URL}/enquiry`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            fullName: data.fullName,
-            phone: data.phone,
-            email: data.email,
-            city: data.city,
-            loanType: getLoanTypeLabel(selectedLoanType),
-            loanAmount: parseInt(data.loanAmount) || 0,
-            interestRate: interestRate,
-            tenure: parseInt(data.tenure) || 0,
-            tenureUnit: unit,
-            emi: emi,
-            propertyType: data.propertyType,
-            propertyLocation: data.propertyLocation,
-            propertyValue: parseInt(data.propertyValue) || 0,
-            employmentType: data.employmentType,
-            qualification: data.qualification,
-            degree: data.degree,
-            institutionName: data.institutionName,
-            businessVintage: data.businessVintage ? parseInt(data.businessVintage) : undefined,
-            vehicleType: data.vehicleType,
-            downPayment: data.downPayment ? parseInt(data.downPayment) : 0,
-            leadSource: leadSource,
-            websiteUrl: data.websiteUrl
-          }),
-      });
+      const payload = {
+        fullName: data.fullName,
+        phone: data.phone,
+        email: data.email,
+        city: data.city,
+        loanType: getLoanTypeLabel(selectedLoanType),
+        loanAmount: parseInt(data.loanAmount) || 0,
+        interestRate: interestRate,
+        tenure: parseInt(data.tenure) || 0,
+        tenureUnit: unit,
+        emi: emi,
+        propertyType: data.propertyType,
+        propertyLocation: data.propertyLocation,
+        propertyValue: parseInt(data.propertyValue) || 0,
+        employmentType: data.employmentType,
+        qualification: data.qualification,
+        degree: data.degree,
+        institutionName: data.institutionName,
+        businessVintage: data.businessVintage ? parseInt(data.businessVintage) : undefined,
+        vehicleType: data.vehicleType,
+        downPayment: data.downPayment ? parseInt(data.downPayment) : 0,
+        leadSource: leadSource,
+        websiteUrl: data.websiteUrl
+      };
 
-      const result = await response.json();
+      const result = await api.post('/enquiry', payload);
 
-      if (response.ok && result.success) {
+      if (result.data.success) {
         setSubmitted(true);
         toast.success("Thank you! Your enquiry has been submitted. Our executive will contact you within 24 hours.", { id: 'enquiry-success' });
         setTimeout(() => {
@@ -229,7 +224,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
           onClose();
         }, 2000);
       } else {
-        toast.error(result.message || "Something went wrong. Please try again.", { id: 'enquiry-error' });
+        toast.error(result.data.message || "Something went wrong. Please try again.", { id: 'enquiry-error' });
       }
     } catch (error) {
       console.error('Enquiry error:', error);
