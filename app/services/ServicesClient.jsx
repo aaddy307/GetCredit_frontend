@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import { Home, Building2, GraduationCap, User, Briefcase, Car, Award, CheckCircle, FileText, Clock, ArrowRight, Info } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -48,7 +47,7 @@ export default function ServicesPage() {
       <main className="pt-20">
         <section className="py-20 bg-linear-to-b from-white to-bg-tertiary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
+            <div className="text-center mb-16 animate-fade-in-up">
               <span className="text-gold-primary font-medium">Our Services</span>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-4">
                 Comprehensive Loan <span className="text-gold-primary">Solutions</span>
@@ -56,7 +55,7 @@ export default function ServicesPage() {
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Choose from our wide range of loan products designed to meet your specific needs
               </p>
-            </motion.div>
+            </div>
 
             {SERVICES.map((service, index) => {
               const Icon = serviceIcons[service.title] || User;
@@ -179,8 +178,8 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-gold-primary">
-          <div className="max-w-4xl mx-auto px-4 text-center">
+        <section className="py-20 bg-gold-primary">
+          <div className="max-w-4xl mx-auto px-4 text-center animate-fade-in-up">
             <h2 className="text-4xl font-bold text-white mb-4">
               Need Help Choosing the Right Loan?
             </h2>
@@ -193,7 +192,7 @@ export default function ServicesPage() {
               </Button>
             </Link>
           </div>
-        </motion.section>
+        </section>
       </main>
       <Footer />
     </>

@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
@@ -175,7 +174,7 @@ export default function BlogDetailClient({ initialData }) {
           </div>
         </div>
         {/* Hero Section */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="relative bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 py-20 md:py-28 overflow-hidden">
+        <div className="animate-fade-in-up relative bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 py-20 md:py-28 overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
           <div className="absolute inset-0 bg-linear-to-t from-gray-900/80 via-transparent to-transparent" />
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -214,7 +213,7 @@ export default function BlogDetailClient({ initialData }) {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Content Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -317,7 +316,7 @@ export default function BlogDetailClient({ initialData }) {
 
         {/* Related Posts */}
         {related.length > 0 && (
-          <motion.section initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="bg-linear-to-b from-white to-bg-tertiary py-16">
+          <section className="animate-fade-in-up bg-linear-to-b from-white to-bg-tertiary py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-10">
                 <span className="text-[gold-primary] text-sm font-medium">More Articles</span>
@@ -349,7 +348,7 @@ export default function BlogDetailClient({ initialData }) {
                 </Link>
               </div>
             </div>
-          </motion.section>
+          </section>
         )}
       </main>
       <Footer />

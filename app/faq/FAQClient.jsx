@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import { ChevronDown } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -137,34 +137,26 @@ export default function FAQPage() {
                       />
                     </button>
                   </h3>
-                  <AnimatePresence>
-                    {openIndex === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                        id={`faq-answer-${index}`}
-                        role="listitem"
-                        aria-labelledby={`faq-question-${index}`}
-                      >
-                        <div className="px-6 pb-6">
-                          <p className="text-gray-500 leading-relaxed">
-                            {faq.answerParts.map((part, i) =>
-                              typeof part === "string" ? (
-                                part
-                              ) : (
-                                <Link key={i} href={part.link} className="text-gold-primary hover:underline font-medium">
-                                  {part.text}
-                                </Link>
-                              )
-                            )}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <div
+                    id={`faq-answer-${index}`}
+                    role="listitem"
+                    aria-labelledby={`faq-question-${index}`}
+                    className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                  >
+                    <div className="px-6 pb-6">
+                      <p className="text-gray-500 leading-relaxed">
+                        {faq.answerParts.map((part, i) =>
+                          typeof part === "string" ? (
+                            part
+                          ) : (
+                            <Link key={i} href={part.link} className="text-gold-primary hover:underline font-medium">
+                              {part.text}
+                            </Link>
+                          )
+                        )}
+                      </p>
+                    </div>
+                  </div>
                 </GlassCard>
               ))}
             </div>

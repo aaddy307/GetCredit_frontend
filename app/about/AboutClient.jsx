@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import { Target, Eye, Users, Award, Clock, ShieldCheck, Building2, Phone } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
@@ -34,7 +33,7 @@ export default function AboutPage() {
       <main className="pt-20">
         <section className="py-20 bg-linear-to-b from-white to-bg-tertiary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-fade-in-up">
               <div>
                 <span className="text-gold-primary font-medium">About Get Credit</span>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-6">
@@ -76,16 +75,16 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         <section className="py-20 bg-bg-tertiary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
+            <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">Why People Choose Us</h2>
               <p className="text-gray-500 max-w-2xl mx-auto">Our track record speaks for itself. Here is what sets us apart from other loan consultancies in the region.</p>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
                 <GlassCard key={index} hover className="text-center">
@@ -134,15 +133,15 @@ export default function AboutPage() {
 
         <section className="py-20 bg-bg-tertiary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
+            <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">Our Core Values</h2>
               <p className="text-gray-500 max-w-2xl mx-auto">These principles guide every interaction we have with our customers and banking partners.</p>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {values.map((value, index) => (
                 <GlassCard key={index} hover className="flex gap-6">
                   <div className="w-16 h-16 bg-gold-primary/10 rounded-full flex items-center justify-center shrink-0">
-                    <value.icon className="w-8 h-8 text-gold-primary" />
+                    <value.icon className="w-8 h-8 text-gold-primary" aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-800 mb-3">{value.title}</h3>
@@ -156,15 +155,15 @@ export default function AboutPage() {
 
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
+            <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">What We Offer</h2>
               <p className="text-gray-500 max-w-2xl mx-auto">Our comprehensive range of loan services covers all your financial needs.</p>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {teamValues.map((item, index) => (
                 <GlassCard key={index} hover className="text-center">
                   <div className="w-16 h-16 bg-gold-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <item.icon className="w-8 h-8 text-gold-primary" />
+                    <item.icon className="w-8 h-8 text-gold-primary" aria-hidden="true" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-3">{item.title}</h3>
                   <p className="text-gray-500">{item.description}</p>
@@ -174,7 +173,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-gold-primary">
+        <section className="py-20 bg-gold-primary">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
               Ready to Get Your Dream Loan?
@@ -196,7 +195,7 @@ export default function AboutPage() {
               </Link>
             </div>
           </div>
-        </motion.section>
+        </section>
       </main>
       <Footer />
     </>

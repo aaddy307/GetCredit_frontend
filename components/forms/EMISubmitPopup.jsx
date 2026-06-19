@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
+
 import { X, User, Phone, Mail, Calculator } from "lucide-react";
 import { api } from "@/lib/api";
 

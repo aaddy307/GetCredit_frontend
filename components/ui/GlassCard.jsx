@@ -1,25 +1,22 @@
-"use client";
-import { motion } from "framer-motion";
-
 export default function GlassCard({ children, className = "", hover = false, delay = 0 }) {
+  const delayClass = delay > 0 ? `delay-${Math.min(delay * 100, 600)}` : "";
+  
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.5, delay }}
+    <div
       className={`
         relative
         bg-white
-        border border-gold-primary/55
+        border border-[rgba(153,102,51,0.35)]
         rounded-2xl
         p-4 sm:p-6
-        shadow-[0_4px_24px_rgba(201,168,76,0.12)]
-        ${hover ? "hover:shadow-[0_8px_32px_rgba(201,168,76,0.18)] hover:border-gold-primary/90 transition-all duration-300" : ""}
+        shadow-[0_4px_24px_rgba(153,102,51,0.12)]
+        animate-fade-in-up
+        ${delayClass}
+        ${hover ? "hover:shadow-[0_8px_32px_rgba(153,102,51,0.18)] hover:border-[rgba(153,102,51,0.6)] transition-all duration-300" : ""}
         ${className}
       `}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

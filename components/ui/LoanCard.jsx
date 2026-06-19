@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { Home, Building2, GraduationCap, User, Briefcase, Car, Award, Users } from "lucide-react";
 import GlassCard from "./GlassCard";

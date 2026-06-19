@@ -88,6 +88,33 @@ export default async function sitemap() {
     },
   ];
 
+    const locationRoutes = [
+    {
+      url: `${BASE_URL}/locations/ambernath`,
+      lastModified: today,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/locations/thane`,
+      lastModified: today,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/locations/kalyan`,
+      lastModified: today,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/locations/ulhasnagar`,
+      lastModified: today,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+  ];
+
   const loanProductRoutes = [
     {
       url: `${BASE_URL}/personal-loan`,
@@ -140,5 +167,5 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...loanProductRoutes, ...blogRoutes];
+  return [...staticRoutes, ...locationRoutes, ...loanProductRoutes, ...blogRoutes];
 }

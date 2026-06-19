@@ -34,6 +34,10 @@
   --radius-lg: 1rem;
 }
 
+.gold-text-accessible {
+  color: #996633;
+}
+
 @theme inline {
   --color-bg-primary: var(--bg-primary);
   --color-bg-secondary: var(--bg-secondary);
@@ -67,8 +71,68 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 500px; }
+}
+
+@keyframes slideUp {
+  from { opacity: 1; max-height: 500px; }
+  to { opacity: 0; max-height: 0; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+  overflow: hidden;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+  overflow: hidden;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
 }
 
 ::-webkit-scrollbar {

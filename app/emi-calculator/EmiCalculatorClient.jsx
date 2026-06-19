@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { motion } from "framer-motion";
 import { Home, Building2, GraduationCap, Calculator, User, Briefcase, Car } from "lucide-react";
 import toast from "react-hot-toast";
 import Navbar from "@/components/layout/Navbar";
@@ -361,11 +360,7 @@ export default function EMICalculatorPage() {
                 </form>
 
                 {emiResult && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-8 p-6 bg-linear-to-r from-gold-primary/10 to-bg-tertiary rounded-xl border border-gold-primary/20"
-                  >
+                  <div className="animate-scale-in mt-8 p-6 bg-linear-to-r from-gold-primary/10 to-bg-tertiary rounded-xl border border-gold-primary/20">
                     <div className="text-center mb-6">
                       <p className="text-gray-500 mb-2">Your Monthly EMI</p>
                       <p className="text-5xl font-bold text-gold-primary">
@@ -409,7 +404,7 @@ export default function EMICalculatorPage() {
                     <p className="text-gray-600 text-center mt-4 text-sm">
                       Tenure: <span className="text-gold-primary font-semibold">{emiResult.tenure} {emiResult.tenureUnit}</span>
                     </p>
-                  </motion.div>
+                  </div>
                 )}
               </GlassCard>
             </div>

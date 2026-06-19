@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -13,17 +12,17 @@ export default function ContactPage() {
       <main className="pt-20 min-h-screen bg-linear-to-b from-white to-bg-tertiary">
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
-              <span className="text-[gold-primary] font-medium">Contact Us</span>
+            <div className="text-center mb-12 animate-fade-in-up">
+              <span className="text-gold-primary font-medium">Contact Us</span>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-4">
-                Get In <span className="text-[gold-primary]">Touch</span>
+                Get In <span className="text-gold-primary">Touch</span>
               </h1>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} className="max-w-3xl mx-auto">
+            <div className="max-w-3xl mx-auto animate-fade-in-up delay-100">
               <GlassCard className="p-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-8">Contact Information</h2>
                 <div className="space-y-6">
@@ -83,7 +82,7 @@ export default function ContactPage() {
                   </div>
                 </div>
               </GlassCard>
-            </motion.div>
+            </div>
 
           </div>
         </section>

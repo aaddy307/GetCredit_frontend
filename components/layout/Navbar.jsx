@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ArrowRight } from "lucide-react";
 import { useModal } from "@/context/ModalContext";
 
@@ -29,25 +28,32 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   return (
     <>
       <nav
         role="navigation"
         aria-label="Main navigation"
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-        style={{ 
-          height: "68px",
-          background: scrolled 
-            ? "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%)" 
-            : "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
-          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "blur(16px) saturate(150%)",
-          boxShadow: scrolled ? "0 4px 30px rgba(201,149,42,0.1)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(201,149,42,0.15)" : "1px solid rgba(201,149,42,0.08)"
-        }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-white/98 backdrop-blur-xl shadow-[0_4px_30px_rgba(153,102,51,0.1)] border-b border-[rgba(153,102,51,0.15)]"
+            : "bg-white/95 backdrop-blur-md border-b border-[rgba(153,102,51,0.08)]"
+        }`}
+        style={{ height: "68px" }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-full">
           <div className="flex items-center justify-between h-full">
@@ -65,12 +71,12 @@ export default function Navbar() {
                     key={link.name}
                     href={link.href}
                     className={`relative text-sm transition-colors ${
-                      pathname === link.href ? "text-[gold-primary]" : "text-gray-600 hover:text-[gold-primary]"
+                      pathname === link.href ? "text-gold-primary" : "text-gray-600 hover:text-gold-primary"
                     }`}
                   >
                     {link.name}
                     {pathname === link.href && (
-                      <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-gold-primary shadow-[0_0_10px_rgba(201,149,42,0.5)]" />
+                      <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-gold-primary shadow-[0_0_10px_rgba(201,168,76,0.5)]" />
                     )}
                   </Link>
                 ))}
@@ -82,12 +88,12 @@ export default function Navbar() {
                     key={link.name}
                     href={link.href}
                     className={`relative text-sm transition-colors ${
-                      pathname === link.href ? "text-[gold-primary]" : "text-gray-600 hover:text-[gold-primary]"
+                      pathname === link.href ? "text-gold-primary" : "text-gray-600 hover:text-gold-primary"
                     }`}
                   >
                     {link.name}
                     {pathname === link.href && (
-                      <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-gold-primary shadow-[0_0_10px_rgba(201,149,42,0.5)]" />
+                      <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-gold-primary shadow-[0_0_10px_rgba(201,168,76,0.5)]" />
                     )}
                   </Link>
                 ))}
@@ -97,27 +103,26 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-5">
               <button
                 onClick={() => openCallback()}
-                className="group flex items-center gap-2 px-4 py-2 border border-[gold-primary] rounded-lg text-[gold-primary] hover:bg-gold-primary hover:text-white transition-all duration-200 text-sm font-medium"
+                className="group flex items-center gap-2 px-4 py-2 border border-gold-primary rounded-lg text-gold-primary hover:bg-gold-primary hover:text-white transition-all duration-200 text-sm font-medium"
               >
                 <div className="relative">
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-4 h-4" aria-hidden="true" />
                 </div>
                 Request Callback
               </button>
 
               <button
                 onClick={() => openEnquiry()}
-                className="group flex items-center gap-2 px-5 py-2.5 bg-gold-primary rounded-lg text-white font-semibold hover:bg-gold-deep hover:shadow-lg hover:shadow-[gold-primary]/30 transition-all duration-200"
+                className="group flex items-center gap-2 px-5 py-2.5 bg-gold-primary rounded-lg text-white font-semibold hover:bg-gold-deep hover:shadow-lg transition-all duration-200"
               >
                 <span className="text-sm">Apply Now</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
               </button>
-
             </div>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-gray-600"
+              className="lg:hidden p-2 text-gray-600 hover:text-gray-800 transition-colors"
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -127,47 +132,41 @@ export default function Navbar() {
           </div>
         </div>
 
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-[gold-primary]/10"
-            >
-              <div id="mobile-menu" className="px-6 py-6 space-y-4 bg-white">
-                {[...navLinksGroup1, ...navLinksGroup2].map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`block py-3 text-sm ${
-                      pathname === link.href ? "text-[gold-primary] font-medium" : "text-gray-600"
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                <div className="pt-4 border-t border-gray-100 space-y-3">
-                  <button
-                    onClick={() => { openCallback(); setIsOpen(false); }}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[gold-primary] rounded-lg text-[gold-primary]"
-                  >
-                    <Phone className="w-4 h-4" />
-                    Request Callback
-                  </button>
-                  <button
-                    onClick={() => { openEnquiry(); setIsOpen(false); }}
-                    className="flex items-center justify-center gap-2 px-4 py-3 bg-gold-primary rounded-lg text-white font-semibold w-full md:w-auto"
-                  >
-                    <span>Apply Now</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div
+          id="mobile-menu"
+          className={`lg:hidden bg-white/98 backdrop-blur-xl border-t border-[rgba(153,102,51,0.1)] ${isOpen ? "animate-slide-down" : "hidden"}`}
+        >
+          <div className="px-6 py-6 space-y-4">
+            {[...navLinksGroup1, ...navLinksGroup2].map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={`block py-3 text-sm ${
+                      pathname === link.href ? "text-gold-primary font-medium" : "text-gray-600"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="pt-4 border-t border-gray-100 space-y-3">
+              <button
+                onClick={() => { openCallback(); setIsOpen(false); }}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-gold-primary rounded-lg text-gold-primary"
+              >
+                <Phone className="w-4 h-4" aria-hidden="true" />
+                Request Callback
+              </button>
+              <button
+                onClick={() => { openEnquiry(); setIsOpen(false); }}
+                className="flex items-center justify-center gap-2 px-4 py-3 bg-gold-primary rounded-lg text-white font-semibold w-full md:w-auto"
+              >
+                <span>Apply Now</span>
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+        </div>
       </nav>
     </>
   );

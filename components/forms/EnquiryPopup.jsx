@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { motion, AnimatePresence } from "framer-motion";
+
 import { X, Home, GraduationCap, Building2, User, Phone, Mail, MapPin, Calculator, Briefcase, Car, Wallet } from "lucide-react";
 import { api } from "@/lib/api";
 
@@ -243,13 +243,9 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
   };
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+        <div
           style={{
             position: 'fixed',
             top: 0,
@@ -260,20 +256,16 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
             zIndex: 1000,
             background: 'rgba(0, 0, 0, 0.5)',
           }}
-          className="flex items-center justify-center p-4"
+          className="flex items-center justify-center p-4 animate-fade-in"
           onClick={handleClose}
         >
-          <motion.div
+          <div
             role="dialog"
             aria-modal="true"
             aria-label="Loan enquiry form"
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}
             style={{ position: 'relative' }}
-            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl my-8"
+            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl my-8 animate-scale-in"
           >
         <button
           onClick={handleClose}
@@ -291,17 +283,13 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
           </div>
 
           {submitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-center py-12"
-            >
+            <div className="text-center py-12 animate-scale-in">
               <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gold-cream border-2 border-gold-bright flex items-center justify-center">
                 <span className="text-4xl text-gold-primary">✓</span>
               </div>
               <h3 className="text-xl font-semibold text-gold-dark mb-2">Thank You!</h3>
               <p className="text-gold-placeholder">Our executive will contact you within 24 hours</p>
-            </motion.div>
+            </div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <input type="text" {...register("websiteUrl")} className="hidden" tabIndex={-1} autoComplete="off" />
@@ -402,14 +390,8 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                 </div>
               </div>
 
-              <AnimatePresence>
-                {selectedLoanType && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="space-y-4 border-t border-gold-bright/30 pt-4"
-                  >
+              {selectedLoanType && (
+                <div className="space-y-4 border-t border-gold-bright/30 pt-4 animate-fade-in-up">
                     <h3 className="text-lg font-semibold text-gold-dark flex items-center gap-2">
                       <Calculator className="w-5 h-5 shrink-0" />
                       {loanTypes.find(l => l.id === selectedLoanType)?.label} Details
@@ -746,9 +728,8 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                         </div>
                       </div>
                     )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                </div>
+              )}
 
               <button
                 type="submit"
@@ -775,9 +756,9 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
             </form>
           )}
           </div>
-        </motion.div>
-      </motion.div>
+          </div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

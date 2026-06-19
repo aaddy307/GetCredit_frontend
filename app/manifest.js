@@ -9,15 +9,19 @@ export default function manifest() {
     theme_color: '#C9A84C',
     icons: [
       {
-        src: '/Logo.jpeg',
-        sizes: 'any',
-        type: 'image/jpeg',
+        src: '/icon-192.png',
+        sizes: '192x192',
+        type: 'image/png',
       },
       {
-        src: '/Logo.jpeg',
-        sizes: '180x180',
-        type: 'image/jpeg',
-        id: 'apple-touch-icon',
+        src: '/icon-512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      },
+      {
+        src: '/Logo.webp',
+        sizes: 'any',
+        type: 'image/webp',
       },
     ],
   };
