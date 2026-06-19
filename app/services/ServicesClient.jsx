@@ -117,13 +117,7 @@ export default function ServicesPage() {
                             </li>
                           ))}
                         </ul>
-                        {isPersonal && (
-                          <div className="mt-4 p-3 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg">
-                            <p className="text-sm text-gray-700">
-                              <span className="font-semibold text-[#C9A84C]">Maximum Personal Loan for Non-Salaried applicants: ₹10 Lakhs</span>
-                            </p>
-                          </div>
-                        )}
+
                         {isLAP && (
                           <div className="mt-4 p-4 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg">
                             <p className="text-sm font-semibold text-[#C9A84C] mb-2">Loan-to-Value (LTV) Ratio</p>
