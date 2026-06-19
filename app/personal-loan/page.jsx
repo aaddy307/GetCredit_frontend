@@ -30,21 +30,21 @@ const service = {
 };
 
 export const metadata = {
-  title: "Personal Loan in Ambernath, Thane | Instant Approval | Get Credit",
-  description: "Get instant personal loans in Ambernath & Thane with interest rates starting from 9.99%. Same-day disbursement, no collateral required. Apply now with minimal documentation.",
+  title: "Personal Loan in Ambernath | Instant Approval | Get Credit",
+  description: "Get instant personal loans in Ambernath & Thane with interest rates from 9.99%. Same-day disbursement, no collateral. Apply now.",
   alternates: {
     canonical: "https://get-credit.in/personal-loan",
   },
   openGraph: {
     url: "https://get-credit.in/personal-loan",
-    title: "Personal Loan in Ambernath, Thane | Instant Approval | Get Credit",
-    description: "Get instant personal loans in Ambernath & Thane with interest rates starting from 9.99%. Same-day disbursement, no collateral required.",
+    title: "Personal Loan in Ambernath | Instant Approval | Get Credit",
+    description: "Get instant personal loans in Ambernath & Thane with interest rates from 9.99%. Same-day disbursement.",
     siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Personal Loan" }],
   },
   twitter: {
-    title: "Personal Loan in Ambernath, Thane | Get Credit",
-    description: "Get instant personal loans with interest rates starting from 9.99%. Same-day disbursement.",
+    title: "Personal Loan in Ambernath | Get Credit",
+    description: "Get instant personal loans with interest rates from 9.99%.",
     images: ["https://get-credit.in/Logo.jpeg"],
   },
 };

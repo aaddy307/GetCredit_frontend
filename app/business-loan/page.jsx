@@ -31,21 +31,21 @@ const service = {
 };
 
 export const metadata = {
-  title: "Business Loan in Ambernath, Thane | Up to ₹5 Crore | Get Credit",
-  description: "Get business loans up to ₹5 Crore in Ambernath, Thane with interest rates starting from 8.50%. Quick disbursement within 48 hours. Fuel your business growth today.",
+  title: "Business Loan in Ambernath | Up to ₹5 Crore | Get Credit",
+  description: "Get business loans up to ₹5 Crore in Ambernath & Thane with rates from 8.50%. Quick disbursement within 48 hours. Fuel your business growth.",
   alternates: {
     canonical: "https://get-credit.in/business-loan",
   },
   openGraph: {
     url: "https://get-credit.in/business-loan",
-    title: "Business Loan in Ambernath, Thane | Up to ₹5 Crore | Get Credit",
-    description: "Get business loans up to ₹5 Crore with interest rates starting from 8.50%. Quick disbursement within 48 hours.",
+    title: "Business Loan in Ambernath | Up to ₹5 Crore | Get Credit",
+    description: "Get business loans up to ₹5 Crore with rates from 8.50%. Quick disbursement within 48 hours.",
     siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Business Loan" }],
   },
   twitter: {
-    title: "Business Loan in Ambernath, Thane | Get Credit",
-    description: "Get business loans up to ₹5 Crore with interest rates starting from 8.50%.",
+    title: "Business Loan in Ambernath | Get Credit",
+    description: "Get business loans up to ₹5 Crore with rates from 8.50%.",
     images: ["https://get-credit.in/Logo.jpeg"],
   },
 };

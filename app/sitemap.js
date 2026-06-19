@@ -1,10 +1,11 @@
 import { BASE_URL } from '@/lib/seo';
 
-const API_URL = process.env.API_URL || 'http://localhost:5000';
+const API_URL = process.env.API_URL || '';
 
 async function getBlogs() {
   try {
-    const res = await fetch(`${API_URL}/api/blogs`, {
+    const url = API_URL ? `${API_URL}/api/blogs` : `${BASE_URL}/api/blogs`;
+    const res = await fetch(url, {
       next: { revalidate: 3600 },
     });
     if (!res.ok) return [];

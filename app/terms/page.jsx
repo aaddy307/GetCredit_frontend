@@ -29,7 +29,7 @@ const breadcrumbJsonLd = breadcrumbSchema([
 
 const termsSchema = {
   "@context": "https://schema.org",
-  "@type": "WebPage",
+  "@type": "TermsOfServicePage",
   "name": "Terms & Conditions",
   "description": "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
   "url": "https://get-credit.in/terms",

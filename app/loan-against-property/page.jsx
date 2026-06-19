@@ -31,21 +31,21 @@ const service = {
 };
 
 export const metadata = {
-  title: "Loan Against Property in Ambernath, Thane | Up to ₹30 Crore | Get Credit",
-  description: "Get loan against property up to ₹30 Crore in Ambernath, Thane. Fund Residential, Commercial & Plot properties at interest rates starting from 7.50%.",
+  title: "Loan Against Property in Ambernath | Up to ₹30 Crore | Get Credit",
+  description: "Get loan against property up to ₹30 Crore in Ambernath & Thane. Fund Residential, Commercial & Plot at rates from 7.50%.",
   alternates: {
     canonical: "https://get-credit.in/loan-against-property",
   },
   openGraph: {
     url: "https://get-credit.in/loan-against-property",
-    title: "Loan Against Property in Ambernath, Thane | Up to ₹30 Crore | Get Credit",
-    description: "Get loan against property up to ₹30 Crore. Interest rates starting from 7.50%.",
+    title: "Loan Against Property in Ambernath | Up to ₹30 Crore | Get Credit",
+    description: "Get loan against property up to ₹30 Crore at rates from 7.50%.",
     siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Loan Against Property" }],
   },
   twitter: {
-    title: "Loan Against Property | Get Credit",
-    description: "Get loan against property up to ₹30 Crore at interest rates starting from 7.50%.",
+    title: "Loan Against Property in Ambernath | Get Credit",
+    description: "Get loan against property up to ₹30 Crore at rates from 7.50%.",
     images: ["https://get-credit.in/Logo.jpeg"],
   },
 };

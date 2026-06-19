@@ -31,14 +31,14 @@ const service = {
 };
 
 export const metadata = {
-  title: "Education Loan in Ambernath, Thane | Study India & Abroad | Get Credit",
-  description: "Get education loans up to ₹1.5 Crore for abroad studies without collateral. Interest rates starting from 7.50%. Fund your dream education with Get Credit.",
+  title: "Education Loan in Ambernath | Study India & Abroad | Get Credit",
+  description: "Get education loans up to ₹1.5 Crore for abroad studies without collateral. Rates from 7.50%. Fund your dream education with Get Credit.",
   alternates: {
     canonical: "https://get-credit.in/education-loan",
   },
   openGraph: {
     url: "https://get-credit.in/education-loan",
-    title: "Education Loan in Ambernath, Thane | Study India & Abroad | Get Credit",
+    title: "Education Loan in Ambernath | Study India & Abroad | Get Credit",
     description: "Get education loans up to ₹1.5 Crore for abroad studies without collateral.",
     siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Education Loan" }],

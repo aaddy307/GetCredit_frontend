@@ -1,11 +1,12 @@
 import BlogDetailClient from "./BlogDetailClient";
-import { blogPostingSchema, breadcrumbSchema } from "@/lib/seo";
+import { blogPostingSchema, breadcrumbSchema, BASE_URL } from "@/lib/seo";
 
-const API_URL = process.env.API_URL || 'http://localhost:5000';
+const API_URL = process.env.API_URL || '';
 
 async function getBlogData(slug) {
   try {
-    const res = await fetch(`${API_URL}/api/blogs/${slug}`, { next: { revalidate: 3600 } });
+    const url = API_URL ? `${API_URL}/api/blogs/${slug}` : `${BASE_URL}/api/blogs/${slug}`;
+    const res = await fetch(url, { next: { revalidate: 3600 } });
     if (!res.ok) return null;
     return await res.json();
   } catch (error) {

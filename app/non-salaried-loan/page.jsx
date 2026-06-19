@@ -31,14 +31,14 @@ const service = {
 };
 
 export const metadata = {
-  title: "Non-Salaried Loan in Ambernath, Thane | Self-Employed | Get Credit",
-  description: "Get loans for self-employed professionals and business owners in Ambernath, Thane. Based on bank transactions, no salary account required. Apply now.",
+  title: "Non-Salaried Loan in Ambernath | Self-Employed | Get Credit",
+  description: "Get loans for self-employed in Ambernath & Thane. Based on bank transactions, no salary account required. Apply now.",
   alternates: {
     canonical: "https://get-credit.in/non-salaried-loan",
   },
   openGraph: {
     url: "https://get-credit.in/non-salaried-loan",
-    title: "Non-Salaried Loan in Ambernath, Thane | Self-Employed | Get Credit",
+    title: "Non-Salaried Loan in Ambernath | Self-Employed | Get Credit",
     description: "Get loans for self-employed professionals. Based on bank transactions, no salary account required.",
     siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Non-Salaried Loan" }],

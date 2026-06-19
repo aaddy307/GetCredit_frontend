@@ -31,21 +31,21 @@ const service = {
 };
 
 export const metadata = {
-  title: "Home Loan in Ambernath, Thane | Up to ₹15 Crore | Get Credit",
-  description: "Get home loans up to ₹15 Crore in Ambernath, Thane with interest rates starting from 6.50%. Loan tenure up to 30 years. Apply now for your dream home.",
+  title: "Home Loan in Ambernath | Up to ₹15 Crore | Get Credit",
+  description: "Get home loans up to ₹15 Crore in Ambernath & Thane with rates from 6.50%. Loan tenure up to 30 years. Apply for your dream home.",
   alternates: {
     canonical: "https://get-credit.in/home-loan",
   },
   openGraph: {
     url: "https://get-credit.in/home-loan",
-    title: "Home Loan in Ambernath, Thane | Up to ₹15 Crore | Get Credit",
-    description: "Get home loans up to ₹15 Crore with interest rates starting from 6.50%. Loan tenure up to 30 years.",
+    title: "Home Loan in Ambernath | Up to ₹15 Crore | Get Credit",
+    description: "Get home loans up to ₹15 Crore with rates from 6.50%. Loan tenure up to 30 years.",
     siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Home Loan" }],
   },
   twitter: {
-    title: "Home Loan in Ambernath, Thane | Get Credit",
-    description: "Get home loans up to ₹15 Crore with interest rates starting from 6.50%.",
+    title: "Home Loan in Ambernath | Get Credit",
+    description: "Get home loans up to ₹15 Crore with rates from 6.50%.",
     images: ["https://get-credit.in/Logo.jpeg"],
   },
 };

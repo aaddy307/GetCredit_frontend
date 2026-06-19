@@ -28,7 +28,7 @@ const breadcrumbJsonLd = breadcrumbSchema([
 
 const aboutPageSchema = {
   "@context": "https://schema.org",
-  "@type": "AboutPage",
+  "@type": "WebPage",
   "name": "About Get Credit",
   "description": "Get Credit is a trusted DSA and loan consultancy in Ambernath with 50+ banking partners.",
   "url": "https://get-credit.in/about",

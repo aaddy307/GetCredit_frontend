@@ -3,20 +3,20 @@ import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Loan FAQs — Common Questions Answered | Get Credit",
-  description: "Find answers to common loan questions about eligibility, documents required, EMI calculation, interest rates, CIBIL score requirements, and loan processing time at Get Credit.",
+  description: "Find answers to loan questions about eligibility, documents, EMI calculation, interest rates, and CIBIL score requirements at Get Credit.",
   alternates: {
     canonical: "https://get-credit.in/faq",
   },
   openGraph: {
     url: "https://get-credit.in/faq",
     title: "Loan FAQs — Common Questions Answered | Get Credit",
-    description: "Find answers to common loan questions about eligibility, documents required, EMI calculation, interest rates, CIBIL score requirements, and loan processing time at Get Credit.",
+    description: "Find answers to loan questions about eligibility, documents, EMI calculation, interest rates, and CIBIL score requirements at Get Credit.",
     siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {
     title: "Loan FAQs — Common Questions Answered | Get Credit",
-    description: "Find answers to common loan questions about eligibility, documents required, EMI calculation, interest rates, CIBIL score requirements, and loan processing time at Get Credit.",
+    description: "Find answers to loan questions about eligibility, documents, EMI calculation, interest rates, and CIBIL score requirements at Get Credit.",
     images: ["https://get-credit.in/Logo.jpeg"],
   }
 };

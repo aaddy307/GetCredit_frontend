@@ -12,7 +12,7 @@ export default function HeroSection() {
       
       <div className="relative z-10 max-w-7xl mx-auto text-center">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 mb-4 md:mb-6 leading-tight">
-          Home Loan & Personal Loan <span className="text-gold-primary">Consultant in Ambernath, Thane</span>
+          Home Loan & Personal Loan <span className="text-gold-primary">Consultant</span>
         </h1>
 
         <motion.p
@@ -69,7 +69,7 @@ export default function HeroSection() {
         >
           {[
             { value: "50+", label: "Banking Partners" },
-            { value: "24/7", label: "Customer Support" },
+            { value: "9AM-6PM", label: "Mon-Sat Support" },
           ].map((stat, index) => (
             <div key={index} className="flex flex-col items-center min-w-[70px]">
               <div className="text-2xl md:text-3xl lg:text-3xl font-bold text-[gold-primary]">{stat.value}</div>

@@ -28,7 +28,7 @@ const breadcrumbJsonLd = breadcrumbSchema([
 
 const contactPageSchema = {
   "@context": "https://schema.org",
-  "@type": "ContactPage",
+  "@type": "WebPage",
   "name": "Contact Get Credit",
   "description": "Get in touch with Get Credit for home loans, personal loans, and financial guidance.",
   "url": "https://get-credit.in/contact",
