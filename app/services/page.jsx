@@ -1,5 +1,6 @@
 import ServicesClient from "./ServicesClient";
-import { breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
+import { SERVICES } from "@/lib/constants";
 
 export const metadata = {
   title: "Loan Services in Ambernath — Home, Personal, Business & Education Loans | Get Credit",
@@ -24,6 +25,11 @@ const breadcrumbJsonLd = breadcrumbSchema([
   { name: 'Services', path: '/services' },
 ]);
 
+const serviceSchemas = SERVICES.map(service => serviceSchema({
+  title: service.title,
+  description: service.description,
+}));
+
 export default function ServicesPage() {
   return (
     <>
@@ -32,6 +38,14 @@ export default function ServicesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {serviceSchemas.map((schema, index) => (
+        <script
+          key={index}
+          id={`service-schema-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <ServicesClient />
     </>
   );

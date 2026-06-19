@@ -6,7 +6,7 @@ export default function Error({ error, reset }) {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen flex items-center justify-center pt-20 bg-linear-to-b from-white to-[#F5F3EE]">
+      <div className="min-h-screen flex items-center justify-center pt-20 bg-linear-to-b from-white to-bg-tertiary">
         <div className="text-center px-4">
           <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
             <span className="text-4xl">⚠️</span>
@@ -15,7 +15,7 @@ export default function Error({ error, reset }) {
           <p className="text-gray-500 mb-6">An unexpected error occurred. Please try again.</p>
           <button
             onClick={reset}
-            className="px-6 py-3 bg-[#C9A84C] text-white rounded-xl hover:bg-[#A8892A] transition-colors font-medium"
+            className="px-6 py-3 bg-gold-primary text-white rounded-xl hover:bg-gold-deep transition-colors font-medium"
           >
             Try again
           </button>

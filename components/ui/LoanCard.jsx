@@ -30,15 +30,15 @@ export default function LoanCard({ icon: Icon, title, description, href, delay =
   const buttonText = BUTTON_TEXTS[title] || "Calculate EMI";
 
   return (
-    <GlassCard hover delay={delay} className={`text-center relative transition-all duration-300 ${best ? 'ring-2 ring-[#C9A84C]/40 shadow-lg shadow-[#C9A84C]/10 scale-[1.02]' : ''}`}>
+    <GlassCard hover delay={delay} className={`text-center relative transition-all duration-300 ${best ? 'ring-2 ring-gold-primary/40 shadow-lg shadow-gold-primary/10 scale-[1.02]' : ''}`}>
       {best && (
-        <div className="absolute -top-3 right-4 bg-linear-to-r from-[#C9A84C] to-[#E5C76B] text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg z-10">
+        <div className="absolute -top-3 right-4 bg-gold-primary text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg z-10">
           <Award className="w-3 h-3" />
           Best in Class
         </div>
       )}
-      <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${best ? 'bg-linear-to-br from-[#C9A84C] to-[#E5C76B]' : 'bg-[#C9A84C]/10'}`}>
-        <Icon className={`w-8 h-8 ${best ? 'text-white' : 'text-[#C9A84C]'}`} />
+      <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${best ? 'bg-gold-primary' : 'bg-gold-primary/10'}`}>
+        <Icon className={`w-8 h-8 ${best ? 'text-white' : 'text-gold-primary'}`} />
       </div>
       <h3 className={`text-xl font-semibold mb-3 ${best ? 'text-gray-900' : 'text-gray-800'}`}>{title}</h3>
       <p className="text-gray-500 mb-6">{description}</p>

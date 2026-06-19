@@ -11,11 +11,11 @@ export default function GlassCard({ children, className = "", hover = false, del
       className={`
         relative
         bg-white
-        border border-[#C9A84C]/55
+        border border-gold-primary/55
         rounded-2xl
         p-4 sm:p-6
         shadow-[0_4px_24px_rgba(201,168,76,0.12)]
-        ${hover ? "hover:shadow-[0_8px_32px_rgba(201,168,76,0.18)] hover:border-[#C9A84C]/90 transition-all duration-300" : ""}
+        ${hover ? "hover:shadow-[0_8px_32px_rgba(201,168,76,0.18)] hover:border-gold-primary/90 transition-all duration-300" : ""}
         ${className}
       `}
     >

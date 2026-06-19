@@ -120,7 +120,7 @@ export default function BlogDetailClient({ initialData }) {
         <Navbar />
         <div className="min-h-screen flex items-center justify-center pt-20">
           <div className="text-center">
-            <Loader2 className="w-10 h-10 animate-spin text-[#C9A84C] mx-auto mb-4" />
+            <Loader2 className="w-10 h-10 animate-spin text-[gold-primary] mx-auto mb-4" />
             <p className="text-gray-400">Loading article...</p>
           </div>
         </div>
@@ -133,13 +133,13 @@ export default function BlogDetailClient({ initialData }) {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen flex items-center justify-center pt-20 bg-linear-to-b from-white to-[#F5F3EE]">
+        <div className="min-h-screen flex items-center justify-center pt-20 bg-linear-to-b from-white to-bg-tertiary">
           <div className="text-center px-4">
-            <div className="w-20 h-20 bg-[#C9A84C]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 bg-gold-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="text-4xl">📄</span>
             </div>
             <p className="text-gray-500 text-lg mb-6">{error || "Blog not found"}</p>
-            <Link href="/blog" className="inline-flex items-center gap-2 px-6 py-3 bg-[#C9A84C] text-white rounded-xl hover:bg-[#A8892A] transition-colors font-medium">
+            <Link href="/blog" className="inline-flex items-center gap-2 px-6 py-3 bg-gold-primary text-white rounded-xl hover:bg-gold-deep transition-colors font-medium">
               <ArrowLeft className="w-4 h-4" />
               Back to Blog
             </Link>
@@ -152,7 +152,7 @@ export default function BlogDetailClient({ initialData }) {
 
   return (
     <>
-      <div className="fixed top-0 left-0 h-1 bg-[#C9A84C] z-50 transition-all duration-150" style={{ width: `${progress}%` }} />
+      <div className="fixed top-0 left-0 h-1 bg-gold-primary z-50 transition-all duration-150" style={{ width: `${progress}%` }} />
 
       <Navbar />
       <main className="pt-20 min-h-screen bg-white">
@@ -166,7 +166,7 @@ export default function BlogDetailClient({ initialData }) {
               Back to Blog
             </Link>
             <div className="flex flex-wrap items-center gap-3 text-gray-400 text-sm mb-5">
-              <span className="px-3 py-1 bg-[#C9A84C]/15 text-[#C9A84C] rounded-full text-xs font-medium">
+              <span className="px-3 py-1 bg-gold-primary/15 text-[gold-primary] rounded-full text-xs font-medium">
                 {blog.category}
               </span>
               <span className="inline-flex items-center gap-1.5">
@@ -187,7 +187,7 @@ export default function BlogDetailClient({ initialData }) {
               </p>
             )}
             <div className="flex items-center gap-4 mt-8 pt-6 border-t border-white/10">
-              <div className="w-10 h-10 bg-linear-to-br from-[#C9A84C] to-[#A8892A] rounded-full flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 bg-gold-primary rounded-full flex items-center justify-center shrink-0">
                 <span className="text-white text-sm font-bold">{blog.author?.charAt(0) || 'G'}</span>
               </div>
               <div>
@@ -215,7 +215,7 @@ export default function BlogDetailClient({ initialData }) {
                           h.level === 3 ? 'pl-4' : ''
                         } ${
                           activeHeading === h.id
-                            ? 'text-[#C9A84C] font-medium'
+                            ? 'text-[gold-primary] font-medium'
                             : 'text-gray-500 hover:text-gray-800'
                         }`}
                       >
@@ -229,7 +229,7 @@ export default function BlogDetailClient({ initialData }) {
 
             {/* Main Content */}
             <article ref={contentRef} className="flex-1 min-w-0 max-w-3xl">
-              <div className="prose prose-lg max-w-none overflow-x-auto wrap-break-word prose-headings:scroll-mt-28 prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-[#C9A84C] prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-normal prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-img:rounded-2xl prose-img:shadow-lg prose-blockquote:border-[#C9A84C] prose-blockquote:text-gray-600 prose-blockquote:bg-[#C9A84C]/5 prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-li:text-gray-600 prose-hr:border-gray-200" data-color-mode="light">
+              <div className="prose prose-lg max-w-none overflow-x-auto wrap-break-word prose-headings:scroll-mt-28 prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-[gold-primary] prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-normal prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-img:rounded-2xl prose-img:shadow-lg prose-blockquote:border-[gold-primary] prose-blockquote:text-gray-600 prose-blockquote:bg-gold-primary/5 prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-li:text-gray-600 prose-hr:border-gray-200" data-color-mode="light">
                 {contentWithIds ? (
                   <MarkdownRenderer source={contentWithIds} />
                 ) : (
@@ -241,7 +241,7 @@ export default function BlogDetailClient({ initialData }) {
               <div className="mt-12 pt-8 border-t border-gray-200">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="text-sm text-gray-500">Category:</span>
-                  <Link href={`/blog?category=${encodeURIComponent(blog.category)}`} className="px-4 py-1.5 bg-[#C9A84C]/10 text-[#C9A84C] rounded-full text-sm font-medium hover:bg-[#C9A84C]/20 transition-colors">
+                  <Link href={`/blog?category=${encodeURIComponent(blog.category)}`} className="px-4 py-1.5 bg-gold-primary/10 text-[gold-primary] rounded-full text-sm font-medium hover:bg-gold-primary/20 transition-colors">
                     {blog.category}
                   </Link>
                 </div>
@@ -272,21 +272,21 @@ export default function BlogDetailClient({ initialData }) {
               {(prev || next) && (
                 <div className="mt-12 pt-8 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {prev ? (
-                    <Link href={`/blog/${prev.slug}`} className="group p-5 rounded-2xl border border-gray-200 hover:border-[#C9A84C]/30 hover:bg-[#C9A84C]/5 transition-all">
+                    <Link href={`/blog/${prev.slug}`} className="group p-5 rounded-2xl border border-gray-200 hover:border-[gold-primary]/30 hover:bg-gold-primary/5 transition-all">
                       <span className="text-xs text-gray-400 uppercase tracking-wider flex items-center gap-1 mb-2">
                         <ChevronLeft className="w-3 h-3" /> Previous
                       </span>
-                      <p className="text-sm font-medium text-gray-800 group-hover:text-[#C9A84C] transition-colors line-clamp-2">
+                      <p className="text-sm font-medium text-gray-800 group-hover:text-[gold-primary] transition-colors line-clamp-2">
                         {prev.title}
                       </p>
                     </Link>
                   ) : <div />}
                   {next ? (
-                    <Link href={`/blog/${next.slug}`} className="group p-5 rounded-2xl border border-gray-200 hover:border-[#C9A84C]/30 hover:bg-[#C9A84C]/5 transition-all text-right">
+                    <Link href={`/blog/${next.slug}`} className="group p-5 rounded-2xl border border-gray-200 hover:border-[gold-primary]/30 hover:bg-gold-primary/5 transition-all text-right">
                       <span className="text-xs text-gray-400 uppercase tracking-wider flex items-center gap-1 justify-end mb-2">
                         Next <ChevronRight className="w-3 h-3" />
                       </span>
-                      <p className="text-sm font-medium text-gray-800 group-hover:text-[#C9A84C] transition-colors line-clamp-2">
+                      <p className="text-sm font-medium text-gray-800 group-hover:text-[gold-primary] transition-colors line-clamp-2">
                         {next.title}
                       </p>
                     </Link>
@@ -299,25 +299,25 @@ export default function BlogDetailClient({ initialData }) {
 
         {/* Related Posts */}
         {related.length > 0 && (
-          <motion.section initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="bg-linear-to-b from-white to-[#F5F3EE] py-16">
+          <motion.section initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="bg-linear-to-b from-white to-bg-tertiary py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-10">
-                <span className="text-[#C9A84C] text-sm font-medium">More Articles</span>
+                <span className="text-[gold-primary] text-sm font-medium">More Articles</span>
                 <h2 className="text-3xl font-bold text-gray-800 mt-2">Related {blog.category} Articles</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {related.map((post) => (
-                  <Link key={post._id} href={`/blog/${post.slug}`} className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:border-[#C9A84C]/20 transition-all duration-300">
-                    <div className="h-40 bg-linear-to-br from-[#C9A84C]/5 to-gray-100 flex items-center justify-center">
-                      <span className="text-5xl text-[#C9A84C]/20 group-hover:scale-110 transition-transform duration-300">📰</span>
+                  <Link key={post._id} href={`/blog/${post.slug}`} className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:border-gold-primary/20 transition-all duration-300">
+                    <div className="h-40 bg-gold-primary/5 flex items-center justify-center">
+                      <span className="text-5xl text-gold-primary/20 group-hover:scale-110 transition-transform duration-300">📰</span>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-[#C9A84C] font-medium">{post.category}</span>
-                      <h3 className="text-base font-semibold text-gray-800 mt-1 mb-2 group-hover:text-[#C9A84C] transition-colors line-clamp-2">
+                      <span className="text-xs text-gold-primary font-medium">{post.category}</span>
+                      <h3 className="text-base font-semibold text-gray-800 mt-1 mb-2 group-hover:text-gold-primary transition-colors line-clamp-2">
                         {post.title}
                       </h3>
                       <p className="text-sm text-gray-500 line-clamp-2">{post.excerpt}</p>
-                      <span className="inline-flex items-center gap-1 text-sm text-[#C9A84C] font-medium mt-3 group-hover:gap-2 transition-all">
+                      <span className="inline-flex items-center gap-1 text-sm text-gold-primary font-medium mt-3 group-hover:gap-2 transition-all">
                         Read More →
                       </span>
                     </div>
@@ -325,7 +325,7 @@ export default function BlogDetailClient({ initialData }) {
                 ))}
               </div>
               <div className="text-center mt-10">
-                <Link href="/blog" className="inline-flex items-center gap-2 px-6 py-3 bg-[#C9A84C] text-white rounded-xl hover:bg-[#A8892A] transition-colors font-medium">
+                <Link href="/blog" className="inline-flex items-center gap-2 px-6 py-3 bg-gold-primary text-white rounded-xl hover:bg-gold-deep transition-colors font-medium">
                   View All Articles
                   <ArrowLeft className="w-4 h-4 rotate-180" />
                 </Link>

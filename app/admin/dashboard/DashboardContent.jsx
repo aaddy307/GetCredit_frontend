@@ -55,7 +55,7 @@ export default function DashboardContent() {
   };
 
   return (
-    <div className="h-screen overflow-hidden bg-[#F5F3EE] lg:grid lg:grid-cols-[auto_1fr]">
+    <div className="h-screen overflow-hidden bg-bg-tertiary lg:grid lg:grid-cols-[auto_1fr]">
 
       {sidebarOpen && (
         <div

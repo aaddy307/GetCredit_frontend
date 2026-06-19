@@ -46,7 +46,7 @@ export const metadata = {
     apple: "/Logo.jpeg",
   },
   other: {
-    "theme-color": "#C9A84C",
+    "theme-color": "gold-primary",
     "geo.region": "IN-MH",
     "geo.placename": "Ambernath, Maharashtra",
     "geo.position": "19.2016;73.1856",
@@ -87,7 +87,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col bg-bg-primary text-text-primary font-sans">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-[#C9A84C] focus:text-white focus:rounded-lg focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-[gold-primary] focus:text-white focus:rounded-lg focus:outline-none"
         >
           Skip to main content
         </a>

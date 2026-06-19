@@ -30,7 +30,7 @@ export default function MDEditorWrapper({ value, onChange, height }) {
         value={value || ""}
         onChange={(e) => onChange(e.target.value)}
         rows={12}
-        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C] font-mono text-sm"
+        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary] font-mono text-sm"
         placeholder="Write markdown content here..."
       />
     );

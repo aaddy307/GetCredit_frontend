@@ -83,7 +83,7 @@ export default function AnalyticsView() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <BarChart3 className="w-5 h-5 text-[#C9A84C]" />
+            <BarChart3 className="w-5 h-5 text-[gold-primary]" />
             <h3 className="font-semibold text-gray-900">Monthly Leads</h3>
           </div>
           {monthlyData.length > 0 ? (
@@ -91,15 +91,15 @@ export default function AnalyticsView() {
               <AreaChart data={monthlyData}>
                 <defs>
                   <linearGradient id="colorLeads" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#C9A84C" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#C9A84C" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="gold-primary" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="gold-primary" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                 <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="#9ca3af" />
                 <YAxis tick={{ fontSize: 12 }} stroke="#9ca3af" />
                 <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid #e5e7eb' }} />
-                <Area type="monotone" dataKey="count" stroke="#C9A84C" fillOpacity={1} fill="url(#colorLeads)" strokeWidth={2} />
+                <Area type="monotone" dataKey="count" stroke="gold-primary" fillOpacity={1} fill="url(#colorLeads)" strokeWidth={2} />
               </AreaChart>
             </ResponsiveContainer>
           ) : (
@@ -111,7 +111,7 @@ export default function AnalyticsView() {
 
         <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <BarChart3 className="w-5 h-5 text-[#C9A84C]" />
+            <BarChart3 className="w-5 h-5 text-[gold-primary]" />
             <h3 className="font-semibold text-gray-900">Loan Distribution</h3>
           </div>
           {loanDistribution.length > 0 ? (
@@ -155,7 +155,7 @@ export default function AnalyticsView() {
 
       <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
-          <TrendingUp className="w-5 h-5 text-[#C9A84C]" />
+          <TrendingUp className="w-5 h-5 text-[gold-primary]" />
           <h3 className="font-semibold text-gray-900">Status Breakdown</h3>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
@@ -174,7 +174,7 @@ export default function AnalyticsView() {
               'running': '#3b82f6',
               'completed': '#22c55e',
               'rejected': '#ef4444',
-              'totalLeads': '#C9A84C'
+              'totalLeads': 'gold-primary'
             };
             return (
               <div key={item.key} className="text-center">

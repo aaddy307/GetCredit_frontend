@@ -36,12 +36,12 @@ export default function ServicesPage() {
     <>
       <Navbar />
       <main className="pt-20">
-        <section className="py-20 bg-linear-to-b from-white to-[#F5F3EE]">
+        <section className="py-20 bg-linear-to-b from-white to-bg-tertiary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-              <span className="text-[#C9A84C] font-medium">Our Services</span>
+              <span className="text-gold-primary font-medium">Our Services</span>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-4">
-                Comprehensive Loan <span className="text-[#C9A84C]">Solutions</span>
+                Comprehensive Loan <span className="text-gold-primary">Solutions</span>
               </h1>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Choose from our wide range of loan products designed to meet your specific needs
@@ -54,9 +54,9 @@ export default function ServicesPage() {
               const isLAP = service.id === "loan-against-property";
               return (
                 <section key={service.id} id={service.id} className="py-16">
-                  <GlassCard className={`p-8 md:p-12 relative ${service.priority ? 'ring-2 ring-[#C9A84C]/40 shadow-lg shadow-[#C9A84C]/10' : ''}`}>
+                  <GlassCard className={`p-8 md:p-12 relative ${service.priority ? 'ring-2 ring-[gold-primary]/40 shadow-lg shadow-[gold-primary]/10' : ''}`}>
                     {service.priority && (
-                      <div className="absolute -top-3 right-6 bg-linear-to-r from-[#C9A84C] to-[#E5C76B] text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg z-10">
+                      <div className="absolute -top-3 right-6 bg-gold-primary text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg z-10">
                         <Award className="w-3 h-3" />
                         Best in Class
                       </div>
@@ -64,8 +64,8 @@ export default function ServicesPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                       <div>
                         <div className="flex items-center gap-4 mb-6">
-                          <div className={`w-16 h-16 rounded-full flex items-center justify-center ${service.priority ? 'bg-linear-to-br from-[#C9A84C] to-[#E5C76B]' : 'bg-[#C9A84C]/10'}`}>
-                            <Icon className={`w-8 h-8 ${service.priority ? 'text-white' : 'text-[#C9A84C]'}`} />
+                          <div className={`w-16 h-16 rounded-full flex items-center justify-center ${service.priority ? 'bg-gold-primary' : 'bg-gold-primary/10'}`}>
+                            <Icon className={`w-8 h-8 ${service.priority ? 'text-white' : 'text-gold-primary'}`} />
                           </div>
                           <h2 className={`text-3xl font-bold ${service.priority ? 'text-gray-900' : 'text-gray-800'}`}>{service.title}</h2>
                         </div>
@@ -88,13 +88,13 @@ export default function ServicesPage() {
                       <div className="grid gap-6">
                         <div>
                           <div className="flex items-center gap-2 mb-4">
-                            <CheckCircle className="w-5 h-5 text-[#C9A84C]" />
+                            <CheckCircle className="w-5 h-5 text-[gold-primary]" />
                             <h3 className="text-lg font-semibold text-gray-800">Benefits</h3>
                           </div>
                           <ul className="space-y-2">
                             {service.benefits.map((benefit, i) => (
                               <li key={i} className="text-gray-500 flex items-start gap-2">
-                                <span className="text-[#C9A84C] mt-1">•</span>
+                                <span className="text-[gold-primary] mt-1">•</span>
                                 {benefit}
                               </li>
                             ))}
@@ -103,24 +103,24 @@ export default function ServicesPage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-8 border-t border-[#C9A84C]/10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-8 border-t border-[gold-primary]/10">
                       <div>
                         <div className="flex items-center gap-2 mb-4">
-                          <Clock className="w-5 h-5 text-[#C9A84C]" />
+                          <Clock className="w-5 h-5 text-[gold-primary]" />
                           <h3 className="text-lg font-semibold text-gray-800">Eligibility Criteria</h3>
                         </div>
                         <ul className="space-y-2">
                           {service.eligibility.map((eligibility, i) => (
                             <li key={i} className="text-gray-500 flex items-start gap-2">
-                              <span className="text-[#C9A84C] mt-1">•</span>
+                              <span className="text-[gold-primary] mt-1">•</span>
                               {eligibility}
                             </li>
                           ))}
                         </ul>
 
                         {isLAP && (
-                          <div className="mt-4 p-4 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg">
-                            <p className="text-sm font-semibold text-[#C9A84C] mb-2">Loan-to-Value (LTV) Ratio</p>
+                          <div className="mt-4 p-4 bg-[gold-primary]/5 border border-[gold-primary]/20 rounded-lg">
+                            <p className="text-sm font-semibold text-[gold-primary] mb-2">Loan-to-Value (LTV) Ratio</p>
                             <ul className="space-y-1 text-sm text-gray-600">
                               <li>&bull; Residential: <span className="font-semibold text-gray-800">80% LTV</span></li>
                               <li>&bull; Commercial &amp; Industrial: <span className="font-semibold text-gray-800">75% LTV</span></li>
@@ -132,13 +132,13 @@ export default function ServicesPage() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-4">
-                          <FileText className="w-5 h-5 text-[#C9A84C]" />
+                          <FileText className="w-5 h-5 text-[gold-primary]" />
                           <h3 className="text-lg font-semibold text-gray-800">Required Documents</h3>
                         </div>
                         <ul className="space-y-2">
                           {service.documents.map((doc, i) => (
                             <li key={i} className="text-gray-500 flex items-start gap-2">
-                              <span className="text-[#C9A84C] mt-1">•</span>
+                              <span className="text-[gold-primary] mt-1">•</span>
                               {doc}
                             </li>
                           ))}
@@ -164,7 +164,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-linear-to-r from-[#C9A84C] to-[#E5C76B]">
+        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-gold-primary">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
               Need Help Choosing the Right Loan?

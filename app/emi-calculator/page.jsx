@@ -18,6 +18,65 @@ export const metadata = {
   }
 };
 
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Calculate EMI Using Our Free EMI Calculator",
+  "description": "Learn how to use Get Credit's free EMI calculator to estimate your monthly loan repayments for home loans, personal loans, business loans, education loans, and more.",
+  "url": "https://get-credit.in/emi-calculator",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Select Loan Type",
+      "text": "Choose the type of loan you want to calculate EMI for: Home Loan, Loan Against Property, Education Loan, Personal Loan, Business Loan, or Vehicle Loan."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter Loan Details",
+      "text": "Input the loan amount, interest rate, and tenure. For certain loan types, you may also need to enter property value or other details."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Click Calculate",
+      "text": "Press the 'Calculate EMI' button to instantly see your estimated monthly EMI, total interest payable, and total amount payable."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Submit Enquiry",
+      "text": "To unlock full details and get personalized loan offers, submit an enquiry form with your contact information."
+    }
+  ],
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "EMI Calculator"
+    }
+  ],
+  "supply": [
+    {
+      "@type": "HowToSupply",
+      "name": "Loan Amount"
+    },
+    {
+      "@type": "HowToSupply",
+      "name": "Interest Rate"
+    },
+    {
+      "@type": "HowToSupply",
+      "name": "Loan Tenure"
+    }
+  ]
+};
+
 export default function EMICalculatorPage() {
-  return <EmiCalculatorClient />;
+  return (
+    <>
+      <script
+        id="howto-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      <EmiCalculatorClient />
+    </>
+  );
 }

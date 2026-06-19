@@ -113,7 +113,7 @@ function Pagination({ page, totalPages, onPageChange }) {
             onClick={() => onPageChange(item)}
             className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
               page === item
-                ? 'bg-[#C9A84C] text-white shadow-sm'
+                ? 'bg-gold-primary text-white shadow-sm'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
             aria-current={page === item ? 'page' : undefined}
@@ -142,7 +142,7 @@ function EmptyState({ hasActiveFilters, onClearFilters }) {
       </div>
       <p className="text-gray-500 font-medium">No leads found</p>
       {hasActiveFilters && (
-        <button onClick={onClearFilters} className="mt-2 text-sm text-[#C9A84C] hover:underline">
+        <button onClick={onClearFilters} className="mt-2 text-sm text-[gold-primary] hover:underline">
           Clear all filters to see all leads
         </button>
       )}
@@ -153,7 +153,7 @@ function EmptyState({ hasActiveFilters, onClearFilters }) {
 function LoadingSpinner() {
   return (
     <div className="flex items-center justify-center py-16">
-      <div className="animate-spin w-7 h-7 border-2 border-[#C9A84C] border-t-transparent rounded-full" />
+      <div className="animate-spin w-7 h-7 border-2 border-[gold-primary] border-t-transparent rounded-full" />
     </div>
   );
 }
@@ -363,7 +363,7 @@ export default function LeadsView() {
           {hasPermission('leads', 'create') && (
             <button
               onClick={openAddModal}
-              className="flex items-center gap-2 px-4 py-2.5 bg-[#C9A84C] text-white rounded-xl font-medium hover:bg-[#A8892A] transition-colors"
+              className="flex items-center gap-2 px-4 py-2.5 bg-gold-primary text-white rounded-xl font-medium hover:bg-gold-deep transition-colors"
             >
               <Plus className="w-4 h-4" />
               Add Lead
@@ -381,7 +381,7 @@ export default function LeadsView() {
               value={filters.search}
               onChange={(e) => updateFilter('search', e.target.value)}
               placeholder="Search name, phone, email..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary]"
             />
             {filters.search && (
               <button onClick={() => updateFilter('search', '')} className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -393,7 +393,7 @@ export default function LeadsView() {
           <select
             value={filters.status}
             onChange={(e) => updateFilter('status', e.target.value)}
-            className="w-full md:w-auto px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+            className="w-full md:w-auto px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary]"
           >
             <option value="">All Status</option>
             {statusOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
@@ -402,7 +402,7 @@ export default function LeadsView() {
           <select
             value={filters.loanType}
             onChange={(e) => updateFilter('loanType', e.target.value)}
-            className="w-full md:w-auto px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+            className="w-full md:w-auto px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary]"
           >
             <option value="">All Loan Types</option>
             {loanTypeOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
@@ -418,7 +418,7 @@ export default function LeadsView() {
           </button>
 
           {hasActiveFilters && (
-            <button onClick={clearFilters} className="text-[#C9A84C] text-sm hover:underline">Clear All</button>
+            <button onClick={clearFilters} className="text-[gold-primary] text-sm hover:underline">Clear All</button>
           )}
         </div>
 
@@ -429,7 +429,7 @@ export default function LeadsView() {
               <select
                 value={filters.source}
                 onChange={(e) => updateFilter('source', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary]"
               >
                 {sourceOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
               </select>
@@ -442,7 +442,7 @@ export default function LeadsView() {
                   type="date"
                   value={filters.fromDate}
                   onChange={(e) => updateFilter('fromDate', e.target.value)}
-                  className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+                  className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary]"
                 />
               </div>
             </div>
@@ -454,7 +454,7 @@ export default function LeadsView() {
                   type="date"
                   value={filters.toDate}
                   onChange={(e) => updateFilter('toDate', e.target.value)}
-                  className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]"
+                  className="w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary]"
                 />
               </div>
             </div>
@@ -604,40 +604,40 @@ export default function LeadsView() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-                  <input {...register("fullName", { required: "Name is required" })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
+                  <input {...register("fullName", { required: "Name is required" })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]" />
                   {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName.message}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
-                  <input {...register("phone", { required: "Phone is required", pattern: { value: /^[6-9]\d{9}$/, message: "Enter valid 10-digit number" } })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
+                  <input {...register("phone", { required: "Phone is required", pattern: { value: /^[6-9]\d{9}$/, message: "Enter valid 10-digit number" } })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]" />
                   {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                <input type="email" {...register("email", { required: "Email is required" })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
+                <input type="email" {...register("email", { required: "Email is required" })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]" />
                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
-                <input {...register("city")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
+                <input {...register("city")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Loan Type *</label>
-                  <select {...register("loanType", { required: "Loan type is required" })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]">
+                  <select {...register("loanType", { required: "Loan type is required" })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]">
                     {loanTypeOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Loan Amount</label>
-                  <input type="number" {...register("loanAmount")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
+                  <input type="number" {...register("loanAmount")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Tenure</label>
                   <div className="flex gap-2">
-                    <input type="number" {...register("tenure")} min="1" max="84" placeholder="Value" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
-                    <select {...register("tenureUnit")} className="w-28 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C] text-sm">
+                    <input type="number" {...register("tenure")} min="1" max="84" placeholder="Value" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]" />
+                    <select {...register("tenureUnit")} className="w-28 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary] text-sm">
                       <option value="Years">Years</option>
                       <option value="Months">Months</option>
                     </select>
@@ -646,7 +646,7 @@ export default function LeadsView() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                <select {...register("status")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]">
+                <select {...register("status")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]">
                   {statusOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
                 </select>
               </div>
@@ -654,11 +654,11 @@ export default function LeadsView() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Property Value (&#x20B9;)</label>
-                    <input type="number" {...register("propertyValue")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
+                    <input type="number" {...register("propertyValue")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
-                    <select {...register("propertyType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]">
+                    <select {...register("propertyType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]">
                       <option value="">Select</option>
                       <option value="Residential">Residential</option>
                       <option value="Commercial">Commercial</option>
@@ -671,7 +671,7 @@ export default function LeadsView() {
               <input type="hidden" {...register("leadSource")} />
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-2.5 border border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button type="submit" disabled={submitting} className="flex-1 py-2.5 bg-[#C9A84C] text-white rounded-xl hover:bg-[#A8892A] disabled:opacity-50">
+                <button type="submit" disabled={submitting} className="flex-1 py-2.5 bg-gold-primary text-white rounded-xl hover:bg-gold-deep disabled:opacity-50">
                   {submitting ? 'Saving...' : editingLead ? 'Update' : 'Add'} Lead
                 </button>
               </div>

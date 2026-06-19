@@ -73,7 +73,7 @@ export default function Header({ onMenuClick, onTabChange }) {
       <div className="flex items-center justify-between gap-4 w-full">
         <button
           onClick={onMenuClick}
-          className="lg:hidden p-2 text-gray-600 hover:text-[#C9A84C] hover:bg-[#C9A84C]/5 rounded-lg"
+          className="lg:hidden p-2 text-gray-600 hover:text-[gold-primary] hover:bg-[gold-primary]/5 rounded-lg"
         >
           <Menu className="w-5 h-5" />
         </button>
@@ -86,7 +86,7 @@ export default function Header({ onMenuClick, onTabChange }) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search leads, callbacks, blogs..."
-              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#C9A84C] focus:bg-white transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[gold-primary] focus:bg-white transition-colors"
             />
           </div>
 
@@ -94,7 +94,7 @@ export default function Header({ onMenuClick, onTabChange }) {
             <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-xl z-50 max-h-80 overflow-y-auto">
               {loading ? (
                 <div className="p-4 text-center text-gray-500">
-                  <div className="animate-spin w-6 h-6 border-2 border-[#C9A84C] border-t-transparent rounded-full mx-auto mb-2"></div>
+                  <div className="animate-spin w-6 h-6 border-2 border-[gold-primary] border-t-transparent rounded-full mx-auto mb-2"></div>
                   Searching...
                 </div>
               ) : searchResults.length > 0 ? (
@@ -106,7 +106,7 @@ export default function Header({ onMenuClick, onTabChange }) {
                     <button
                       key={index}
                       onClick={() => handleResultClick(result)}
-                      className="w-full px-4 py-3 flex items-center gap-3 hover:bg-[#C9A84C]/5 text-left"
+                      className="w-full px-4 py-3 flex items-center gap-3 hover:bg-[gold-primary]/5 text-left"
                     >
                       <span className="text-lg">{getResultIcon(result.type)}</span>
                       <div className="flex-1 min-w-0">
@@ -124,7 +124,7 @@ export default function Header({ onMenuClick, onTabChange }) {
         </div>
 
         <div className="flex items-center gap-2 pl-2 border-l border-gray-200">
-          <div className="w-9 h-9 bg-linear-to-br from-[#C9A84C] to-[#A8892A] rounded-full flex items-center justify-center">
+          <div className="w-9 h-9 bg-gold-primary rounded-full flex items-center justify-center">
             <span className="text-white text-sm font-medium">{user?.name?.charAt(0)?.toUpperCase() || 'A'}</span>
           </div>
           <div className="hidden sm:block">

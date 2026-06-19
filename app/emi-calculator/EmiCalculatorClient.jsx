@@ -227,9 +227,9 @@ export default function EMICalculatorPage() {
             <Input label="Property Value" name="propertyValue" type="number" register={register} placeholder="Enter property value (e.g., 10000000)" required />
             <Input label="Property Type" name="propertyType" type="select" register={register} options={propertyTypesLAP} />
             {formValues.propertyType && (
-              <div className="col-span-2 md:col-span-1 p-3 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg">
+              <div className="col-span-2 md:col-span-1 p-3 bg-[gold-primary]/5 border border-[gold-primary]/20 rounded-lg">
                 <p className="text-sm text-gray-600">
-                  <span className="font-semibold text-[#C9A84C]">{ltvPercent}% LTV</span> &mdash; Max Fundable: <span className="font-semibold">&#x20B9;{maxLoanAmt.toLocaleString()}</span>
+                  <span className="font-semibold text-[gold-primary]">{ltvPercent}% LTV</span> &mdash; Max Fundable: <span className="font-semibold">&#x20B9;{maxLoanAmt.toLocaleString()}</span>
                 </p>
               </div>
             )}
@@ -304,13 +304,13 @@ export default function EMICalculatorPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-20 min-h-screen bg-linear-to-b from-white to-[#F5F3EE]">
+      <main className="pt-20 min-h-screen bg-linear-to-b from-white to-bg-tertiary">
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <span className="text-[#C9A84C] font-medium">EMI Calculator</span>
+              <span className="text-gold-primary font-medium">EMI Calculator</span>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-4">
-                Calculate Your <span className="text-[#C9A84C]">EMI</span>
+                Calculate Your <span className="text-gold-primary">EMI</span>
               </h1>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Use our easy-to-use EMI calculator to plan your loan repayment.
@@ -333,8 +333,8 @@ export default function EMICalculatorPage() {
                         }}
                         className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all text-sm font-medium ${
                           activeTab === type.id
-                            ? "bg-[#C9A84C] text-white"
-                            : "bg-[#F5F3EE] text-gray-700 border border-[#C9A84C]/20 hover:border-[#C9A84C]"
+                            ? "bg-gold-primary text-white"
+                            : "bg-bg-tertiary text-gray-700 border border-gold-primary/20 hover:border-gold-primary"
                         }`}
                       >
                         <Icon className="w-4 h-4" />
@@ -364,15 +364,15 @@ export default function EMICalculatorPage() {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-8 p-6 bg-linear-to-r from-[#C9A84C]/10 to-[#F5F3EE] rounded-xl border border-[#C9A84C]/20"
+                    className="mt-8 p-6 bg-linear-to-r from-gold-primary/10 to-bg-tertiary rounded-xl border border-gold-primary/20"
                   >
                     <div className="text-center mb-6">
                       <p className="text-gray-500 mb-2">Your Monthly EMI</p>
-                      <p className="text-5xl font-bold text-[#C9A84C]">
+                      <p className="text-5xl font-bold text-gold-primary">
                         &#x20B9;{emiResult.emi.toLocaleString()}
                       </p>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#C9A84C]/20">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-gold-primary/20">
                       <div className="text-center">
                         <p className="text-gray-500 text-xs mb-1">Principal</p>
                         <p className="text-gray-800 font-semibold">&#x20B9;{emiResult.principal.toLocaleString()}</p>
@@ -380,14 +380,14 @@ export default function EMICalculatorPage() {
                       <div className="text-center">
                         <p className="text-gray-500 text-xs mb-1">Total Interest</p>
                         <div className="flex items-center justify-center gap-1">
-                          <span className="text-[#c9920a] font-semibold filter blur-[6px] select-none">
+                          <span className="text-gold-border font-semibold filter blur-[6px] select-none">
                             &#x20B9;{emiResult.totalInterest.toLocaleString()}
                           </span>
-                          <svg className="w-3 h-3 text-[#c9920a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 text-gold-border" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                           </svg>
                         </div>
-                        <button onClick={() => setShowPopup(true)} className="text-[10px] text-[#c9920a] hover:underline mt-1">
+                        <button onClick={() => setShowPopup(true)} className="text-[10px] text-gold-border hover:underline mt-1">
                           Submit enquiry to unlock
                         </button>
                       </div>
@@ -397,17 +397,17 @@ export default function EMICalculatorPage() {
                           <span className="text-gray-800 font-semibold filter blur-[6px] select-none">
                             &#x20B9;{emiResult.totalAmount.toLocaleString()}
                           </span>
-                          <svg className="w-3 h-3 text-[#c9920a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 text-gold-border" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                           </svg>
                         </div>
-                        <button onClick={() => setShowPopup(true)} className="text-[10px] text-[#c9920a] hover:underline mt-1">
+                        <button onClick={() => setShowPopup(true)} className="text-[10px] text-gold-border hover:underline mt-1">
                           Submit enquiry to unlock
                         </button>
                       </div>
                     </div>
                     <p className="text-gray-600 text-center mt-4 text-sm">
-                      Tenure: <span className="text-[#C9A84C] font-semibold">{emiResult.tenure} {emiResult.tenureUnit}</span>
+                      Tenure: <span className="text-gold-primary font-semibold">{emiResult.tenure} {emiResult.tenureUnit}</span>
                     </p>
                   </motion.div>
                 )}
@@ -425,7 +425,7 @@ export default function EMICalculatorPage() {
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span className="text-gray-500">Interest Rate:</span>
-                      <span className="text-[#C9A84C]">{info.rate}</span>
+                      <span className="text-gold-primary">{info.rate}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-500">Max Tenure:</span>

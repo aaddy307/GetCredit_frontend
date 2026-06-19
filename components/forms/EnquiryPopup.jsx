@@ -277,17 +277,17 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
           >
         <button
           onClick={handleClose}
-          className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-[#fffdf0] hover:bg-[#ddc84a] flex items-center justify-center transition-colors"
+          className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-gold-cream hover:bg-gold-bright flex items-center justify-center transition-colors"
         >
-          <X className="w-5 h-5 text-[#7a5c00]" />
+          <X className="w-5 h-5 text-gold-dark" />
         </button>
 
         <div className="p-4 md:p-8">
           <div className="text-center mb-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-[#7a5c00]">
+            <h1 className="text-2xl md:text-3xl font-bold text-gold-dark">
               Apply for Loan
             </h1>
-            <p className="text-[#b3a066] mt-2 text-sm">Fill in your details and we&apos;ll get back to you</p>
+            <p className="text-gold-placeholder mt-2 text-sm">Fill in your details and we&apos;ll get back to you</p>
           </div>
 
           {submitted ? (
@@ -296,34 +296,34 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-12"
             >
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-[#fffdf0] border-2 border-[#ddc84a] flex items-center justify-center">
-                <span className="text-4xl text-[#C9A84C]">✓</span>
+              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gold-cream border-2 border-gold-bright flex items-center justify-center">
+                <span className="text-4xl text-gold-primary">✓</span>
               </div>
-              <h3 className="text-xl font-semibold text-[#7a5c00] mb-2">Thank You!</h3>
-              <p className="text-[#b3a066]">Our executive will contact you within 24 hours</p>
+              <h3 className="text-xl font-semibold text-gold-dark mb-2">Thank You!</h3>
+              <p className="text-gold-placeholder">Our executive will contact you within 24 hours</p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <input type="text" {...register("websiteUrl")} className="hidden" tabIndex={-1} autoComplete="off" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                    Full Name <span className="text-[#c9920a]">*</span>
+                  <label className="block text-sm font-semibold text-gold-dark mb-1.5">
+                    Full Name <span className="text-gold-border">*</span>
                   </label>
                   <div className="relative">
                     <input
                       {...register("fullName", { required: "Full name is required" })}
                       type="text"
                       placeholder="Enter your full name"
-                      className="w-full px-4 py-3 pr-10 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a] focus:ring-2 focus:ring-[#c9920a]/20"
+                      className="w-full px-4 py-3 pr-10 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border focus:ring-2 focus:ring-gold-border/20"
                     />
-                    <User className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c9920a]" />
+                    <User className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-border" />
                   </div>
                   {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                    Mobile Number <span className="text-[#c9920a]">*</span>
+                  <label className="block text-sm font-semibold text-gold-dark mb-1.5">
+                    Mobile Number <span className="text-gold-border">*</span>
                   </label>
                   <div className="relative">
                     <input
@@ -336,9 +336,9 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                       })}
                       type="tel"
                       placeholder="Enter your mobile number"
-                      className="w-full px-4 py-3 pr-10 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a] focus:ring-2 focus:ring-[#c9920a]/20"
+                      className="w-full px-4 py-3 pr-10 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border focus:ring-2 focus:ring-gold-border/20"
                     />
-                    <Phone className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c9920a]" />
+                    <Phone className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-border" />
                   </div>
                   {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
                 </div>
@@ -346,8 +346,8 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                    Email <span className="text-[#c9920a]">*</span>
+                  <label className="block text-sm font-semibold text-gold-dark mb-1.5">
+                    Email <span className="text-gold-border">*</span>
                   </label>
                   <div className="relative">
                     <input
@@ -357,14 +357,14 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                       })}
                       type="email"
                       placeholder="Enter your email"
-                      className="w-full px-4 py-3 pr-10 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a] focus:ring-2 focus:ring-[#c9920a]/20"
+                      className="w-full px-4 py-3 pr-10 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border focus:ring-2 focus:ring-gold-border/20"
                     />
-                    <Mail className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c9920a]" />
+                    <Mail className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-border" />
                   </div>
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                  <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                     City
                   </label>
                   <div className="relative">
@@ -372,16 +372,16 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                       {...register("city")}
                       type="text"
                       placeholder="Enter your city"
-                      className="w-full px-4 py-3 pr-10 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a] focus:ring-2 focus:ring-[#c9920a]/20"
+                      className="w-full px-4 py-3 pr-10 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border focus:ring-2 focus:ring-gold-border/20"
                     />
-                    <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c9920a]" />
+                    <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-border" />
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                  Select Loan Type <span className="text-[#c9920a]">*</span>
+                <label className="block text-sm font-semibold text-gold-dark mb-1.5">
+                  Select Loan Type <span className="text-gold-border">*</span>
                 </label>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {loanTypes.map((loan) => (
@@ -391,12 +391,12 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                       onClick={() => setSelectedLoanType(loan.id)}
                       className={`p-3 rounded-xl border-2 transition-all ${
                         selectedLoanType === loan.id 
-                          ? 'border-[#ddc84a] bg-[#fffdf0] shadow-lg' 
-                          : 'border-[#ddc84a]/50 hover:border-[#ddc84a]'
+                          ? 'border-gold-bright bg-gold-cream shadow-lg' 
+                          : 'border-gold-bright/50 hover:border-gold-bright'
                       }`}
                     >
-                      <loan.icon className={`w-6 h-6 mx-auto mb-1 ${selectedLoanType === loan.id ? 'text-[#c9920a]' : 'text-gray-400'}`} />
-                      <div className="text-xs font-semibold text-[#7a5c00]">{loan.label}</div>
+                      <loan.icon className={`w-6 h-6 mx-auto mb-1 ${selectedLoanType === loan.id ? 'text-gold-border' : 'text-gray-400'}`} />
+                      <div className="text-xs font-semibold text-gold-dark">{loan.label}</div>
                     </button>
                   ))}
                 </div>
@@ -408,9 +408,9 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="space-y-4 border-t border-[#ddc84a]/30 pt-4"
+                    className="space-y-4 border-t border-gold-bright/30 pt-4"
                   >
-                    <h3 className="text-lg font-semibold text-[#7a5c00] flex items-center gap-2">
+                    <h3 className="text-lg font-semibold text-gold-dark flex items-center gap-2">
                       <Calculator className="w-5 h-5" />
                       {loanTypes.find(l => l.id === selectedLoanType)?.label} Details
                     </h3>
@@ -418,8 +418,8 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     {selectedLoanType !== "lap" && (
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                            Loan Amount (₹) <span className="text-[#c9920a]">*</span>
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
+                            Loan Amount (₹) <span className="text-gold-border">*</span>
                           </label>
                           <input
                             {...register("loanAmount", { 
@@ -431,14 +431,14 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                             inputMode="numeric"
                             min="10000"
                             placeholder="Enter loan amount (min ₹10,000)"
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
                           />
                           {errors.loanAmount && <p className="text-red-500 text-xs mt-1">{errors.loanAmount.message}</p>}
                         </div>
                         
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                            Tenure ({getTenureUnit(selectedLoanType)}) <span className="text-[#c9920a]">*</span>
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
+                            Tenure ({getTenureUnit(selectedLoanType)}) <span className="text-gold-border">*</span>
                           </label>
                           <input
                             {...register("tenure", { 
@@ -452,7 +452,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                             min="1"
                             max={isMonthTenure(selectedLoanType) ? 84 : 30}
                             placeholder={isMonthTenure(selectedLoanType) ? "Enter tenure (1-84 months)" : "Enter tenure (1-30 years)"}
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
                           />
                           {errors.tenure && <p className="text-red-500 text-xs mt-1">{errors.tenure.message}</p>}
                         </div>
@@ -462,12 +462,12 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     {selectedLoanType === "home" && (
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Property Type
                           </label>
                           <select
                             {...register("propertyType")}
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark focus:outline-none focus:border-gold-border"
                           >
                             <option value="">Select</option>
                             {propertyTypesHome.map(opt => (
@@ -476,23 +476,23 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Property Location
                           </label>
                           <input
                             {...register("propertyLocation")}
                             type="text"
                             placeholder="Enter location"
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
                           />
                         </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                      <div>
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Employment Type
                           </label>
                           <select
                             {...register("employmentType")}
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark focus:outline-none focus:border-gold-border"
                           >
                             <option value="">Select</option>
                             {employmentTypes.map(opt => (
@@ -506,12 +506,12 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     {selectedLoanType === "education" && (
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Current Qualification
                           </label>
                           <select
                             {...register("qualification")}
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark focus:outline-none focus:border-gold-border"
                           >
                             <option value="">Select</option>
                             {qualifications.map(opt => (
@@ -520,12 +520,12 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Degree to Pursue
                           </label>
                           <select
                             {...register("degree")}
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark focus:outline-none focus:border-gold-border"
                           >
                             <option value="">Select</option>
                             {degrees.map(opt => (
@@ -534,14 +534,14 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             University Name
                           </label>
                           <input
                             {...register("institutionName")}
                             type="text"
                             placeholder="Enter university"
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
                           />
                         </div>
                       </div>
@@ -551,23 +551,23 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                       <>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                            <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                               Property Value (&#x20B9;)
                             </label>
                             <input
                               {...register("propertyValue")}
                               type="number"
                               placeholder="Enter property value (e.g., 10000000)"
-                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                              className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
                             />
                           </div>
                           <div>
-                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                            <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                               Property Type
                             </label>
                             <select
                               {...register("propertyType")}
-                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
+                              className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark focus:outline-none focus:border-gold-border"
                             >
                               <option value="">Select</option>
                               {propertyTypesLAP.map(opt => (
@@ -582,17 +582,17 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                           const pVal = parseFloat(watch("propertyValue")) || 0;
                           const maxAmt = Math.round(pVal * ltvPct / 100);
                           return watch("propertyType") && pVal > 0 ? (
-                            <div className="p-3 bg-[#C9A84C]/5 border border-[#C9A84C]/20 rounded-lg">
+                            <div className="p-3 bg-gold-primary/5 border border-gold-primary/20 rounded-lg">
                               <p className="text-sm text-gray-600">
-                                <span className="font-semibold text-[#C9A84C]">{ltvPct}% LTV</span> &mdash; Max Fundable: <span className="font-semibold">&#x20B9;{maxAmt.toLocaleString()}</span>
+                                <span className="font-semibold text-gold-primary">{ltvPct}% LTV</span> &mdash; Max Fundable: <span className="font-semibold">&#x20B9;{maxAmt.toLocaleString()}</span>
                               </p>
                             </div>
                           ) : null;
                         })()}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                              Loan Amount (&#x20B9;) <span className="text-[#c9920a]">*</span>
+                            <label className="block text-sm font-semibold text-gold-dark mb-1.5">
+                              Loan Amount (&#x20B9;) <span className="text-gold-border">*</span>
                             </label>
                             <input
                               {...register("loanAmount", {
@@ -604,17 +604,17 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                               inputMode="numeric"
                               min="10000"
                               placeholder="Enter loan amount (max based on LTV)"
-                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                              className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
                             />
                             {errors.loanAmount && <p className="text-red-500 text-xs mt-1">{errors.loanAmount.message}</p>}
                           </div>
                           <div>
-                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                            <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                               Employment Type
                             </label>
                             <select
                               {...register("employmentType")}
-                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
+                              className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark focus:outline-none focus:border-gold-border"
                             >
                               <option value="">Select</option>
                               {employmentTypes.map(opt => (
@@ -625,7 +625,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                            <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                               Interest Rate (% p.a.)
                             </label>
                             <input
@@ -633,12 +633,12 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                               type="number"
                               step="0.1"
                               placeholder="Enter interest rate (e.g., 8.5)"
-                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                              className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
                             />
                           </div>
                           <div>
-                            <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
-                              Tenure (Years) <span className="text-[#c9920a]">*</span>
+                            <label className="block text-sm font-semibold text-gold-dark mb-1.5">
+                              Tenure (Years) <span className="text-gold-border">*</span>
                             </label>
                             <input
                               {...register("tenure", {
@@ -652,7 +652,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                               min="1"
                               max="30"
                               placeholder="Enter tenure (1-30 years)"
-                              className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                              className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
                             />
                             {errors.tenure && <p className="text-red-500 text-xs mt-1">{errors.tenure.message}</p>}
                           </div>
@@ -685,7 +685,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     {selectedLoanType === "business" && (
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Business Vintage (Years)
                           </label>
                           <input
@@ -695,16 +695,16 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                             min="0"
                             max="50"
                             placeholder="Enter business vintage"
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Employment Type
                           </label>
                           <select
                             {...register("employmentType")}
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark focus:outline-none focus:border-gold-border"
                           >
                             <option value="">Select</option>
                             {employmentTypes.map(opt => (
@@ -718,12 +718,12 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     {selectedLoanType === "vehicle" && (
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Vehicle Type
                           </label>
                           <select
                             {...register("vehicleType")}
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark focus:outline-none focus:border-gold-border"
                           >
                             <option value="">Select</option>
                             {vehicleTypes.map(opt => (
@@ -732,7 +732,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-[#7a5c00] mb-1.5">
+                          <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Down Payment (₹)
                           </label>
                           <input
@@ -741,7 +741,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                             inputMode="numeric"
                             min="0"
                             placeholder="Enter down payment amount"
-                            className="w-full px-4 py-3 bg-[#fffdf0] border border-[#ddc84a] rounded-lg text-[#7a5c00] placeholder-[#b3a066] focus:outline-none focus:border-[#c9920a]"
+                            className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
                           />
                         </div>
                       </div>
@@ -753,7 +753,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
               <button
                 type="submit"
                 disabled={isSubmitting || !selectedLoanType}
-                className="w-full py-4 px-6 bg-linear-to-r from-[#ddb000] to-[#c98800] text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-all"
+                className="w-full py-4 px-6 bg-gold-primary text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-all"
               >
                 {isSubmitting ? (
                   <>

@@ -98,13 +98,13 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300, duration: 0.4 }}
             style={{ position: 'relative' }}
-            className="w-full max-w-md max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl shadow-[#C9A84C]/20 my-8"
+            className="w-full max-w-md max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl shadow-gold-primary/20 my-8"
           >
             <button
               onClick={handleClose}
-              className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-[#F5F3EE] hover:bg-[#C9A84C]/20 flex items-center justify-center transition-colors"
+              className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-bg-tertiary hover:bg-gold-primary/20 flex items-center justify-center transition-colors"
             >
-              <X className="w-4 h-4 text-gray-500 hover:text-[#C9A84C]" />
+              <X className="w-4 h-4 text-gray-500 hover:text-gold-primary" />
             </button>
 
             <div className="p-4 md:p-8">
@@ -121,7 +121,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", delay: 0.2, damping: 15 }}
-                      className="w-20 h-20 mx-auto mb-4 rounded-full bg-linear-to-br from-[#C9A84C] to-[#E5C76B] flex items-center justify-center"
+                      className="w-20 h-20 mx-auto mb-4 rounded-full bg-gold-primary flex items-center justify-center"
                     >
                       <span className="text-4xl text-white">✓</span>
                     </motion.div>
@@ -153,7 +153,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ type: "spring", delay: 0.1, damping: 15 }}
-                        className="w-16 h-16 bg-linear-to-br from-[#C9A84C] to-[#E5C76B] rounded-2xl flex items-center justify-center mx-auto mb-4"
+                        className="w-16 h-16 bg-gold-primary rounded-2xl flex items-center justify-center mx-auto mb-4"
                       >
                         <PhoneCall className="w-8 h-8 text-white" />
                       </motion.div>
@@ -182,14 +182,14 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         transition={{ delay: 0.25 }}
                       >
                         <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                          Full Name <span className="text-[#C9A84C]">*</span>
+                          Full Name <span className="text-gold-primary">*</span>
                         </label>
                         <div className="relative">
                           <input
                             {...register("fullName", { required: "Name is required" })}
                             type="text"
                             placeholder="Enter your name"
-                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#C9A84C] focus:ring-2 focus:ring-[#C9A84C]/20 transition-all"
+                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all"
                           />
                           <User className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                         </div>
@@ -210,7 +210,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         transition={{ delay: 0.3 }}
                       >
                         <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                          Mobile Number <span className="text-[#C9A84C]">*</span>
+                          Mobile Number <span className="text-gold-primary">*</span>
                         </label>
                         <div className="relative">
                           <input
@@ -223,7 +223,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                             })}
                             type="tel"
                             placeholder="Enter your mobile number"
-                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#C9A84C] focus:ring-2 focus:ring-[#C9A84C]/20 transition-all"
+                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all"
                           />
                           <Phone className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                         </div>
@@ -244,7 +244,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         transition={{ delay: 0.35 }}
                       >
                         <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                          Email <span className="text-[#C9A84C]">*</span>
+                          Email <span className="text-gold-primary">*</span>
                         </label>
                         <div className="relative">
                           <input
@@ -254,7 +254,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                             })}
                             type="email"
                             placeholder="Enter your email"
-                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#C9A84C] focus:ring-2 focus:ring-[#C9A84C]/20 transition-all"
+                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all"
                           />
                           <Mail className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                         </div>
@@ -282,7 +282,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                             {...register("city")}
                             type="text"
                             placeholder="Enter your city"
-                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#C9A84C] focus:ring-2 focus:ring-[#C9A84C]/20 transition-all"
+                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all"
                           />
                           <MapPin className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                         </div>
@@ -296,7 +296,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.45 }}
-                        className="w-full py-4 bg-linear-to-r from-[#C9A84C] to-[#D4B05A] text-white font-semibold rounded-xl shadow-lg shadow-[#C9A84C]/30 hover:shadow-xl hover:shadow-[#C9A84C]/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        className="w-full py-4 bg-gold-primary text-white font-semibold rounded-xl shadow-lg shadow-gold-primary/30 hover:shadow-xl hover:shadow-gold-primary/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                       >
                         {isSubmitting ? (
                           <>

@@ -23,13 +23,13 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Navbar />
-      <div className="animate-fade-in min-h-screen bg-linear-to-b from-white to-[#F5F3EE]">
+      <div className="animate-fade-in min-h-screen bg-linear-to-b from-white to-bg-tertiary">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Privacy Policy</h1>
 
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#C9A84C]/20 space-y-8">
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-[gold-primary]/20 space-y-8">
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">1. What Data We Collect</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">1. What Data We Collect</h2>
               <p className="text-gray-600 mb-4">We collect the following personal information when you submit an enquiry on our website:</p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
                 <li>Full Name</li>
@@ -43,7 +43,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">2. How We Use Your Data</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">2. How We Use Your Data</h2>
               <p className="text-gray-600 mb-4">Your information is used for the following purposes:</p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
                 <li>To process your loan enquiry and connect you with appropriate lenders</li>
@@ -55,7 +55,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">3. Data Storage & Security</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">3. Data Storage & Security</h2>
               <p className="text-gray-600">
                 Your personal data is stored securely on our servers with industry-standard encryption.
                 We implement appropriate technical and organizational measures to protect your data
@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">4. Third Party Sharing</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">4. Third Party Sharing</h2>
               <p className="text-gray-600 mb-4">We may share your information with:</p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
                 <li>Partner banks and financial institutions to process your loan application</li>
@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">5. Your Rights</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">5. Your Rights</h2>
               <p className="text-gray-600 mb-4">You have the right to:</p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
                 <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
@@ -86,7 +86,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">6. Contact Us</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">6. Contact Us</h2>
               <p className="text-gray-600">
                 For any privacy concerns or data requests, please contact us at:<br />
                 <strong>Email:</strong> support@get-credit.in<br />

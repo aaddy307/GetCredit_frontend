@@ -13,6 +13,12 @@ export default function manifest() {
         sizes: 'any',
         type: 'image/jpeg',
       },
+      {
+        src: '/Logo.jpeg',
+        sizes: '180x180',
+        type: 'image/jpeg',
+        id: 'apple-touch-icon',
+      },
     ],
   };
 }

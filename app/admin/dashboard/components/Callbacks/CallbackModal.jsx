@@ -55,7 +55,7 @@ export default function CallbackModal({ isOpen, onClose, callback, onSubmit, isS
               type="text"
               value={formData.fullName}
               onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]"
               required
             />
           </div>
@@ -66,7 +66,7 @@ export default function CallbackModal({ isOpen, onClose, callback, onSubmit, isS
               type="tel"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]"
               required
             />
           </div>
@@ -77,7 +77,7 @@ export default function CallbackModal({ isOpen, onClose, callback, onSubmit, isS
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]"
             />
           </div>
           <div>
@@ -87,7 +87,7 @@ export default function CallbackModal({ isOpen, onClose, callback, onSubmit, isS
               type="text"
               value={formData.city}
               onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]"
             />
           </div>
           <div>
@@ -96,7 +96,7 @@ export default function CallbackModal({ isOpen, onClose, callback, onSubmit, isS
               id="status"
               value={formData.status}
               onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]"
             >
               <option value="Pending">Pending</option>
               <option value="Called">Called</option>
@@ -110,7 +110,7 @@ export default function CallbackModal({ isOpen, onClose, callback, onSubmit, isS
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               rows={3}
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]"
             />
           </div>
           <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
@@ -124,7 +124,7 @@ export default function CallbackModal({ isOpen, onClose, callback, onSubmit, isS
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-4 py-2 bg-[#C9A84C] text-white rounded-lg hover:bg-[#A8892A] disabled:opacity-50 transition-colors font-medium"
+              className="px-4 py-2 bg-gold-primary text-white rounded-lg hover:bg-gold-deep disabled:opacity-50 transition-colors font-medium"
             >
               {isSubmitting ? "Saving..." : callback ? "Update" : "Add"}
             </button>

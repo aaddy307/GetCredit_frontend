@@ -52,7 +52,7 @@ function Pagination({ page, totalPages, onPageChange }) {
         item === '...' ? (
           <span key={`e${i}`} className="w-8 h-8 flex items-center justify-center text-sm text-gray-400 select-none">&hellip;</span>
         ) : (
-          <button key={item} onClick={() => onPageChange(item)} className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${page === item ? 'bg-[#C9A84C] text-white shadow-sm' : 'text-gray-600 hover:bg-gray-100'}`} aria-current={page === item ? 'page' : undefined}>
+          <button key={item} onClick={() => onPageChange(item)} className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${page === item ? 'bg-gold-primary text-white shadow-sm' : 'text-gray-600 hover:bg-gray-100'}`} aria-current={page === item ? 'page' : undefined}>
             {item}
           </button>
         )
@@ -178,7 +178,7 @@ export default function BlogView() {
           <p className="text-sm text-gray-500">Manage blog posts</p>
         </div>
         {hasPermission('blog', 'create') && (
-          <button onClick={openAddModal} className="flex items-center gap-2 px-4 py-2.5 bg-[#C9A84C] text-white rounded-xl font-medium hover:bg-[#A8892A] transition-colors">
+          <button onClick={openAddModal} className="flex items-center gap-2 px-4 py-2.5 bg-gold-primary text-white rounded-xl font-medium hover:bg-gold-deep transition-colors">
             <Plus className="w-4 h-4" />
             Add Blog
           </button>
@@ -189,14 +189,14 @@ export default function BlogView() {
         <div className="flex flex-wrap gap-3 items-center">
           <div className="relative flex-1 min-w-0 max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input type="text" value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} placeholder="Search by title..." className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]" />
+            <input type="text" value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} placeholder="Search by title..." className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary]" />
             {search && (<button onClick={() => { setSearch(''); setPage(1); }} className="absolute right-3 top-1/2 -translate-y-1/2"><X className="w-4 h-4 text-gray-400" /></button>)}
           </div>
-          <select value={categoryFilter} onChange={(e) => { setCategoryFilter(e.target.value); setPage(1); }} className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C]">
+          <select value={categoryFilter} onChange={(e) => { setCategoryFilter(e.target.value); setPage(1); }} className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary]">
             <option value="">All Categories</option>
             {categoryOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
           </select>
-          {(search || categoryFilter) && (<button onClick={() => { setSearch(''); setCategoryFilter(''); setPage(1); }} className="text-[#C9A84C] text-sm hover:underline">Clear Filters</button>)}
+          {(search || categoryFilter) && (<button onClick={() => { setSearch(''); setCategoryFilter(''); setPage(1); }} className="text-[gold-primary] text-sm hover:underline">Clear Filters</button>)}
         </div>
       </div>
 
@@ -214,7 +214,7 @@ export default function BlogView() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {loading ? (<tr><td colSpan={6} className="px-4 py-12 text-center"><div className="animate-spin w-6 h-6 border-2 border-[#C9A84C] border-t-transparent rounded-full mx-auto"></div></td></tr>) : blogs.length === 0 ? (<tr><td colSpan={6} className="px-4 py-12 text-center text-gray-500">No blogs found</td></tr>) : (
+              {loading ? (<tr><td colSpan={6} className="px-4 py-12 text-center"><div className="animate-spin w-6 h-6 border-2 border-[gold-primary] border-t-transparent rounded-full mx-auto"></div></td></tr>) : blogs.length === 0 ? (<tr><td colSpan={6} className="px-4 py-12 text-center text-gray-500">No blogs found</td></tr>) : (
                 blogs.map((blog, index) => (
                   <tr key={blog._id} className={`hover:bg-gray-50 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
                     <td className="px-4 py-3 text-sm font-medium text-gray-900 max-w-xs truncate">{blog.title}</td>
@@ -248,7 +248,7 @@ export default function BlogView() {
 
         <div className="md:hidden divide-y divide-gray-100">
           {loading ? (
-            <div className="p-8 text-center"><div className="animate-spin w-6 h-6 border-2 border-[#C9A84C] border-t-transparent rounded-full mx-auto"></div></div>
+            <div className="p-8 text-center"><div className="animate-spin w-6 h-6 border-2 border-[gold-primary] border-t-transparent rounded-full mx-auto"></div></div>
           ) : blogs.length === 0 ? (
             <div className="p-8 text-center text-gray-500">No blogs found</div>
           ) : (
@@ -300,20 +300,20 @@ export default function BlogView() {
             <form onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto p-4 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Title *</label>
-                <input {...register("title", { required: "Title is required" })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" />
+                <input {...register("title", { required: "Title is required" })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]" />
                 {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title.message}</p>}
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
-                  <select {...register("category", { required: "Category is required" })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]">
+                  <select {...register("category", { required: "Category is required" })} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]">
                     {categoryOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                  <select {...register("status")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]">
+                  <select {...register("status")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]">
                     {statusOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
                   </select>
                 </div>
@@ -321,12 +321,12 @@ export default function BlogView() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Author</label>
-                <input {...register("author")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C]" placeholder="Enter author name" />
+                <input {...register("author")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]" placeholder="Enter author name" />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Excerpt</label>
-                <textarea {...register("excerpt")} rows={2} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#C9A84C] resize-none" placeholder="Short description..." />
+                <textarea {...register("excerpt")} rows={2} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary] resize-none" placeholder="Short description..." />
               </div>
 
               <div>
@@ -342,7 +342,7 @@ export default function BlogView() {
 
               <div className="flex gap-3 pt-2 shrink-0">
                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-2.5 border border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button type="submit" className="flex-1 py-2.5 bg-[#C9A84C] text-white rounded-xl hover:bg-[#A8892A]">{editingBlog ? 'Update' : 'Add'} Blog</button>
+                <button type="submit" className="flex-1 py-2.5 bg-gold-primary text-white rounded-xl hover:bg-gold-deep">{editingBlog ? 'Update' : 'Add'} Blog</button>
               </div>
             </form>
           </div>

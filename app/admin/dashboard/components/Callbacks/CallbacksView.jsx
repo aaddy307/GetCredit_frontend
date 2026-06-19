@@ -37,7 +37,7 @@ function Pagination({ page, totalPages, onPageChange }) {
         item === '...' ? (
           <span key={`e${i}`} className="w-8 h-8 flex items-center justify-center text-sm text-gray-400 select-none">&hellip;</span>
         ) : (
-          <button key={item} onClick={() => onPageChange(item)} className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${page === item ? 'bg-[#C9A84C] text-white shadow-sm' : 'text-gray-600 hover:bg-gray-100'}`} aria-current={page === item ? 'page' : undefined}>
+          <button key={item} onClick={() => onPageChange(item)} className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${page === item ? 'bg-gold-primary text-white shadow-sm' : 'text-gray-600 hover:bg-gray-100'}`} aria-current={page === item ? 'page' : undefined}>
             {item}
           </button>
         )
@@ -173,7 +173,7 @@ export default function CallbacksView() {
         </div>
         <button
           onClick={openAddModal}
-          className="flex items-center gap-2 px-4 py-2.5 bg-[#C9A84C] text-white rounded-xl text-sm font-semibold hover:bg-[#A8892A] transition-colors whitespace-nowrap"
+          className="flex items-center gap-2 px-4 py-2.5 bg-gold-primary text-white rounded-xl text-sm font-semibold hover:bg-gold-deep transition-colors whitespace-nowrap"
         >
           <Plus className="w-4 h-4" />
           Add Request
@@ -199,7 +199,7 @@ export default function CallbacksView() {
       />
 
       {!loading && callbacks.length > 0 && pagination.totalPages > 1 && (
-        <div className="bg-white rounded-xl border border-[#C9A84C]/10 shadow-sm">
+        <div className="bg-white rounded-xl border border-[gold-primary]/10 shadow-sm">
           <div className="flex items-center justify-between px-4 py-3">
             <p className="text-xs sm:text-sm text-gray-500">Showing {callbacks.length} of {pagination.total} callbacks</p>
             <Pagination page={pagination.page} totalPages={pagination.totalPages} onPageChange={setPage} />

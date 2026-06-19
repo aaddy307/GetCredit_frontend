@@ -67,8 +67,8 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
                 w-full flex items-center gap-3 px-2 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm font-medium
                 transition-all duration-200
                 ${activeTab === item.id
-                  ? 'bg-linear-to-r from-[#C9A84C] to-[#B8943D] text-white shadow-lg shadow-[#C9A84C]/25'
-                  : 'text-gray-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C]'
+                  ? 'bg-gold-primary text-white shadow-lg shadow-gold-primary/25'
+                  : 'text-gray-600 hover:bg-gold-primary/5 hover:text-gold-primary'
                 }
               `}
             >
@@ -82,7 +82,7 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onClose }) {
       <div className="p-2 sm:p-3 border-t border-gray-100 shrink-0">
         <div className="px-2 mb-2">
           <p className="text-xs text-gray-400 uppercase tracking-wide">Role</p>
-          <p className="text-sm font-medium text-[#C9A84C]">{ROLE_LABELS[role]}</p>
+          <p className="text-sm font-medium text-[gold-primary]">{ROLE_LABELS[role]}</p>
         </div>
         <button
           onClick={logout}

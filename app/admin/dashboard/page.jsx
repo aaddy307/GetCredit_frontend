@@ -17,9 +17,9 @@ function AuthGuard({ children }) {
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-[#F5F3EE]">
+      <div className="flex h-screen items-center justify-center bg-bg-tertiary">
         <div className="text-center">
-          <div className="animate-spin w-8 h-8 border-3 border-[#C9A84C] border-t-transparent rounded-full mx-auto mb-4"></div>
+          <div className="animate-spin w-8 h-8 border-3 border-[gold-primary] border-t-transparent rounded-full mx-auto mb-4"></div>
           <p className="text-gray-500">Loading...</p>
         </div>
       </div>

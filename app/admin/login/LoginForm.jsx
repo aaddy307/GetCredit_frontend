@@ -31,7 +31,7 @@ function LoginFormContent() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-white to-[#F5F3EE] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-b from-white to-bg-tertiary flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(201,149,42,0.08)_0%,transparent_50%)]" />
       
       <motion.div
@@ -63,19 +63,19 @@ function LoginFormContent() {
             />
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password <span className="text-[#C9A84C]">*</span>
+                Password <span className="text-[gold-primary]">*</span>
               </label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   {...register("password", { required: true })}
                   placeholder="Enter password"
-                  className="w-full px-4 py-3 pr-12 bg-white border border-[#C9A84C]/20 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#C9A84C] transition-colors"
+                  className="w-full px-4 py-3 pr-12 bg-white border border-[gold-primary]/20 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[gold-primary] transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#C9A84C]"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[gold-primary]"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -100,7 +100,7 @@ function LoginFormContent() {
         </GlassCard>
 
         <div className="mt-6 text-center">
-          <Link href="/" className="text-[#C9A84C] hover:underline text-sm">
+          <Link href="/" className="text-[gold-primary] hover:underline text-sm">
             ← Back to Home
           </Link>
         </div>

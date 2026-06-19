@@ -9,7 +9,13 @@
   --gold-primary: #C9A84C;
   --gold-deep: #A8892A;
   --gold-light: #F0E6C8;
+  --gold-lighter: #E5C76B;
+  --gold-bright: #ddc84a;
+  --gold-dark: #7a5c00;
   --gold-muted: rgba(201, 168, 76, 0.15);
+  --gold-border: #c9920a;
+  --gold-placeholder: #b3a066;
+  --gold-cream: #fffdf0;
   --text-primary: #1A1A1A;
   --text-secondary: #5A5A5A;
   --text-muted: #9A9A9A;
@@ -18,6 +24,9 @@
   --glass-bg: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(201, 168, 76, 0.25);
   --card-bg: #FFFFFF;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
 }
 
 @theme inline {
@@ -27,11 +36,20 @@
   --color-gold-primary: var(--gold-primary);
   --color-gold-deep: var(--gold-deep);
   --color-gold-light: var(--gold-light);
+  --color-gold-lighter: var(--gold-lighter);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-dark: var(--gold-dark);
   --color-gold-muted: var(--gold-muted);
+  --color-gold-border: var(--gold-border);
+  --color-gold-placeholder: var(--gold-placeholder);
+  --color-gold-cream: var(--gold-cream);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
   --color-border-gold: var(--border-gold);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
 }
 
 @keyframes fadeIn {

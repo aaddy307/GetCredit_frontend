@@ -23,13 +23,13 @@ export default function Terms() {
   return (
     <>
       <Navbar />
-      <div className="animate-fade-in min-h-screen bg-linear-to-b from-white to-[#F5F3EE]">
+      <div className="animate-fade-in min-h-screen bg-linear-to-b from-white to-bg-tertiary">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Terms & Conditions</h1>
 
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#C9A84C]/20 space-y-8">
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-[gold-primary]/20 space-y-8">
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">1. Service Description</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">1. Service Description</h2>
               <p className="text-gray-600">
                 Get Credit is a loan consultancy platform that connects users with banks and financial
                 institutions. We are <strong>not a lender</strong> ourselves. Our service is to help you
@@ -38,7 +38,7 @@ export default function Terms() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">2. User Responsibilities</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">2. User Responsibilities</h2>
               <p className="text-gray-600 mb-4">By using our website, you agree to:</p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
                 <li>Provide accurate and complete information in all enquiry forms</li>
@@ -50,7 +50,7 @@ export default function Terms() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">3. Disclaimer — Not Financial Advice</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">3. Disclaimer — Not Financial Advice</h2>
               <p className="text-gray-600">
                 The information provided on this website is for general informational purposes only.
                 We do not provide financial, legal, or tax advice. The final decision on loan approval,
@@ -60,7 +60,7 @@ export default function Terms() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">4. Limitation of Liability</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">4. Limitation of Liability</h2>
               <p className="text-gray-600 mb-4">Get Credit shall not be liable for:</p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
                 <li>Any decision made by banks or financial institutions regarding your loan application</li>
@@ -71,7 +71,7 @@ export default function Terms() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">5. User Content</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">5. User Content</h2>
               <p className="text-gray-600">
                 You are responsible for any information you submit through our website. You represent
                 and warrant that all information provided is accurate, current, and complete, and that
@@ -80,7 +80,7 @@ export default function Terms() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">6. Governing Law</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">6. Governing Law</h2>
               <p className="text-gray-600">
                 These Terms & Conditions are governed by the laws of <strong>India</strong>. Any disputes
                 arising out of or related to these terms shall be subject to the exclusive jurisdiction
@@ -89,7 +89,7 @@ export default function Terms() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">7. Changes to Terms</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">7. Changes to Terms</h2>
               <p className="text-gray-600">
                 We reserve the right to modify these Terms & Conditions at any time. Any changes will
                 be posted on this page with an updated &quot;Last Modified&quot; date. Your continued use of the
@@ -98,7 +98,7 @@ export default function Terms() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-[#C9A84C] mb-4">8. Contact Information</h2>
+              <h2 className="text-2xl font-semibold text-[gold-primary] mb-4">8. Contact Information</h2>
               <p className="text-gray-600">
                 For questions about these Terms & Conditions, please contact us at:<br />
                 <strong>Email:</strong> support@get-credit.in<br />

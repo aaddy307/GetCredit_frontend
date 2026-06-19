@@ -149,8 +149,8 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
 
             <div className="p-4 md:p-8">
               <div className="text-center mb-6">
-                <div className="w-14 h-14 bg-[#C9A84C]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Calculator className="w-7 h-7 text-[#C9A84C]" />
+                <div className="w-14 h-14 bg-[gold-primary]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Calculator className="w-7 h-7 text-[gold-primary]" />
                 </div>
                 <h1 className="text-xl font-bold text-[#7a5c00]">
                   Get Your Loan Approved
@@ -164,7 +164,7 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
                 <div className="mb-6 p-4 bg-[#fffdf0] rounded-xl border border-[#ddc84a]/30">
                   <div className="text-center">
                     <p className="text-gray-500 text-sm">Loan Details</p>
-                    <p className="text-xl font-bold text-[#C9A84C] mt-1">
+                    <p className="text-xl font-bold text-[gold-primary] mt-1">
                       ₹{parseInt(loanData.loanAmount || 0).toLocaleString()}
                     </p>
                     <p className="text-gray-600 text-sm">
@@ -181,7 +181,7 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
                   className="text-center py-8"
                 >
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#fffdf0] border-2 border-[#ddc84a] flex items-center justify-center">
-                    <span className="text-3xl text-[#C9A84C]">✓</span>
+                    <span className="text-3xl text-[gold-primary]">✓</span>
                   </div>
                   <h3 className="text-lg font-semibold text-[#7a5c00] mb-2">Thank You!</h3>
                   <p className="text-[#b3a066] text-sm">We&apos;ll contact you within 24 hours</p>
@@ -262,7 +262,7 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 px-6 bg-linear-to-r from-[#ddb000] to-[#c98800] text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-all"
+                    className="w-full py-3 px-6 bg-gold-primary text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-all"
                   >
                     {isSubmitting ? (
                       <>

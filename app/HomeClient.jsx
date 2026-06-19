@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Home, Building2, GraduationCap, User, Briefcase, Car, Award, Clock, Users, ShieldCheck, ArrowRight, ChevronDown, Banknote, TrendingUp, FileCheck } from "lucide-react";
 import Link from "next/link";
@@ -123,7 +123,7 @@ export default function HomeClient({ initialBlogs }) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                Loan <span className="text-[#C9A84C]">Categories</span>
+                Loan <span className="text-gold-primary">Categories</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Choose from our wide range of loan products designed to meet your specific needs
@@ -137,11 +137,11 @@ export default function HomeClient({ initialBlogs }) {
           </div>
         </section>
 
-        <section className="py-20 bg-[#F5F3EE]">
+        <section className="py-20 bg-bg-tertiary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                Why <span className="text-[#C9A84C]">Choose Us</span>
+                Why <span className="text-gold-primary">Choose Us</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 We are committed to providing you with the best loan solutions
@@ -150,8 +150,8 @@ export default function HomeClient({ initialBlogs }) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {whyChooseUs.map((item, index) => (
                 <GlassCard key={index} delay={index * 0.1} hover className="text-center">
-                  <div className="w-14 h-14 bg-[#C9A84C]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <item.icon className="w-7 h-7 text-[#C9A84C]" />
+                  <div className="w-14 h-14 bg-gold-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <item.icon className="w-7 h-7 text-gold-primary" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">{item.title}</h3>
                   <p className="text-gray-500 text-sm">{item.description}</p>
@@ -165,7 +165,7 @@ export default function HomeClient({ initialBlogs }) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                How It <span className="text-[#C9A84C]">Works</span>
+                How It <span className="text-gold-primary">Works</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Get your loan in four simple steps
@@ -175,13 +175,13 @@ export default function HomeClient({ initialBlogs }) {
               {processSteps.map((process, index) => (
                 <div key={index} className="relative">
                   <GlassCard delay={index * 0.1} className="h-full">
-                    <div className="text-4xl sm:text-6xl font-bold text-[#C9A84C]/20 mb-4">{process.step}</div>
+                    <div className="text-4xl sm:text-6xl font-bold text-gold-primary/20 mb-4">{process.step}</div>
                     <h3 className="text-xl font-semibold text-gray-800 mb-2">{process.title}</h3>
                     <p className="text-gray-500">{process.description}</p>
                   </GlassCard>
                   {index < processSteps.length - 1 && (
                     <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                      <ArrowRight className="w-8 h-8 text-[#C9A84C]" />
+                      <ArrowRight className="w-8 h-8 text-gold-primary" />
                     </div>
                   )}
                 </div>
@@ -190,11 +190,11 @@ export default function HomeClient({ initialBlogs }) {
           </div>
         </section>
 
-        <section className="py-20 bg-[#F5F3EE]">
+        <section className="py-20 bg-bg-tertiary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                What Our <span className="text-[#C9A84C]">Clients Say</span>
+                What Our <span className="text-gold-primary">Clients Say</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Trusted by thousands of happy customers
@@ -205,13 +205,13 @@ export default function HomeClient({ initialBlogs }) {
                 <GlassCard key={index} delay={index * 0.1} hover>
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <span key={i} className="text-[#C9A84C]">★</span>
+                      <span key={i} className="text-gold-primary">★</span>
                     ))}
                   </div>
                   <p className="text-gray-600 mb-6">&quot;{testimonial.message}&quot;</p>
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-[#C9A84C]/20 rounded-full flex items-center justify-center">
-                      <span className="text-[#C9A84C] font-semibold">{testimonial.name.charAt(0)}</span>
+                    <div className="w-12 h-12 bg-gold-primary/20 rounded-full flex items-center justify-center">
+                      <span className="text-gold-primary font-semibold">{testimonial.name.charAt(0)}</span>
                     </div>
                     <div>
                       <div className="text-gray-800 font-medium">{testimonial.name}</div>
@@ -228,7 +228,7 @@ export default function HomeClient({ initialBlogs }) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                Latest <span className="text-[#C9A84C]">Blogs</span>
+                Latest <span className="text-gold-primary">Blogs</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Stay updated with the latest financial news and tips
@@ -240,16 +240,16 @@ export default function HomeClient({ initialBlogs }) {
               ) : blogs.length > 0 ? (
                 blogs.map((blog, index) => (
                   <GlassCard key={blog._id || index} delay={index * 0.1} hover className="overflow-hidden p-0 group">
-                    <div className="h-48 bg-linear-to-br from-[#C9A84C]/10 to-[#F5F3EE] flex items-center justify-center">
-                      <span className="text-6xl text-[#C9A84C]/30">📰</span>
+                    <div className="h-48 bg-linear-to-br from-gold-primary/10 to-bg-tertiary flex items-center justify-center">
+                      <span className="text-6xl text-gold-primary/30">📰</span>
                     </div>
                     <div className="p-6">
                       <div className="flex items-center gap-4 mb-3">
-                        <span className="text-[#C9A84C] text-sm">{blog.category}</span>
+                        <span className="text-gold-primary text-sm">{blog.category}</span>
                         <span className="text-gray-400 text-sm">{new Date(blog.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4 group-hover:text-[#C9A84C] transition-colors">{blog.title}</h3>
-                      <Link href={`/blog/${blog.slug || blog._id}`} className="text-[#C9A84C] hover:underline">Read More →</Link>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-4 group-hover:text-gold-primary transition-colors">{blog.title}</h3>
+                      <Link href={`/blog/${blog.slug || blog._id}`} className="text-gold-primary hover:underline">Read More →</Link>
                     </div>
                   </GlassCard>
                 ))
@@ -265,7 +265,7 @@ export default function HomeClient({ initialBlogs }) {
           </div>
         </section>
 
-        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-linear-to-r from-[#C9A84C] to-[#E5C76B]">
+        <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="py-20 bg-gold-primary">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
               Ready to Get Your Dream Home?
@@ -281,37 +281,25 @@ export default function HomeClient({ initialBlogs }) {
           </div>
         </motion.section>
 
-        <section className="py-20 bg-[#F5F3EE]">
+        <section className="py-20 bg-bg-tertiary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                Frequently Asked <span className="text-[#C9A84C]">Questions</span>
+                Frequently Asked <span className="text-gold-primary"> Questions</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Find answers to common questions about our loan services
               </p>
             </motion.div>
-            <div className="space-y-4">
-              {[
-                { q: "What is the minimum CIBIL score required for a home loan?", a: "Most banks require a minimum CIBIL score of 650-700 for home loans. However, with Get Credit's tie-ups with 50+ banking partners, we can help you find suitable options even with lower scores." },
-                { q: "How much loan can I get as a home loan consultant in India?", a: "Home loans in India can go up to ₹15 Crore depending on your income, property value, and credit profile. As a trusted home loan consultant, Get Credit helps you secure the maximum loan amount at competitive interest rates." },
-                { q: "What documents are required for personal loan DSA application?", a: "Basic documents include identity proof (Aadhaar/PAN), address proof, income documents (salary slips or ITR for 2 years), bank statements (6 months), and property documents for home loans or LAP." },
-                { q: "Can I get an education loan for abroad studies without collateral?", a: "Yes, education loans for abroad studies up to ₹1.5 Crore are available without collateral through Get Credit's partner banks. We specialize in instant personal loan and education loan processing for students." },
-                { q: "What is loan against property and how does it work?", a: "Loan against property (LAP) is a secured loan where you pledge your residential, commercial property, or plot as collateral. You can get funding up to ₹30 Crore at lower interest rates compared to unsecured loans." },
-              ].map((faq, index) => (
-                <details key={index} className="group bg-white rounded-xl shadow-sm border border-gray-100">
-                  <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
-                    <span className="text-lg font-semibold text-gray-800">{faq.q}</span>
-                    <ChevronDown className="w-5 h-5 text-[#C9A84C] group-open:rotate-180 transition-transform" />
-                  </summary>
-                  <div className="px-6 pb-6 text-gray-500 leading-relaxed">
-                    {faq.a}
-                  </div>
-                </details>
-              ))}
-            </div>
+            <FaqAccordion faqs={[
+              { q: "What is the minimum CIBIL score required for a home loan?", a: "Most banks require a minimum CIBIL score of 650-700 for home loans. However, with Get Credit's tie-ups with 50+ banking partners, we can help you find suitable options even with lower scores." },
+              { q: "How much loan can I get as a home loan consultant in India?", a: "Home loans in India can go up to ₹15 Crore depending on your income, property value, and credit profile. As a trusted home loan consultant, Get Credit helps you secure the maximum loan amount at competitive interest rates." },
+              { q: "What documents are required for personal loan DSA application?", a: "Basic documents include identity proof (Aadhaar/PAN), address proof, income documents (salary slips or ITR for 2 years), bank statements (6 months), and property documents for home loans or LAP." },
+              { q: "Can I get an education loan for abroad studies without collateral?", a: "Yes, education loans for abroad studies up to ₹1.5 Crore are available without collateral through Get Credit's partner banks. We specialize in instant personal loan and education loan processing for students." },
+              { q: "What is loan against property and how does it work?", a: "Loan against property (LAP) is a secured loan where you pledge your residential, commercial property, or plot as collateral. You can get funding up to ₹30 Crore at lower interest rates compared to unsecured loans." },
+            ]} />
             <div className="text-center mt-8">
-              <Link href="/faq" className="text-[#C9A84C] hover:underline font-medium">
+              <Link href="/faq" className="text-gold-primary hover:underline font-medium">
                 View All FAQs →
               </Link>
             </div>
@@ -322,7 +310,7 @@ export default function HomeClient({ initialBlogs }) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                Our <span className="text-[#C9A84C]">Process</span>
+                Our <span className="text-gold-primary">Process</span>
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Simple four-step process to get your loan approved
@@ -336,8 +324,8 @@ export default function HomeClient({ initialBlogs }) {
                 { icon: Award, title: "Disbursal", description: "Get your loan amount disbursed directly to your account within 24-48 hours of approval." },
               ].map((step, index) => (
                 <GlassCard key={index} delay={index * 0.1} className="text-center">
-                  <div className="w-14 h-14 bg-[#C9A84C]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <step.icon className="w-7 h-7 text-[#C9A84C]" />
+                  <div className="w-14 h-14 bg-gold-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <step.icon className="w-7 h-7 text-gold-primary" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">{step.title}</h3>
                   <p className="text-gray-500 text-sm">{step.description}</p>
@@ -350,5 +338,49 @@ export default function HomeClient({ initialBlogs }) {
       <WhatsAppPopup />
       <Footer />
     </>
+  );
+}
+
+function FaqAccordion({ faqs }) {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <div className="space-y-4">
+      {faqs.map((faq, index) => (
+        <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+          <h3>
+            <button
+              onClick={() => toggle(index)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  toggle(index);
+                }
+              }}
+              aria-expanded={openIndex === index}
+              aria-controls={`home-faq-answer-${index}`}
+              id={`home-faq-question-${index}`}
+              className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none focus:ring-2 focus:ring-gold-primary/40 focus:ring-inset"
+            >
+              <span className="text-lg font-semibold text-gray-800 pr-4">{faq.q}</span>
+              <ChevronDown
+                className={`w-5 h-5 text-gold-primary shrink-0 transition-transform ${
+                  openIndex === index ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+          </h3>
+          {openIndex === index && (
+            <div id={`home-faq-answer-${index}`} role="region" aria-labelledby={`home-faq-question-${index}`} className="px-6 pb-6 text-gray-500 leading-relaxed">
+              {faq.a}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
   );
 }

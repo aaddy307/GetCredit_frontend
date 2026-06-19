@@ -14,7 +14,7 @@ export default function CallbackStats({ stats }) {
       {statItems.map((item) => (
         <div
           key={item.label}
-          className="bg-white rounded-xl p-4 border border-[#C9A84C]/10 shadow-sm"
+          className="bg-white rounded-xl p-4 border border-[gold-primary]/10 shadow-sm"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-gray-500 text-sm">{item.label}</span>

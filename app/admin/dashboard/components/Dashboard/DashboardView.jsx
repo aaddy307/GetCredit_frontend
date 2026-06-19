@@ -53,11 +53,11 @@ export default function DashboardView({ onAction }) {
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
           <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
             <h3 className="font-semibold text-gray-900">Recent Leads</h3>
-            <button onClick={() => onAction('view-leads')} className="text-sm text-[#C9A84C] hover:underline">View All</button>
+            <button onClick={() => onAction('view-leads')} className="text-sm text-[gold-primary] hover:underline">View All</button>
           </div>
           <div className="divide-y divide-gray-100">
             {loading ? (
-              <div className="p-8 text-center"><div className="animate-spin w-6 h-6 border-2 border-[#C9A84C] border-t-transparent rounded-full mx-auto"></div></div>
+              <div className="p-8 text-center"><div className="animate-spin w-6 h-6 border-2 border-[gold-primary] border-t-transparent rounded-full mx-auto"></div></div>
             ) : recentLeads.length > 0 ? (
               recentLeads.map((lead) => (
                 <div key={lead._id} className="px-5 py-3 hover:bg-gray-50 flex items-center justify-between">
@@ -77,11 +77,11 @@ export default function DashboardView({ onAction }) {
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
           <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
             <h3 className="font-semibold text-gray-900">Recent Callbacks</h3>
-            <button onClick={() => onAction('view-callbacks')} className="text-sm text-[#C9A84C] hover:underline">View All</button>
+            <button onClick={() => onAction('view-callbacks')} className="text-sm text-[gold-primary] hover:underline">View All</button>
           </div>
           <div className="divide-y divide-gray-100">
             {loading ? (
-              <div className="p-8 text-center"><div className="animate-spin w-6 h-6 border-2 border-[#C9A84C] border-t-transparent rounded-full mx-auto"></div></div>
+              <div className="p-8 text-center"><div className="animate-spin w-6 h-6 border-2 border-[gold-primary] border-t-transparent rounded-full mx-auto"></div></div>
             ) : recentCallbacks.length > 0 ? (
               recentCallbacks.map((callback) => (
                 <div key={callback._id} className="px-5 py-3 hover:bg-gray-50 flex items-center justify-between">

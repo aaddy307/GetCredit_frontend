@@ -34,7 +34,7 @@ export default function QuickActions({ onAction }) {
       id: 'add-lead',
       label: 'Add Lead',
       icon: Plus,
-      color: 'bg-[#C9A84C] hover:bg-[#A8892A]',
+      color: 'bg-gold-primary hover:bg-gold-deep',
       onClick: () => onAction('add-lead')
     },
     {

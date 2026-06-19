@@ -12,10 +12,10 @@ export default function Button({
   const baseStyles = "px-6 py-3 rounded-lg font-medium transition-all duration-300 cursor-pointer";
   
   const variants = {
-    primary: "bg-[#C9A84C] text-white hover:bg-[#A8892A] shadow-md shadow-[#C9A84C]/20",
-    secondary: "border-2 border-[#C9A84C] text-[#C9A84C] hover:bg-white hover:border-[#C9A84C] hover:text-[#C9A84C]",
-    outline: "border border-[#C9A84C] text-gray-700 hover:bg-[#F5F3EE] hover:border-[#C9A84C] hover:text-[#C9A84C]",
-    ghost: "text-gray-700 hover:text-[#C9A84C]",
+    primary: "bg-gold-primary text-white hover:bg-gold-deep shadow-md shadow-gold-primary/20",
+    secondary: "border-2 border-gold-primary text-gold-primary hover:bg-white hover:border-gold-primary hover:text-gold-primary",
+    outline: "border border-gold-primary text-gray-700 hover:bg-bg-tertiary hover:border-gold-primary hover:text-gold-primary",
+    ghost: "text-gray-700 hover:text-gold-primary",
   };
 
   return (

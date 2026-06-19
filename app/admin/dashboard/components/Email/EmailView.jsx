@@ -166,7 +166,7 @@ export default function EmailView() {
         <img
           src="/Logo.jpeg"
           alt="Get Credit – Loan Consultancy Logo"
-          className="w-12 h-12 rounded-xl object-cover shadow-sm ring-2 ring-[#C9A84C]/20"
+          className="w-12 h-12 rounded-xl object-cover shadow-sm ring-2 ring-[gold-primary]/20"
         />
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">Email</h1>
@@ -182,12 +182,12 @@ export default function EmailView() {
                 onClick={() => { setActiveTab('compose'); setShowTemplates(false); }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   activeTab === 'compose'
-                    ? 'bg-linear-to-r from-[#C9A84C]/10 to-[#E5C76B]/10 text-[#8B7A2E] border border-[#C9A84C]/30'
+                    ? 'bg-gold-primary/10 text-gold-dark border border-gold-primary/30'
                     : 'text-gray-600 hover:bg-gray-50 border border-transparent'
                 }`}
               >
                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                  activeTab === 'compose' ? 'bg-[#C9A84C] text-white' : 'bg-gray-100 text-gray-500'
+                  activeTab === 'compose' ? 'bg-gold-primary text-white' : 'bg-gray-100 text-gray-500'
                 }`}>
                   <Send className="w-4 h-4" />
                 </div>
@@ -207,7 +207,7 @@ export default function EmailView() {
                     onClick={() => handleTemplateSelect(tpl.id)}
                     className={`w-full text-left px-3 py-2.5 rounded-xl text-sm transition-all ${
                       selectedTemplate === tpl.id
-                        ? 'bg-[#C9A84C]/10 text-[#8B7A2E] font-medium border border-[#C9A84C]/20'
+                        ? 'bg-[gold-primary]/10 text-[#8B7A2E] font-medium border border-[gold-primary]/20'
                         : 'text-gray-600 hover:bg-gray-50 border border-transparent'
                     }`}
                   >
@@ -223,7 +223,7 @@ export default function EmailView() {
         <div className="flex-1 min-w-0">
           <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
             {selectedTemplate !== 'blank' && (
-              <div className="px-6 pt-5 pb-3 bg-linear-to-r from-[#C9A84C]/5 to-[#E5C76B]/5 border-b border-[#C9A84C]/10">
+              <div className="px-6 pt-5 pb-3 bg-gold-primary/5 border-b border-gold-primary/10">
                 <div className="flex items-center gap-2 text-sm text-[#8B7A2E] font-medium">
                   <FileText className="w-4 h-4" />
                   <span>Template: {templates.find(t => t.id === selectedTemplate)?.label}</span>
@@ -234,7 +234,7 @@ export default function EmailView() {
                     <select
                       value={selectedLoanType}
                       onChange={(e) => handleLoanTypeChange(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]/20 bg-white"
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary] focus:ring-1 focus:ring-[gold-primary]/20 bg-white"
                     >
                       <option value="">Select loan type</option>
                       {loanTypes.map(lt => (
@@ -251,7 +251,7 @@ export default function EmailView() {
                       min="1"
                       max={getTenureUnit(selectedLoanType) === 'Months' ? 84 : 30}
                       placeholder={getTenureUnit(selectedLoanType) === 'Months' ? 'e.g. 60' : 'e.g. 20'}
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]/20"
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary] focus:ring-1 focus:ring-[gold-primary]/20"
                     />
                   </div>
                 </div>
@@ -270,7 +270,7 @@ export default function EmailView() {
                     value={to}
                     onChange={(e) => setTo(e.target.value)}
                     placeholder="customer@example.com"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]/20 transition-colors text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-[gold-primary] focus:ring-1 focus:ring-[gold-primary]/20 transition-colors text-sm"
                   />
                   <p className="text-xs text-gray-400 mt-1">Separate multiple recipients with commas</p>
                 </div>
@@ -285,7 +285,7 @@ export default function EmailView() {
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     placeholder="Enter email subject"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]/20 transition-colors text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-[gold-primary] focus:ring-1 focus:ring-[gold-primary]/20 transition-colors text-sm"
                   />
                 </div>
               </div>
@@ -299,7 +299,7 @@ export default function EmailView() {
                   onChange={(e) => setBody(e.target.value)}
                   rows={14}
                   placeholder={selectedTemplate === 'blank' ? "Write your email message here..." : "Customize the template content above..."}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]/20 transition-colors text-sm resize-y font-mono leading-relaxed"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[gold-primary] focus:ring-1 focus:ring-[gold-primary]/20 transition-colors text-sm resize-y font-mono leading-relaxed"
                 />
                 <p className="text-xs text-gray-400 mt-1">Use {`{Customer Name}`} as a placeholder — it will be sent as-is.</p>
               </div>
@@ -314,7 +314,7 @@ export default function EmailView() {
               <button
                 type="submit"
                 disabled={sending}
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-linear-to-r from-[#C9A84C] to-[#B8943D] text-white rounded-xl font-medium text-sm hover:from-[#B8943D] hover:to-[#A8892A] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gold-primary text-white rounded-xl font-medium text-sm hover:bg-gold-deep transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
               >
                 {sending ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

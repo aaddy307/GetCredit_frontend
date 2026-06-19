@@ -54,7 +54,7 @@ export default function Navbar() {
             <Link href="/" className="flex items-center gap-2.5">
               <Image src="/Logo.jpeg" alt="Get Credit – Loan Consultancy Logo" width={32} height={32} className="rounded-lg object-contain shrink-0" priority />
               <span className="text-2xl font-bold text-[#1A1A1A] leading-none">
-                Get <span className="text-[#C9A84C]">Credit</span>
+                Get <span className="text-[gold-primary]">Credit</span>
               </span>
             </Link>
 
@@ -65,12 +65,12 @@ export default function Navbar() {
                     key={link.name}
                     href={link.href}
                     className={`relative text-sm transition-colors ${
-                      pathname === link.href ? "text-[#C9A84C]" : "text-gray-600 hover:text-[#C9A84C]"
+                      pathname === link.href ? "text-[gold-primary]" : "text-gray-600 hover:text-[gold-primary]"
                     }`}
                   >
                     {link.name}
                     {pathname === link.href && (
-                      <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-[#C9A84C] shadow-[0_0_10px_rgba(201,149,42,0.5)]" />
+                      <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-gold-primary shadow-[0_0_10px_rgba(201,149,42,0.5)]" />
                     )}
                   </Link>
                 ))}
@@ -82,12 +82,12 @@ export default function Navbar() {
                     key={link.name}
                     href={link.href}
                     className={`relative text-sm transition-colors ${
-                      pathname === link.href ? "text-[#C9A84C]" : "text-gray-600 hover:text-[#C9A84C]"
+                      pathname === link.href ? "text-[gold-primary]" : "text-gray-600 hover:text-[gold-primary]"
                     }`}
                   >
                     {link.name}
                     {pathname === link.href && (
-                      <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-[#C9A84C] shadow-[0_0_10px_rgba(201,149,42,0.5)]" />
+                      <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-gold-primary shadow-[0_0_10px_rgba(201,149,42,0.5)]" />
                     )}
                   </Link>
                 ))}
@@ -97,7 +97,7 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-5">
               <button
                 onClick={() => openCallback()}
-                className="group flex items-center gap-2 px-4 py-2 border border-[#C9A84C] rounded-lg text-[#C9A84C] hover:bg-[#C9A84C] hover:text-white transition-all duration-200 text-sm font-medium"
+                className="group flex items-center gap-2 px-4 py-2 border border-[gold-primary] rounded-lg text-[gold-primary] hover:bg-gold-primary hover:text-white transition-all duration-200 text-sm font-medium"
               >
                 <div className="relative">
                   <Phone className="w-4 h-4" />
@@ -107,7 +107,7 @@ export default function Navbar() {
 
               <button
                 onClick={() => openEnquiry()}
-                className="group flex items-center gap-2 px-5 py-2.5 bg-[#C9A84C] rounded-lg text-white font-semibold hover:bg-[#A8892A] hover:shadow-lg hover:shadow-[#C9A84C]/30 transition-all duration-200"
+                className="group flex items-center gap-2 px-5 py-2.5 bg-gold-primary rounded-lg text-white font-semibold hover:bg-gold-deep hover:shadow-lg hover:shadow-[gold-primary]/30 transition-all duration-200"
               >
                 <span className="text-sm">Apply Now</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -133,7 +133,7 @@ export default function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-[#C9A84C]/10"
+              className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-[gold-primary]/10"
             >
               <div id="mobile-menu" className="px-6 py-6 space-y-4 bg-white">
                 {[...navLinksGroup1, ...navLinksGroup2].map((link) => (
@@ -142,7 +142,7 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className={`block py-3 text-sm ${
-                      pathname === link.href ? "text-[#C9A84C] font-medium" : "text-gray-600"
+                      pathname === link.href ? "text-[gold-primary] font-medium" : "text-gray-600"
                     }`}
                   >
                     {link.name}
@@ -151,14 +151,14 @@ export default function Navbar() {
                 <div className="pt-4 border-t border-gray-100 space-y-3">
                   <button
                     onClick={() => { openCallback(); setIsOpen(false); }}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[#C9A84C] rounded-lg text-[#C9A84C]"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[gold-primary] rounded-lg text-[gold-primary]"
                   >
                     <Phone className="w-4 h-4" />
                     Request Callback
                   </button>
                   <button
                     onClick={() => { openEnquiry(); setIsOpen(false); }}
-                    className="flex items-center justify-center gap-2 px-4 py-3 bg-[#C9A84C] rounded-lg text-white font-semibold w-full md:w-auto"
+                    className="flex items-center justify-center gap-2 px-4 py-3 bg-gold-primary rounded-lg text-white font-semibold w-full md:w-auto"
                   >
                     <span>Apply Now</span>
                     <ArrowRight className="w-4 h-4" />

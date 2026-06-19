@@ -18,66 +18,71 @@ async function getBlogs() {
 }
 
 function formatDate(date) {
-  if (!date) return '2026-06-10';
+  if (!date) return new Date().toISOString().split('T')[0];
   const d = new Date(date);
   return d.toISOString().split('T')[0];
 }
 
+function getCurrentDate() {
+  return new Date().toISOString().split('T')[0];
+}
+
 export default async function sitemap() {
   const blogs = await getBlogs();
+  const today = getCurrentDate();
 
   const staticRoutes = [
     {
       url: BASE_URL,
-      lastModified: '2026-06-10',
+      lastModified: today,
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
       url: `${BASE_URL}/services`,
-      lastModified: '2026-06-10',
+      lastModified: today,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/blog`,
-      lastModified: '2026-06-10',
+      lastModified: today,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/emi-calculator`,
-      lastModified: '2026-06-10',
+      lastModified: today,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/contact`,
-      lastModified: '2026-06-10',
+      lastModified: today,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/about`,
-      lastModified: '2026-06-10',
+      lastModified: today,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/faq`,
-      lastModified: '2026-06-10',
+      lastModified: today,
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
       url: `${BASE_URL}/privacy-policy`,
-      lastModified: '2026-06-10',
+      lastModified: today,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${BASE_URL}/terms`,
-      lastModified: '2026-06-10',
+      lastModified: today,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
@@ -95,7 +100,7 @@ export default async function sitemap() {
 
   const serviceRoutes = serviceAnchors.map(({ anchor, priority }) => ({
     url: `${BASE_URL}/services#${anchor}`,
-    lastModified: '2026-06-10',
+    lastModified: today,
     changeFrequency: 'weekly',
     priority,
   }));

@@ -35,7 +35,7 @@ export default function WhatsAppPopup() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="relative bg-white rounded-xl shadow-lg border border-[#C9A84C]/20 p-3 pr-8 max-w-[200px]"
+            className="relative bg-white rounded-xl shadow-lg border border-[gold-primary]/20 p-3 pr-8 max-w-[200px]"
           >
             <p className="text-sm text-gray-700 font-medium">
               Need help choosing the right loan?
@@ -46,7 +46,7 @@ export default function WhatsAppPopup() {
             >
               <X className="w-3 h-3" />
             </button>
-            <div className="absolute -bottom-1.5 right-6 w-3 h-3 bg-white border-r border-b border-[#C9A84C]/20 rotate-45" />
+            <div className="absolute -bottom-1.5 right-6 w-3 h-3 bg-white border-r border-b border-[gold-primary]/20 rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>

@@ -61,35 +61,40 @@ export default function FAQPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-20 min-h-screen bg-linear-to-b from-white to-[#F5F3EE]">
+      <main className="pt-20 min-h-screen bg-linear-to-b from-white to-bg-tertiary">
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <span className="text-[#C9A84C] font-medium">FAQ</span>
+              <span className="text-gold-primary font-medium">FAQ</span>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-4">
-                Frequently Asked <span className="text-[#C9A84C]">Questions</span>
+                Frequently Asked <span className="text-gold-primary">Questions</span>
               </h1>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Find answers to the most commonly asked questions about our loan services
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4" role="list">
               {faqs.map((faq, index) => (
                 <GlassCard key={index} className="p-0 overflow-hidden">
-                  <button
-                    onClick={() => toggle(index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left"
-                  >
-                    <span className="text-lg font-medium text-gray-800 pr-4">
-                      {faq.question}
-                    </span>
-                    <ChevronDown
-                      className={`w-5 h-5 text-[#C9A84C] shrink-0 transition-transform ${
-                        openIndex === index ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
+                  <h3>
+                    <button
+                      onClick={() => toggle(index)}
+                      aria-expanded={openIndex === index}
+                      aria-controls={`faq-answer-${index}`}
+                      id={`faq-question-${index}`}
+                      className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none focus:ring-2 focus:ring-gold-primary/40 focus:ring-inset rounded-xl"
+                    >
+                      <span className="text-lg font-medium text-gray-800 pr-4">
+                        {faq.question}
+                      </span>
+                      <ChevronDown
+                        className={`w-5 h-5 text-gold-primary shrink-0 transition-transform ${
+                          openIndex === index ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </h3>
                   <AnimatePresence>
                     {openIndex === index && (
                       <motion.div
@@ -98,6 +103,9 @@ export default function FAQPage() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
+                        id={`faq-answer-${index}`}
+                        role="listitem"
+                        aria-labelledby={`faq-question-${index}`}
                       >
                         <div className="px-6 pb-6">
                           <p className="text-gray-500 leading-relaxed">{faq.answer}</p>
