@@ -56,28 +56,71 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const jsonLd = [
-    organizationSchema(),
-    websiteSchema(),
-    localBusinessSchema(),
-    {
-      "@context": "https://schema.org",
-      "@type": "FinancialService",
-      "name": "Get Credit",
-      "url": "https://get-credit.in",
-      "description": "Trusted loan consultancy and DSA offering home loans, personal loans, business loans, education loans and loan against property across India.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Near Chinchpada Opp. New Fire Brigade",
-        "addressLocality": "Ambernath West",
-        "addressRegion": "Maharashtra",
-        "postalCode": "421505",
-        "addressCountry": "IN"
-      },
-      "areaServed": "IN",
-      "serviceType": ["Home Loan", "Personal Loan", "Business Loan", "Education Loan", "Loan Against Property"]
-    },
-  ];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      organizationSchema(),
+      websiteSchema(),
+      {
+        "@context": "https://schema.org",
+        "@type": ["LocalBusiness", "FinancialService", "LoanOrCredit"],
+        "name": "Get Credit",
+        "image": "https://get-credit.in/Logo.jpeg",
+        "logo": "https://get-credit.in/Logo.jpeg",
+        "url": "https://get-credit.in",
+        "telephone": "+91-7738205198",
+        "email": "support@get-credit.in",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Near Chinchpada Opp. New Fire Brigade",
+          "addressLocality": "Ambernath West",
+          "addressRegion": "Maharashtra",
+          "postalCode": "421505",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "19.2016",
+          "longitude": "73.1856"
+        },
+        "areaServed": [
+          "Ambernath",
+          "Ulhasnagar",
+          "Kalyan",
+          "Thane",
+          "Maharashtra"
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        ],
+        "sameAs": [
+          "https://facebook.com/getcredit",
+          "https://x.com/getcredit",
+          "https://instagram.com/getcredit",
+          "https://linkedin.com/company/getcredit"
+        ],
+        "serviceType": ["Home Loan", "Personal Loan", "Business Loan", "Education Loan", "Loan Against Property", "Vehicle Loan", "Non-Salaried Loan"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Loan Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Personal Loan", "description": "Quick funds with same-day disbursement and rates starting from 9.99%." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Loan", "description": "Fuel your business growth with flexible funding solutions." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Home Loan", "description": "Buy your dream home with financing up to ₹15 Crore." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Loan Against Property", "description": "Funding up to ₹30 Crore for Residential, Commercial & Plot." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Education Loan", "description": "Fund your studies in India or abroad." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vehicle Loan", "description": "Drive your dream car with affordable EMIs." } }
+          ]
+        }
+      }
+    ]
+  };
 
   return (
     <html lang="en" className="h-full scroll-smooth" data-scroll-behavior="smooth">

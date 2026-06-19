@@ -11,15 +11,9 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(201,149,42,0.05)_0%,transparent_50%)]" />
       
       <div className="relative z-10 max-w-7xl mx-auto text-center">
-        <h1 className="sr-only">Home Loan & Personal Loan Consultant in Ambernath, Thane | Get Credit</h1>
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 mb-4 md:mb-6 leading-tight"
-        >
-          Fast & Easy <span className="text-[gold-primary]">Loan Solutions</span>
-        </motion.h2>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 mb-4 md:mb-6 leading-tight">
+          Fast & Easy <span className="text-gold-primary">Loan Solutions</span>
+        </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}

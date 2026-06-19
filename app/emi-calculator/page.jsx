@@ -28,7 +28,7 @@ const webApplicationSchema = {
 
 export const metadata = {
   title: "EMI Calculator for Home, Personal & Business Loans | Get Credit",
-  description: "Calculate your monthly EMI instantly for any loan type. Free EMI calculator by Get Credit — Ambernath's trusted loan consultancy.",
+  description: "Calculate your monthly EMI instantly for home loans, personal loans, business loans, education loans & more. Free tool by Get Credit — Ambernath's trusted loan consultancy with 50+ banking partners.",
   alternates: {
     canonical: "https://get-credit.in/emi-calculator",
     languages: {
@@ -39,7 +39,7 @@ export const metadata = {
   openGraph: {
     url: "https://get-credit.in/emi-calculator",
     title: "EMI Calculator for Home, Personal & Business Loans | Get Credit",
-    description: "Calculate your monthly EMI instantly for any loan type. Free EMI calculator by Get Credit — Ambernath's trusted loan consultancy.",
+    description: "Calculate your monthly EMI instantly for home loans, personal loans, business loans, education loans & more. Free tool by Get Credit — Ambernath's trusted loan consultancy with 50+ banking partners.",
     siteName: "GETCREDIT",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
   },

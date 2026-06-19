@@ -10,6 +10,8 @@ export default {
       colors: {
         'brand-gold': '#C9A84C',
         'brand-light': '#F5F3EE',
+        'black-primary': '#000000',
+        'black-light': '#1A1A1A',
       }
     },
   },

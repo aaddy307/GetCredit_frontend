@@ -3,7 +3,7 @@ import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Loan FAQs — Common Questions Answered | Get Credit",
-  description: "Got questions about loans? Find answers to the most common questions about eligibility, documents, EMI, interest rates and more at Get Credit.",
+  description: "Find answers to common loan questions about eligibility, documents required, EMI calculation, interest rates, CIBIL score requirements, and loan processing time at Get Credit.",
   alternates: {
     canonical: "https://get-credit.in/faq",
     languages: {
@@ -14,13 +14,13 @@ export const metadata = {
   openGraph: {
     url: "https://get-credit.in/faq",
     title: "Loan FAQs — Common Questions Answered | Get Credit",
-    description: "Got questions about loans? Find answers to the most common questions about eligibility, documents, EMI, interest rates and more at Get Credit.",
+    description: "Find answers to common loan questions about eligibility, documents required, EMI calculation, interest rates, CIBIL score requirements, and loan processing time at Get Credit.",
     siteName: "GETCREDIT",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
   },
   twitter: {
     title: "Loan FAQs — Common Questions Answered | Get Credit",
-    description: "Got questions about loans? Find answers to the most common questions about eligibility, documents, EMI, interest rates and more at Get Credit.",
+    description: "Find answers to common loan questions about eligibility, documents required, EMI calculation, interest rates, CIBIL score requirements, and loan processing time at Get Credit.",
     images: ["https://get-credit.in/Logo.jpeg"],
   }
 };
@@ -28,6 +28,8 @@ export const metadata = {
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "name": "Loan FAQs — Common Questions Answered | Get Credit",
+  "description": "Find answers to common loan questions about eligibility, documents required, EMI calculation, interest rates, CIBIL score requirements, and loan processing time at Get Credit.",
   "mainEntity": [
     {
       "@type": "Question",

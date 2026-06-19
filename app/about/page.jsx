@@ -32,21 +32,17 @@ const breadcrumbJsonLd = breadcrumbSchema([
 
 const aboutPageSchema = {
   "@context": "https://schema.org",
-  "@type": "AboutPage",
+  "@type": "WebPage",
   "name": "About Get Credit",
   "description": "Get Credit is a trusted DSA and loan consultancy in Ambernath with 50+ banking partners.",
   "url": "https://get-credit.in/about",
-  "mainEntity": {
+  "about": {
     "@type": "Organization",
     "name": "Get Credit",
     "url": "https://get-credit.in",
     "logo": "https://get-credit.in/Logo.jpeg",
     "description": "Loan consultancy and DSA business helping individuals find the best loan solutions.",
     "foundingDate": "2020",
-    "founder": {
-      "@type": "Person",
-      "name": "Get Credit Team"
-    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Near Chinchpada Opp. New Fire Brigade",

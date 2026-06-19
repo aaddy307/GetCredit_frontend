@@ -16,8 +16,8 @@ async function getBlogs() {
 }
 
 export const metadata = {
-  title: "Loan Tips & Financial Guides | Get Credit Blog",
-  description: "Read expert articles on home loans, personal loans, EMI calculation, and financial planning from Get Credit — Ambernath's trusted loan consultancy.",
+  title: "Expert Loan Tips & Financial Planning Guides | Get Credit Blog",
+  description: "Read expert articles on home loans, personal loans, EMI calculation, CIBIL score tips, and financial planning guides from Get Credit — Ambernath's trusted loan consultancy.",
   alternates: {
     canonical: "https://get-credit.in/blog",
     languages: {
@@ -27,8 +27,8 @@ export const metadata = {
   },
   openGraph: {
     url: "https://get-credit.in/blog",
-    title: "Loan Tips & Financial Guides | Get Credit Blog",
-    description: "Read expert articles on home loans, personal loans, EMI calculation, and financial planning from Get Credit — Ambernath's trusted loan consultancy.",
+    title: "Expert Loan Tips & Financial Planning Guides | Get Credit Blog",
+    description: "Read expert articles on home loans, personal loans, EMI calculation, CIBIL score tips, and financial planning guides from Get Credit — Ambernath's trusted loan consultancy.",
     siteName: "GETCREDIT",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
   },
