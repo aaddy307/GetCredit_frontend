@@ -1,4 +1,5 @@
 import FAQClient from "./FAQClient";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Loan FAQs — Common Questions Answered | Get Credit",
@@ -105,9 +106,19 @@ const faqJsonLd = {
   ]
 };
 
+const breadcrumbJsonLd = breadcrumbSchema([
+  { name: 'Home', path: '/' },
+  { name: 'FAQ', path: '/faq' },
+]);
+
 export default function FAQPage() {
   return (
     <>
+      <script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}

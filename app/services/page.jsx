@@ -1,4 +1,5 @@
 import ServicesClient from "./ServicesClient";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Loan Services in Ambernath — Home, Personal, Business & Education Loans | Get Credit",
@@ -18,6 +19,20 @@ export const metadata = {
   }
 };
 
+const breadcrumbJsonLd = breadcrumbSchema([
+  { name: 'Home', path: '/' },
+  { name: 'Services', path: '/services' },
+]);
+
 export default function ServicesPage() {
-  return <ServicesClient />;
+  return (
+    <>
+      <script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <ServicesClient />
+    </>
+  );
 }

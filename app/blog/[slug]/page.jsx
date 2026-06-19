@@ -1,5 +1,5 @@
 import BlogDetailClient from "./BlogDetailClient";
-import { blogPostingSchema } from "@/lib/seo";
+import { blogPostingSchema, breadcrumbSchema } from "@/lib/seo";
 
 const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -28,21 +28,22 @@ export async function generateMetadata({ params }) {
 
   const title = `${post.title} | Get Credit Blog`;
   const description = post.excerpt || post.summary || (post.content ? post.content.substring(0, 155) : "");
+  const postUrl = `https://get-credit.in/blog/${post.slug || slug}`;
 
   return {
     title,
     description,
     alternates: {
-      canonical: `https://get-credit.in/blog/${post.slug || slug}`,
+      canonical: postUrl,
     },
     openGraph: {
       title,
       description,
-      url: `https://get-credit.in/blog/${post.slug || slug}`,
+      url: postUrl,
       type: 'article',
       publishedTime: post.date,
       authors: [post.author || 'Get Credit Team'],
-      images: post.coverImage ? [{ url: post.coverImage }] : undefined,
+      images: post.coverImage ? [{ url: post.coverImage, width: 1200, height: 630, alt: post.title }] : undefined,
     },
     twitter: {
       card: "summary_large_image",
@@ -69,14 +70,29 @@ export async function generateStaticParams() {
 export default async function BlogDetailPage({ params }) {
   const { slug } = await params;
   const blogData = await getBlogData(slug);
+  const post = blogData?.blog;
+  const postUrl = post ? `https://get-credit.in/blog/${post.slug || slug}` : '';
+
+  const breadcrumbJsonLd = post ? breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: post.title, path: `/blog/${post.slug || slug}` },
+  ]) : null;
 
   return (
     <>
-      {blogData?.blog && (
+      {post && breadcrumbJsonLd && (
+        <script
+          id="breadcrumb-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+      )}
+      {post && (
         <script
           id="blog-schema"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema(blogData.blog)) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema(post)) }}
         />
       )}
       <BlogDetailClient initialData={blogData} />

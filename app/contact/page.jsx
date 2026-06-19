@@ -1,4 +1,5 @@
 import ContactClient from "./ContactClient";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Contact Get Credit | Loan Consultancy in Ambernath, Thane",
@@ -18,6 +19,20 @@ export const metadata = {
   }
 };
 
+const breadcrumbJsonLd = breadcrumbSchema([
+  { name: 'Home', path: '/' },
+  { name: 'Contact', path: '/contact' },
+]);
+
 export default function ContactPage() {
-  return <ContactClient />;
+  return (
+    <>
+      <script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <ContactClient />
+    </>
+  );
 }

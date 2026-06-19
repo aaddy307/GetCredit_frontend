@@ -1,4 +1,5 @@
 import BlogClient from "./BlogClient";
+import { breadcrumbSchema } from "@/lib/seo";
 
 const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -32,8 +33,22 @@ export const metadata = {
   }
 };
 
+const breadcrumbJsonLd = breadcrumbSchema([
+  { name: 'Home', path: '/' },
+  { name: 'Blog', path: '/blog' },
+]);
+
 export default async function BlogPage() {
   const blogs = await getBlogs();
 
-  return <BlogClient initialBlogs={blogs} />;
+  return (
+    <>
+      <script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <BlogClient initialBlogs={blogs} />
+    </>
+  );
 }

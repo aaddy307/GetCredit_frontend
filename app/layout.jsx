@@ -47,6 +47,10 @@ export const metadata = {
   },
   other: {
     "theme-color": "#C9A84C",
+    "geo.region": "IN-MH",
+    "geo.placename": "Ambernath, Maharashtra",
+    "geo.position": "19.2016;73.1856",
+    "ICBM": "19.2016, 73.1856",
   },
 };
 
