@@ -135,6 +135,11 @@ export default function EMICalculatorPage() {
       }
     }
 
+    if (activeTab === "personal" && (data.employmentType === "Self-Employed" || data.employmentType === "Business Owner") && loanAmount > 1000000) {
+      toast.error("Maximum Personal Loan for Non-Salaried applicants is ₹10 Lakhs");
+      return;
+    }
+
     const principal = loanAmount - downPayment;
     if (principal <= 0) {
       toast.error("Loan amount must be greater than down payment");

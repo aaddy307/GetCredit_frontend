@@ -38,6 +38,11 @@ export default function EMISubmitPopup({ isOpen, onClose, loanData, onLeadSubmit
       return;
     }
 
+    if (loanData.loanType === 'Personal Loan' && (loanData.employmentType === 'Self-Employed' || loanData.employmentType === 'Business Owner') && parseInt(loanData.loanAmount) > 1000000) {
+      toast.error("Maximum Personal Loan for Non-Salaried applicants is ₹10 Lakhs", { id: 'emi-error' });
+      return;
+    }
+
     try {
       setIsSubmitting(true);
       

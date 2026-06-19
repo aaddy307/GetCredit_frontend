@@ -159,6 +159,11 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
       return;
     }
 
+    if (selectedLoanType === "personal" && (data.employmentType === "Self-Employed" || data.employmentType === "Business Owner") && loanAmountNum > 1000000) {
+      toast.error("Maximum Personal Loan for Non-Salaried applicants is ₹10 Lakhs", { id: 'enquiry-amount-error' });
+      return;
+    }
+
     if (selectedLoanType === "lap") {
       const selectedProp = propertyTypesLAP.find(p => p.value === data.propertyType);
       const ltvPercent = selectedProp?.ltv || 80;
