@@ -29,6 +29,16 @@ const loanTypeMap = {
   "Vehicle Loan": "vehicle",
 };
 
+const loanPageLinks = {
+  "Personal Loan": "/personal-loan",
+  "Business Loan": "/business-loan",
+  "Non-Salaried Loan": "/non-salaried-loan",
+  "Home Loan": "/home-loan",
+  "Loan Against Property": "/loan-against-property",
+  "Education Loan": "/education-loan",
+  "Vehicle Loan": "/vehicle-loan",
+};
+
 export default function ServicesPage() {
   const { openEnquiry } = useModal();
 
@@ -71,8 +81,13 @@ export default function ServicesPage() {
                         </div>
                         <p className="text-gray-500 text-lg mb-8">{service.description}</p>
                         <div className="flex flex-wrap gap-3">
-                          <Link href="/emi-calculator">
+                          <Link href={loanPageLinks[service.title] || `/services#${service.id}`}>
                             <Button variant={service.priority ? "primary" : "primary"} className="flex items-center gap-2">
+                              Learn More <ArrowRight className="w-4 h-4" />
+                            </Button>
+                          </Link>
+                          <Link href="/emi-calculator">
+                            <Button variant="secondary" className="flex items-center gap-2">
                               Calculate EMI <ArrowRight className="w-4 h-4" />
                             </Button>
                           </Link>

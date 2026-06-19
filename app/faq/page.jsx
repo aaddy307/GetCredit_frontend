@@ -6,17 +6,13 @@ export const metadata = {
   description: "Find answers to common loan questions about eligibility, documents required, EMI calculation, interest rates, CIBIL score requirements, and loan processing time at Get Credit.",
   alternates: {
     canonical: "https://get-credit.in/faq",
-    languages: {
-      "en-IN": "https://get-credit.in/faq",
-      "en": "https://get-credit.in/faq",
-    },
   },
   openGraph: {
     url: "https://get-credit.in/faq",
     title: "Loan FAQs — Common Questions Answered | Get Credit",
     description: "Find answers to common loan questions about eligibility, documents required, EMI calculation, interest rates, CIBIL score requirements, and loan processing time at Get Credit.",
     siteName: "GETCREDIT",
-    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
+    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {
     title: "Loan FAQs — Common Questions Answered | Get Credit",

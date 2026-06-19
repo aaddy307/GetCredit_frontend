@@ -20,17 +20,13 @@ export const metadata = {
   description: "Read expert articles on home loans, personal loans, EMI calculation, CIBIL score tips, and financial planning guides from Get Credit — Ambernath's trusted loan consultancy.",
   alternates: {
     canonical: "https://get-credit.in/blog",
-    languages: {
-      "en-IN": "https://get-credit.in/blog",
-      "en": "https://get-credit.in/blog",
-    },
   },
   openGraph: {
     url: "https://get-credit.in/blog",
     title: "Expert Loan Tips & Financial Planning Guides | Get Credit Blog",
     description: "Read expert articles on home loans, personal loans, EMI calculation, CIBIL score tips, and financial planning guides from Get Credit — Ambernath's trusted loan consultancy.",
     siteName: "GETCREDIT",
-    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
+    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {
     title: "Loan Tips & Financial Guides | Get Credit Blog",

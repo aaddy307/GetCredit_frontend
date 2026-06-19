@@ -42,29 +42,6 @@ const testimonials = [
   { name: "Amit Patel", role: "Business Loan Customer", message: "Professional approach and competitive rates. Highly recommended for loan services.", rating: 5 },
 ];
 
-const testimonialSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Get Credit",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "127"
-  },
-  "review": testimonials.map(t => ({
-    "@type": "Review",
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": t.rating.toString(),
-    },
-    "author": {
-      "@type": "Person",
-      "name": t.name,
-    },
-    "reviewBody": t.message,
-  })),
-};
-
 export default function HomeClient({ initialBlogs }) {
   const [blogs, setBlogs] = useState(initialBlogs || []);
   const [loading, setLoading] = useState(!initialBlogs);
@@ -91,11 +68,6 @@ export default function HomeClient({ initialBlogs }) {
         id="faq-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageFaqSchema()) }}
-      />
-      <script
-        id="testimonial-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(testimonialSchema) }}
       />
       <Navbar />
       <main>

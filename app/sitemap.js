@@ -88,22 +88,50 @@ export default async function sitemap() {
     },
   ];
 
-  const serviceAnchors = [
-    { anchor: 'personal-loan', priority: 0.8 },
-    { anchor: 'business-loan', priority: 0.8 },
-    { anchor: 'non-salaried-loan', priority: 0.8 },
-    { anchor: 'home-loan', priority: 0.8 },
-    { anchor: 'loan-against-property', priority: 0.8 },
-    { anchor: 'education-loan', priority: 0.8 },
-    { anchor: 'vehicle-loan', priority: 0.8 },
+  const loanProductRoutes = [
+    {
+      url: `${BASE_URL}/personal-loan`,
+      lastModified: today,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/business-loan`,
+      lastModified: today,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/non-salaried-loan`,
+      lastModified: today,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/home-loan`,
+      lastModified: today,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/loan-against-property`,
+      lastModified: today,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/education-loan`,
+      lastModified: today,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/vehicle-loan`,
+      lastModified: today,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
   ];
-
-  const serviceRoutes = serviceAnchors.map(({ anchor, priority }) => ({
-    url: `${BASE_URL}/services#${anchor}`,
-    lastModified: today,
-    changeFrequency: 'weekly',
-    priority,
-  }));
 
   const blogRoutes = blogs.map((blog) => ({
     url: `${BASE_URL}/blog/${blog.slug || blog._id}`,
@@ -112,5 +140,5 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...blogRoutes];
+  return [...staticRoutes, ...loanProductRoutes, ...blogRoutes];
 }

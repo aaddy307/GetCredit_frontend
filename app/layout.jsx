@@ -22,7 +22,7 @@ export const metadata = {
     title: "Home & Personal Loan Consultant India | Get Credit",
     description: "Trusted loan DSA offering home, personal, business & education loans with 50+ banking partners across India.",
     url: "https://get-credit.in",
-    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit logo" }],
+    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit logo" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -46,7 +46,7 @@ export const metadata = {
     apple: "/Logo.jpeg",
   },
   other: {
-    "theme-color": "gold-primary",
+    "theme-color": "#C9A84C",
     "geo.region": "IN-MH",
     "geo.placename": "Ambernath, Maharashtra",
     "geo.position": "19.2016;73.1856",
@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
       websiteSchema(),
       {
         "@context": "https://schema.org",
-        "@type": ["LocalBusiness", "FinancialService", "LoanOrCredit"],
+        "@type": "LocalBusiness",
         "name": "Get Credit",
         "image": "https://get-credit.in/Logo.jpeg",
         "logo": "https://get-credit.in/Logo.jpeg",
@@ -84,13 +84,10 @@ export default function RootLayout({ children }) {
           "latitude": "19.2016",
           "longitude": "73.1856"
         },
-        "areaServed": [
-          "Ambernath",
-          "Ulhasnagar",
-          "Kalyan",
-          "Thane",
-          "Maharashtra"
-        ],
+        "areaServed": {
+          "@type": "GeoShape",
+          "description": "Ambernath, Ulhasnagar, Kalyan, Thane, Maharashtra, India"
+        },
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
@@ -110,12 +107,12 @@ export default function RootLayout({ children }) {
           "@type": "OfferCatalog",
           "name": "Loan Services",
           "itemListElement": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Personal Loan", "description": "Quick funds with same-day disbursement and rates starting from 9.99%." } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Loan", "description": "Fuel your business growth with flexible funding solutions." } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Home Loan", "description": "Buy your dream home with financing up to ₹15 Crore." } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Loan Against Property", "description": "Funding up to ₹30 Crore for Residential, Commercial & Plot." } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Education Loan", "description": "Fund your studies in India or abroad." } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vehicle Loan", "description": "Drive your dream car with affordable EMIs." } }
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Personal Loan" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Loan" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Home Loan" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Loan Against Property" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Education Loan" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vehicle Loan" } }
           ]
         }
       }

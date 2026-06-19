@@ -156,6 +156,24 @@ export default function BlogDetailClient({ initialData }) {
 
       <Navbar />
       <main className="pt-20 min-h-screen bg-white">
+        {/* Breadcrumb */}
+        <div className="bg-gray-50 border-b border-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <nav className="flex items-center gap-2 text-sm" aria-label="Breadcrumb">
+              <Link href="/" className="text-gray-500 hover:text-gold-primary transition-colors">
+                Home
+              </Link>
+              <span className="text-gray-300">/</span>
+              <Link href="/blog" className="text-gray-500 hover:text-gold-primary transition-colors">
+                Blog
+              </Link>
+              <span className="text-gray-300">/</span>
+              <span className="text-gold-primary font-medium truncate max-w-[200px]">
+                {blog.title}
+              </span>
+            </nav>
+          </div>
+        </div>
         {/* Hero Section */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} className="relative bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 py-20 md:py-28 overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />

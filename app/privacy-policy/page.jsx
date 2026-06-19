@@ -7,17 +7,13 @@ export const metadata = {
   description: "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
   alternates: {
     canonical: "https://get-credit.in/privacy-policy",
-    languages: {
-      "en-IN": "https://get-credit.in/privacy-policy",
-      "en": "https://get-credit.in/privacy-policy",
-    },
   },
   openGraph: {
     url: "https://get-credit.in/privacy-policy",
     title: "Privacy Policy | Get Credit",
     description: "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
     siteName: "GETCREDIT",
-    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
+    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {
     title: "Privacy Policy | Get Credit",

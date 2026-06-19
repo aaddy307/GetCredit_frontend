@@ -55,7 +55,7 @@ export async function generateMetadata({ params }) {
       title: locationData.title,
       description: locationData.description,
       siteName: "GETCREDIT",
-      images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
+      images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
     },
     twitter: {
       title: locationData.title,
@@ -83,8 +83,16 @@ export default function LocationPage({ params }) {
     "name": `Get Credit - ${locationData.name}`,
     "description": locationData.description,
     "url": `https://get-credit.in/locations/${params.location}`,
-    "areaServed": locationData.name,
-    "address": locationData.address,
+    "areaServed": {
+      "@type": "Place",
+      "name": locationData.name,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": locationData.name,
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
     "telephone": "+91-7738205198",
     "priceRange": "$$",
   };

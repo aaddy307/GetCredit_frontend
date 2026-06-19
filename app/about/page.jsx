@@ -6,17 +6,13 @@ export const metadata = {
   description: "Get Credit is a trusted DSA and loan consultancy in Ambernath with 50+ banking partners. Learn about our mission to make loans accessible across Maharashtra.",
   alternates: {
     canonical: "https://get-credit.in/about",
-    languages: {
-      "en-IN": "https://get-credit.in/about",
-      "en": "https://get-credit.in/about",
-    },
   },
   openGraph: {
     url: "https://get-credit.in/about",
     title: "About Get Credit | Trusted Loan DSA in Ambernath, Thane",
     description: "Get Credit is a trusted DSA and loan consultancy in Ambernath with 50+ banking partners. Learn about our mission to make loans accessible across Maharashtra.",
     siteName: "GETCREDIT",
-    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
+    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {
     title: "About Get Credit | Trusted Loan DSA in Ambernath, Thane",

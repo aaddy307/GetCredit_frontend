@@ -7,17 +7,13 @@ export const metadata = {
   description: "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
   alternates: {
     canonical: "https://get-credit.in/terms",
-    languages: {
-      "en-IN": "https://get-credit.in/terms",
-      "en": "https://get-credit.in/terms",
-    },
   },
   openGraph: {
     url: "https://get-credit.in/terms",
     title: "Terms & Conditions | Get Credit",
     description: "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
     siteName: "GETCREDIT",
-    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
+    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {
     title: "Terms & Conditions | Get Credit",
