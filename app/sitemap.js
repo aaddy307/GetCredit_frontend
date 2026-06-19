@@ -6,7 +6,6 @@ async function getBlogs() {
   try {
     const res = await fetch(`${API_URL}/api/blogs`, {
       next: { revalidate: 3600 },
-      cache: 'no-store',
     });
     if (!res.ok) return [];
     const data = await res.json();

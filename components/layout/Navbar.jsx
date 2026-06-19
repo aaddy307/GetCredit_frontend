@@ -14,16 +14,6 @@ const navLinksGroup1 = [
   { name: "EMI Calculator", href: "/emi-calculator" },
 ];
 
-const loanLinks = [
-  { name: "Personal Loan", href: "/personal-loan" },
-  { name: "Business Loan", href: "/business-loan" },
-  { name: "Home Loan", href: "/home-loan" },
-  { name: "Loan Against Property", href: "/loan-against-property" },
-  { name: "Education Loan", href: "/education-loan" },
-  { name: "Vehicle Loan", href: "/vehicle-loan" },
-  { name: "Non-Salaried Loan", href: "/non-salaried-loan" },
-];
-
 const navLinksGroup2 = [
   { name: "Blog", href: "/blog" },
   { name: "Contact Us", href: "/contact" },
@@ -158,21 +148,6 @@ export default function Navbar() {
                     {link.name}
                   </Link>
                 ))}
-                <div className="pt-4 border-t border-gray-100">
-                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Loan Products</p>
-                  {loanLinks.map((link) => (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`block py-2 text-sm ${
-                        pathname === link.href ? "text-[gold-primary] font-medium" : "text-gray-500"
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
-                </div>
                 <div className="pt-4 border-t border-gray-100 space-y-3">
                   <button
                     onClick={() => { openCallback(); setIsOpen(false); }}
