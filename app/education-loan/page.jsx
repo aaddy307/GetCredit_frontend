@@ -40,7 +40,7 @@ export const metadata = {
     url: "https://get-credit.in/education-loan",
     title: "Education Loan in Ambernath, Thane | Study India & Abroad | Get Credit",
     description: "Get education loans up to ₹1.5 Crore for abroad studies without collateral.",
-    siteName: "GETCREDIT",
+    siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Education Loan" }],
   },
   twitter: {
@@ -61,6 +61,31 @@ const serviceJsonLd = serviceSchema({
   description: "Fund your higher education with loans up to ₹1.5 Crore for abroad studies. Interest rates starting from 7.50%.",
 });
 
+const content = {
+  overview: {
+    title: "Education Loans for Indian Students: Study in India & Abroad",
+    description: "Higher education costs can be substantial, especially for premium Indian institutions or international universities. Education loans provide a structured way to finance your or your child's academic dreams without depleting savings. In Maharashtra, students from Ambernath, Thane, and surrounding areas can access education loans up to ₹50 lakhs for studying in India and up to ₹1.5 Crore for studying abroad without collateral. The moratorium period allows students to focus on their studies while the co-borrower (usually a parent) manages the loan until the student completes education and starts earning.",
+    useCases: [
+      "Tuition fees for engineering, medical, or management programs",
+      "Living expenses and accommodation costs",
+      "Purchase of laptop and study materials",
+      "Examination and registration fees",
+      "Travel expenses for students going abroad",
+      "Post-graduation professional courses in India",
+      "MBA programs in top Indian B-schools",
+      "Master's or PhD programs in foreign universities",
+    ],
+    tips: [
+      "Start your education loan process 2-3 months before admission deadlines",
+      "Government banks often offer lower rates for premier institutions",
+      "Some banks offer 0% processing fees during promotional periods",
+      "Consider education loans for diploma courses from recognized institutes",
+      "Keep all admission-related documents ready for faster processing",
+    ],
+  },
+  relatedArticles: [],
+};
+
 export default function EducationLoanPage() {
   return (
     <>
@@ -74,7 +99,7 @@ export default function EducationLoanPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
-      <LoanProductPage service={service} loanTypeMapKey="education" />
+      <LoanProductPage service={service} loanTypeMapKey="education" content={content} />
     </>
   );
 }

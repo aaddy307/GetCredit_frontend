@@ -54,7 +54,7 @@ export async function generateMetadata({ params }) {
       url: `https://get-credit.in/locations/${params.location}`,
       title: locationData.title,
       description: locationData.description,
-      siteName: "GETCREDIT",
+      siteName: "Get Credit",
       images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
     },
     twitter: {

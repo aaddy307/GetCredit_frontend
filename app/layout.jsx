@@ -84,10 +84,10 @@ export default function RootLayout({ children }) {
           "latitude": "19.2016",
           "longitude": "73.1856"
         },
-        "areaServed": {
-          "@type": "GeoShape",
-          "description": "Ambernath, Ulhasnagar, Kalyan, Thane, Maharashtra, India"
-        },
+        "areaServed": [
+          { "@type": "State", "name": "Maharashtra" },
+          { "@type": "Country", "name": "India" }
+        ],
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",

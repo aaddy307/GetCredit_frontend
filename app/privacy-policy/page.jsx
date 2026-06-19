@@ -12,7 +12,7 @@ export const metadata = {
     url: "https://get-credit.in/privacy-policy",
     title: "Privacy Policy | Get Credit",
     description: "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
-    siteName: "GETCREDIT",
+    siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {

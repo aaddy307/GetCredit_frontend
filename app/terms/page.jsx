@@ -12,7 +12,7 @@ export const metadata = {
     url: "https://get-credit.in/terms",
     title: "Terms & Conditions | Get Credit",
     description: "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
-    siteName: "GETCREDIT",
+    siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {

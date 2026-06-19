@@ -12,7 +12,7 @@ export const metadata = {
     url: "https://get-credit.in/services",
     title: "Loan Services in Ambernath, Thane | Get Credit",
     description: "Explore Get Credit's full range of loan products — personal loans from 9.99%, home loans up to ₹15Cr, business loans, education loans and more in Ambernath, Thane.",
-    siteName: "GETCREDIT",
+    siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {

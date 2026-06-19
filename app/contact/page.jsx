@@ -11,7 +11,7 @@ export const metadata = {
     url: "https://get-credit.in/contact",
     title: "Contact Get Credit | Loan Consultancy in Ambernath, Thane",
     description: "Get in touch with Get Credit for home loans, personal loans, and financial guidance. Call +91 7738205198 or visit us in Ambernath West.",
-    siteName: "GETCREDIT",
+    siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {

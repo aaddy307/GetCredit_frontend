@@ -11,7 +11,7 @@ export const metadata = {
     url: "https://get-credit.in/faq",
     title: "Loan FAQs — Common Questions Answered | Get Credit",
     description: "Find answers to common loan questions about eligibility, documents required, EMI calculation, interest rates, CIBIL score requirements, and loan processing time at Get Credit.",
-    siteName: "GETCREDIT",
+    siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Logo" }],
   },
   twitter: {

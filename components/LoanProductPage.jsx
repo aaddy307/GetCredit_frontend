@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import { CheckCircle, Clock, FileText, ArrowRight, Info, Award, Home, Building2, GraduationCap, User, Briefcase, Car } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -8,7 +7,7 @@ import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { useModal } from "@/context/ModalContext";
 
-export default function LoanProductPage({ service, loanTypeMapKey }) {
+export default function LoanProductPage({ service, loanTypeMapKey, content }) {
   const { openEnquiry } = useModal();
 
   return (
@@ -17,12 +16,8 @@ export default function LoanProductPage({ service, loanTypeMapKey }) {
       <main className="pt-20">
         <section className="py-20 bg-linear-to-b from-white to-bg-tertiary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+            <div
+              className="text-center mb-16 animate-fade-in"
             >
               <span className="text-gold-primary font-medium">Our Services</span>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mt-2 mb-4">
@@ -31,7 +26,7 @@ export default function LoanProductPage({ service, loanTypeMapKey }) {
               <p className="text-gray-500 max-w-2xl mx-auto text-lg">
                 {service.description}
               </p>
-            </motion.div>
+            </div>
 
             <GlassCard className="p-8 md:p-12 mb-12">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -108,6 +103,41 @@ export default function LoanProductPage({ service, loanTypeMapKey }) {
               </div>
             </GlassCard>
 
+            {content?.overview && (
+              <GlassCard className="p-8 mb-12">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6">{content.overview.title}</h2>
+                <div className="prose prose-lg max-w-none text-gray-600">
+                  <p className="text-lg leading-relaxed">{content.overview.description}</p>
+                  {content.overview.useCases && (
+                    <div className="mt-6">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-4">Common Use Cases</h3>
+                      <ul className="space-y-2">
+                        {content.overview.useCases.map((useCase, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <span className="text-[gold-primary] mt-1">✓</span>
+                            {useCase}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {content.overview.tips && (
+                    <div className="mt-6 bg-gold-primary/5 p-6 rounded-xl border border-gold-primary/10">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-4">Tips to Improve Your Approval Chances</h3>
+                      <ul className="space-y-2">
+                        {content.overview.tips.map((tip, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <span className="text-[gold-primary] mt-1">•</span>
+                            {tip}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </GlassCard>
+            )}
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <GlassCard className="p-6 text-center">
                 <div className="w-14 h-14 bg-gold-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -160,12 +190,42 @@ export default function LoanProductPage({ service, loanTypeMapKey }) {
           </div>
         </section>
 
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="py-20 bg-gold-primary"
+        {content?.relatedArticles && content.relatedArticles.length > 0 && (
+          <section className="py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Related Articles</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {content.relatedArticles.map((article) => (
+                  <Link key={article.slug} href={`/blog/${article.slug}`} className="group">
+                    <GlassCard hover className="p-0 overflow-hidden">
+                      <div className="h-40 bg-gold-primary/5 flex items-center justify-center">
+                        <span className="text-5xl text-gold-primary/30">📰</span>
+                      </div>
+                      <div className="p-6">
+                        <span className="text-xs text-gold-primary font-medium">{article.category}</span>
+                        <h3 className="text-base font-semibold text-gray-800 mt-2 mb-2 group-hover:text-gold-primary transition-colors line-clamp-2">
+                          {article.title}
+                        </h3>
+                        <p className="text-sm text-gray-500 line-clamp-2">{article.excerpt}</p>
+                        <span className="inline-flex items-center gap-1 text-sm text-gold-primary font-medium mt-3 group-hover:gap-2 transition-all">
+                          Read More →
+                        </span>
+                      </div>
+                    </GlassCard>
+                  </Link>
+                ))}
+              </div>
+              <div className="text-center mt-8">
+                <Link href="/blog" className="text-gold-primary hover:underline font-medium">
+                  View All Articles →
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
+
+        <section
+          className="py-20 bg-gold-primary animate-fade-in"
         >
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
@@ -187,7 +247,7 @@ export default function LoanProductPage({ service, loanTypeMapKey }) {
               </Link>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         <section className="py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4">

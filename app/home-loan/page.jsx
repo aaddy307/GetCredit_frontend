@@ -40,7 +40,7 @@ export const metadata = {
     url: "https://get-credit.in/home-loan",
     title: "Home Loan in Ambernath, Thane | Up to ₹15 Crore | Get Credit",
     description: "Get home loans up to ₹15 Crore with interest rates starting from 6.50%. Loan tenure up to 30 years.",
-    siteName: "GETCREDIT",
+    siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Home Loan" }],
   },
   twitter: {
@@ -61,6 +61,31 @@ const serviceJsonLd = serviceSchema({
   description: "Realize your dream of owning a home with financing up to ₹15 Crore. Interest rates starting from 6.50%.",
 });
 
+const content = {
+  overview: {
+    title: "Home Loans in Maharashtra: Your Path to Owning a Dream Property",
+    description: "Buying a home is one of the biggest financial decisions of your life. With home loans in Maharashtra becoming more accessible, realizing your dream of owning a house in Ambernath, Thane, Kalyan, or Ulhasnagar is now easier than ever. Whether you are a first-time homebuyer looking for a 1BHK in a growing suburb or planning to upgrade to a larger family home, our network of 50+ banking partners offers home loan products tailored to every budget and requirement. The historic towns of Maharashtra combined with rapid urbanization make it an excellent time to invest in property here.",
+    useCases: [
+      "Purchase of new flat, apartment, or row house",
+      "Construction of house on owned plot",
+      "Buying a resale property from the secondary market",
+      "Home extension or adding floors to existing structure",
+      "Renovation and interior furnishing of new home",
+      "Balance transfer of existing home loan to lower rates",
+      "Land purchase for future home construction",
+      "Plot + Construction combo loans",
+    ],
+    tips: [
+      "A higher down payment (20-30%) improves your loan approval chances",
+      "Maintain a stable job history of at least 2-3 years with current employer",
+      "Keep your existing EMI obligations below 40% of monthly income",
+      "Consider floating rate loans for longer tenures as rates may decrease",
+      "Don't forget to claim tax benefits on principal and interest paid",
+    ],
+  },
+  relatedArticles: [],
+};
+
 export default function HomeLoanPage() {
   return (
     <>
@@ -74,7 +99,7 @@ export default function HomeLoanPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
-      <LoanProductPage service={service} loanTypeMapKey="home" />
+      <LoanProductPage service={service} loanTypeMapKey="home" content={content} />
     </>
   );
 }

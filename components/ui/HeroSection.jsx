@@ -12,7 +12,7 @@ export default function HeroSection() {
       
       <div className="relative z-10 max-w-7xl mx-auto text-center">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 mb-4 md:mb-6 leading-tight">
-          Fast & Easy <span className="text-gold-primary">Loan Solutions</span>
+          Home Loan & Personal Loan <span className="text-gold-primary">Consultant in Ambernath, Thane</span>
         </h1>
 
         <motion.p

@@ -40,7 +40,7 @@ export const metadata = {
     url: "https://get-credit.in/non-salaried-loan",
     title: "Non-Salaried Loan in Ambernath, Thane | Self-Employed | Get Credit",
     description: "Get loans for self-employed professionals. Based on bank transactions, no salary account required.",
-    siteName: "GETCREDIT",
+    siteName: "Get Credit",
     images: [{ url: "https://get-credit.in/Logo.jpeg", width: 1200, height: 630, alt: "Get Credit Non-Salaried Loan" }],
   },
   twitter: {
@@ -61,6 +61,31 @@ const serviceJsonLd = serviceSchema({
   description: "Loans for self-employed professionals and business owners based on bank transactions and CIBIL score.",
 });
 
+const content = {
+  overview: {
+    title: "Loans for Self-Employed & Non-Salaried Professionals in Maharashtra",
+    description: "Self-employed professionals, freelancers, small business owners, and individuals with non-traditional income sources often struggle to get loans from traditional banks that primarily cater to salaried employees. Non-salaried loans specifically address this gap by evaluating your income based on bank transaction history, business vintage, and CIBIL score rather than salary slips. Whether you are a freelancer in Mumbai, a small shop owner in Thane, or a successful trader in Ambernath, our partner banks offer personalized loan products that recognize your unique income pattern.",
+    useCases: [
+      "Growing your freelance or consulting practice",
+      "Purchasing equipment for your business",
+      "Managing irregular income periods between projects",
+      "Expanding your small retail or wholesale business",
+      "Investing in professional certifications or training",
+      "Managing seasonal business fluctuations",
+      "Purchasing inventory for your shop or store",
+      "Emergency personal expenses between project payments",
+    ],
+    tips: [
+      "Maintain healthy bank transactions showing regular income for 6+ months",
+      "Avoid large cash deposits that cannot be explained",
+      "Keep your business and personal bank accounts separate",
+      "A CIBIL score of 700+ significantly improves approval chances",
+      "Having GST registration strengthens your loan application",
+    ],
+  },
+  relatedArticles: [],
+};
+
 export default function NonSalariedLoanPage() {
   return (
     <>
@@ -74,7 +99,7 @@ export default function NonSalariedLoanPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
-      <LoanProductPage service={service} loanTypeMapKey="personal" />
+      <LoanProductPage service={service} loanTypeMapKey="personal" content={content} />
     </>
   );
 }
