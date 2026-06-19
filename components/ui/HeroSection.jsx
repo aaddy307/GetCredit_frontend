@@ -84,12 +84,6 @@ export default function HeroSection() {
           ))}
         </motion.div>
       </div>
-
-      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2">
-        <div className="w-5 h-8 md:w-6 md:h-10 border-2 border-[gold-primary]/30 rounded-full flex justify-center">
-          <div className="w-1 h-2 md:h-3 bg-[gold-primary] rounded-full mt-1 md:mt-2" />
-        </div>
-      </div>
     </section>
   );
 }

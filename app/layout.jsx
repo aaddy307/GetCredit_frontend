@@ -51,6 +51,7 @@ export const metadata = {
     "geo.placename": "Ambernath, Maharashtra",
     "geo.position": "19.2016;73.1856",
     "ICBM": "19.2016, 73.1856",
+    "google-site-verification": process.env.GOOGLE_SITE_VERIFICATION || "",
   },
 };
 

@@ -1,27 +1,67 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Terms & Conditions | Get Credit",
   description: "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
   alternates: {
     canonical: "https://get-credit.in/terms",
+    languages: {
+      "en-IN": "https://get-credit.in/terms",
+      "en": "https://get-credit.in/terms",
+    },
   },
   openGraph: {
     url: "https://get-credit.in/terms",
     title: "Terms & Conditions | Get Credit",
     description: "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
     siteName: "GETCREDIT",
+    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
   },
   twitter: {
     title: "Terms & Conditions | Get Credit",
     description: "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
+    images: ["https://get-credit.in/Logo.jpeg"],
   },
+};
+
+const breadcrumbJsonLd = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "Terms & Conditions", path: "/terms" },
+]);
+
+const termsSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Terms & Conditions",
+  "description": "Read the terms and conditions for using Get Credit's loan consultancy services and website.",
+  "url": "https://get-credit.in/terms",
+  "lastReviewed": "2026-05-18",
+  "reviewer": {
+    "@type": "Organization",
+    "name": "Get Credit"
+  },
+  "about": {
+    "@type": "CreativeWork",
+    "name": "Loan Consultancy Services",
+    "description": "Get Credit provides loan consultancy and DSA services connecting users with banks and financial institutions."
+  }
 };
 
 export default function Terms() {
   return (
     <>
+      <script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        id="terms-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(termsSchema) }}
+      />
       <Navbar />
       <div className="animate-fade-in min-h-screen bg-linear-to-b from-white to-bg-tertiary">
         <div className="max-w-4xl mx-auto px-4 py-16">

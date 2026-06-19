@@ -1,27 +1,67 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = {
   title: "Privacy Policy | Get Credit",
   description: "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
   alternates: {
     canonical: "https://get-credit.in/privacy-policy",
+    languages: {
+      "en-IN": "https://get-credit.in/privacy-policy",
+      "en": "https://get-credit.in/privacy-policy",
+    },
   },
   openGraph: {
     url: "https://get-credit.in/privacy-policy",
     title: "Privacy Policy | Get Credit",
     description: "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
     siteName: "GETCREDIT",
+    images: [{ url: "https://get-credit.in/Logo.jpeg", width: 256, height: 256, alt: "Get Credit Logo" }],
   },
   twitter: {
     title: "Privacy Policy | Get Credit",
     description: "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
+    images: ["https://get-credit.in/Logo.jpeg"],
   },
+};
+
+const breadcrumbJsonLd = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "Privacy Policy", path: "/privacy-policy" },
+]);
+
+const privacySchema = {
+  "@context": "https://schema.org",
+  "@type": "PrivacyPolicyPage",
+  "name": "Privacy Policy",
+  "description": "Read the Get Credit privacy policy to understand how we collect, protect, and handle your loan enquiry data.",
+  "url": "https://get-credit.in/privacy-policy",
+  "lastReviewed": "2026-05-18",
+  "reviewer": {
+    "@type": "Organization",
+    "name": "Get Credit"
+  },
+  "about": {
+    "@type": "CreativeWork",
+    "name": "Personal Data Handling",
+    "description": "Get Credit collects and processes personal data for loan consultancy services including name, phone, email, city, loan type, and loan amount."
+  }
 };
 
 export default function PrivacyPolicy() {
   return (
     <>
+      <script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        id="privacy-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(privacySchema) }}
+      />
       <Navbar />
       <div className="animate-fade-in min-h-screen bg-linear-to-b from-white to-bg-tertiary">
         <div className="max-w-4xl mx-auto px-4 py-16">
