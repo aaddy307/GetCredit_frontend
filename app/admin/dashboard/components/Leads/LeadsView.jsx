@@ -161,6 +161,7 @@ function LoadingSpinner() {
 export default function LeadsView() {
   const { hasPermission } = useAuth();
   const [leads, setLeads] = useState([]);
+  const [selectedLead, setSelectedLead] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -175,9 +176,9 @@ export default function LeadsView() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = showModal || showDeleteConfirm ? 'hidden' : 'unset';
+    document.body.style.overflow = showModal || showDeleteConfirm || selectedLead ? 'hidden' : 'unset';
     return () => { document.body.style.overflow = 'unset'; };
-  }, [showModal, showDeleteConfirm]);
+  }, [showModal, showDeleteConfirm, selectedLead]);
 
   const [filters, setFilters] = useState({
     search: '',
@@ -470,35 +471,28 @@ export default function LeadsView() {
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Name</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Phone</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Email</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">City</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Loan Type</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Amount</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Tenure</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Prop Value</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Prop Type</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Status</th>
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Date</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {loading ? (
-                <tr><td colSpan={12}><LoadingSpinner /></td></tr>
+                <tr><td colSpan={6}><LoadingSpinner /></td></tr>
               ) : leads.length === 0 ? (
-                <tr><td colSpan={12}><EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} /></td></tr>
+                <tr><td colSpan={6}><EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} /></td></tr>
               ) : (
                 leads.map((lead, index) => (
-                  <tr key={lead._id} className={`hover:bg-gray-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
+                  <tr
+                    key={lead._id}
+                    onClick={() => setSelectedLead(lead)}
+                    className={`hover:bg-gray-50 transition-colors cursor-pointer ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}
+                  >
                     <td className="px-4 py-3 text-sm font-medium text-gray-900">{lead.fullName}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">{lead.phone}</td>
                     <td className="px-4 py-3 text-sm text-gray-600 break-all max-w-[350px]">{lead.email}</td>
-                    <td className="px-4 py-3 text-sm text-gray-600">{lead.city || '-'}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">{lead.loanType}</td>
-                    <td className="px-4 py-3 text-sm font-medium text-gray-900">{formatCurrency(lead.loanAmount)}</td>
-                    <td className="px-4 py-3 text-sm text-gray-600 whitespace-nowrap">{formatTenure(lead)}</td>
-                    <td className="px-4 py-3 text-sm text-gray-600">{lead.propertyValue ? `₹${Number(lead.propertyValue).toLocaleString()}` : '-'}</td>
-                    <td className="px-4 py-3 text-sm text-gray-600">{lead.propertyType || '-'}</td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
                       <div className="relative">
                         <button
                           onClick={(e) => { e.stopPropagation(); setStatusDropdown(prev => prev === lead._id ? null : lead._id); }}
@@ -522,20 +516,6 @@ export default function LeadsView() {
                       </div>
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">{formatDate(lead.createdAt)}</td>
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-1">
-                        {hasPermission('leads', 'update') && (
-                          <button onClick={() => openEditModal(lead)} className="p-1.5 text-blue-500 hover:bg-blue-50 rounded transition-colors">
-                            <Edit2 className="w-4 h-4" />
-                          </button>
-                        )}
-                        {hasPermission('leads', 'delete') && (
-                          <button onClick={() => { setDeleteId(lead._id); setShowDeleteConfirm(true); }} className="p-1.5 text-red-500 hover:bg-red-50 rounded transition-colors">
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        )}
-                      </div>
-                    </td>
                   </tr>
                 ))
               )}
@@ -550,33 +530,23 @@ export default function LeadsView() {
             <EmptyState hasActiveFilters={hasActiveFilters} onClearFilters={clearFilters} />
           ) : (
             leads.map(lead => (
-              <div key={lead._id} className="p-4 space-y-2">
+              <div
+                key={lead._id}
+                onClick={() => setSelectedLead(lead)}
+                className="p-4 space-y-2 hover:bg-gray-50 transition-colors cursor-pointer"
+              >
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0 flex-1">
                     <p className="font-medium text-gray-900 truncate">{lead.fullName}</p>
-                    <p className="text-xs text-gray-500">{lead.phone}</p>
+                    <p className="text-xs text-gray-500">{lead.phone} • {lead.email}</p>
                   </div>
                   <span className={`shrink-0 px-2 py-0.5 rounded-full text-xs font-medium ${statusColors[lead.status] || 'bg-gray-100 text-gray-600'}`}>
                     {lead.status || 'Pending'}
                   </span>
                 </div>
-                <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-600">
+                <div className="flex items-center justify-between text-xs text-gray-600">
                   <span>{lead.loanType}</span>
-                  <span>{formatCurrency(lead.loanAmount)}</span>
-                  <span className="text-[#8B7A2E]">{formatTenure(lead)}</span>
-                  {lead.propertyValue && <span>Prop Value: ₹{Number(lead.propertyValue).toLocaleString()}</span>}
-                  {lead.propertyType && <span>Prop Type: {lead.propertyType}</span>}
-                </div>
-                <div className="flex items-center justify-between">
-                  <p className="text-xs text-gray-400">{formatDate(lead.createdAt)}</p>
-                  <div className="flex gap-2">
-                    {hasPermission('leads', 'update') && (
-                      <button onClick={() => openEditModal(lead)} className="text-xs text-blue-600 font-medium">Edit</button>
-                    )}
-                    {hasPermission('leads', 'delete') && (
-                      <button onClick={() => { setDeleteId(lead._id); setShowDeleteConfirm(true); }} className="text-xs text-red-600 font-medium">Delete</button>
-                    )}
-                  </div>
+                  <p className="text-gray-400">{formatDate(lead.createdAt)}</p>
                 </div>
               </div>
             ))
@@ -680,6 +650,16 @@ export default function LeadsView() {
         </div>
       )}
 
+      {selectedLead && (
+        <LeadDetailsModal
+          lead={selectedLead}
+          onClose={() => setSelectedLead(null)}
+          onEdit={openEditModal}
+          onDelete={(id) => { setDeleteId(id); setShowDeleteConfirm(true); }}
+          hasPermission={hasPermission}
+        />
+      )}
+
       {showDeleteConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
           <div className="bg-white rounded-xl shadow-xl p-6 w-full md:max-w-sm">
@@ -692,6 +672,131 @@ export default function LeadsView() {
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function LeadDetailsModal({ lead, onClose, onEdit, onDelete, hasPermission }) {
+  if (!lead) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto flex flex-col">
+        {/* Header */}
+        <div className="flex items-center justify-between p-5 border-b border-gray-100 sticky top-0 bg-white z-10">
+          <div>
+            <h2 className="text-lg font-bold text-gray-900">Lead Details</h2>
+            <p className="text-xs text-gray-500">Full information for {lead.fullName}</p>
+          </div>
+          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 transition-colors">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 space-y-6 flex-1">
+          {/* Personal Info Group */}
+          <div>
+            <h3 className="text-xs font-semibold text-gold-primary uppercase tracking-wider mb-3">Personal Info</h3>
+            <div className="grid grid-cols-2 gap-4 bg-gray-50/50 p-4 rounded-xl border border-gray-100">
+              <div>
+                <span className="block text-xs text-gray-500">Full Name</span>
+                <span className="text-sm font-semibold text-gray-900">{lead.fullName || '-'}</span>
+              </div>
+              <div>
+                <span className="block text-xs text-gray-500">Phone</span>
+                <span className="text-sm font-semibold text-gray-900">{lead.phone || '-'}</span>
+              </div>
+              <div className="col-span-2">
+                <span className="block text-xs text-gray-500">Email</span>
+                <span className="text-sm font-medium text-gray-900 break-all">{lead.email || '-'}</span>
+              </div>
+              <div className="col-span-2">
+                <span className="block text-xs text-gray-500">City</span>
+                <span className="text-sm font-medium text-gray-900">{lead.city || '-'}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Loan & Property Info Group */}
+          <div>
+            <h3 className="text-xs font-semibold text-gold-primary uppercase tracking-wider mb-3">Loan & Property Details</h3>
+            <div className="grid grid-cols-2 gap-4 bg-gray-50/50 p-4 rounded-xl border border-gray-100">
+              <div>
+                <span className="block text-xs text-gray-500">Loan Type</span>
+                <span className="text-sm font-semibold text-gray-900">{lead.loanType || '-'}</span>
+              </div>
+              <div>
+                <span className="block text-xs text-gray-500">Loan Amount</span>
+                <span className="text-sm font-semibold text-gray-900">{formatCurrency(lead.loanAmount)}</span>
+              </div>
+              <div>
+                <span className="block text-xs text-gray-500">Tenure</span>
+                <span className="text-sm font-medium text-gray-900">{formatTenure(lead)}</span>
+              </div>
+              {lead.loanType === 'Loan Against Property' && (
+                <>
+                  <div>
+                    <span className="block text-xs text-gray-500">Property Type</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.propertyType || '-'}</span>
+                  </div>
+                  <div className="col-span-2">
+                    <span className="block text-xs text-gray-500">Property Value</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.propertyValue ? `₹${Number(lead.propertyValue).toLocaleString()}` : '-'}</span>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Meta Info Group */}
+          <div>
+            <h3 className="text-xs font-semibold text-gold-primary uppercase tracking-wider mb-3">Metadata</h3>
+            <div className="grid grid-cols-2 gap-4 bg-gray-50/50 p-4 rounded-xl border border-gray-100">
+              <div>
+                <span className="block text-xs text-gray-500">Status</span>
+                <span className={`inline-block mt-1 px-2.5 py-0.5 rounded-full text-xs font-semibold ${statusColors[lead.status] || 'bg-gray-100 text-gray-600'}`}>
+                  {lead.status || 'Pending'}
+                </span>
+              </div>
+              <div>
+                <span className="block text-xs text-gray-500">Source</span>
+                <span className="text-sm font-medium text-gray-900">{lead.leadSource || '-'}</span>
+              </div>
+              <div className="col-span-2">
+                <span className="block text-xs text-gray-500">Created Date</span>
+                <span className="text-sm font-medium text-gray-900">{formatDate(lead.createdAt)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Actions */}
+        <div className="p-4 bg-gray-50 border-t border-gray-100 flex gap-3 sticky bottom-0">
+          {hasPermission('leads', 'update') && (
+            <button
+              onClick={() => {
+                onEdit(lead);
+                onClose();
+              }}
+              className="flex-1 py-2.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-sm text-sm text-center"
+            >
+              Edit Lead
+            </button>
+          )}
+          {hasPermission('leads', 'delete') && (
+            <button
+              onClick={() => {
+                onDelete(lead._id);
+                onClose();
+              }}
+              className="flex-1 py-2.5 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition-colors shadow-sm text-sm text-center"
+            >
+              Delete Lead
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
