@@ -16,6 +16,15 @@ const STORAGE_KEYS = {
   LEAD_SUBMITTED: 'emi_lead_submitted'
 };
 
+const INTEREST_RATES = {
+  home: 6.5,
+  lap: 7.5,
+  education: 7.5,
+  personal: 9.99,
+  business: 12.0,
+  vehicle: 8.5
+};
+
 const propertyTypesHome = [
   { value: "Ready to Move", label: "Ready to Move" },
   { value: "Under Construction", label: "Under Construction" },
@@ -110,16 +119,11 @@ export default function EMICalculatorPage() {
   const calculateEMI = (data) => {
     const loanAmount = parseFloat(data.loanAmount) || 0;
     const downPayment = parseFloat(data.downPayment) || 0;
-    const interestRate = parseFloat(data.interestRate) || 0;
+    const interestRate = INTEREST_RATES[activeTab];
     const tenureInput = parseFloat(data.tenure) || 0;
 
     if (loanAmount <= 0 || tenureInput <= 0) {
       toast.error("Please enter valid loan amount and tenure");
-      return;
-    }
-
-    if (interestRate < 0) {
-      toast.error("Interest rate cannot be negative");
       return;
     }
 
@@ -212,7 +216,6 @@ export default function EMICalculatorPage() {
             <Input label="Property Type" name="propertyType" type="select" register={register} options={propertyTypesHome} />
             <Input label="Property Location" name="propertyLocation" type="text" register={register} placeholder="Enter property location" />
             <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
-            <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate (e.g., 7.5)" required />
             <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
           </>
         );
@@ -234,7 +237,6 @@ export default function EMICalculatorPage() {
             )}
             <Input label="Loan Amount" name="loanAmount" type="number" register={register} placeholder="Enter loan amount (max based on LTV)" required />
             <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
-            <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate" required />
             <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
             <div className="col-span-2 text-xs text-gray-400 italic">
               * LTV can change based on property location, bank policies, and your CIBIL score. We cannot commit to exact LTV before seeing property details.
@@ -249,7 +251,6 @@ export default function EMICalculatorPage() {
             <Input label="Current Qualification" name="qualification" type="select" register={register} options={qualifications} />
             <Input label="Degree to Pursue" name="degree" type="select" register={register} options={degrees} />
             <Input label="University Name" name="institutionName" type="text" register={register} placeholder="Enter university name" />
-            <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate" required />
             <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
           </>
         );
@@ -258,7 +259,6 @@ export default function EMICalculatorPage() {
           <>
             <Input label="Loan Amount" name="loanAmount" type="number" register={register} placeholder="Enter loan amount (e.g., 500000)" required />
             <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
-            <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate (e.g., 10.5)" required />
             <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
           </>
         );
@@ -268,7 +268,6 @@ export default function EMICalculatorPage() {
             <Input label="Loan Amount" name="loanAmount" type="number" register={register} placeholder="Enter loan amount (e.g., 1000000)" required />
             <Input label="Business Vintage (Years)" name="businessVintage" type="number" register={register} placeholder="Business vintage in years" />
             <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
-            <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate (e.g., 12.0)" required />
             <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
           </>
         );
@@ -278,7 +277,6 @@ export default function EMICalculatorPage() {
             <Input label="Loan Amount" name="loanAmount" type="number" register={register} placeholder="Enter loan amount (e.g., 800000)" required />
             <Input label="Vehicle Type" name="vehicleType" type="select" register={register} options={vehicleTypes} />
             <Input label="Down Payment" name="downPayment" type="number" register={register} placeholder="Enter down payment amount" />
-            <Input label="Interest Rate (% p.a.)" name="interestRate" type="number" step="0.1" register={register} placeholder="Enter interest rate (e.g., 8.5)" required />
             <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
           </>
         );
@@ -448,7 +446,7 @@ export default function EMICalculatorPage() {
           emi: emiResult?.emi || 0,
           tenure: emiResult?.tenure || 0,
           tenureUnit: emiResult?.tenureUnit || 'Years',
-          interestRate: formValues?.interestRate || 8.5,
+          interestRate: INTEREST_RATES[activeTab] || 8.5,
           totalInterest: emiResult?.totalInterest || 0,
           totalAmount: emiResult?.totalAmount || 0,
           downPayment: formValues?.downPayment || 0,

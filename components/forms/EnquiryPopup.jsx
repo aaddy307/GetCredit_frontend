@@ -62,6 +62,15 @@ const degrees = [
 
 const MONTH_TENURE_LOANS = ["personal", "business"];
 
+const BRAND_INTEREST_RATES = {
+  home: 6.5,
+  lap: 7.5,
+  education: 7.5,
+  personal: 9.99,
+  business: 12.0,
+  vehicle: 8.5
+};
+
 function isMonthTenure(loanId) {
   return MONTH_TENURE_LOANS.includes(loanId);
 }
@@ -172,7 +181,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
       }
     }
 
-    const interestRate = parseFloat(data.interestRate) || 8.5;
+    const interestRate = BRAND_INTEREST_RATES[selectedLoanType] || 8.5;
 
     const emi = calculateEMI(
       loanAmountNum,
@@ -605,19 +614,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                             </select>
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-semibold text-gold-dark mb-1.5">
-                              Interest Rate (% p.a.)
-                            </label>
-                            <input
-                              {...register("interestRate")}
-                              type="number"
-                              step="0.1"
-                              placeholder="Enter interest rate (e.g., 8.5)"
-                              className="w-full px-4 py-3 bg-gold-cream border border-gold-bright rounded-lg text-gold-dark placeholder-gold-placeholder focus:outline-none focus:border-gold-border"
-                            />
-                          </div>
+                        <div className="grid grid-cols-1 gap-4">
                           <div>
                             <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                               Tenure (Years) <span className="text-gold-border">*</span>

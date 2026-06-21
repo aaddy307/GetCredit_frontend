@@ -250,7 +250,10 @@ export default function LeadsView() {
 
   const openAddModal = useCallback(() => {
     setEditingLead(null);
-    reset({ fullName: '', phone: '', email: '', city: '', loanType: 'Home Loan', loanAmount: '', tenure: '', tenureUnit: 'Years', status: 'Pending', leadSource: 'Admin - Manual Entry', propertyValue: '', propertyType: '' });
+    reset({
+      fullName: '', phone: '', email: '', city: '', loanType: 'Home Loan', loanAmount: '', tenure: '', tenureUnit: 'Years', status: 'Pending', leadSource: 'Admin - Manual Entry',
+      propertyValue: '', propertyType: '', propertyLocation: '', qualification: '', degree: '', institutionName: '', businessVintage: '', vehicleType: '', downPayment: ''
+    });
     setShowModal(true);
   }, [reset]);
 
@@ -263,6 +266,13 @@ export default function LeadsView() {
       leadSource: lead.leadSource || 'Admin - Manual Entry',
       propertyValue: lead.propertyValue || '',
       propertyType: lead.propertyType || '',
+      propertyLocation: lead.propertyLocation || '',
+      qualification: lead.qualification || '',
+      degree: lead.degree || '',
+      institutionName: lead.institutionName || '',
+      businessVintage: lead.businessVintage || '',
+      vehicleType: lead.vehicleType || '',
+      downPayment: lead.downPayment || '',
     });
     setShowModal(true);
   }, [reset]);
@@ -276,8 +286,15 @@ export default function LeadsView() {
         loanAmount: parseInt(data.loanAmount) || 0,
         tenure: data.tenure ? parseInt(data.tenure) : undefined,
         tenureUnit: data.tenureUnit || undefined,
-        propertyValue: parseInt(data.propertyValue) || 0,
+        propertyValue: data.propertyValue ? parseInt(data.propertyValue) : undefined,
         propertyType: data.propertyType || '',
+        propertyLocation: data.propertyLocation || '',
+        qualification: data.qualification || '',
+        degree: data.degree || '',
+        institutionName: data.institutionName || '',
+        businessVintage: data.businessVintage ? parseInt(data.businessVintage) : undefined,
+        vehicleType: data.vehicleType || '',
+        downPayment: data.downPayment ? parseInt(data.downPayment) : 0,
       };
       let response;
       if (editingLead) {
@@ -620,21 +637,148 @@ export default function LeadsView() {
                   {statusOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
                 </select>
               </div>
+              {/* Home Loan specific fields */}
+              {watch("loanType") === 'Home Loan' && (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
+                    <select {...register("propertyType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary">
+                      <option value="">Select</option>
+                      <option value="Ready to Move">Ready to Move</option>
+                      <option value="Under Construction">Under Construction</option>
+                      <option value="Plot + Construction">Plot + Construction</option>
+                      <option value="Resale">Resale</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Property Location</label>
+                    <input type="text" {...register("propertyLocation")} placeholder="Enter location" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Employment Type</label>
+                    <select {...register("employmentType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary">
+                      <option value="">Select</option>
+                      <option value="Salaried">Salaried</option>
+                      <option value="Self-Employed">Self-Employed</option>
+                      <option value="Business Owner">Business Owner</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Loan Against Property specific fields */}
               {watch("loanType") === 'Loan Against Property' && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Property Value (&#x20B9;)</label>
-                    <input type="number" {...register("propertyValue")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]" />
+                    <input type="number" {...register("propertyValue")} placeholder="Property Value" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
-                    <select {...register("propertyType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[gold-primary]">
+                    <select {...register("propertyType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary">
                       <option value="">Select</option>
                       <option value="Residential">Residential</option>
                       <option value="Commercial">Commercial</option>
                       <option value="Industrial">Industrial</option>
                       <option value="Plot">Plot</option>
                     </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Employment Type</label>
+                    <select {...register("employmentType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary">
+                      <option value="">Select</option>
+                      <option value="Salaried">Salaried</option>
+                      <option value="Self-Employed">Self-Employed</option>
+                      <option value="Business Owner">Business Owner</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Education Loan specific fields */}
+              {watch("loanType") === 'Education Loan' && (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Qualification</label>
+                    <select {...register("qualification")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary">
+                      <option value="">Select</option>
+                      <option value="10th">10th Pass</option>
+                      <option value="12th">12th Pass</option>
+                      <option value="Undergraduate">Undergraduate</option>
+                      <option value="Postgraduate">Postgraduate</option>
+                      <option value="Diploma">Diploma</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Degree to Pursue</label>
+                    <select {...register("degree")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary">
+                      <option value="">Select</option>
+                      <option value="B.Tech">B.Tech</option>
+                      <option value="MBA">MBA</option>
+                      <option value="MBBS">MBBS</option>
+                      <option value="B.Sc">B.Sc</option>
+                      <option value="M.Tech">M.Tech</option>
+                      <option value="LLB">LLB</option>
+                      <option value="Others">Others</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">University Name</label>
+                    <input type="text" {...register("institutionName")} placeholder="University Name" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary" />
+                  </div>
+                </div>
+              )}
+
+              {/* Personal Loan specific fields */}
+              {watch("loanType") === 'Personal Loan' && (
+                <div className="grid grid-cols-1 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Employment Type</label>
+                    <select {...register("employmentType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary">
+                      <option value="">Select</option>
+                      <option value="Salaried">Salaried</option>
+                      <option value="Self-Employed">Self-Employed</option>
+                      <option value="Business Owner">Business Owner</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Business Loan specific fields */}
+              {watch("loanType") === 'Business Loan' && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Business Vintage (Years)</label>
+                    <input type="number" {...register("businessVintage")} placeholder="Years" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Employment Type</label>
+                    <select {...register("employmentType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary">
+                      <option value="">Select</option>
+                      <option value="Salaried">Salaried</option>
+                      <option value="Self-Employed">Self-Employed</option>
+                      <option value="Business Owner">Business Owner</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Vehicle Loan specific fields */}
+              {watch("loanType") === 'Vehicle Loan' && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Vehicle Type</label>
+                    <select {...register("vehicleType")} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary">
+                      <option value="">Select</option>
+                      <option value="New Car">New Car</option>
+                      <option value="Used Car">Used Car</option>
+                      <option value="Two Wheeler">Two Wheeler</option>
+                      <option value="Commercial Vehicle">Commercial Vehicle</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Down Payment (&#x20B9;)</label>
+                    <input type="number" {...register("downPayment")} placeholder="Down Payment Amount" className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gold-primary" />
                   </div>
                 </div>
               )}
@@ -734,15 +878,93 @@ function LeadDetailsModal({ lead, onClose, onEdit, onDelete, hasPermission }) {
                 <span className="block text-xs text-gray-500">Tenure</span>
                 <span className="text-sm font-medium text-gray-900">{formatTenure(lead)}</span>
               </div>
+
+              {/* Home Loan specific */}
+              {lead.loanType === 'Home Loan' && (
+                <>
+                  <div>
+                    <span className="block text-xs text-gray-500">Property Type</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.propertyType || '-'}</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-gray-500">Property Location</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.propertyLocation || '-'}</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-gray-500">Employment Type</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.employmentType || '-'}</span>
+                  </div>
+                </>
+              )}
+
+              {/* LAP specific */}
               {lead.loanType === 'Loan Against Property' && (
                 <>
                   <div>
                     <span className="block text-xs text-gray-500">Property Type</span>
                     <span className="text-sm font-medium text-gray-900">{lead.propertyType || '-'}</span>
                   </div>
-                  <div className="col-span-2">
+                  <div>
                     <span className="block text-xs text-gray-500">Property Value</span>
                     <span className="text-sm font-medium text-gray-900">{lead.propertyValue ? `₹${Number(lead.propertyValue).toLocaleString()}` : '-'}</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-gray-500">Employment Type</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.employmentType || '-'}</span>
+                  </div>
+                </>
+              )}
+
+              {/* Education Loan specific */}
+              {lead.loanType === 'Education Loan' && (
+                <>
+                  <div>
+                    <span className="block text-xs text-gray-500">Qualification</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.qualification || '-'}</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-gray-500">Degree</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.degree || '-'}</span>
+                  </div>
+                  <div className="col-span-2">
+                    <span className="block text-xs text-gray-500">University</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.institutionName || '-'}</span>
+                  </div>
+                </>
+              )}
+
+              {/* Personal Loan specific */}
+              {lead.loanType === 'Personal Loan' && (
+                <div>
+                  <span className="block text-xs text-gray-500">Employment Type</span>
+                  <span className="text-sm font-medium text-gray-900">{lead.employmentType || '-'}</span>
+                </div>
+              )}
+
+              {/* Business Loan specific */}
+              {lead.loanType === 'Business Loan' && (
+                <>
+                  <div>
+                    <span className="block text-xs text-gray-500">Business Vintage</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.businessVintage ? `${lead.businessVintage} Years` : '-'}</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-gray-500">Employment Type</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.employmentType || '-'}</span>
+                  </div>
+                </>
+              )}
+
+              {/* Vehicle Loan specific */}
+              {lead.loanType === 'Vehicle Loan' && (
+                <>
+                  <div>
+                    <span className="block text-xs text-gray-500">Vehicle Type</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.vehicleType || '-'}</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-gray-500">Down Payment</span>
+                    <span className="text-sm font-medium text-gray-900">{lead.downPayment ? `₹${Number(lead.downPayment).toLocaleString()}` : '₹0'}</span>
                   </div>
                 </>
               )}
