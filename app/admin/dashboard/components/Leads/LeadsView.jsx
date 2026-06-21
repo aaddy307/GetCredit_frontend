@@ -252,7 +252,7 @@ export default function LeadsView() {
     setEditingLead(null);
     reset({
       fullName: '', phone: '', email: '', city: '', loanType: 'Home Loan', loanAmount: '', tenure: '', tenureUnit: 'Years', status: 'Pending', leadSource: 'Admin - Manual Entry',
-      propertyValue: '', propertyType: '', propertyLocation: '', qualification: '', degree: '', institutionName: '', businessVintage: '', vehicleType: '', downPayment: ''
+      propertyValue: '', propertyType: '', propertyLocation: '', employmentType: '', qualification: '', degree: '', institutionName: '', businessVintage: '', vehicleType: '', downPayment: ''
     });
     setShowModal(true);
   }, [reset]);
@@ -267,6 +267,7 @@ export default function LeadsView() {
       propertyValue: lead.propertyValue || '',
       propertyType: lead.propertyType || '',
       propertyLocation: lead.propertyLocation || '',
+      employmentType: lead.employmentType || '',
       qualification: lead.qualification || '',
       degree: lead.degree || '',
       institutionName: lead.institutionName || '',
