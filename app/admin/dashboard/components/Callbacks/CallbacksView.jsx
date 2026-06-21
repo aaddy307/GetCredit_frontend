@@ -199,7 +199,7 @@ export default function CallbacksView() {
       />
 
       {!loading && callbacks.length > 0 && pagination.totalPages > 1 && (
-        <div className="bg-white rounded-xl border border-[gold-primary]/10 shadow-sm">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
           <div className="flex items-center justify-between px-4 py-3">
             <p className="text-xs sm:text-sm text-gray-500">Showing {callbacks.length} of {pagination.total} callbacks</p>
             <Pagination page={pagination.page} totalPages={pagination.totalPages} onPageChange={setPage} />

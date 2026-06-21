@@ -10,9 +10,9 @@ const statusColors = {
 export default function CallbackTable({ callbacks, loading, onStatusChange, onEdit, onDelete }) {
   if (loading) {
     return (
-      <div className="bg-white rounded-xl border border-[gold-primary]/10 shadow-sm p-8">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
         <div className="flex justify-center">
-          <div className="w-8 h-8 border-4 border-[gold-primary] border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-4 border-gold-primary border-t-transparent rounded-full animate-spin" />
         </div>
       </div>
     );
@@ -20,14 +20,14 @@ export default function CallbackTable({ callbacks, loading, onStatusChange, onEd
 
   if (callbacks.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-[gold-primary]/10 shadow-sm p-8 text-center">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
         <p className="text-gray-500">No callback requests found</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-xl border border-[gold-primary]/10 shadow-sm overflow-hidden">
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
       <div className="hidden md:block overflow-x-auto">
         <table className="w-full text-sm">
           <thead>

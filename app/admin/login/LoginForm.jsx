@@ -63,19 +63,19 @@ function LoginFormContent() {
             />
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password <span className="text-[gold-primary]">*</span>
+                Password <span className="text-gold-primary">*</span>
               </label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   {...register("password", { required: true })}
                   placeholder="Enter password"
-                  className="w-full px-4 py-3 pr-12 bg-white border border-[gold-primary]/20 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[gold-primary] transition-colors"
+                  className="w-full px-4 py-3 pr-12 bg-white border border-gold-primary/30 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-1 focus:ring-gold-primary/40 transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[gold-primary]"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gold-primary"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>

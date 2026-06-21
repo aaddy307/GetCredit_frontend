@@ -7,19 +7,24 @@ export default function ToasterProvider() {
       position="top-right"
       toastOptions={{
         style: {
-          background: '#1A1A1A',
-          color: '#fff',
-          border: '1px solid gold-primary',
+          background: '#FFFFFF',
+          color: '#1A1A1A',
+          border: '1px solid rgba(201, 168, 76, 0.3)',
+          boxShadow: '0 4px 12px rgba(201, 168, 76, 0.1)',
         },
         success: {
           duration: 4000,
           iconTheme: {
-            primary: 'gold-primary',
+            primary: '#C9A84C',
             secondary: '#fff',
           },
         },
         error: {
           duration: 5000,
+          iconTheme: {
+            primary: '#e11d48',
+            secondary: '#fff',
+          },
         },
       }}
     />

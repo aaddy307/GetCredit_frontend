@@ -10,7 +10,7 @@ export default function CallbackFilterBar({ statusFilter, setStatusFilter, searc
   ];
 
   return (
-    <div className="bg-white rounded-xl p-4 border border-[gold-primary]/10 shadow-sm">
+    <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
       <div className="flex flex-wrap gap-3 items-center">
         <div className="relative flex-1 min-w-[140px] sm:min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -22,7 +22,7 @@ export default function CallbackFilterBar({ statusFilter, setStatusFilter, searc
               setPage(1);
             }}
             placeholder="Search by name, phone, email..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[gold-primary]"
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-gold-primary"
           />
         </div>
         <select
@@ -46,7 +46,7 @@ export default function CallbackFilterBar({ statusFilter, setStatusFilter, searc
               setStatusFilter("");
               setPage(1);
             }}
-            className="flex items-center gap-1 text-[gold-primary] text-sm hover:underline"
+            className="flex items-center gap-1 text-gold-primary text-sm hover:underline"
           >
             <X className="w-4 h-4" />
             Clear
