@@ -510,27 +510,17 @@ export default function LeadsView() {
                     <td className="px-4 py-3 text-sm text-gray-600 break-all max-w-[350px]">{lead.email}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">{lead.loanType}</td>
                     <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
-                      <div className="relative">
-                        <button
-                          onClick={(e) => { e.stopPropagation(); setStatusDropdown(prev => prev === lead._id ? null : lead._id); }}
-                          className={`px-2.5 py-1 rounded-full text-xs font-medium ${statusColors[lead.status] || 'bg-gray-100 text-gray-600'}`}
-                        >
-                          {lead.status || 'Pending'}
-                        </button>
-                        {statusDropdown === lead._id && (
-                          <div className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[120px]">
-                            {statusOptions.map(opt => (
-                              <button
-                                key={opt.value}
-                                onClick={(e) => { e.stopPropagation(); handleStatusChange(lead._id, opt.value); }}
-                                className="block w-full text-left px-3 py-1.5 text-sm hover:bg-gray-50"
-                              >
-                                {opt.label}
-                              </button>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                      <select
+                        value={lead.status || 'Pending'}
+                        onChange={(e) => handleStatusChange(lead._id, e.target.value)}
+                        className={`px-2.5 py-1 rounded-full text-xs font-semibold border-0 cursor-pointer focus:outline-none focus:ring-1 focus:ring-gold-primary ${statusColors[lead.status] || 'bg-gray-100 text-gray-600'}`}
+                      >
+                        {statusOptions.map(opt => (
+                          <option key={opt.value} value={opt.value} className="bg-white text-gray-800">
+                            {opt.label}
+                          </option>
+                        ))}
+                      </select>
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">{formatDate(lead.createdAt)}</td>
                   </tr>
