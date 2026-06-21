@@ -4,9 +4,6 @@ const nextConfig = {
   output: 'standalone',
   poweredByHeader: false,
   compress: true,
-  turbopack: {
-    root: '/home/aaddy/Documents/GetCredit/client',
-  },
   experimental: {
     optimizeCss: true,
   },
