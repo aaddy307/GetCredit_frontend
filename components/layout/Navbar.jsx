@@ -134,7 +134,7 @@ export default function Navbar() {
 
         <div
           id="mobile-menu"
-          className={`lg:hidden bg-white/98 backdrop-blur-xl border-t border-[rgba(153,102,51,0.1)] ${isOpen ? "animate-slide-down" : "hidden"}`}
+          className={`lg:hidden bg-white/98 min-h-screen backdrop-blur-xl border-t border-[rgba(153,102,51,0.1)] ${isOpen ? "animate-slide-down" : "hidden"}`}
         >
           <div className="px-6 py-6 space-y-4">
             {[...navLinksGroup1, ...navLinksGroup2].map((link) => (
