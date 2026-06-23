@@ -274,7 +274,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
             aria-label="Loan enquiry form"
             onClick={(e) => e.stopPropagation()}
             style={{ position: 'relative' }}
-            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl my-8 animate-scale-in"
+            className="w-[92%] max-w-[420px] md:w-full md:max-w-2xl max-h-[82vh] md:max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl my-4 md:my-8 animate-scale-in"
           >
         <button
           onClick={handleClose}
@@ -283,24 +283,24 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
           <X className="w-5 h-5 text-gold-dark" />
         </button>
 
-        <div className="p-4 md:p-8">
-          <div className="text-center mb-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-gold-dark">
+        <div className="p-5 md:p-8">
+          <div className="text-center mb-5 md:mb-8">
+            <h1 className="text-xl md:text-3xl font-bold text-gold-dark">
               Apply for Loan
             </h1>
-            <p className="text-gold-placeholder mt-2 text-sm">Fill in your details and we&apos;ll get back to you</p>
+            <p className="text-gold-placeholder mt-2 text-xs md:text-sm">Fill in your details and we&apos;ll get back to you</p>
           </div>
 
           {submitted ? (
-            <div className="text-center py-12 animate-scale-in">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gold-cream border-2 border-gold-bright flex items-center justify-center">
-                <span className="text-4xl text-gold-primary">✓</span>
+            <div className="text-center py-8 animate-scale-in">
+              <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-full bg-gold-cream border-2 border-gold-bright flex items-center justify-center">
+                <span className="text-3xl md:text-4xl text-gold-primary">✓</span>
               </div>
-              <h3 className="text-xl font-semibold text-gold-dark mb-2">Thank You!</h3>
-              <p className="text-gold-placeholder">Our executive will contact you within 24 hours</p>
+              <h3 className="text-lg md:text-xl font-semibold text-gold-dark mb-2">Thank You!</h3>
+              <p className="text-gold-placeholder text-sm">Our executive will contact you within 24 hours</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
               <input type="text" {...register("websiteUrl")} className="hidden" tabIndex={-1} autoComplete="off" />
               <div className="grid grid-cols-1 gap-4">
                 <div>
@@ -380,20 +380,20 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                 <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                   Select Loan Type <span className="text-gold-border">*</span>
                 </label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                   {loanTypes.map((loan) => (
                     <button
                       key={loan.id}
                       type="button"
                       onClick={() => setSelectedLoanType(loan.id)}
-                      className={`p-3 rounded-xl border-2 transition-all ${
+                      className={`p-2 md:p-3 rounded-xl border-2 transition-all ${
                         selectedLoanType === loan.id 
                           ? 'border-gold-bright bg-gold-cream shadow-lg' 
                           : 'border-gold-bright/50 hover:border-gold-bright'
                       }`}
                     >
-                      <loan.icon className={`w-6 h-6 mx-auto mb-1 ${selectedLoanType === loan.id ? 'text-gold-border' : 'text-gray-400'}`} />
-                      <div className="text-xs font-semibold text-gold-dark">{loan.label}</div>
+                      <loan.icon className={`w-5 h-5 md:w-6 md:h-6 mx-auto mb-0.5 md:mb-1 ${selectedLoanType === loan.id ? 'text-gold-border' : 'text-gray-400'}`} />
+                      <div className="text-[10px] md:text-xs font-semibold text-gold-dark">{loan.label}</div>
                     </button>
                   ))}
                 </div>
@@ -731,7 +731,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
               <button
                 type="submit"
                 disabled={isSubmitting || !selectedLoanType}
-                className="w-full py-4 px-6 bg-gold-primary text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-all"
+                className="w-full py-3 md:py-4 px-6 bg-gold-primary text-white font-semibold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-50 transition-all text-sm md:text-base"
               >
                 {isSubmitting ? (
                   <>

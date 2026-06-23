@@ -328,14 +328,14 @@ export default function EMICalculatorPage() {
                           setEmiResult(null);
                           reset();
                         }}
-                        className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all text-sm font-medium ${
+                        className={`flex flex-col sm:flex-row items-center justify-center text-center gap-2 p-3 sm:px-5 sm:py-2.5 rounded-xl transition-all text-xs sm:text-sm font-medium ${
                           activeTab === type.id
-                            ? "bg-gold-primary text-white"
+                            ? "bg-gold-primary text-white shadow-md"
                             : "bg-bg-tertiary text-gray-700 border border-gold-primary/20 hover:border-gold-primary"
                         }`}
                       >
-                        <Icon className="w-4 h-4" />
-                        {type.label}
+                        <Icon className="w-5 h-5 sm:w-4 sm:h-4 shrink-0" />
+                        <span>{type.label}</span>
                       </button>
                     );
                   })}

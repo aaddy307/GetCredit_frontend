@@ -98,7 +98,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300, duration: 0.4 }}
             style={{ position: 'relative' }}
-            className="w-full max-w-md max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl shadow-gold-primary/20 my-8"
+            className="w-[90%] max-w-[380px] md:w-full md:max-w-md max-h-[80vh] md:max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl shadow-gold-primary/20 my-4 md:my-8"
           >
             <button
               onClick={handleClose}
@@ -107,7 +107,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
               <X className="w-4 h-4 text-gray-500 hover:text-gold-primary" />
             </button>
 
-            <div className="p-4 md:p-8">
+            <div className="p-5 md:p-8">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div
@@ -115,21 +115,21 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", damping: 20, stiffness: 300 }}
-                    className="text-center py-8"
+                    className="text-center py-6"
                   >
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", delay: 0.2, damping: 15 }}
-                      className="w-20 h-20 mx-auto mb-4 rounded-full bg-gold-primary flex items-center justify-center"
+                      className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-full bg-gold-primary flex items-center justify-center"
                     >
-                      <span className="text-4xl text-white">✓</span>
+                      <span className="text-3xl md:text-4xl text-white">✓</span>
                     </motion.div>
                     <motion.h2
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
-                      className="text-2xl font-bold text-gray-800 mb-2"
+                      className="text-xl md:text-2xl font-bold text-gray-800 mb-2"
                     >
                       Request Received!
                     </motion.h2>
@@ -137,7 +137,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 }}
-                      className="text-gray-500"
+                      className="text-gray-500 text-sm"
                     >
                       Our executive will call you within 24 hours
                     </motion.p>
@@ -148,20 +148,20 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                   >
-                    <div className="text-center mb-8">
+                    <div className="text-center mb-5 md:mb-8">
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ type: "spring", delay: 0.1, damping: 15 }}
-                        className="w-16 h-16 bg-gold-primary rounded-2xl flex items-center justify-center mx-auto mb-4"
+                        className="w-12 h-12 md:w-16 md:h-16 bg-gold-primary rounded-2xl flex items-center justify-center mx-auto mb-3"
                       >
-                        <PhoneCall className="w-8 h-8 text-white" />
+                        <PhoneCall className="w-6 h-6 md:w-8 md:h-8 text-white" />
                       </motion.div>
                       <motion.h1
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.15 }}
-                        className="text-2xl font-bold text-gray-800"
+                        className="text-xl md:text-2xl font-bold text-gray-800"
                       >
                         Request a Callback
                       </motion.h1>
@@ -169,19 +169,19 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="text-gray-500 mt-2 text-sm"
+                        className="text-gray-500 mt-1.5 text-xs md:text-sm"
                       >
                         Fill your details and we&apos;ll call you
                       </motion.p>
                     </div>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-5">
                       <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.25 }}
                       >
-                        <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                        <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-1">
                           Full Name <span className="text-gold-primary">*</span>
                         </label>
                         <div className="relative">
@@ -189,9 +189,9 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                             {...register("fullName", { required: "Name is required" })}
                             type="text"
                             placeholder="Enter your name"
-                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all"
+                            className="w-full px-4 py-2.5 md:py-3.5 pr-10 md:pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all text-sm"
                           />
-                          <User className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <User className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-gray-400" />
                         </div>
                         {errors.fullName && (
                           <motion.p
@@ -209,7 +209,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.3 }}
                       >
-                        <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                        <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-1">
                           Mobile Number <span className="text-gold-primary">*</span>
                         </label>
                         <div className="relative">
@@ -223,9 +223,9 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                             })}
                             type="tel"
                             placeholder="Enter your mobile number"
-                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all"
+                            className="w-full px-4 py-2.5 md:py-3.5 pr-10 md:pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all text-sm"
                           />
-                          <Phone className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Phone className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-gray-400" />
                         </div>
                         {errors.phone && (
                           <motion.p
@@ -243,7 +243,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.35 }}
                       >
-                        <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                        <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-1">
                           Email <span className="text-gold-primary">*</span>
                         </label>
                         <div className="relative">
@@ -254,9 +254,9 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                             })}
                             type="email"
                             placeholder="Enter your email"
-                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all"
+                            className="w-full px-4 py-2.5 md:py-3.5 pr-10 md:pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all text-sm"
                           />
-                          <Mail className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Mail className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-gray-400" />
                         </div>
                         {errors.email && (
                           <motion.p
@@ -274,7 +274,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 }}
                       >
-                        <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                        <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-1">
                           City
                         </label>
                         <div className="relative">
@@ -282,9 +282,9 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                             {...register("city")}
                             type="text"
                             placeholder="Enter your city"
-                            className="w-full px-4 py-3.5 pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all"
+                            className="w-full px-4 py-2.5 md:py-3.5 pr-10 md:pr-12 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/20 transition-all text-sm"
                           />
-                          <MapPin className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <MapPin className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-gray-400" />
                         </div>
                       </motion.div>
 
@@ -296,11 +296,11 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.45 }}
-                        className="w-full py-4 bg-gold-primary text-white font-semibold rounded-xl shadow-lg shadow-gold-primary/30 hover:shadow-xl hover:shadow-gold-primary/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        className="w-full py-3 md:py-4 bg-gold-primary text-white font-semibold rounded-xl shadow-lg shadow-gold-primary/30 hover:shadow-xl hover:shadow-gold-primary/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm md:text-base"
                       >
                         {isSubmitting ? (
                           <>
-                            <svg className="animate-spin w-5 h-5" viewBox="0 0 24 24">
+                            <svg className="animate-spin w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24">
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                             </svg>
@@ -309,7 +309,7 @@ export default function CallbackRequestPopup({ isOpen, onClose }) {
                         ) : (
                           <>
                             Request Callback
-                            <PhoneCall className="w-5 h-5" />
+                            <PhoneCall className="w-4 h-4 md:w-5 md:h-5" />
                           </>
                         )}
                       </motion.button>
