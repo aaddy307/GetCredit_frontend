@@ -229,16 +229,16 @@ export default function EMICalculatorPage() {
             <Input label="Property Value" name="propertyValue" type="number" register={register} placeholder="Enter property value (e.g., 10000000)" required />
             <Input label="Property Type" name="propertyType" type="select" register={register} options={propertyTypesLAP} />
             {formValues.propertyType && (
-              <div className="col-span-2 md:col-span-1 p-3 bg-[gold-primary]/5 border border-[gold-primary]/20 rounded-lg">
+              <div className="col-span-1 md:col-span-2 p-3 bg-gold-primary/5 border border-gold-primary/20 rounded-lg">
                 <p className="text-sm text-gray-600">
-                  <span className="font-semibold text-[gold-primary]">{ltvPercent}% LTV</span> &mdash; Max Fundable: <span className="font-semibold">&#x20B9;{maxLoanAmt.toLocaleString()}</span>
+                  <span className="font-semibold text-gold-primary">{ltvPercent}% LTV</span> &mdash; Max Fundable: <span className="font-semibold">&#x20B9;{maxLoanAmt.toLocaleString()}</span>
                 </p>
               </div>
             )}
             <Input label="Loan Amount" name="loanAmount" type="number" register={register} placeholder="Enter loan amount (max based on LTV)" required />
             <Input label="Employment Type" name="employmentType" type="select" register={register} options={employmentTypes} />
             <Input label={tenureLabel} name="tenure" type="number" register={register} placeholder={tenurePlaceholder} required />
-            <div className="col-span-2 text-xs text-gray-400 italic">
+            <div className="col-span-1 md:col-span-2 text-xs text-gray-400 italic">
               * LTV can change based on property location, bank policies, and your CIBIL score. We cannot commit to exact LTV before seeing property details.
             </div>
           </>
@@ -342,7 +342,7 @@ export default function EMICalculatorPage() {
                 </div>
 
                 <form onSubmit={handleSubmit(calculateEMI)}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex flex-col md:grid md:grid-cols-2 gap-4">
                     {renderForm()}
                   </div>
 

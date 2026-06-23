@@ -76,7 +76,7 @@ export default function Navbar() {
                   >
                     {link.name}
                     {pathname === link.href && (
-                      <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-gold-primary shadow-[0_0_10px_rgba(201,168,76,0.5)]" />
+                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold-primary shadow-[0_0_10px_rgba(201,168,76,0.5)]" />
                     )}
                   </Link>
                 ))}
@@ -93,7 +93,7 @@ export default function Navbar() {
                   >
                     {link.name}
                     {pathname === link.href && (
-                      <span className="absolute -bottom-0 left-0 right-0 h-0.5 bg-gold-primary shadow-[0_0_10px_rgba(201,168,76,0.5)]" />
+                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold-primary shadow-[0_0_10px_rgba(201,168,76,0.5)]" />
                     )}
                   </Link>
                 ))}

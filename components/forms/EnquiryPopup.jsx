@@ -302,7 +302,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <input type="text" {...register("websiteUrl")} className="hidden" tabIndex={-1} autoComplete="off" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                     Full Name <span className="text-gold-border">*</span>
@@ -341,7 +341,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                     Email <span className="text-gold-border">*</span>
@@ -407,7 +407,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     </h3>
 
                     {selectedLoanType !== "lap" && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-4">
                         <div>
                           <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Loan Amount (₹) <span className="text-gold-border">*</span>
@@ -451,7 +451,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     )}
 
                     {selectedLoanType === "home" && (
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 gap-4">
                         <div>
                           <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Property Type
@@ -495,7 +495,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     )}
 
                     {selectedLoanType === "education" && (
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 gap-4">
                         <div>
                           <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Current Qualification
@@ -540,7 +540,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
 
                     {selectedLoanType === "lap" && (
                       <>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-4">
                           <div>
                             <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                               Property Value (&#x20B9;)
@@ -580,7 +580,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                             </div>
                           ) : null;
                         })()}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-4">
                           <div>
                             <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                               Loan Amount (&#x20B9;) <span className="text-gold-border">*</span>
@@ -662,7 +662,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     )}
 
                     {selectedLoanType === "business" && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-4">
                         <div>
                           <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Business Vintage (Years)
@@ -695,7 +695,7 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                     )}
 
                     {selectedLoanType === "vehicle" && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-4">
                         <div>
                           <label className="block text-sm font-semibold text-gold-dark mb-1.5">
                             Vehicle Type
