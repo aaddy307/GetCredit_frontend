@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next-sitemap",
+    "build": "next build && mkdir -p .next/standalone/.next/static && cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/ && next-sitemap",
     "start": "next start",
     "lint": "eslint"
   },

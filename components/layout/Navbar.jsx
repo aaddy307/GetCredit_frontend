@@ -58,7 +58,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-full">
           <div className="flex items-center justify-between h-full">
             <Link href="/" className="flex items-center gap-2.5">
-              <Image src="/Logo.jpeg" alt="Get Credit – Loan Consultancy Logo" width={32} height={32} className="rounded-lg object-contain shrink-0" priority />
+              <Image src="/Logo.webp" alt="Get Credit – Loan Consultancy Logo" width={32} height={32} className="rounded-lg object-contain shrink-0" priority />
               <span className="text-2xl font-bold text-black-primary leading-none">
                 Get <span className="text-gold-primary">Credit</span>
               </span>
