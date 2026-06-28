@@ -155,7 +155,11 @@ export default function CallbacksView() {
       const result = await callbackApi.deleteCallback(deleteId);
       if (result.success) {
         toast.success("Callback deleted");
-        fetchCallbacks();
+        if (callbacks.length === 1 && page > 1) {
+          setPage(prev => prev - 1);
+        } else {
+          fetchCallbacks();
+        }
       }
     } catch (error) {
       toast.error("Failed to delete");

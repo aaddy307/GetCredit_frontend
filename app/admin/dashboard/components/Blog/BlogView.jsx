@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Plus, Search, X, Edit2, Trash2, ChevronLeft, ChevronRight, Eye } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
 import { api } from "@/lib/api";
@@ -84,8 +84,8 @@ export default function BlogView() {
     return () => { document.body.style.overflow = 'unset'; };
   }, [showModal, showDeleteConfirm]);
 
-  const { register, handleSubmit, reset, formState: { errors }, setValue, watch } = useForm();
-  const contentValue = watch("content");
+  const { register, handleSubmit, reset, formState: { errors }, setValue, control } = useForm();
+  const contentValue = useWatch({ control, name: "content" });
   const limit = 20;
 
   const fetchBlogs = useCallback(async () => {
@@ -95,6 +95,7 @@ export default function BlogView() {
       if (search) params.append("search", search);
       if (categoryFilter) params.append("category", categoryFilter);
       params.append("page", page);
+      params.append("limit", limit);
 
       const response = await api.get(`/blogs?${params}`);
       const data = response.data;
@@ -107,9 +108,12 @@ export default function BlogView() {
       toast.error("Failed to fetch blogs");
     }
     setLoading(false);
-  }, [search, categoryFilter, page]);
+  }, [search, categoryFilter, page, limit]);
 
-  useEffect(() => { fetchBlogs(); }, [fetchBlogs]);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchBlogs();
+  }, [fetchBlogs]);
 
   const handleStatusChange = async (blogId, newStatus) => {
     try {
@@ -155,7 +159,14 @@ export default function BlogView() {
   const handleDelete = async () => {
     try {
       const response = await api.delete(`/blogs/${deleteId}`);
-      if (response.status === 200) { toast.success("Blog deleted"); fetchBlogs(); }
+      if (response.status === 200) {
+        toast.success("Blog deleted");
+        if (blogs.length === 1 && page > 1) {
+          setPage(prev => prev - 1);
+        } else {
+          fetchBlogs();
+        }
+      }
     } catch (err) { toast.error("Failed to delete"); }
     setShowDeleteConfirm(false);
     setDeleteId(null);

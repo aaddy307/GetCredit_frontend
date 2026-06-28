@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import { X, Home, GraduationCap, Building2, User, Phone, Mail, MapPin, Calculator, Briefcase, Car, Wallet } from "lucide-react";
@@ -103,15 +103,18 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const { register, handleSubmit, reset, watch, formState: { errors } } = useForm({
+  const { register, handleSubmit, reset, control, formState: { errors } } = useForm({
     defaultValues: initialFormValues
   });
 
-  const watchedLoanType = watch("loanType");
+  const watchedLoanType = useWatch({ control, name: "loanType" });
+  const watchedPropertyType = useWatch({ control, name: "propertyType" });
+  const watchedPropertyValue = useWatch({ control, name: "propertyValue" });
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedLoanType(defaultLoanType || "");
       reset(initialFormValues);
     } else {
@@ -568,11 +571,11 @@ export default function EnquiryPopup({ isOpen, onClose, leadSource = "Website - 
                           </div>
                         </div>
                         {(() => {
-                          const selProp = propertyTypesLAP.find(p => p.value === watch("propertyType"));
+                          const selProp = propertyTypesLAP.find(p => p.value === watchedPropertyType);
                           const ltvPct = selProp?.ltv || 0;
-                          const pVal = parseFloat(watch("propertyValue")) || 0;
+                          const pVal = parseFloat(watchedPropertyValue) || 0;
                           const maxAmt = Math.round(pVal * ltvPct / 100);
-                          return watch("propertyType") && pVal > 0 ? (
+                          return watchedPropertyType && pVal > 0 ? (
                             <div className="p-3 bg-gold-primary/5 border border-gold-primary/20 rounded-lg">
                               <p className="text-sm text-gray-600">
                                 <span className="font-semibold text-gold-primary">{ltvPct}% LTV</span> &mdash; Max Fundable: <span className="font-semibold">&#x20B9;{maxAmt.toLocaleString()}</span>

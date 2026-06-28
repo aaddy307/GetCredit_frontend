@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { Home, Building2, GraduationCap, Calculator, User, Briefcase, Car } from "lucide-react";
 import toast from "react-hot-toast";
 import Navbar from "@/components/layout/Navbar";
@@ -112,9 +112,9 @@ export default function EMICalculatorPage() {
   const [emiResult, setEmiResult] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [hasCalculated, setHasCalculated] = useState(false);
-  const { register, handleSubmit, watch, reset, formState: { isSubmitting } } = useForm();
+  const { register, handleSubmit, reset, control, formState: { isSubmitting } } = useForm();
 
-  const formValues = watch();
+  const formValues = useWatch({ control }) || {};
 
   const calculateEMI = (data) => {
     const loanAmount = parseFloat(data.loanAmount) || 0;

@@ -1,13 +1,13 @@
 "use client";
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Plus, Search, X, Edit2, Trash2, ChevronLeft, ChevronRight, Download, Filter, Calendar, ChevronDown, Inbox } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
 import { api } from "@/lib/api";
 
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 20;
 
 const statusOptions = [
   { value: 'Pending', label: 'Pending' },
@@ -189,7 +189,8 @@ export default function LeadsView() {
     toDate: '',
   });
 
-  const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, control, formState: { errors } } = useForm();
+  const watchedLoanType = useWatch({ control, name: "loanType" });
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
@@ -217,7 +218,10 @@ export default function LeadsView() {
     setLoading(false);
   }, [currentPage, filters]);
 
-  useEffect(() => { fetchLeads(); }, [fetchLeads]);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchLeads();
+  }, [fetchLeads]);
 
   const hasActiveFilters = filters.search || filters.status || filters.loanType || filters.source || filters.fromDate || filters.toDate;
 
@@ -324,19 +328,18 @@ export default function LeadsView() {
       const response = await api.delete(`/admin/lead/${deleteId}?collection=${collection}`);
       if (response.status === 200) {
         toast.success("Lead deleted");
-        setLeads(prev => {
-          const next = prev.filter(l => l._id !== deleteId);
-          const maxPage = Math.ceil(next.length / ITEMS_PER_PAGE) || 1;
-          if (currentPage > maxPage) setCurrentPage(maxPage);
-          return next;
-        });
+        if (leads.length === 1 && currentPage > 1) {
+          setCurrentPage(prev => prev - 1);
+        } else {
+          fetchLeads();
+        }
       } else {
         toast.error(response.data?.message || "Failed to delete");
       }
     } catch { toast.error("Failed to delete"); }
     setShowDeleteConfirm(false);
     setDeleteId(null);
-  }, [deleteId, leads, currentPage]);
+  }, [deleteId, leads, currentPage, fetchLeads]);
 
   const handleExport = useCallback(async (format = 'xlsx') => {
     setExporting(true);
@@ -629,7 +632,7 @@ export default function LeadsView() {
                 </select>
               </div>
               {/* Home Loan specific fields */}
-              {watch("loanType") === 'Home Loan' && (
+              {watchedLoanType === 'Home Loan' && (
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
@@ -658,7 +661,7 @@ export default function LeadsView() {
               )}
 
               {/* Loan Against Property specific fields */}
-              {watch("loanType") === 'Loan Against Property' && (
+              {watchedLoanType === 'Loan Against Property' && (
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Property Value (&#x20B9;)</label>
@@ -687,7 +690,7 @@ export default function LeadsView() {
               )}
 
               {/* Education Loan specific fields */}
-              {watch("loanType") === 'Education Loan' && (
+              {watchedLoanType === 'Education Loan' && (
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Qualification</label>
@@ -721,7 +724,7 @@ export default function LeadsView() {
               )}
 
               {/* Personal Loan specific fields */}
-              {watch("loanType") === 'Personal Loan' && (
+              {watchedLoanType === 'Personal Loan' && (
                 <div className="grid grid-cols-1 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Employment Type</label>
@@ -736,7 +739,7 @@ export default function LeadsView() {
               )}
 
               {/* Business Loan specific fields */}
-              {watch("loanType") === 'Business Loan' && (
+              {watchedLoanType === 'Business Loan' && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Business Vintage (Years)</label>
@@ -755,7 +758,7 @@ export default function LeadsView() {
               )}
 
               {/* Vehicle Loan specific fields */}
-              {watch("loanType") === 'Vehicle Loan' && (
+              {watchedLoanType === 'Vehicle Loan' && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Vehicle Type</label>
